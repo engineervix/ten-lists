@@ -38,9 +38,9 @@ The audio Bible is as downloaded from the <Faith Comes by Hearing®> website
 
 Has been tested on Python 2.7.
 
-'''------------------------------------------------------------------------'''
+------------------------------------------------------------------------'''
 
--------------------------------Changelog-----------------------------------
+'''------------------------------Changelog---------------------------------
 version 0.2:
 Added the ability to copy the files on the playlist file into a new folder
 so that you can carry the folder and listen anywhere (car, home theatre, etc)
