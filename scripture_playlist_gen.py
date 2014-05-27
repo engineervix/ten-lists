@@ -387,7 +387,7 @@ except IndexError:
 
 sys.stdout.close()
 
-#-----Now we copy the files into a new folder (new feature; since ver 0.2)-----#
+#----------------Now we copy the files into a new folder----------------#
 out_dir = "day"+str(x)
 
 if not os.path.exists(out_dir):
