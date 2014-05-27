@@ -11,7 +11,7 @@ so that you can carry the folder on your USB or any other device and listen anyw
 From the commandline, 
 
 ```
-python scripture_playlist_gen.py *x*
+python scripture_playlist_gen.py x
 ```
 
 where *x* is an integer that represents the day on the Bible-Reading System, as in day 1, day 2, ... day 365, etc. For example, if you want the playlist for day *37*;
@@ -25,16 +25,16 @@ python scripture_playlist_gen.py 37
 * Python must be installed on your computer and added to the PATH (the script has been tested on a Windows Computer running Python 2.7).
 
 * The script requires the following files to be in the same directory as the script itself:
---* list1.txt
---* list2.txt
---* list3.txt
---* list4.txt
---* list5.txt
---* list6.txt
---* list7.txt
---* list8.txt
---* list9.txt
---* list10.txt
+⋅⋅* list1.txt
+⋅⋅* list2.txt
+⋅⋅* list3.txt
+⋅⋅* list4.txt
+⋅⋅* list5.txt
+⋅⋅* list6.txt
+⋅⋅* list7.txt
+⋅⋅* list8.txt
+⋅⋅* list9.txt
+⋅⋅* list10.txt
 
 These text files contain the Bible Chapters in the lists from Professor Grant Horner's Bible-Reading System.
 
