@@ -41,12 +41,16 @@ Has been tested on Python 2.7.
 ------------------------------------------------------------------------'''
 
 '''------------------------------Changelog---------------------------------
-version 0.2:
-Added the ability to copy the files on the playlist file into a new folder
-so that you can carry the folder and listen anywhere (car, home theatre, etc)
+To Do:
+Add a feauture to send the playlist to (a) specified email address(es), or 
+publish it to your weblog or something, so that you are always reminded
+to get into God's word!
 
 version 0.1:
-Initial version
+Initial version. Includes the ability to copy the files on the playlist 
+file into a new folder so that you can copy the folder  to your USB or 
+any other device and thus be able to listen anywhere (car, home theatre, 
+mobile phone, tablet, etc).
 ------------------------------------------------------------------------'''
 
 
