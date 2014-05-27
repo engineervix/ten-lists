@@ -22,7 +22,7 @@ python scripture_playlist_gen.py 37
 
 ###Prerequisites / Assumptions
 
-* Python must be installed on your computer and added to the PATH (the script has been tested on a Windows Computer running Python 2.7).
+* Python must be installed on your computer and [added to the PATH](http://superuser.com/questions/143119/how-to-add-python-to-the-windows-path) (the script has been tested on a Windows Computer running Python 2.7).
 
 * The script requires the following files to be in the same directory as the script itself:
   * list1.txt
