@@ -1,4 +1,4 @@
-#!/usr/bin/python
+﻿#!/usr/bin/python
 # -- coding: utf-8 --
 
 '''
@@ -19,14 +19,14 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
-
 import sys, os
 from shutil import copy
+import eyed3
 
 __doc__ = "This script generates an m3u playlist of 10 Bible Chapters for day x of Bible plan."
 __author__ = "Victor Miti <victormiti@umusebo.com>"
-__date__ = "May 27 2014"
-__version__ = "0.1"
+__date__ = "July 22 2014"
+__version__ = "0.4"
 
 '''-----------------------------Description--------------------------------
 This python script generates an m3u playlist of 10 Bible Chapters
@@ -40,18 +40,31 @@ Has been tested on Python 2.7.
 
 ------------------------------------------------------------------------'''
 
-'''------------------------------Changelog---------------------------------
-To Do:
-Add a feauture to send the playlist to (a) specified email address(es), or 
-publish it to your weblog or something, so that you are always reminded
-to get into God's word!
+'''-------------------------------Changelog-----------------------------------
+version 0.4 (2015-05-11):
+- changed the naming convention of files and directories by enforcing a 3-digit
+number by padding with zeroes using the `zfill()` function. This was done
+because I noticed that when I was creating a one week playlist from day 96 to
+102; `day100` was considered as occuring before `day96` during processing, which
+isn't the case. This is because of the `1` after the `day`. Thus, to fix the
+problem, we need to have `day096` instead of `day96`.
+
+version 0.3:
+- Added the ability to change ID3 tag info in the copied files, so that
+whenever you play the files from any device (eg car, home theatre),
+the desired order is maintained.
+- Added the ability to rename the files so that their sequence follows the
+desired reading plan order, instead of the order of appearance in the Bible.
+Key Modules: eyed3, os.rename
+
+version 0.2:
+-Added the ability to copy the files on the playlist file into a new folder
+so that you can carry the folder and listen anywhere (car, home theatre, etc)
+Key Module: shutil
 
 version 0.1:
-Initial version. Includes the ability to copy the files on the playlist 
-file into a new folder so that you can copy the folder  to your USB or 
-any other device and thus be able to listen anywhere (car, home theatre, 
-mobile phone, tablet, etc).
-------------------------------------------------------------------------'''
+-Initial version
+---------------------------------------------------------------------------'''
 
 
 def _usage():
@@ -82,11 +95,12 @@ for count in range(1,11):
 #-----------------Now we create a new list(our reading list)-----------------#
 
 BIBLE_DIRECTORY = "ENGESVC2DA\\" # Change this to suit your directory.
+backslash_position = BIBLE_DIRECTORY.index('\\') #On Windows, comment out if used on GNU/Linux
 
 #redirect stdout to an .m3u file in the same directory
-sys.stdout = open("day"+str(x)+".m3u", "w")
+sys.stdout = open("day"+str(x).zfill(3)+".m3u", "w")
 
-SUCCESS_MSG = sys.stderr.write("The playlist for day "+str(x)+" has been created successfully.\n")
+SUCCESS_MSG = sys.stderr.write("\nThe playlist for day "+str(x)+" has been created successfully.\n")
 
 try:
     z = x - 1   #for indexing purposes. Remember that the first index is represented by zero!
@@ -391,23 +405,49 @@ except IndexError:
 
 sys.stdout.close()
 
-#----------------Now we copy the files into a new folder----------------#
-out_dir = "day"+str(x)
+#-----Now we copy the files into a new folder (new feature; since ver 0.2)-----#
+out_dir = "day"+str(x).zfill(3)
 
 if not os.path.exists(out_dir):
     os.makedirs(out_dir)
 
-playlist_file = open(r"day"+str(x)+".m3u", "r")
+playlist_file = open(r"day"+str(x).zfill(3)+".m3u", "r")
 
 for i in playlist_file.readlines():
     if i.startswith(BIBLE_DIRECTORY):
-        tmp = list(i.strip())
-        tmp[10] = '/' #On Windows, comment out if used on UNIX
-        copy("".join(tmp),out_dir)
+		tmp = list(i.strip())
+		#Replace the occurence of backslash with forward slash (on Windows)
+		tmp[backslash_position] = '/' #On Windows, comment out if used on GNU/Linux
+		copy("".join(tmp),out_dir)
 
 playlist_file.close()
 
-sys.stderr.write("I have also copied the Bible Chapters into the "+out_dir+" folder.\nSoli Deo Gloria")
+sys.stderr.write("\nCopying of the Bible Chapters into the "+out_dir+" directory was successful.\n")
+
+#-----We now change the ID3 tag information (track number) [new feature; since ver 0.3]-----#
+#-----We also rename the files in the destination directory [new feature; since ver 0.3]-----#
+track_number = 1
+
+playlist_file = open(r"day"+str(x).zfill(3)+".m3u", "r")
+
+for i in playlist_file.readlines():
+    if i.startswith(BIBLE_DIRECTORY):
+		tmp = list(i.strip().replace(BIBLE_DIRECTORY, out_dir+'/', 1))
+		f = "".join(tmp)
+		audiofile = eyed3.load(f)
+		audiofile.tag.track_num = track_number
+		audiofile.tag.save()
+		filename = f.replace(out_dir+'/', '')
+		# add a filename prefix with leading zeroes
+		f_new = out_dir+'/'+str(track_number).zfill(3) + filename[3:]
+		os.rename(f, f_new)
+		track_number += 1
+
+playlist_file.close()
+
+sys.stderr.write("\nID3 tag info for the files in this directory has been updated.\n")
+sys.stderr.write("\nThe files have been renamed in a sequential order.\n\n-----Soli Deo Gloria-----\n")
+
 
 #------------------------------------End------------------------------------#
 ##test to see whether we are getting the correct data from the text files!
