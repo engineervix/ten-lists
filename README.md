@@ -59,7 +59,7 @@ There's a bash script `make_one_week_playlist.sh` which allows you to create pla
 
 All you need to do is specify the start day as an argument to the script, as shown below:
 
-```bash
+```shell
 $ ./make_one_week_playlist.sh 200
 ```
 
