@@ -38,7 +38,7 @@ python scripture_playlist_gen.py 37
 
 These text files contain the Bible Chapters in the lists from Professor Grant Horner's Bible-Reading System.
 
-* In addition to the above, it is assumed that the Bible folder is also on the same path as the python script and the above files. If you require a different setup, you can can customize this by editing line 80 in the script. Line 80 is as follows:
+* In addition to the above, it is assumed that the Bible folder is also on the same path as the python script and the above files. If you require a different setup, you can can customize this by editing line 97 in the script. Line 97 is as follows:
 
 ```python
 BIBLE_DIRECTORY = "ENGESVC2DA\\" # Change this to suit your directory.
