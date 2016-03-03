@@ -49,3 +49,18 @@ BIBLE_DIRECTORY = "ENGESVC2DA\\" # Change this to suit your directory.
 
 * This script will only be useful to you if you use Professor Grant Horner's Bible-Reading System as the basis for your Bible Reading Plan.
 * The Audio Bible version used is the 2001 ESV dramatized Bible (complete), as freely downloaded from http://www.bible.is/audiodownloader. (The size is over 2Gb)
+
+
+##Extras
+
+### `make_one_week_playlist.sh`
+
+There's a bash script `make_one_week_playlist.sh` which allows you to create playlists for a week or whatever period you so wish. I created it because I wanted to make my playlists in advance and copy the files to my other devices and external media only once. Also, I only get to run one command and I have as many playlists as I want!
+
+All you need to do is specify the start day as an argument to the script, as shown below:
+
+```bash
+$ ./make_one_week_playlist.sh 200
+```
+
+If you want playlists for a period longer than seven days, edit the script and modify the `$END` variable accordingly.
