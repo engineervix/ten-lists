@@ -44,11 +44,6 @@ These text files contain the Bible Chapters in the lists from Professor Grant Ho
 BIBLE_DIRECTORY = "ENGESVC2DA\\" # Change this to suit your directory.
 ```
 
-However, changing this will also affect the copying of files on into a new folder, so you would have to edit line 401;
-
-```python
-        tmp[10] = '/' #On Windows, comment out if used on a UNIX system
-```
 
 ###Important Notes
 
