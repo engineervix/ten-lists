@@ -6,7 +6,7 @@ This python script generates an m3u playlist of 10 Bible Chapters (represented b
 The script also copies the files on the playlist into a new folder
 so that you can carry the folder on your USB or any other device and listen anywhere (car, home theatre, phone, tablet, etc).
 
-###Usage
+### Usage
 
 From the commandline, 
 
@@ -20,9 +20,15 @@ where *x* is an integer that represents the day on the Bible-Reading System, as 
 python scripture_playlist_gen.py 37
 ```
 
-###Prerequisites / Assumptions
+### Prerequisites / Assumptions
 
-* Python must be installed on your computer and [added to the PATH](http://superuser.com/questions/143119/how-to-add-python-to-the-windows-path) (the script has been tested on a Windows Computer running Python 2.7).
+* Python must be installed on your computer and [added to the PATH](http://superuser.com/questions/143119/how-to-add-python-to-the-windows-path) (the script has been tested on Windows, Mac OS X and Ubuntu running Python 2.7).
+
+* Install [eyeD3](http://eyed3.nicfit.net/) &mdash; a Python tool for working with audio files, specifically MP3 files. The script has been tested using version 0.78 and 0.79, but any version from 0.78 upwards is expected to work just fine. Install eyeD3 as follows:
+
+```
+pip install https://github.com/nicfit/eyeD3/archive/v0.7.9.tar.gz
+```
 
 * The script requires the following files to be in the same directory as the script itself:
   * list1.txt
@@ -45,13 +51,13 @@ BIBLE_DIRECTORY = "ENGESVC2DA\\" # Change this to suit your directory.
 ```
 
 
-###Important Notes
+### Important Notes
 
 * This script will only be useful to you if you use Professor Grant Horner's Bible-Reading System as the basis for your Bible Reading Plan.
 * The Audio Bible version used is the 2001 ESV dramatized Bible (complete), as freely downloaded from http://www.bible.is/audiodownloader. (The size is over 2Gb)
 
 
-##Extras
+## Extras
 
 ### `make_one_week_playlist.sh`
 
