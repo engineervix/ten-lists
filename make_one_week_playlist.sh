@@ -38,7 +38,7 @@ START=$1	#the 1st argument
 END=`expr $START + 6`
 
 for (( d=$START; d<=$END; d++ ))
-	do python Scripture.py $d;
+	do python scripture_playlist_gen.py $d;
 done
 
 a=0
