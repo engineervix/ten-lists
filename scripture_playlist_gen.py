@@ -1,5 +1,4 @@
-#!/usr/bin/python3
-# -- coding: utf-8 --
+#!/usr/bin/env python3
 
 '''
     Scripture Playlist Generator.
@@ -21,13 +20,23 @@
 
 import sys
 import os
+import argparse
 from shutil import copy
 import eyed3
 
-__doc__ = "This script generates an m3u playlist of 10 Bible Chapters for day x of Bible plan."
-__author__ = "Victor Miti <victormiti@umusebo.com>"
-__date__ = "June 22 2019"
+from colorama import init, Fore, Back, Style
+
+# Initialize the colorma colored command line output
+init()
+
+__author__ = "Victor Miti"
+__copyright__ = "Copyright (C) 2014-2019, Victor Miti"
+__credits__ = ['']
+__license__ = "GPL"
 __version__ = "0.5"
+__maintainer__ = "Victor Miti"
+__email__ = "victormiti@umusebo.com"
+__status__ = "Production/Stable"
 
 '''-----------------------------Description--------------------------------
 This python script generates an m3u playlist of 10 Bible Chapters
@@ -70,28 +79,24 @@ version 0.1:
 -Initial version
 ---------------------------------------------------------------------------'''
 
+print(Fore.YELLOW)
 
-def _usage():
-    """ print the usage message """
-    msg = __doc__ + "\n"
-    msg += "Usage:  scripture_playlist_gen.py [Option]\n"
-    msg += "Option:\n"
-    msg += "\n%5s,\t%s\t\%s\n\n" % ("x", "an integer", "enter the day of the reading plan, eg 6 for day 6")
+parser = argparse.ArgumentParser(
+    description='generates an m3u playlist of 10 Bible Chapters for day X of Bible plan.')
+parser.add_argument('day', metavar='X', type=int,
+                    help='the day of the reading plan, eg 6 for day 6')
+args = parser.parse_args()
 
-    print(msg)
+if args.day < 1:
+    parser.error("It's from Day 1 onwards.")
+else:
+    # x represents the day, as in day x...
+    #...This will be passed from the commandline as an argument variable
+    x = args.day
 
-if __name__ == "__main__":
-    if len(sys.argv) == 1:
-        sys.stderr.write("The day of the reading plan hasn't been given.\n")
-        _usage()
-        sys.exit(1)
+print(Style.RESET_ALL)  # reset colorama terminal colour enhancements
 
-# x represents the day, as in day x...
-#...This will be passed from the commandline as an argument variable
-script, x = sys.argv
-x = int(x)
-
-#first let us create the 10 lists from the text files
+# first let us create the 10 lists from the text files
 for count in range(1,11):
     exec("list_{} = {}".format(count, open("lists/list"+str(count)+".txt").read().splitlines()))
     exec("list_{}_length = len(list_{})".format(count, count))
@@ -100,13 +105,13 @@ for count in range(1,11):
 
 BIBLE_DIRECTORY = "ENGESVC2DA/" # Change this to suit your directory. Note the trailing "/"
 
-#redirect stdout to an .m3u file in the same directory
+# redirect stdout to an .m3u file in the same directory
 sys.stdout = open("day"+str(x).zfill(3)+".m3u", "w")
 
 SUCCESS_MSG = sys.stderr.write("\nThe playlist for day "+str(x)+" has been created successfully.\n")
 
 try:
-    z = x - 1   #for indexing purposes. Remember that the first index is represented by zero!
+    z = x - 1   # for indexing purposes. Remember that the first index is represented by zero!
     exec("reading_list_{} = {}".format(x, ','.join("list_"+str(j)+"["+str(z)+"]" for j in range(1,11))))
     print("#EXTM3U")
     exec("my_reading_list = reading_list_{}".format(x))
@@ -408,7 +413,7 @@ except IndexError:
 
 sys.stdout.close()
 
-#-----Now we copy the files into a new folder (new feature; since ver 0.2)-----#
+# -----Now we copy the files into a new folder (new feature; since ver 0.2)-----#
 out_dir = "day"+str(x).zfill(3)
 
 if not os.path.exists(out_dir):
@@ -425,8 +430,8 @@ playlist_file.close()
 
 sys.stderr.write("\nCopying of the Bible Chapters into the "+out_dir+" directory was successful.\n")
 
-#-----We now change the ID3 tag information (track number) [new feature; since ver 0.3]-----#
-#-----We also rename the files in the destination directory [new feature; since ver 0.3]-----#
+# -----We now change the ID3 tag information (track number) [new feature; since ver 0.3]-----#
+# -----We also rename the files in the destination directory [new feature; since ver 0.3]-----#
 track_number = 1
 
 playlist_file = open(r"day"+str(x).zfill(3)+".m3u", "r")
@@ -446,15 +451,14 @@ for i in playlist_file.readlines():
 
 playlist_file.close()
 
-sys.stderr.write("\nID3 tag info for the files in this directory has been updated.\n")
-sys.stderr.write("\nThe files have been renamed in a sequential order.\n\n-----Soli Deo Gloria-----\n")
+sys.stderr.write(f"{Fore.CYAN}\nID3 tag info for the files in this directory has been updated.\n")
+sys.stderr.write(f"\nThe files have been renamed in a sequential order.\n\n-----Soli Deo Gloria-----\n{Style.RESET_ALL}")
 
-
-#------------------------------------End------------------------------------#
-##test to see whether we are getting the correct data from the text files!
-##k = 1
-##for count in range(0,10):
-##    print "\nNow printing list_"+str(k)+": \n"
-##    exec "print(BIBLE_DIRECTORY+list_%d," % k
-##    print "\n--------------------------------------------------------------------\n"
-##    k+=1
+# ------------------------------------End------------------------------------#
+## test to see whether we are getting the correct data from the text files!
+## k = 1
+## for count in range(0,10):
+##     print "\nNow printing list_"+str(k)+": \n"
+##     exec "print(BIBLE_DIRECTORY+list_%d," % k
+##     print "\n--------------------------------------------------------------------\n"
+##     k+=1
