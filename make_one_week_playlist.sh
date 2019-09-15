@@ -18,23 +18,23 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ############################################################################
 
-#This script creates playlists for one week. I created it because I
-#wanted to make my playlists in advance and copy the files to my other
-#devices and external media only once. Also, I only get to run one
-#command and I have as many playlists as I want!
+# This script creates playlists for one week. I created it because I
+# wanted to make my playlists in advance and copy the files to my other
+# devices and external media only once. Also, I only get to run one
+# command and I have as many playlists as I want!
 
-#All you need to do is specify the start day as an argument to the script!
-#If you want playlists for a period longer than seven days,
-#modify the $END variable accordingly.
+# All you need to do is specify the start day as an argument to the script!
+# If you want playlists for a period longer than seven days,
+# modify the $END variable accordingly.
 
 start_time=`date +%s`
 
-#Firt let's remove any existing m3u files
+# Firt let's remove any existing m3u files
 printf "\n \nFirst we shall remove any existing m3u files...\n"
 rm -v *.m3u
 
 
-START=$1	#the 1st argument
+START=$1	# the 1st argument
 END=`expr $START + 6`
 
 for (( d=$START; d<=$END; d++ ))
@@ -44,8 +44,8 @@ done
 a=0
 printf "\n \nRenaming the m3u files...\n"
 
-#For this to work as expected, there shouldn't be any existing m3u files
-#other than those created in the operation above
+# For this to work as expected, there shouldn't be any existing m3u files
+# other than those created in the operation above
 for f in *.m3u;
 	do mv -v "$f" "${f%.m3u}_$(date -d "$a days" +"%Y-%b-%d-%a").m3u";
 	let a=a+1;
@@ -53,8 +53,8 @@ done
 
 b=0
 printf "\n \nNow renaming the directories...\n"
-#For this to work as expected, there shouldn't be any existing directories
-#with a 'day' prefix other than those created in the operation above
+# For this to work as expected, there shouldn't be any existing directories
+# with a 'day' prefix other than those created in the operation above
 for x in `ls | grep day`; do
 	if [ -d "$x" ]; then
 		mv -v "$x" "${x}_$(date -d "$b days" +"%Y-%b-%d-%a")"

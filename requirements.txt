@@ -1,0 +1,10 @@
+# core
+eyeD3==0.8.10
+colorama==0.4.1
+
+# linting and dev tools
+pylint==2.3.1
+pycodestyle==2.5.0
+pep8==1.7.1
+autopep8==1.4.4
+doc8==0.8.0

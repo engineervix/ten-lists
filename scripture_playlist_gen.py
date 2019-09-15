@@ -1,9 +1,9 @@
-﻿#!/usr/bin/python
+#!/usr/bin/python3
 # -- coding: utf-8 --
 
 '''
     Scripture Playlist Generator.
-    Copyright (C) 2014  Victor Miti
+    Copyright (C) 2014-2019  Victor Miti
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,14 +19,15 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
-import sys, os
+import sys
+import os
 from shutil import copy
 import eyed3
 
 __doc__ = "This script generates an m3u playlist of 10 Bible Chapters for day x of Bible plan."
 __author__ = "Victor Miti <victormiti@umusebo.com>"
-__date__ = "July 22 2014"
-__version__ = "0.4"
+__date__ = "June 22 2019"
+__version__ = "0.5"
 
 '''-----------------------------Description--------------------------------
 This python script generates an m3u playlist of 10 Bible Chapters
@@ -36,11 +37,14 @@ according to Professor Grant Horner's Bible-Reading System
 The audio Bible is as downloaded from the <Faith Comes by Hearing®> website
 (http://www.bible.is/audiodownloader)
 
-Has been tested on Python 2.7.
+Has been tested on Python 3.6 & 3.7.
 
 ------------------------------------------------------------------------'''
 
 '''-------------------------------Changelog-----------------------------------
+version 0.5 (2019-06-22):
+- switched to python3
+
 version 0.4 (2015-05-11):
 - changed the naming convention of files and directories by enforcing a 3-digit
 number by padding with zeroes using the `zfill()` function. This was done
@@ -74,7 +78,7 @@ def _usage():
     msg += "Option:\n"
     msg += "\n%5s,\t%s\t\%s\n\n" % ("x", "an integer", "enter the day of the reading plan, eg 6 for day 6")
 
-    print msg
+    print(msg)
 
 if __name__ == "__main__":
     if len(sys.argv) == 1:
@@ -89,13 +93,12 @@ x = int(x)
 
 #first let us create the 10 lists from the text files
 for count in range(1,11):
-    exec "list_%d = %s" % (count, open("list"+str(count)+".txt").read().splitlines())
-    exec "list_%d_length = len(list_%d)" % (count, count)
+    exec("list_{} = {}".format(count, open("lists/list"+str(count)+".txt").read().splitlines()))
+    exec("list_{}_length = len(list_{})".format(count, count))
 
 #-----------------Now we create a new list(our reading list)-----------------#
 
-BIBLE_DIRECTORY = "ENGESVC2DA\\" # Change this to suit your directory.
-backslash_position = BIBLE_DIRECTORY.index('\\') #On Windows, comment out if used on GNU/Linux
+BIBLE_DIRECTORY = "ENGESVC2DA/" # Change this to suit your directory. Note the trailing "/"
 
 #redirect stdout to an .m3u file in the same directory
 sys.stdout = open("day"+str(x).zfill(3)+".m3u", "w")
@@ -104,303 +107,303 @@ SUCCESS_MSG = sys.stderr.write("\nThe playlist for day "+str(x)+" has been creat
 
 try:
     z = x - 1   #for indexing purposes. Remember that the first index is represented by zero!
-    exec "reading_list_%d = %s" % (x, ','.join("list_"+str(j)+"["+str(z)+"]" for j in range(1,11)))
-    print "#EXTM3U"
-    exec "my_reading_list = reading_list_%d" % x
+    exec("reading_list_{} = {}".format(x, ','.join("list_"+str(j)+"["+str(z)+"]" for j in range(1,11))))
+    print("#EXTM3U")
+    exec("my_reading_list = reading_list_{}".format(x))
     for item in my_reading_list:
-        print BIBLE_DIRECTORY+item
+        print(BIBLE_DIRECTORY+item)
     SUCCESS_MSG
 
 except IndexError:
     if list_7_length >= x > list_10_length:
-        exec "reading_list_%d = %s" % (x, ','.join("list_"+str(j)+"["+str(z)+"]" for j in range(1,10)))
-        print "#EXTM3U"
-        exec "my_reading_list = reading_list_%d" % x
+        exec("reading_list_{} = {}".format(x, ','.join("list_"+str(j)+"["+str(z)+"]" for j in range(1,10))))
+        print("#EXTM3U")
+        exec("my_reading_list = reading_list_{}".format(x))
         for item in my_reading_list:
-            print BIBLE_DIRECTORY+item
+            print(BIBLE_DIRECTORY+item)
         z = x - 1 - list_10_length
-        print BIBLE_DIRECTORY+list_10[z]
+        print(BIBLE_DIRECTORY+list_10[z])
         SUCCESS_MSG
 
     if list_5_length >= x > list_7_length:
-        exec "reading_list_%d = %s" % (x, ','.join("list_"+str(j)+"["+str(z)+"]" for j in range(1,7)))
-        print "#EXTM3U"
-        exec "my_reading_list = reading_list_%d" % x
+        exec("reading_list_{} = {}".format(x, ','.join("list_"+str(j)+"["+str(z)+"]" for j in range(1,7))))
+        print("#EXTM3U")
+        exec("my_reading_list = reading_list_{}".format(x))
         for item in my_reading_list:
-            print BIBLE_DIRECTORY+item
+            print(BIBLE_DIRECTORY+item)
         z = x - 1 - list_7_length
-        print BIBLE_DIRECTORY+list_7[z]
-        print BIBLE_DIRECTORY+list_8[x-1]
-        print BIBLE_DIRECTORY+list_9[x-1]
+        print(BIBLE_DIRECTORY+list_7[z])
+        print(BIBLE_DIRECTORY+list_8[x-1])
+        print(BIBLE_DIRECTORY+list_9[x-1])
         z = x - 1 - list_10_length
         while z >= list_10_length:
             z = z - list_10_length
-        print BIBLE_DIRECTORY+list_10[z]
+        print(BIBLE_DIRECTORY+list_10[z])
         SUCCESS_MSG
 
     if list_4_length >= x > list_5_length:
-        exec "reading_list_%d = %s" % (x, ','.join("list_"+str(j)+"["+str(z)+"]" for j in range(1,5)))
-        print "#EXTM3U"
-        exec "my_reading_list = reading_list_%d" % x
+        exec("reading_list_{} = {}".format(x, ','.join("list_"+str(j)+"["+str(z)+"]" for j in range(1,5))))
+        print("#EXTM3U")
+        exec("my_reading_list = reading_list_{}".format(x))
         for item in my_reading_list:
-            print BIBLE_DIRECTORY+item
+            print(BIBLE_DIRECTORY+item)
         z = x - 1 - list_5_length
-        print BIBLE_DIRECTORY+list_5[z]
-        print BIBLE_DIRECTORY+list_6[x-1]
+        print(BIBLE_DIRECTORY+list_5[z])
+        print(BIBLE_DIRECTORY+list_6[x-1])
         z = x - 1 - list_7_length
         while z >= list_7_length:
             z = z - list_7_length
-        print BIBLE_DIRECTORY+list_7[z]
-        print BIBLE_DIRECTORY+list_8[x-1]
-        print BIBLE_DIRECTORY+list_9[x-1]
+        print(BIBLE_DIRECTORY+list_7[z])
+        print(BIBLE_DIRECTORY+list_8[x-1])
+        print(BIBLE_DIRECTORY+list_9[x-1])
         z = x - 1 - list_10_length
         while z >= list_10_length:
             z = z - list_10_length
-        print BIBLE_DIRECTORY+list_10[z]
+        print(BIBLE_DIRECTORY+list_10[z])
         SUCCESS_MSG
 
     if list_3_length >= x > list_4_length:
-        exec "reading_list_%d = %s" % (x, ','.join("list_"+str(j)+"["+str(z)+"]" for j in range(1,4)))
-        print "#EXTM3U"
-        exec "my_reading_list = reading_list_%d" % x
+        exec("reading_list_{} = {}".format(x, ','.join("list_"+str(j)+"["+str(z)+"]" for j in range(1,4))))
+        print("#EXTM3U")
+        exec("my_reading_list = reading_list_{}".format(x))
         for item in my_reading_list:
-            print BIBLE_DIRECTORY+item
+            print(BIBLE_DIRECTORY+item)
         z = x - 1 - list_4_length
-        print BIBLE_DIRECTORY+list_4[z]
+        print(BIBLE_DIRECTORY+list_4[z])
         z = x - 1 - list_5_length
         while z >= list_5_length:
             z = z - list_5_length
-        print BIBLE_DIRECTORY+list_5[z]
-        print BIBLE_DIRECTORY+list_6[x-1]
+        print(BIBLE_DIRECTORY+list_5[z])
+        print(BIBLE_DIRECTORY+list_6[x-1])
         z = x - 1 - list_7_length
         while z >= list_7_length:
             z = z - list_7_length
-        print BIBLE_DIRECTORY+list_7[z]
-        print BIBLE_DIRECTORY+list_8[x-1]
-        print BIBLE_DIRECTORY+list_9[x-1]
+        print(BIBLE_DIRECTORY+list_7[z])
+        print(BIBLE_DIRECTORY+list_8[x-1])
+        print(BIBLE_DIRECTORY+list_9[x-1])
         z = x - 1 - list_10_length
         while z >= list_10_length:
             z = z - list_10_length
-        print BIBLE_DIRECTORY+list_10[z]
+        print(BIBLE_DIRECTORY+list_10[z])
         SUCCESS_MSG
 
     if list_1_length >= x > list_3_length:
-        exec "reading_list_%d = %s" % (x, ','.join("list_"+str(j)+"["+str(z)+"]" for j in range(1,3)))
-        print "#EXTM3U"
-        exec "my_reading_list = reading_list_%d" % x
+        exec("reading_list_{} = {}".format(x, ','.join("list_"+str(j)+"["+str(z)+"]" for j in range(1,3))))
+        print("#EXTM3U")
+        exec("my_reading_list = reading_list_{}".format(x))
         for item in my_reading_list:
-            print BIBLE_DIRECTORY+item
+            print(BIBLE_DIRECTORY+item)
         z = x - 1 - list_3_length
-        print BIBLE_DIRECTORY+list_3[z]
+        print(BIBLE_DIRECTORY+list_3[z])
         z = x - 1 - list_4_length
         while z >= list_4_length:
             z = z - list_4_length
-        print BIBLE_DIRECTORY+list_4[z]
+        print(BIBLE_DIRECTORY+list_4[z])
         z = x - 1 - list_5_length
         while z >= list_5_length:
             z = z - list_5_length
-        print BIBLE_DIRECTORY+list_5[z]
-        print BIBLE_DIRECTORY+list_6[x-1]
+        print(BIBLE_DIRECTORY+list_5[z])
+        print(BIBLE_DIRECTORY+list_6[x-1])
         z = x - 1 - list_7_length
         while z >= list_7_length:
             z = z - list_7_length
-        print BIBLE_DIRECTORY+list_7[z]
-        print BIBLE_DIRECTORY+list_8[x-1]
-        print BIBLE_DIRECTORY+list_9[x-1]
+        print(BIBLE_DIRECTORY+list_7[z])
+        print(BIBLE_DIRECTORY+list_8[x-1])
+        print(BIBLE_DIRECTORY+list_9[x-1])
         z = x - 1 - list_10_length
         while z >= list_10_length:
             z = z - list_10_length
-        print BIBLE_DIRECTORY+list_10[z]
+        print(BIBLE_DIRECTORY+list_10[z])
         SUCCESS_MSG
 
     if list_6_length >= x > list_1_length:
-        print "#EXTM3U"
+        print("#EXTM3U")
         z = x - 1 - list_1_length
         while z >= list_1_length:
             z = z - list_1_length
-        print BIBLE_DIRECTORY+list_1[z]
-        print BIBLE_DIRECTORY+list_2[x-1]
+        print(BIBLE_DIRECTORY+list_1[z])
+        print(BIBLE_DIRECTORY+list_2[x-1])
         z = x - 1 - list_3_length
         while z >= list_3_length:
             z = z - list_3_length
-        print BIBLE_DIRECTORY+list_3[z]
+        print(BIBLE_DIRECTORY+list_3[z])
         z = x - 1 - list_4_length
         while z >= list_4_length:
             z = z - list_4_length
-        print BIBLE_DIRECTORY+list_4[z]
+        print(BIBLE_DIRECTORY+list_4[z])
         z = x - 1 - list_5_length
         while z >= list_5_length:
             z = z - list_5_length
-        print BIBLE_DIRECTORY+list_5[z]
-        print BIBLE_DIRECTORY+list_6[x-1]
+        print(BIBLE_DIRECTORY+list_5[z])
+        print(BIBLE_DIRECTORY+list_6[x-1])
         z = x - 1 - list_7_length
         while z >= list_7_length:
             z = z - list_7_length
-        print BIBLE_DIRECTORY+list_7[z]
-        print BIBLE_DIRECTORY+list_8[x-1]
-        print BIBLE_DIRECTORY+list_9[x-1]
+        print(BIBLE_DIRECTORY+list_7[z])
+        print(BIBLE_DIRECTORY+list_8[x-1])
+        print(BIBLE_DIRECTORY+list_9[x-1])
         z = x - 1 - list_10_length
         while z >= list_10_length:
             z = z - list_10_length
-        print BIBLE_DIRECTORY+list_10[z]
+        print(BIBLE_DIRECTORY+list_10[z])
         SUCCESS_MSG
 
     if list_2_length >= x > list_6_length:
-        print "#EXTM3U"
+        print("#EXTM3U")
         z = x - 1 - list_1_length
         while z >= list_1_length:
             z = z - list_1_length
-        print BIBLE_DIRECTORY+list_1[z]
-        print BIBLE_DIRECTORY+list_2[x-1]
+        print(BIBLE_DIRECTORY+list_1[z])
+        print(BIBLE_DIRECTORY+list_2[x-1])
         z = x - 1 - list_3_length
         while z >= list_3_length:
             z = z - list_3_length
-        print BIBLE_DIRECTORY+list_3[z]
+        print(BIBLE_DIRECTORY+list_3[z])
         z = x - 1 - list_4_length
         while z >= list_4_length:
             z = z - list_4_length
-        print BIBLE_DIRECTORY+list_4[z]
+        print(BIBLE_DIRECTORY+list_4[z])
         z = x - 1 - list_5_length
         while z >= list_5_length:
             z = z - list_5_length
-        print BIBLE_DIRECTORY+list_5[z]
+        print(BIBLE_DIRECTORY+list_5[z])
         z = x - 1 - list_6_length
         while z >= list_6_length:
             z = z - list_6_length
-        print BIBLE_DIRECTORY+list_6[z]
+        print(BIBLE_DIRECTORY+list_6[z])
         z = x - 1 - list_7_length
         while z >= list_7_length:
             z = z - list_7_length
-        print BIBLE_DIRECTORY+list_7[z]
-        print BIBLE_DIRECTORY+list_8[x-1]
-        print BIBLE_DIRECTORY+list_9[x-1]
+        print(BIBLE_DIRECTORY+list_7[z])
+        print(BIBLE_DIRECTORY+list_8[x-1])
+        print(BIBLE_DIRECTORY+list_9[x-1])
         z = x - 1 - list_10_length
         while z >= list_10_length:
             z = z - list_10_length
-        print BIBLE_DIRECTORY+list_10[z]
+        print(BIBLE_DIRECTORY+list_10[z])
         SUCCESS_MSG
 
     if list_8_length >= x > list_2_length:
-        print "#EXTM3U"
+        print("#EXTM3U")
         z = x - 1 - list_1_length
         while z >= list_1_length:
             z = z - list_1_length
-        print BIBLE_DIRECTORY+list_1[z]
+        print(BIBLE_DIRECTORY+list_1[z])
         z = x - 1 - list_2_length
         while z >= list_2_length:
             z = z - list_2_length
-        print BIBLE_DIRECTORY+list_2[z]
+        print(BIBLE_DIRECTORY+list_2[z])
         z = x - 1 - list_3_length
         while z >= list_3_length:
             z = z - list_3_length
-        print BIBLE_DIRECTORY+list_3[z]
+        print(BIBLE_DIRECTORY+list_3[z])
         z = x - 1 - list_4_length
         while z >= list_4_length:
             z = z - list_4_length
-        print BIBLE_DIRECTORY+list_4[z]
+        print(BIBLE_DIRECTORY+list_4[z])
         z = x - 1 - list_5_length
         while z >= list_5_length:
             z = z - list_5_length
-        print BIBLE_DIRECTORY+list_5[z]
+        print(BIBLE_DIRECTORY+list_5[z])
         z = x - 1 - list_6_length
         while z >= list_6_length:
             z = z - list_6_length
-        print BIBLE_DIRECTORY+list_6[z]
+        print(BIBLE_DIRECTORY+list_6[z])
         z = x - 1 - list_7_length
         while z >= list_7_length:
             z = z - list_7_length
-        print BIBLE_DIRECTORY+list_7[z]
-        print BIBLE_DIRECTORY+list_8[x-1]
-        print BIBLE_DIRECTORY+list_9[x-1]
+        print(BIBLE_DIRECTORY+list_7[z])
+        print(BIBLE_DIRECTORY+list_8[x-1])
+        print(BIBLE_DIRECTORY+list_9[x-1])
         z = x - 1 - list_10_length
         while z >= list_10_length:
             z = z - list_10_length
-        print BIBLE_DIRECTORY+list_10[z]
+        print(BIBLE_DIRECTORY+list_10[z])
         SUCCESS_MSG
 
     if list_9_length >= x > list_8_length:
-        print "#EXTM3U"
+        print("#EXTM3U")
         z = x - 1 - list_1_length
         while z >= list_1_length:
             z = z - list_1_length
-        print BIBLE_DIRECTORY+list_1[z]
+        print(BIBLE_DIRECTORY+list_1[z])
         z = x - 1 - list_2_length
         while z >= list_2_length:
             z = z - list_2_length
-        print BIBLE_DIRECTORY+list_2[z]
+        print(BIBLE_DIRECTORY+list_2[z])
         z = x - 1 - list_3_length
         while z >= list_3_length:
             z = z - list_3_length
-        print BIBLE_DIRECTORY+list_3[z]
+        print(BIBLE_DIRECTORY+list_3[z])
         z = x - 1 - list_4_length
         while z >= list_4_length:
             z = z - list_4_length
-        print BIBLE_DIRECTORY+list_4[z]
+        print(BIBLE_DIRECTORY+list_4[z])
         z = x - 1 - list_5_length
         while z >= list_5_length:
             z = z - list_5_length
-        print BIBLE_DIRECTORY+list_5[z]
+        print(BIBLE_DIRECTORY+list_5[z])
         z = x - 1 - list_6_length
         while z >= list_6_length:
             z = z - list_6_length
-        print BIBLE_DIRECTORY+list_6[z]
+        print(BIBLE_DIRECTORY+list_6[z])
         z = x - 1 - list_7_length
         while z >= list_7_length:
             z = z - list_7_length
-        print BIBLE_DIRECTORY+list_7[z]
+        print(BIBLE_DIRECTORY+list_7[z])
         z = x - 1 - list_8_length
         while z >= list_8_length:
             z = z - list_8_length
-        print BIBLE_DIRECTORY+list_8[z]
-        print BIBLE_DIRECTORY+list_9[x-1]
+        print(BIBLE_DIRECTORY+list_8[z])
+        print(BIBLE_DIRECTORY+list_9[x-1])
         z = x - 1 - list_10_length
         while z >= list_10_length:
             z = z - list_10_length
-        print BIBLE_DIRECTORY+list_10[z]
+        print(BIBLE_DIRECTORY+list_10[z])
         SUCCESS_MSG
 
     if x > list_9_length:
-        print "#EXTM3U"
+        print("#EXTM3U")
         z = x - 1 - list_1_length
         while z >= list_1_length:
             z = z - list_1_length
-        print BIBLE_DIRECTORY+list_1[z]
+        print(BIBLE_DIRECTORY+list_1[z])
         z = x - 1 - list_2_length
         while z >= list_2_length:
             z = z - list_2_length
-        print BIBLE_DIRECTORY+list_2[z]
+        print(BIBLE_DIRECTORY+list_2[z])
         z = x - 1 - list_3_length
         while z >= list_3_length:
             z = z - list_3_length
-        print BIBLE_DIRECTORY+list_3[z]
+        print(BIBLE_DIRECTORY+list_3[z])
         z = x - 1 - list_4_length
         while z >= list_4_length:
             z = z - list_4_length
-        print BIBLE_DIRECTORY+list_4[z]
+        print(BIBLE_DIRECTORY+list_4[z])
         z = x - 1 - list_5_length
         while z >= list_5_length:
             z = z - list_5_length
-        print BIBLE_DIRECTORY+list_5[z]
+        print(BIBLE_DIRECTORY+list_5[z])
         z = x - 1 - list_6_length
         while z >= list_6_length:
             z = z - list_6_length
-        print BIBLE_DIRECTORY+list_6[z]
+        print(BIBLE_DIRECTORY+list_6[z])
         z = x - 1 - list_7_length
         while z >= list_7_length:
             z = z - list_7_length
-        print BIBLE_DIRECTORY+list_7[z]
+        print(BIBLE_DIRECTORY+list_7[z])
         z = x - 1 - list_8_length
         while z >= list_8_length:
             z = z - list_8_length
-        print BIBLE_DIRECTORY+list_8[z]
+        print(BIBLE_DIRECTORY+list_8[z])
         z = x - 1 - list_9_length
         while z >= list_9_length:
             z = z - list_9_length
-        print BIBLE_DIRECTORY+list_9[z]
+        print(BIBLE_DIRECTORY+list_9[z])
         z = x - 1 - list_10_length
         while z >= list_10_length:
             z = z - list_10_length
-        print BIBLE_DIRECTORY+list_10[z]
+        print(BIBLE_DIRECTORY+list_10[z])
         SUCCESS_MSG
 
 sys.stdout.close()
@@ -415,10 +418,8 @@ playlist_file = open(r"day"+str(x).zfill(3)+".m3u", "r")
 
 for i in playlist_file.readlines():
     if i.startswith(BIBLE_DIRECTORY):
-		tmp = list(i.strip())
-		#Replace the occurence of backslash with forward slash (on Windows)
-		tmp[backslash_position] = '/' #On Windows, comment out if used on GNU/Linux
-		copy("".join(tmp),out_dir)
+        tmp = list(i.strip())
+        copy("".join(tmp),out_dir)
 
 playlist_file.close()
 
@@ -431,7 +432,7 @@ track_number = 1
 playlist_file = open(r"day"+str(x).zfill(3)+".m3u", "r")
 
 for i in playlist_file.readlines():
-    if i.startswith(BIBLE_DIRECTORY):
+	if i.startswith(BIBLE_DIRECTORY):
 		tmp = list(i.strip().replace(BIBLE_DIRECTORY, out_dir+'/', 1))
 		f = "".join(tmp)
 		audiofile = eyed3.load(f)
@@ -454,6 +455,6 @@ sys.stderr.write("\nThe files have been renamed in a sequential order.\n\n-----S
 ##k = 1
 ##for count in range(0,10):
 ##    print "\nNow printing list_"+str(k)+": \n"
-##    exec "print BIBLE_DIRECTORY+list_%d," % k
+##    exec "print(BIBLE_DIRECTORY+list_%d," % k
 ##    print "\n--------------------------------------------------------------------\n"
 ##    k+=1
