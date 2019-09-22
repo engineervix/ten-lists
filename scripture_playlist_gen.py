@@ -24,9 +24,9 @@ import argparse
 from shutil import copy
 import eyed3
 
-from colorama import init, Fore, Back, Style
+from colorama import init, Fore, Style
 
-# Initialize the colorma colored command line output
+# Initialize the colorama colored command line output
 init()
 
 __author__ = "Victor Miti"
@@ -48,9 +48,9 @@ The audio Bible is as downloaded from the <Faith Comes by Hearing®> website
 
 Has been tested on Python 3.6 & 3.7.
 
-------------------------------------------------------------------------'''
+------------------------------------------------------------------------
 
-'''-------------------------------Changelog-----------------------------------
+-------------------------------Changelog-----------------------------------
 version 0.5 (2019-06-22):
 - switched to python3
 
@@ -97,7 +97,7 @@ else:
 print(Style.RESET_ALL)  # reset colorama terminal colour enhancements
 
 # first let us create the 10 lists from the text files
-for count in range(1,11):
+for count in range(1, 11):
     exec("list_{} = {}".format(count, open("lists/list"+str(count)+".txt").read().splitlines()))
     exec("list_{}_length = len(list_{})".format(count, count))
 
@@ -112,7 +112,10 @@ SUCCESS_MSG = sys.stderr.write("\nThe playlist for day "+str(x)+" has been creat
 
 try:
     z = x - 1   # for indexing purposes. Remember that the first index is represented by zero!
-    exec("reading_list_{} = {}".format(x, ','.join("list_"+str(j)+"["+str(z)+"]" for j in range(1,11))))
+    exec("reading_list_{} = {}".format(x,
+                                       ','.join("list_" + \
+                                                str(j) + \
+                                                "[" + str(z) + "]" for j in range(1, 11))))
     print("#EXTM3U")
     exec("my_reading_list = reading_list_{}".format(x))
     for item in my_reading_list:
@@ -121,7 +124,10 @@ try:
 
 except IndexError:
     if list_7_length >= x > list_10_length:
-        exec("reading_list_{} = {}".format(x, ','.join("list_"+str(j)+"["+str(z)+"]" for j in range(1,10))))
+        exec("reading_list_{} = {}".format(x,
+                                           ','.join("list_" + \
+                                                    str(j) + \
+                                                    "[" + str(z) + "]" for j in range(1, 10))))
         print("#EXTM3U")
         exec("my_reading_list = reading_list_{}".format(x))
         for item in my_reading_list:
@@ -131,7 +137,10 @@ except IndexError:
         SUCCESS_MSG
 
     if list_5_length >= x > list_7_length:
-        exec("reading_list_{} = {}".format(x, ','.join("list_"+str(j)+"["+str(z)+"]" for j in range(1,7))))
+        exec("reading_list_{} = {}".format(x,
+                                           ','.join("list_" + \
+                                                    str(j) + \
+                                                    "[" + str(z) + "]" for j in range(1, 7))))
         print("#EXTM3U")
         exec("my_reading_list = reading_list_{}".format(x))
         for item in my_reading_list:
@@ -147,7 +156,9 @@ except IndexError:
         SUCCESS_MSG
 
     if list_4_length >= x > list_5_length:
-        exec("reading_list_{} = {}".format(x, ','.join("list_"+str(j)+"["+str(z)+"]" for j in range(1,5))))
+        exec("reading_list_{} = {}".format(x, ','.join("list_" + \
+                                                       str(j) + \
+                                                       "[" + str(z) + "]" for j in range(1, 5))))
         print("#EXTM3U")
         exec("my_reading_list = reading_list_{}".format(x))
         for item in my_reading_list:
@@ -168,7 +179,9 @@ except IndexError:
         SUCCESS_MSG
 
     if list_3_length >= x > list_4_length:
-        exec("reading_list_{} = {}".format(x, ','.join("list_"+str(j)+"["+str(z)+"]" for j in range(1,4))))
+        exec("reading_list_{} = {}".format(x, ','.join("list_" + \
+                                                       str(j) + \
+                                                       "[" + str(z) + "]" for j in range(1, 4))))
         print("#EXTM3U")
         exec("my_reading_list = reading_list_{}".format(x))
         for item in my_reading_list:
@@ -193,7 +206,9 @@ except IndexError:
         SUCCESS_MSG
 
     if list_1_length >= x > list_3_length:
-        exec("reading_list_{} = {}".format(x, ','.join("list_"+str(j)+"["+str(z)+"]" for j in range(1,3))))
+        exec("reading_list_{} = {}".format(x, ','.join("list_" + \
+                                                       str(j) + \
+                                                       "[" + str(z) + "]" for j in range(1, 3))))
         print("#EXTM3U")
         exec("my_reading_list = reading_list_{}".format(x))
         for item in my_reading_list:
@@ -424,7 +439,7 @@ playlist_file = open(r"day"+str(x).zfill(3)+".m3u", "r")
 for i in playlist_file.readlines():
     if i.startswith(BIBLE_DIRECTORY):
         tmp = list(i.strip())
-        copy("".join(tmp),out_dir)
+        copy("".join(tmp), out_dir)
 
 playlist_file.close()
 
@@ -437,22 +452,23 @@ track_number = 1
 playlist_file = open(r"day"+str(x).zfill(3)+".m3u", "r")
 
 for i in playlist_file.readlines():
-	if i.startswith(BIBLE_DIRECTORY):
-		tmp = list(i.strip().replace(BIBLE_DIRECTORY, out_dir+'/', 1))
-		f = "".join(tmp)
-		audiofile = eyed3.load(f)
-		audiofile.tag.track_num = track_number
-		audiofile.tag.save()
-		filename = f.replace(out_dir+'/', '')
-		# add a filename prefix with leading zeroes
-		f_new = out_dir+'/'+str(track_number).zfill(3) + filename[3:]
-		os.rename(f, f_new)
-		track_number += 1
+    if i.startswith(BIBLE_DIRECTORY):
+        tmp = list(i.strip().replace(BIBLE_DIRECTORY, out_dir+'/', 1))
+        f = "".join(tmp)
+        audiofile = eyed3.load(f)
+        audiofile.tag.track_num = track_number
+        audiofile.tag.save()
+        filename = f.replace(out_dir+'/', '')
+        # add a filename prefix with leading zeroes
+        f_new = out_dir+'/'+str(track_number).zfill(3) + filename[3:]
+        os.rename(f, f_new)
+        track_number += 1
 
 playlist_file.close()
 
 sys.stderr.write(f"{Fore.CYAN}\nID3 tag info for the files in this directory has been updated.\n")
-sys.stderr.write(f"\nThe files have been renamed in a sequential order.\n\n-----Soli Deo Gloria-----\n{Style.RESET_ALL}")
+sys.stderr.write(f"\nThe files have been renamed in a sequential order. \
+                 \n\n-----Soli Deo Gloria-----\n{Style.RESET_ALL}")
 
 # ------------------------------------End------------------------------------#
 ## test to see whether we are getting the correct data from the text files!
