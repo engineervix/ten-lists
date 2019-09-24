@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-'''
+"""
     Scripture Playlist Generator.
     Copyright (C) 2014-2019  Victor Miti
 
@@ -16,7 +16,7 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-'''
+"""
 
 import sys
 import os
@@ -39,7 +39,8 @@ __maintainer__ = "Victor Miti"
 __email__ = "victormiti@umusebo.com"
 __status__ = "Production/Stable"
 
-'''-----------------------------Description--------------------------------
+"""
+-----------------------------Description--------------------------------
 This python script generates an m3u playlist of 10 Bible Chapters
 (represented by 10 mp3 files) to be listened to on any given day x,
 according to Professor Grant Horner's Bible-Reading System
@@ -48,37 +49,8 @@ The audio Bible is as downloaded from the <Faith Comes by Hearing®> website
 (http://www.bible.is/audiodownloader)
 
 Has been tested on Python 3.6 & 3.7.
-
-------------------------------------------------------------------------
-
--------------------------------Changelog-----------------------------------
-version 0.5 (2019-06-22):
-- switched to python3
-
-version 0.4 (2015-05-11):
-- changed the naming convention of files and directories by enforcing a 3-digit
-number by padding with zeroes using the `zfill()` function. This was done
-because I noticed that when I was creating a one week playlist from day 96 to
-102; `day100` was considered as occuring before `day96` during processing,
-which isn't the case. This is because of the `1` after the `day`.
-Thus, to fix the problem, we need to have `day096` instead of `day96`.
-
-version 0.3:
-- Added the ability to change ID3 tag info in the copied files, so that
-whenever you play the files from any device (eg car, home theatre),
-the desired order is maintained.
-- Added the ability to rename the files so that their sequence follows the
-desired reading plan order, instead of the order of appearance in the Bible.
-Key Modules: eyed3, os.rename
-
-version 0.2:
--Added the ability to copy the files on the playlist file into a new folder
-so that you can carry the folder and listen anywhere (car, home theatre, etc)
-Key Module: shutil
-
-version 0.1:
--Initial version
----------------------------------------------------------------------------'''
+---------------------------------------------------------------------------
+"""
 
 print(Fore.YELLOW)
 
@@ -125,318 +97,319 @@ list_10 = reading_lists[9]
 # Change this to suit your directory. Note the trailing "/"
 BIBLE_DIRECTORY = "ENGESVC2DA/"
 
-# redirect stdout to an .m3u file in the same directory
-sys.stdout = open("day"+str(x).zfill(3)+".m3u", "w")
+SUCCESS_MSG = f"\nThe playlist for day {str(x)} has been created " + \
+              "successfully.\n"
+ERROR_MSG = f"\nThere was a problem in creating a playlist for day {str(x)}.\n"
 
-SUCCESS_MSG = sys.stderr.write("\nThe playlist for day " + str(x) +
-                               " has been created successfully.\n")
+
+def add_to_m3u(content):
+    """appends content to an m3u file"""
+    with open("day"+str(x).zfill(3)+".m3u", "a") as m3u:
+        m3u.write(f"{content}\n")
 
 try:
     # for indexing purposes. Remember that
     # the first index is represented by zero!
     z = x - 1
     current_reading_list = [bible_list[z] for bible_list in reading_lists]
-    print("#EXTM3U")
+    add_to_m3u("#EXTM3U")
     for item in current_reading_list:
-        print(BIBLE_DIRECTORY + item)
-    SUCCESS_MSG
+        add_to_m3u(BIBLE_DIRECTORY + item)
+    print(SUCCESS_MSG)
 
 except IndexError:
     if len(reading_lists[6]) >= x > len(reading_lists[9]):
         current_reading_list = [bible_list[z]
                                 for bible_list in reading_lists[:-1]]
-        print("#EXTM3U")
+        add_to_m3u("#EXTM3U")
         for item in current_reading_list:
-            print(BIBLE_DIRECTORY + item)
+            add_to_m3u(BIBLE_DIRECTORY + item)
         z = x - 1 - len(reading_lists[9])
-        print(BIBLE_DIRECTORY + list_10[z])
-        SUCCESS_MSG
+        add_to_m3u(BIBLE_DIRECTORY + list_10[z])
+        print(SUCCESS_MSG)
 
     if len(reading_lists[4]) >= x > len(reading_lists[6]):
         current_reading_list = [bible_list[z]
                                 for bible_list in reading_lists[:-4]]
-        print("#EXTM3U")
+        add_to_m3u("#EXTM3U")
         for item in current_reading_list:
-            print(BIBLE_DIRECTORY + item)
+            add_to_m3u(BIBLE_DIRECTORY + item)
         z = x - 1 - len(reading_lists[6])
-        print(BIBLE_DIRECTORY + list_7[z])
-        print(BIBLE_DIRECTORY + list_8[x-1])
-        print(BIBLE_DIRECTORY + list_9[x-1])
+        add_to_m3u(BIBLE_DIRECTORY + list_7[z])
+        add_to_m3u(BIBLE_DIRECTORY + list_8[x-1])
+        add_to_m3u(BIBLE_DIRECTORY + list_9[x-1])
         z = x - 1 - len(reading_lists[9])
         while z >= len(reading_lists[9]):
             z = z - len(reading_lists[9])
-        print(BIBLE_DIRECTORY + list_10[z])
-        SUCCESS_MSG
+        add_to_m3u(BIBLE_DIRECTORY + list_10[z])
+        print(SUCCESS_MSG)
 
     if len(reading_lists[3]) >= x > len(reading_lists[4]):
         current_reading_list = [bible_list[z]
                                 for bible_list in reading_lists[:4]]
-        print("#EXTM3U")
+        add_to_m3u("#EXTM3U")
         for item in current_reading_list:
-            print(BIBLE_DIRECTORY+item)
+            add_to_m3u(BIBLE_DIRECTORY+item)
         z = x - 1 - len(reading_lists[4])
-        print(BIBLE_DIRECTORY + list_5[z])
-        print(BIBLE_DIRECTORY + list_6[x-1])
+        add_to_m3u(BIBLE_DIRECTORY + list_5[z])
+        add_to_m3u(BIBLE_DIRECTORY + list_6[x-1])
         z = x - 1 - len(reading_lists[6])
         while z >= len(reading_lists[6]):
             z = z - len(reading_lists[6])
-        print(BIBLE_DIRECTORY + list_7[z])
-        print(BIBLE_DIRECTORY + list_8[x-1])
-        print(BIBLE_DIRECTORY + list_9[x-1])
+        add_to_m3u(BIBLE_DIRECTORY + list_7[z])
+        add_to_m3u(BIBLE_DIRECTORY + list_8[x-1])
+        add_to_m3u(BIBLE_DIRECTORY + list_9[x-1])
         z = x - 1 - len(reading_lists[9])
         while z >= len(reading_lists[9]):
             z = z - len(reading_lists[9])
-        print(BIBLE_DIRECTORY + list_10[z])
-        SUCCESS_MSG
+        add_to_m3u(BIBLE_DIRECTORY + list_10[z])
+        print(SUCCESS_MSG)
 
     if len(reading_lists[2]) >= x > len(reading_lists[3]):
         current_reading_list = [bible_list[z]
                                 for bible_list in reading_lists[:3]]
-        print("#EXTM3U")
+        add_to_m3u("#EXTM3U")
         for item in current_reading_list:
-            print(BIBLE_DIRECTORY + item)
+            add_to_m3u(BIBLE_DIRECTORY + item)
         z = x - 1 - len(reading_lists[3])
-        print(BIBLE_DIRECTORY + list_4[z])
+        add_to_m3u(BIBLE_DIRECTORY + list_4[z])
         z = x - 1 - len(reading_lists[4])
         while z >= len(reading_lists[4]):
             z = z - len(reading_lists[4])
-        print(BIBLE_DIRECTORY + list_5[z])
-        print(BIBLE_DIRECTORY + list_6[x-1])
+        add_to_m3u(BIBLE_DIRECTORY + list_5[z])
+        add_to_m3u(BIBLE_DIRECTORY + list_6[x-1])
         z = x - 1 - len(reading_lists[6])
         while z >= len(reading_lists[6]):
             z = z - len(reading_lists[6])
-        print(BIBLE_DIRECTORY + list_7[z])
-        print(BIBLE_DIRECTORY + list_8[x-1])
-        print(BIBLE_DIRECTORY + list_9[x-1])
+        add_to_m3u(BIBLE_DIRECTORY + list_7[z])
+        add_to_m3u(BIBLE_DIRECTORY + list_8[x-1])
+        add_to_m3u(BIBLE_DIRECTORY + list_9[x-1])
         z = x - 1 - len(reading_lists[9])
         while z >= len(reading_lists[9]):
             z = z - len(reading_lists[9])
-        print(BIBLE_DIRECTORY + list_10[z])
-        SUCCESS_MSG
+        add_to_m3u(BIBLE_DIRECTORY + list_10[z])
+        print(SUCCESS_MSG)
 
     if len(reading_lists[0]) >= x > len(reading_lists[2]):
         current_reading_list = [bible_list[z]
                                 for bible_list in reading_lists[:2]]
-        print("#EXTM3U")
+        add_to_m3u("#EXTM3U")
         for item in current_reading_list:
-            print(BIBLE_DIRECTORY+item)
+            add_to_m3u(BIBLE_DIRECTORY+item)
         z = x - 1 - len(reading_lists[2])
-        print(BIBLE_DIRECTORY + list_3[z])
+        add_to_m3u(BIBLE_DIRECTORY + list_3[z])
         z = x - 1 - len(reading_lists[3])
         while z >= len(reading_lists[3]):
             z = z - len(reading_lists[3])
-        print(BIBLE_DIRECTORY + list_4[z])
+        add_to_m3u(BIBLE_DIRECTORY + list_4[z])
         z = x - 1 - len(reading_lists[4])
         while z >= len(reading_lists[4]):
             z = z - len(reading_lists[4])
-        print(BIBLE_DIRECTORY + list_5[z])
-        print(BIBLE_DIRECTORY + list_6[x-1])
+        add_to_m3u(BIBLE_DIRECTORY + list_5[z])
+        add_to_m3u(BIBLE_DIRECTORY + list_6[x-1])
         z = x - 1 - len(reading_lists[6])
         while z >= len(reading_lists[6]):
             z = z - len(reading_lists[6])
-        print(BIBLE_DIRECTORY + list_7[z])
-        print(BIBLE_DIRECTORY + list_8[x-1])
-        print(BIBLE_DIRECTORY + list_9[x-1])
+        add_to_m3u(BIBLE_DIRECTORY + list_7[z])
+        add_to_m3u(BIBLE_DIRECTORY + list_8[x-1])
+        add_to_m3u(BIBLE_DIRECTORY + list_9[x-1])
         z = x - 1 - len(reading_lists[9])
         while z >= len(reading_lists[9]):
             z = z - len(reading_lists[9])
-        print(BIBLE_DIRECTORY + list_10[z])
-        SUCCESS_MSG
+        add_to_m3u(BIBLE_DIRECTORY + list_10[z])
+        print(SUCCESS_MSG)
 
     if len(reading_lists[5]) >= x > len(reading_lists[0]):
-        print("#EXTM3U")
+        add_to_m3u("#EXTM3U")
         z = x - 1 - len(reading_lists[0])
         while z >= len(reading_lists[0]):
             z = z - len(reading_lists[0])
-        print(BIBLE_DIRECTORY + list_1[z])
-        print(BIBLE_DIRECTORY + list_2[x-1])
+        add_to_m3u(BIBLE_DIRECTORY + list_1[z])
+        add_to_m3u(BIBLE_DIRECTORY + list_2[x-1])
         z = x - 1 - len(reading_lists[2])
         while z >= len(reading_lists[2]):
             z = z - len(reading_lists[2])
-        print(BIBLE_DIRECTORY + list_3[z])
+        add_to_m3u(BIBLE_DIRECTORY + list_3[z])
         z = x - 1 - len(reading_lists[3])
         while z >= len(reading_lists[3]):
             z = z - len(reading_lists[3])
-        print(BIBLE_DIRECTORY + list_4[z])
+        add_to_m3u(BIBLE_DIRECTORY + list_4[z])
         z = x - 1 - len(reading_lists[4])
         while z >= len(reading_lists[4]):
             z = z - len(reading_lists[4])
-        print(BIBLE_DIRECTORY + list_5[z])
-        print(BIBLE_DIRECTORY + list_6[x-1])
+        add_to_m3u(BIBLE_DIRECTORY + list_5[z])
+        add_to_m3u(BIBLE_DIRECTORY + list_6[x-1])
         z = x - 1 - len(reading_lists[6])
         while z >= len(reading_lists[6]):
             z = z - len(reading_lists[6])
-        print(BIBLE_DIRECTORY + list_7[z])
-        print(BIBLE_DIRECTORY + list_8[x-1])
-        print(BIBLE_DIRECTORY + list_9[x-1])
+        add_to_m3u(BIBLE_DIRECTORY + list_7[z])
+        add_to_m3u(BIBLE_DIRECTORY + list_8[x-1])
+        add_to_m3u(BIBLE_DIRECTORY + list_9[x-1])
         z = x - 1 - len(reading_lists[9])
         while z >= len(reading_lists[9]):
             z = z - len(reading_lists[9])
-        print(BIBLE_DIRECTORY + list_10[z])
-        SUCCESS_MSG
+        add_to_m3u(BIBLE_DIRECTORY + list_10[z])
+        print(SUCCESS_MSG)
 
     if len(reading_lists[1]) >= x > len(reading_lists[5]):
-        print("#EXTM3U")
+        add_to_m3u("#EXTM3U")
         z = x - 1 - len(reading_lists[0])
         while z >= len(reading_lists[0]):
             z = z - len(reading_lists[0])
-        print(BIBLE_DIRECTORY + list_1[z])
-        print(BIBLE_DIRECTORY + list_2[x-1])
+        add_to_m3u(BIBLE_DIRECTORY + list_1[z])
+        add_to_m3u(BIBLE_DIRECTORY + list_2[x-1])
         z = x - 1 - len(reading_lists[2])
         while z >= len(reading_lists[2]):
             z = z - len(reading_lists[2])
-        print(BIBLE_DIRECTORY + list_3[z])
+        add_to_m3u(BIBLE_DIRECTORY + list_3[z])
         z = x - 1 - len(reading_lists[3])
         while z >= len(reading_lists[3]):
             z = z - len(reading_lists[3])
-        print(BIBLE_DIRECTORY + list_4[z])
+        add_to_m3u(BIBLE_DIRECTORY + list_4[z])
         z = x - 1 - len(reading_lists[4])
         while z >= len(reading_lists[4]):
             z = z - len(reading_lists[4])
-        print(BIBLE_DIRECTORY + list_5[z])
+        add_to_m3u(BIBLE_DIRECTORY + list_5[z])
         z = x - 1 - len(reading_lists[5])
         while z >= len(reading_lists[5]):
             z = z - len(reading_lists[5])
-        print(BIBLE_DIRECTORY + list_6[z])
+        add_to_m3u(BIBLE_DIRECTORY + list_6[z])
         z = x - 1 - len(reading_lists[6])
         while z >= len(reading_lists[6]):
             z = z - len(reading_lists[6])
-        print(BIBLE_DIRECTORY + list_7[z])
-        print(BIBLE_DIRECTORY + list_8[x-1])
-        print(BIBLE_DIRECTORY + list_9[x-1])
+        add_to_m3u(BIBLE_DIRECTORY + list_7[z])
+        add_to_m3u(BIBLE_DIRECTORY + list_8[x-1])
+        add_to_m3u(BIBLE_DIRECTORY + list_9[x-1])
         z = x - 1 - len(reading_lists[9])
         while z >= len(reading_lists[9]):
             z = z - len(reading_lists[9])
-        print(BIBLE_DIRECTORY + list_10[z])
-        SUCCESS_MSG
+        add_to_m3u(BIBLE_DIRECTORY + list_10[z])
+        print(SUCCESS_MSG)
 
     if len(reading_lists[7]) >= x > len(reading_lists[1]):
-        print("#EXTM3U")
+        add_to_m3u("#EXTM3U")
         z = x - 1 - len(reading_lists[0])
         while z >= len(reading_lists[0]):
             z = z - len(reading_lists[0])
-        print(BIBLE_DIRECTORY + list_1[z])
+        add_to_m3u(BIBLE_DIRECTORY + list_1[z])
         z = x - 1 - len(reading_lists[1])
         while z >= len(reading_lists[1]):
             z = z - len(reading_lists[1])
-        print(BIBLE_DIRECTORY + list_2[z])
+        add_to_m3u(BIBLE_DIRECTORY + list_2[z])
         z = x - 1 - len(reading_lists[2])
         while z >= len(reading_lists[2]):
             z = z - len(reading_lists[2])
-        print(BIBLE_DIRECTORY + list_3[z])
+        add_to_m3u(BIBLE_DIRECTORY + list_3[z])
         z = x - 1 - len(reading_lists[3])
         while z >= len(reading_lists[3]):
             z = z - len(reading_lists[3])
-        print(BIBLE_DIRECTORY + list_4[z])
+        add_to_m3u(BIBLE_DIRECTORY + list_4[z])
         z = x - 1 - len(reading_lists[4])
         while z >= len(reading_lists[4]):
             z = z - len(reading_lists[4])
-        print(BIBLE_DIRECTORY + list_5[z])
+        add_to_m3u(BIBLE_DIRECTORY + list_5[z])
         z = x - 1 - len(reading_lists[5])
         while z >= len(reading_lists[5]):
             z = z - len(reading_lists[5])
-        print(BIBLE_DIRECTORY + list_6[z])
+        add_to_m3u(BIBLE_DIRECTORY + list_6[z])
         z = x - 1 - len(reading_lists[6])
         while z >= len(reading_lists[6]):
             z = z - len(reading_lists[6])
-        print(BIBLE_DIRECTORY + list_7[z])
-        print(BIBLE_DIRECTORY + list_8[x-1])
-        print(BIBLE_DIRECTORY + list_9[x-1])
+        add_to_m3u(BIBLE_DIRECTORY + list_7[z])
+        add_to_m3u(BIBLE_DIRECTORY + list_8[x-1])
+        add_to_m3u(BIBLE_DIRECTORY + list_9[x-1])
         z = x - 1 - len(reading_lists[9])
         while z >= len(reading_lists[9]):
             z = z - len(reading_lists[9])
-        print(BIBLE_DIRECTORY + list_10[z])
-        SUCCESS_MSG
+        add_to_m3u(BIBLE_DIRECTORY + list_10[z])
+        print(SUCCESS_MSG)
 
     if len(reading_lists[8]) >= x > len(reading_lists[7]):
-        print("#EXTM3U")
+        add_to_m3u("#EXTM3U")
         z = x - 1 - len(reading_lists[0])
         while z >= len(reading_lists[0]):
             z = z - len(reading_lists[0])
-        print(BIBLE_DIRECTORY + list_1[z])
+        add_to_m3u(BIBLE_DIRECTORY + list_1[z])
         z = x - 1 - len(reading_lists[1])
         while z >= len(reading_lists[1]):
             z = z - len(reading_lists[1])
-        print(BIBLE_DIRECTORY + list_2[z])
+        add_to_m3u(BIBLE_DIRECTORY + list_2[z])
         z = x - 1 - len(reading_lists[2])
         while z >= len(reading_lists[2]):
             z = z - len(reading_lists[2])
-        print(BIBLE_DIRECTORY + list_3[z])
+        add_to_m3u(BIBLE_DIRECTORY + list_3[z])
         z = x - 1 - len(reading_lists[3])
         while z >= len(reading_lists[3]):
             z = z - len(reading_lists[3])
-        print(BIBLE_DIRECTORY + list_4[z])
+        add_to_m3u(BIBLE_DIRECTORY + list_4[z])
         z = x - 1 - len(reading_lists[4])
         while z >= len(reading_lists[4]):
             z = z - len(reading_lists[4])
-        print(BIBLE_DIRECTORY + list_5[z])
+        add_to_m3u(BIBLE_DIRECTORY + list_5[z])
         z = x - 1 - len(reading_lists[5])
         while z >= len(reading_lists[5]):
             z = z - len(reading_lists[5])
-        print(BIBLE_DIRECTORY + list_6[z])
+        add_to_m3u(BIBLE_DIRECTORY + list_6[z])
         z = x - 1 - len(reading_lists[6])
         while z >= len(reading_lists[6]):
             z = z - len(reading_lists[6])
-        print(BIBLE_DIRECTORY + list_7[z])
+        add_to_m3u(BIBLE_DIRECTORY + list_7[z])
         z = x - 1 - len(reading_lists[7])
         while z >= len(reading_lists[7]):
             z = z - len(reading_lists[7])
-        print(BIBLE_DIRECTORY + list_8[z])
-        print(BIBLE_DIRECTORY + list_9[x-1])
+        add_to_m3u(BIBLE_DIRECTORY + list_8[z])
+        add_to_m3u(BIBLE_DIRECTORY + list_9[x-1])
         z = x - 1 - len(reading_lists[9])
         while z >= len(reading_lists[9]):
             z = z - len(reading_lists[9])
-        print(BIBLE_DIRECTORY + list_10[z])
-        SUCCESS_MSG
+        add_to_m3u(BIBLE_DIRECTORY + list_10[z])
+        print(SUCCESS_MSG)
 
     if x > len(reading_lists[8]):
-        print("#EXTM3U")
+        add_to_m3u("#EXTM3U")
         z = x - 1 - len(reading_lists[0])
         while z >= len(reading_lists[0]):
             z = z - len(reading_lists[0])
-        print(BIBLE_DIRECTORY + list_1[z])
+        add_to_m3u(BIBLE_DIRECTORY + list_1[z])
         z = x - 1 - len(reading_lists[1])
         while z >= len(reading_lists[1]):
             z = z - len(reading_lists[1])
-        print(BIBLE_DIRECTORY + list_2[z])
+        add_to_m3u(BIBLE_DIRECTORY + list_2[z])
         z = x - 1 - len(reading_lists[2])
         while z >= len(reading_lists[2]):
             z = z - len(reading_lists[2])
-        print(BIBLE_DIRECTORY + list_3[z])
+        add_to_m3u(BIBLE_DIRECTORY + list_3[z])
         z = x - 1 - len(reading_lists[3])
         while z >= len(reading_lists[3]):
             z = z - len(reading_lists[3])
-        print(BIBLE_DIRECTORY + list_4[z])
+        add_to_m3u(BIBLE_DIRECTORY + list_4[z])
         z = x - 1 - len(reading_lists[4])
         while z >= len(reading_lists[4]):
             z = z - len(reading_lists[4])
-        print(BIBLE_DIRECTORY + list_5[z])
+        add_to_m3u(BIBLE_DIRECTORY + list_5[z])
         z = x - 1 - len(reading_lists[5])
         while z >= len(reading_lists[5]):
             z = z - len(reading_lists[5])
-        print(BIBLE_DIRECTORY + list_6[z])
+        add_to_m3u(BIBLE_DIRECTORY + list_6[z])
         z = x - 1 - len(reading_lists[6])
         while z >= len(reading_lists[6]):
             z = z - len(reading_lists[6])
-        print(BIBLE_DIRECTORY + list_7[z])
+        add_to_m3u(BIBLE_DIRECTORY + list_7[z])
         z = x - 1 - len(reading_lists[7])
         while z >= len(reading_lists[7]):
             z = z - len(reading_lists[7])
-        print(BIBLE_DIRECTORY + list_8[z])
+        add_to_m3u(BIBLE_DIRECTORY + list_8[z])
         z = x - 1 - len(reading_lists[8])
         while z >= len(reading_lists[8]):
             z = z - len(reading_lists[8])
-        print(BIBLE_DIRECTORY + list_9[z])
+        add_to_m3u(BIBLE_DIRECTORY + list_9[z])
         z = x - 1 - len(reading_lists[9])
         while z >= len(reading_lists[9]):
             z = z - len(reading_lists[9])
-        print(BIBLE_DIRECTORY + list_10[z])
-        SUCCESS_MSG
+        add_to_m3u(BIBLE_DIRECTORY + list_10[z])
+        print(SUCCESS_MSG)
 
-sys.stdout.close()
-
-# -----Now we copy the files into a new folder
-# (new feature; since ver 0.2)----- #
+# Now we copy the files into a new folder
 out_dir = "day"+str(x).zfill(3)
 
 if not os.path.exists(out_dir):
@@ -451,12 +424,11 @@ for i in playlist_file.readlines():
 
 playlist_file.close()
 
-sys.stderr.write("\nCopying of the Bible Chapters into the " +
-                 out_dir + " directory was successful.\n")
+print("\nCopying of the Bible Chapters into the " +
+      out_dir + " directory was successful.\n")
 
-# -----We now change the ID3 tag information (track number)
-# -----We also rename the files in the destination directory
-# [new feature; since ver 0.3]----- #
+# We now change the ID3 tag information (track number)
+# We also rename the files in the destination directory
 track_number = 1
 
 playlist_file = open(r"day"+str(x).zfill(3)+".m3u", "r")
@@ -476,16 +448,7 @@ for i in playlist_file.readlines():
 
 playlist_file.close()
 
-sys.stderr.write(f"{Fore.CYAN}\nID3 tag info for the files in this "
-                 "directory has been updated.\n")
-sys.stderr.write(f"\nThe files have been renamed in a sequential order."
-                 f"\n\n-----Soli Deo Gloria-----\n{Style.RESET_ALL}")
-
-# ------------------------------------End------------------------------------#
-# test to see whether we are getting the correct data from the text files!
-# k = 1
-# for count in range(0,10):
-#     print "\nNow printing list_"+str(k)+": \n"
-#     exec "print(BIBLE_DIRECTORY + list_%d," % k
-#     print "\n----------------------------------------------------------\n"
-#     k+=1
+print(f"{Fore.CYAN}\nID3 tag info for the files in this "
+      "directory has been updated.\n")
+print("\nThe files have been renamed in a sequential order."
+      f"\n\n-----Soli Deo Gloria-----\n{Style.RESET_ALL}")
