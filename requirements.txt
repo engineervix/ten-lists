@@ -3,6 +3,7 @@ eyeD3==0.8.10
 colorama==0.4.1
 
 # linting and dev tools
+bpython==0.18
 pylint==2.3.1
 flake8==3.7.8
 pycodestyle==2.5.0
