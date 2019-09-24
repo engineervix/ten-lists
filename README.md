@@ -1,7 +1,9 @@
 Bible-Playlist-Generator
 ========================
 
-[![forthebadge](https://forthebadge.com/images/badges/made-with-python.svg)](https://forthebadge.com) [![python3](https://img.shields.io/badge/python-3.6%20%7C%203.7-brightgreen.svg)](https://python3statement.org/#sections50-why)
+[![forthebadge](https://forthebadge.com/images/badges/made-with-python.svg)](https://forthebadge.com)
+
+[![python3](https://img.shields.io/badge/python-3.6%20%7C%203.7-brightgreen.svg)](https://python3statement.org/#sections50-why) [![CircleCI](https://circleci.com/gh/engineervix/Bible-Playlist-Generator/tree/master.svg?style=svg)](https://circleci.com/gh/engineervix/Bible-Playlist-Generator/tree/master)
 
 This python script generates an m3u playlist of 10 Bible Chapters (represented by 10 mp3 files) to be listened to on any given day _x_, according to [**Professor Grant Horner's Bible-Reading System**](http://www.thevinefellowship.com/10Lists.pdf). The audio Bible is as downloaded from the [_Faith Comes by Hearing®_ website](http://www.bible.is/audiodownloader).
 
