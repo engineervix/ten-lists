@@ -18,7 +18,6 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-import sys
 import os
 import glob
 import argparse
@@ -106,6 +105,7 @@ def add_to_m3u(content):
     """appends content to an m3u file"""
     with open("day"+str(x).zfill(3)+".m3u", "a") as m3u:
         m3u.write(f"{content}\n")
+
 
 try:
     # for indexing purposes. Remember that
