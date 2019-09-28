@@ -34,8 +34,6 @@ python bible_playlist_generator.py --help
 
 * Python must be installed on your computer and [added to the PATH](http://superuser.com/questions/143119/how-to-add-python-to-the-windows-path) (the script has been tested on GNU/Linux<sup>[1](#footnote1)</sup> running Python ~2.7~ 3.6 / 3.7. I have since moved to python3. If you are still using python2, you need to [switch to python3](https://docs.python-guide.org/starting/which-python/#recommendations)!).
 
-<a name="footnote1">1</a>: I am yet to test it on a Windows Shell as well as on a Mac. Previous versions of the script ran well on Windows and Mac OS X. However, since the major re-write of the script in September 2019, I haven't tested it on other platforms other than Ubuntu where I primarily develop from.
-
 * Install the dependencies:
 
 ```
@@ -83,3 +81,9 @@ $ ./make_one_week_playlist.sh 200
 ```
 
 If you want playlists for a period longer than seven days, edit the script and modify the `$END` variable accordingly.
+
+----
+
+**Footnotes**
+
+<a name="#footnote1">**1**</a>: I am yet to test it on a Windows Shell as well as on a Mac. Previous versions of the script ran well on Windows and Mac OS X. However, since the major re-write of the script in September 2019, I haven't tested it on other platforms other than Ubuntu where I primarily develop from.
