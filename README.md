@@ -82,6 +82,14 @@ $ ./make_one_week_playlist.sh 200
 
 If you want playlists for a period longer than seven days, edit the script and modify the `$END` variable accordingly.
 
+## Tests
+
+Simply run `pytest` in the root directory of this repository. If you want to check the coverage and get more details of the tests, you could run
+
+```bash
+pytest -vv --cov=. --cov-report term-missing
+```
+
 ----
 
 **Footnotes**
