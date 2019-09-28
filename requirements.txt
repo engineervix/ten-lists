@@ -1,14 +1,24 @@
 # core
 eyed3==0.8.10
+Click==7.0
 colorama==0.4.1
+pyfiglet==0.8.post1
+termcolor==1.1.0
+
+# for testing
+gtts==2.0.4
+pytest-cov==2.7.1
 tqdm==4.36.1
 
-# linting and dev tools
-bpython==0.18
-gtts==2.0.4
-pylint==2.3.1
-flake8==3.7.8
-pep8==1.7.1
+# python style
 autopep8==1.4.4
 doc8==0.8.0
+flake8==3.7.8
+pep8==1.7.1
+pylint==2.3.1
+
+# dev tools
+bpython==0.18
+
+# "clean" requirements
 pip_chill
