@@ -13,6 +13,9 @@ ENGESVC2DA/
 .~*
 **/CACHE
 __pycache__
+.coverage
+.pytest_cache/
+htmlcov/
 *.db
 *.sqlite3
 *.conf
