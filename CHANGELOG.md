@@ -10,6 +10,12 @@ and this project attempts to adhere to [Semantic Versioning](https://semver.org/
 ### Changed
 
 - the structure of the code to make it easier to read and test. Far from perfect -- more work still needs to be done.
+- switched from [`argparse`](https://docs.python.org/3/library/argparse.html) to [`Click`](https://click.palletsprojects.com/en/7.x/) for the CLI
+- the `BIBLE_DIRECTORY` can now be specified through the CLI as an argument, but a default one is provided
+
+### Added
+
+- some fancy terminal enhancements courtesy of [`colorama`](https://github.com/tartley/colorama), [`termcolor`](https://pypi.org/project/termcolor/) and [`pyfiglet`](https://github.com/pwaller/pyfiglet)
 
 ## [0.5.0] - 2019-06-22
 
