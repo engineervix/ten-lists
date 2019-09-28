@@ -48,8 +48,6 @@ def log_traceback(ex):
     """Logs Errors"""
     tb_lines = traceback.format_exception(ex.__class__, ex, ex.__traceback__)
     tb_text = ''.join(tb_lines)
-    # I'll let you implement the ExceptionLogger class,
-    # and the timestamping.
     log(tb_text, "red")
 
 
@@ -383,12 +381,13 @@ def reading_list(day, bible_dir):
 def create_m3u(day, bible_dir):
     """creates an m3u playlist based on specified day's listening list"""
     m3u_filename = "day" + str(day).zfill(3) + ".m3u"
+    # TODO: perhaps we check if file exists, and if it does, os.remove()
     try:
         with open(m3u_filename, "a") as m3u:
             m3u.write("#EXTM3U\n")
             m3u.write('\n'.join(reading_list(day, bible_dir)))
     except Exception as ex:
-        log("Oops! Something went wrong while attempting to " +
+        log("✗ Oops! Something went wrong while attempting to " +
             "create a playlist.", "red")
         log_traceback(ex)
     else:
@@ -409,7 +408,8 @@ def create_mp3_dir(day, bible_dir):
             tmp = list(i.strip())
             copy("".join(tmp), out_dir)
     except Exception as ex:
-        log("Oops! Something went wrong while attempting to copy files", "red")
+        log("✗ Oops! Something went wrong while attempting to copy files",
+            "red")
         log_traceback(ex)
     else:
         log("✓ Copying of the Bible Chapters into the " +
