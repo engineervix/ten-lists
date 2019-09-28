@@ -5,13 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project attempts to adhere to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.6.0] - 2019-09-28
+
+### Changed
+
+- the structure of the code to make it easier to read and test. Far from perfect -- more work still needs to be done.
+
 ## [0.5.0] - 2019-06-22
 
 ### Changed
 
 - the codebase from `python2` to `python3`.
-
-### 
 
 ## [0.4.0] - 2015-05-11
 
