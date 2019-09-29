@@ -25,7 +25,7 @@ jobs:
             . venv/bin/activate
             pytest -vv --cov-report html --cov=.
             flake8 --exclude=venv* --statistics
-            pylint --output-format=text *.py | tee pylint.txt
+            pylint --exit-zero --output-format=text *.py | tee pylint.txt
             score=$(sed -n 's/^Your code has been rated at \([-0-9.]*\)\/.*/\1/p' pylint.txt)
             echo "Pylint score was $score"
             anybadge --value=$score --file=pylint.svg pylint
