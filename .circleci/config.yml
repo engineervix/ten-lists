@@ -27,7 +27,7 @@ jobs:
           command: |
             . venv/bin/activate
             ./cc-test-reporter before-build
-            pytest -vv --cov-report html --cov=.
+            pytest -vv --cov-report html --cov-report xml --cov=.
             flake8 --exclude=venv* --statistics
             pylint --exit-zero --output-format=text *.py | tee pylint.txt
             score=$(sed -n 's/^Your code has been rated at \([-0-9.]*\)\/.*/\1/p' pylint.txt)
@@ -37,5 +37,7 @@ jobs:
             ./cc-test-reporter after-build --coverage-input-type coverage.py
       - store_artifacts:
           path: htmlcov
+      - store_artifacts:
+          path: coverage.xml
       - store_artifacts:
           path: pylint.svg
