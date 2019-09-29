@@ -17,8 +17,6 @@ jobs:
             python3 -m venv venv
             . venv/bin/activate
             pip install -r requirements.txt
-      - store_artifacts:
-          path: htmlcov
       # Step 3: run linter and tests
       - run:
           name: run tests
@@ -26,3 +24,6 @@ jobs:
             . venv/bin/activate
             pytest -vv --cov-report html --cov=.
             flake8 --exclude=venv* --statistics
+            pylint *.py
+      - store_artifacts:
+          path: htmlcov
