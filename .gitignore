@@ -20,3 +20,12 @@ htmlcov/
 *.sqlite3
 *.conf
 !.gitignore
+
+### VisualStudioCode ###
+.vscode/*
+.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history
+*.code-workspace
