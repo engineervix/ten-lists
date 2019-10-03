@@ -11,6 +11,7 @@ pytest-cov==2.7.1
 tqdm==4.36.1
 
 # python style
+black
 autopep8==1.4.4
 doc8==0.8.0
 flake8==3.7.8

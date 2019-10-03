@@ -17,13 +17,13 @@ from bible_playlist_generator import (
     reading_list,
     create_m3u,
     create_mp3_dir,
-    cmd
+    cmd,
 )
 
 BIBLE_DIR = "_ENGESVC2DA"
 
 
-@pytest.fixture(scope='session')
+@pytest.fixture(scope="session")
 def prepare_data():
     """Prepare sample MP3 files for testing. Delete afterwards"""
 
@@ -37,14 +37,14 @@ def prepare_data():
 
     # now we're gonna programmatically create an audio file
 
-    tts = gTTS('audio', lang='en')
+    tts = gTTS("audio", lang="en")
     audio_file = os.path.join(os.getcwd(), "audio_file.mp3")
     tts.save(audio_file)
 
     # add ID3 tag info to the file
     mp3_file = eyed3.load(audio_file)
     mp3_file.initTag()
-    mp3_file.tag.artist = u"test"
+    mp3_file.tag.artist = "test"
     mp3_file.tag.track_num = 1
     mp3_file.tag.save()
 
@@ -59,7 +59,7 @@ def prepare_data():
 
     # Teardown : discard the data
     # Cleanup
-    m3u_files = glob.glob(os.path.join(os.getcwd(), '*.m3u'))
+    m3u_files = glob.glob(os.path.join(os.getcwd(), "*.m3u"))
     generated_mp3_dirs = glob.iglob(os.path.join(os.getcwd(), "day*"))
     try:
         os.remove(audio_file)
@@ -91,8 +91,8 @@ TEST_DATA = [
             f"{BIBLE_DIR}/A20___01_Proverbs____ENGESVC2DA.mp3",
             f"{BIBLE_DIR}/A06___01_Joshua______ENGESVC2DA.mp3",
             f"{BIBLE_DIR}/A23___01_Isaiah______ENGESVC2DA.mp3",
-            f"{BIBLE_DIR}/B05___01_Acts________ENGESVC2DA.mp3"
-        ]
+            f"{BIBLE_DIR}/B05___01_Acts________ENGESVC2DA.mp3",
+        ],
     ),
     (
         17,
@@ -106,8 +106,8 @@ TEST_DATA = [
             f"{BIBLE_DIR}/A20___17_Proverbs____ENGESVC2DA.mp3",
             f"{BIBLE_DIR}/A06___17_Joshua______ENGESVC2DA.mp3",
             f"{BIBLE_DIR}/A23___17_Isaiah______ENGESVC2DA.mp3",
-            f"{BIBLE_DIR}/B05___17_Acts________ENGESVC2DA.mp3"
-        ]
+            f"{BIBLE_DIR}/B05___17_Acts________ENGESVC2DA.mp3",
+        ],
     ),
     (
         29,
@@ -121,8 +121,8 @@ TEST_DATA = [
             f"{BIBLE_DIR}/A20___29_Proverbs____ENGESVC2DA.mp3",
             f"{BIBLE_DIR}/A07___05_Judges______ENGESVC2DA.mp3",
             f"{BIBLE_DIR}/A23___29_Isaiah______ENGESVC2DA.mp3",
-            f"{BIBLE_DIR}/B05___01_Acts________ENGESVC2DA.mp3"
-        ]
+            f"{BIBLE_DIR}/B05___01_Acts________ENGESVC2DA.mp3",
+        ],
     ),
     (
         45,
@@ -136,8 +136,8 @@ TEST_DATA = [
             f"{BIBLE_DIR}/A20___14_Proverbs____ENGESVC2DA.mp3",
             f"{BIBLE_DIR}/A07___21_Judges______ENGESVC2DA.mp3",
             f"{BIBLE_DIR}/A23___45_Isaiah______ENGESVC2DA.mp3",
-            f"{BIBLE_DIR}/B05___17_Acts________ENGESVC2DA.mp3"
-        ]
+            f"{BIBLE_DIR}/B05___17_Acts________ENGESVC2DA.mp3",
+        ],
     ),
     (
         63,
@@ -151,8 +151,8 @@ TEST_DATA = [
             f"{BIBLE_DIR}/A20___01_Proverbs____ENGESVC2DA.mp3",
             f"{BIBLE_DIR}/A09___14_1Samuel_____ENGESVC2DA.mp3",
             f"{BIBLE_DIR}/A23___63_Isaiah______ENGESVC2DA.mp3",
-            f"{BIBLE_DIR}/B05___07_Acts________ENGESVC2DA.mp3"
-        ]
+            f"{BIBLE_DIR}/B05___07_Acts________ENGESVC2DA.mp3",
+        ],
     ),
     (
         70,
@@ -166,8 +166,8 @@ TEST_DATA = [
             f"{BIBLE_DIR}/A20___08_Proverbs____ENGESVC2DA.mp3",
             f"{BIBLE_DIR}/A09___21_1Samuel_____ENGESVC2DA.mp3",
             f"{BIBLE_DIR}/A24___04_Jeremiah____ENGESVC2DA.mp3",
-            f"{BIBLE_DIR}/B05___14_Acts________ENGESVC2DA.mp3"
-        ]
+            f"{BIBLE_DIR}/B05___14_Acts________ENGESVC2DA.mp3",
+        ],
     ),
     (
         86,
@@ -181,8 +181,8 @@ TEST_DATA = [
             f"{BIBLE_DIR}/A20___24_Proverbs____ENGESVC2DA.mp3",
             f"{BIBLE_DIR}/A10___06_2Samuel_____ENGESVC2DA.mp3",
             f"{BIBLE_DIR}/A24___20_Jeremiah____ENGESVC2DA.mp3",
-            f"{BIBLE_DIR}/B05___02_Acts________ENGESVC2DA.mp3"
-        ]
+            f"{BIBLE_DIR}/B05___02_Acts________ENGESVC2DA.mp3",
+        ],
     ),
     (
         99,
@@ -196,8 +196,8 @@ TEST_DATA = [
             f"{BIBLE_DIR}/A20___06_Proverbs____ENGESVC2DA.mp3",
             f"{BIBLE_DIR}/A10___19_2Samuel_____ENGESVC2DA.mp3",
             f"{BIBLE_DIR}/A24___33_Jeremiah____ENGESVC2DA.mp3",
-            f"{BIBLE_DIR}/B05___15_Acts________ENGESVC2DA.mp3"
-        ]
+            f"{BIBLE_DIR}/B05___15_Acts________ENGESVC2DA.mp3",
+        ],
     ),
     (
         123,
@@ -211,8 +211,8 @@ TEST_DATA = [
             f"{BIBLE_DIR}/A20___30_Proverbs____ENGESVC2DA.mp3",
             f"{BIBLE_DIR}/A11___19_1Kings______ENGESVC2DA.mp3",
             f"{BIBLE_DIR}/A25___05_LamentationsENGESVC2DA.mp3",
-            f"{BIBLE_DIR}/B05___11_Acts________ENGESVC2DA.mp3"
-        ]
+            f"{BIBLE_DIR}/B05___11_Acts________ENGESVC2DA.mp3",
+        ],
     ),
     (
         168,
@@ -226,8 +226,8 @@ TEST_DATA = [
             f"{BIBLE_DIR}/A20___13_Proverbs____ENGESVC2DA.mp3",
             f"{BIBLE_DIR}/A13___17_1Chronicles_ENGESVC2DA.mp3",
             f"{BIBLE_DIR}/A26___45_Ezekiel_____ENGESVC2DA.mp3",
-            f"{BIBLE_DIR}/B05___28_Acts________ENGESVC2DA.mp3"
-        ]
+            f"{BIBLE_DIR}/B05___28_Acts________ENGESVC2DA.mp3",
+        ],
     ),
     (
         204,
@@ -241,8 +241,8 @@ TEST_DATA = [
             f"{BIBLE_DIR}/A20___18_Proverbs____ENGESVC2DA.mp3",
             f"{BIBLE_DIR}/A14___24_2Chronicles_ENGESVC2DA.mp3",
             f"{BIBLE_DIR}/A30___04_Amos________ENGESVC2DA.mp3",
-            f"{BIBLE_DIR}/B05___08_Acts________ENGESVC2DA.mp3"
-        ]
+            f"{BIBLE_DIR}/B05___08_Acts________ENGESVC2DA.mp3",
+        ],
     ),
     (
         237,
@@ -256,8 +256,8 @@ TEST_DATA = [
             f"{BIBLE_DIR}/A20___20_Proverbs____ENGESVC2DA.mp3",
             f"{BIBLE_DIR}/A16___11_Nehemiah____ENGESVC2DA.mp3",
             f"{BIBLE_DIR}/A38___05_Zechariah___ENGESVC2DA.mp3",
-            f"{BIBLE_DIR}/B05___13_Acts________ENGESVC2DA.mp3"
-        ]
+            f"{BIBLE_DIR}/B05___13_Acts________ENGESVC2DA.mp3",
+        ],
     ),
     (
         250,
@@ -271,8 +271,8 @@ TEST_DATA = [
             f"{BIBLE_DIR}/A20___02_Proverbs____ENGESVC2DA.mp3",
             f"{BIBLE_DIR}/A06___01_Joshua______ENGESVC2DA.mp3",
             f"{BIBLE_DIR}/A39___04_Malachi_____ENGESVC2DA.mp3",
-            f"{BIBLE_DIR}/B05___26_Acts________ENGESVC2DA.mp3"
-        ]
+            f"{BIBLE_DIR}/B05___26_Acts________ENGESVC2DA.mp3",
+        ],
     ),
     (
         365,
@@ -286,8 +286,8 @@ TEST_DATA = [
             f"{BIBLE_DIR}/A20___24_Proverbs____ENGESVC2DA.mp3",
             f"{BIBLE_DIR}/A11___12_1Kings______ENGESVC2DA.mp3",
             f"{BIBLE_DIR}/A24___49_Jeremiah____ENGESVC2DA.mp3",
-            f"{BIBLE_DIR}/B05___01_Acts________ENGESVC2DA.mp3"
-        ]
+            f"{BIBLE_DIR}/B05___01_Acts________ENGESVC2DA.mp3",
+        ],
     ),
     (
         800,
@@ -301,24 +301,20 @@ TEST_DATA = [
             f"{BIBLE_DIR}/A20___25_Proverbs____ENGESVC2DA.mp3",
             f"{BIBLE_DIR}/A09___04_1Samuel_____ENGESVC2DA.mp3",
             f"{BIBLE_DIR}/A23___50_Isaiah______ENGESVC2DA.mp3",
-            f"{BIBLE_DIR}/B05___16_Acts________ENGESVC2DA.mp3"
-        ]
-    )
+            f"{BIBLE_DIR}/B05___16_Acts________ENGESVC2DA.mp3",
+        ],
+    ),
 ]
 
-PLAYLIST_IDS = [f'day_{str(data[0])}_playlist' for data in TEST_DATA]
-M3U_IDS = [f'day_{str(data[0])}_m3u_file' for data in TEST_DATA]
-M3U_CONTENT_IDS = [f'day_{str(data[0])}_m3u_content' for data in TEST_DATA]
-MP3_DIR_IDS = [f'day_{str(data[0])}_mp3_dir' for data in TEST_DATA]
-MP3_DIR_COUNT = [f'day_{str(data[0])}_mp3_dir_has_10_items'
-                 for data in TEST_DATA]
-MP3S_EXIST_IDS = [f'day_{str(data[0])}_mp3s_exist' for data in TEST_DATA]
-MP3S_FILENAMES_IDS = [f'day_{str(data[0])}_mp3_filenames'
-                      for data in TEST_DATA]
-MP3S_ID3_TAGINFO = [f'day_{str(data[0])}_mp3_ID3_tagcheck'
-                    for data in TEST_DATA]
-BASIC_CLI_IDS = [f'day_{str(data[0])}_basic_CLI_check'
-                 for data in TEST_DATA]
+PLAYLIST_IDS = [f"day_{str(data[0])}_playlist" for data in TEST_DATA]
+M3U_IDS = [f"day_{str(data[0])}_m3u_file" for data in TEST_DATA]
+M3U_CONTENT_IDS = [f"day_{str(data[0])}_m3u_content" for data in TEST_DATA]
+MP3_DIR_IDS = [f"day_{str(data[0])}_mp3_dir" for data in TEST_DATA]
+MP3_DIR_COUNT = [f"day_{str(data[0])}_mp3_dir_has_10_items" for data in TEST_DATA]
+MP3S_EXIST_IDS = [f"day_{str(data[0])}_mp3s_exist" for data in TEST_DATA]
+MP3S_FILENAMES_IDS = [f"day_{str(data[0])}_mp3_filenames" for data in TEST_DATA]
+MP3S_ID3_TAGINFO = [f"day_{str(data[0])}_mp3_ID3_tagcheck" for data in TEST_DATA]
+BASIC_CLI_IDS = [f"day_{str(data[0])}_basic_CLI_check" for data in TEST_DATA]
 
 
 def test_ten_lists():
@@ -333,18 +329,7 @@ def test_ten_lists_length():
 
 def test_ten_lists_chapters():
     """Check the number of chapters in the 10 lists."""
-    num_of_chapters = [
-        89,
-        187,
-        78,
-        65,
-        62,
-        150,
-        31,
-        249,
-        250,
-        28
-    ]
+    num_of_chapters = [89, 187, 78, 65, 62, 150, 31, 249, 250, 28]
 
     for chapters, bible_list in zip(num_of_chapters, ten_lists()):
         assert len(bible_list) == chapters
@@ -357,8 +342,7 @@ def test_reading_list(day, listening_list):
 
 
 @pytest.mark.usefixtures("prepare_data")
-@pytest.mark.parametrize("day", [item[0] for item in TEST_DATA],
-                         ids=M3U_IDS)
+@pytest.mark.parametrize("day", [item[0] for item in TEST_DATA], ids=M3U_IDS)
 def test_m3u_creation(day):
     """tests the creation of m3u playlist files"""
     create_m3u(day, BIBLE_DIR)
@@ -367,8 +351,7 @@ def test_m3u_creation(day):
 
 
 @pytest.mark.usefixtures("prepare_data")
-@pytest.mark.parametrize("day, listening_list", TEST_DATA,
-                         ids=M3U_CONTENT_IDS)
+@pytest.mark.parametrize("day, listening_list", TEST_DATA, ids=M3U_CONTENT_IDS)
 def test_m3u_content(day, listening_list):
     """checks the content of the generated m3u playlist files"""
     # create_m3u(day, BIBLE_DIR) m3u files already created since scope=session
@@ -380,65 +363,61 @@ def test_m3u_content(day, listening_list):
 
 
 @pytest.mark.usefixtures("prepare_data")
-@pytest.mark.parametrize("day", [item[0] for item in TEST_DATA],
-                         ids=MP3_DIR_IDS)
+@pytest.mark.parametrize("day", [item[0] for item in TEST_DATA], ids=MP3_DIR_IDS)
 def test_mp3_dir_creation(day):
     """tests the creation of the directory containing mp3 files"""
     create_mp3_dir(day, BIBLE_DIR)
-    output_dir = "day"+str(day).zfill(3)
+    output_dir = "day" + str(day).zfill(3)
     assert os.path.exists(output_dir)
 
 
 @pytest.mark.usefixtures("prepare_data")
-@pytest.mark.parametrize("day", [item[0] for item in TEST_DATA],
-                         ids=MP3_DIR_COUNT)
+@pytest.mark.parametrize("day", [item[0] for item in TEST_DATA], ids=MP3_DIR_COUNT)
 def test_mp3_dir_count(day):
     """tests the presence of 10 files in the created directories"""
     # create_mp3_dir(day, BIBLE_DIR)  already created since scope=session
-    output_dir = "day"+str(day).zfill(3)
+    output_dir = "day" + str(day).zfill(3)
     assert len(os.listdir(output_dir)) == 10
 
 
 @pytest.mark.usefixtures("prepare_data")
-@pytest.mark.parametrize("day", [item[0] for item in TEST_DATA],
-                         ids=MP3S_EXIST_IDS)
+@pytest.mark.parametrize("day", [item[0] for item in TEST_DATA], ids=MP3S_EXIST_IDS)
 def test_mp3_files_creation(day):
     """tests the presence of 10 mp3 files in the created directories"""
     # create_mp3_dir(day, BIBLE_DIR)  already created since scope=session
-    output_dir = "day"+str(day).zfill(3)
+    output_dir = "day" + str(day).zfill(3)
     ext = "*.mp3"
     for entry in os.listdir(output_dir):
         assert fnmatch.fnmatch(entry, ext)
 
 
 @pytest.mark.usefixtures("prepare_data")
-@pytest.mark.parametrize("day, listening_list", TEST_DATA,
-                         ids=MP3S_FILENAMES_IDS)
+@pytest.mark.parametrize("day, listening_list", TEST_DATA, ids=MP3S_FILENAMES_IDS)
 def test_mp3_filenames(day, listening_list):
     """checks the filenames of the 10 mp3 files in the created directories"""
     # create_mp3_dir(day, BIBLE_DIR)  already created since scope=session
-    output_dir = "day"+str(day).zfill(3)
-    filelist = glob.glob(os.path.join(output_dir, '*.mp3'))
-    mp3_filelist = [mp3_file.replace(f"{output_dir}/", "")
-                    for mp3_file in filelist]
+    output_dir = "day" + str(day).zfill(3)
+    filelist = glob.glob(os.path.join(output_dir, "*.mp3"))
+    mp3_filelist = [mp3_file.replace(f"{output_dir}/", "") for mp3_file in filelist]
     # because of our fixture having session scope, the `listening_list` may
     # have been modified in a previous test by prepending it with "#EXTM3U"
-    filenames = [mp3.strip().replace(f"{BIBLE_DIR}", f"{output_dir}/", 1)
-                 for mp3 in listening_list if mp3 != "#EXTM3U"]
-    files = [item.replace(f"{output_dir}/", '') for item in filenames]
-    mp3_files = [str(idx).zfill(3) + mp3[4:]
-                 for idx, mp3 in enumerate(files, start=1)]
+    filenames = [
+        mp3.strip().replace(f"{BIBLE_DIR}", f"{output_dir}/", 1)
+        for mp3 in listening_list
+        if mp3 != "#EXTM3U"
+    ]
+    files = [item.replace(f"{output_dir}/", "") for item in filenames]
+    mp3_files = [str(idx).zfill(3) + mp3[4:] for idx, mp3 in enumerate(files, start=1)]
     assert sorted(mp3_filelist) == mp3_files
 
 
 @pytest.mark.usefixtures("prepare_data")
-@pytest.mark.parametrize("day", [item[0] for item in TEST_DATA],
-                         ids=MP3S_ID3_TAGINFO)
+@pytest.mark.parametrize("day", [item[0] for item in TEST_DATA], ids=MP3S_ID3_TAGINFO)
 def test_mp3_id3_tags(day):
     """checks the ID3 tags on the 10 mp3 files in the created directories"""
     # create_mp3_dir(day, BIBLE_DIR)  already created since scope=session
-    output_dir = "day"+str(day).zfill(3)
-    filelist = glob.glob(os.path.join(output_dir, '*.mp3'))
+    output_dir = "day" + str(day).zfill(3)
+    filelist = glob.glob(os.path.join(output_dir, "*.mp3"))
     for index, entry in enumerate(sorted(filelist), start=1):
         audiofile = eyed3.load(entry)
         # audiofile.tag.track_num is a tuple in the form (1, None)
@@ -446,8 +425,7 @@ def test_mp3_id3_tags(day):
 
 
 @pytest.mark.usefixtures("prepare_data")
-@pytest.mark.parametrize("day", [item[0] for item in TEST_DATA],
-                         ids=BASIC_CLI_IDS)
+@pytest.mark.parametrize("day", [item[0] for item in TEST_DATA], ids=BASIC_CLI_IDS)
 def test_cli(day):
     """
     Basic testing of the commandline interface
