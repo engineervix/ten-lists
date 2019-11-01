@@ -8,7 +8,7 @@ termcolor==1.1.0
 # for testing
 gtts==2.0.4
 pytest-cov==2.8.1
-tqdm==4.36.1
+tqdm==4.37.0
 
 # python style
 black
