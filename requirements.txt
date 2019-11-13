@@ -1,5 +1,5 @@
 # core
-eyed3==0.8.10
+eyed3==0.8.11
 Click==7.0
 colorama==0.4.1
 pyfiglet==0.8.post1
