@@ -1,7 +1,7 @@
 # core
 eyed3==0.8.11
 Click==7.0
-colorama==0.4.1
+colorama==0.4.3
 pyfiglet==0.8.post1
 termcolor==1.1.0
 
