@@ -18,7 +18,8 @@ jobs:
             . venv/bin/activate
             pip install -r requirements.txt --quiet
             pip install anybadge --quiet
-            pip install python-coveralls --quiet
+            # pip install python-coveralls --quiet
+            pip install coveralls
             curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
             chmod +x ./cc-test-reporter
       # Step 3: run linter and tests
@@ -33,7 +34,7 @@ jobs:
             score=$(sed -n 's/^Your code has been rated at \([-0-9.]*\)\/.*/\1/p' pylint.txt)
             echo "Pylint score was $score"
             anybadge --value=$score --file=pylint.svg pylint
-            coveralls --ignore-errors
+            coveralls
             ./cc-test-reporter after-build --coverage-input-type coverage.py
       - store_artifacts:
           path: htmlcov
