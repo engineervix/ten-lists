@@ -90,6 +90,14 @@ Simply run `pytest` in the root directory of this repository. If you want to che
 pytest -vv --cov=. --cov-report term-missing
 ```
 
+## ☑ TODO
+
+- [ ] Address #1. [`configparser`](https://docs.python.org/3/library/configparser.html) might come in handy here.
+- [ ] [Package](https://packaging.python.org/tutorials/packaging-projects/) this project
+- [ ] [Improve Code Quality](https://codeclimate.com/github/engineervix/Bible-Playlist-Generator/issues)
+- [ ] Rather than using [plain text files](../data/), find a better way of storing the Bible Chapters ([JSON file](https://www.lucidchart.com/techblog/2018/07/16/why-json-isnt-a-good-configuration-language/), [SQLite database](https://www.sqlite.org/whentouse.html), [TinyDB](https://tinydb.readthedocs.io/en/latest/), etc)
+- [ ] Create a GUI frontend or web service [to cater for non-tech users](https://www.inc.com/drew-hendricks/building-or-enhancing-software-for-non-technical-users-is-more-important-than-ev.html)
+
 ----
 
 **Footnotes**
