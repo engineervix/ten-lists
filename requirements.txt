@@ -20,7 +20,7 @@ pylint==2.4.4
 
 # dev tools
 bpython==0.18
-rope==0.14.0
+rope==0.16.0
 
 # "clean" requirements
 pip_chill
