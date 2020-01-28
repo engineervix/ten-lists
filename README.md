@@ -32,7 +32,7 @@ python bible_playlist_generator.py --help
 
 ### Prerequisites / Assumptions
 
-* Python must be installed on your computer and [added to the PATH](http://superuser.com/questions/143119/how-to-add-python-to-the-windows-path) (the script has been tested on GNU/Linux<sup>[1](#footnote1)</sup> running Python ~2.7~ 3.6 / 3.7. I have since moved to python3. If you are still using python2, you need to [switch to python3](https://docs.python-guide.org/starting/which-python/#recommendations)!).
+* Python must be installed on your computer and [added to the PATH](http://superuser.com/questions/143119/how-to-add-python-to-the-windows-path) (the script has been tested on GNU/Linux and Windows<sup>[1](#footnote1)</sup> running Python ~2.7~ 3.6 / 3.7. I have since moved to python3. If you are still using python2, you need to [switch to python3](https://docs.python-guide.org/starting/which-python/#recommendations)!).
 
 * Install the dependencies:
 
@@ -102,4 +102,4 @@ pytest -vv --cov=. --cov-report term-missing
 
 **Footnotes**
 
-<a name="#footnote1">**1**</a>: I am yet to test it on a Windows Shell as well as on a Mac. Previous versions of the script ran well on Windows and Mac OS X. However, since the major re-write of the script in September 2019, I haven't tested it on other platforms other than Ubuntu where I primarily develop from.
+<a name="#footnote1">**1**</a>: I am yet to test it on a Mac (I expect it to run just fine!). Previous versions of the script ran well on Mac OS X. However, since the major re-write of the script in September 2019, I haven't tested it on other platforms other than Ubuntu and Windows.
