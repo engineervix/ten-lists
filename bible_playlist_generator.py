@@ -384,7 +384,11 @@ def reading_list(day, bible_dir):
 def create_m3u(day, bible_dir):
     """creates an m3u playlist based on specified day's listening list"""
     m3u_filename = "day" + str(day).zfill(3) + ".m3u"
-    # TODO: perhaps we check if file exists, and if it does, os.remove()
+    # check if file exists, and if it does, os.remove()
+    try:
+        os.remove(m3u_filename)
+    except OSError:
+        pass
     try:
         with open(m3u_filename, "a") as m3u:
             m3u.write("#EXTM3U\n")
