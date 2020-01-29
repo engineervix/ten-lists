@@ -1,6 +1,4 @@
-"""
-tests for the `bible_playlist_generator.py` script
-"""
+"""tests for the `bible_playlist_generator.py` script"""
 
 import os
 from pathlib import Path
