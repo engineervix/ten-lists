@@ -17,6 +17,7 @@ __pycache__
 .pytest_cache/
 htmlcov/
 *.db
+!ten_lists.db
 *.sqlite3
 *.conf
 !.gitignore

@@ -10,7 +10,8 @@ the `Faith Comes by Hearing® website <http://www.bible.is/audiodownloader>`_
 """
 
 import os
-import glob
+import sqlite3
+import itertools
 import traceback
 from shutil import copy
 import eyed3
@@ -52,16 +53,20 @@ def log_traceback(ex):
 
 
 def ten_lists():
-    """create the 10 lists from the text files in ./data/"""
+    """create the 10 lists from the ten_lists.db SQLite database"""
     the_ten_lists = []
 
-    list_dir = os.path.join(os.getcwd(), "data")
-    filelist = glob.glob(os.path.join(list_dir, "*.txt"))
+    conn = sqlite3.connect("ten_lists.db")
+    cursor = conn.cursor()
 
-    for fname in sorted(filelist):
-        with open(fname) as fn:
-            the_ten_lists.append(fn.read().splitlines())
+    for i in range(1, 11):
+        sqlite_select_query = f"""SELECT "mp3_file" from list_{str(i).zfill(2)}"""
+        cursor.execute(sqlite_select_query)
+        records = cursor.fetchall()
+        # reference: geeksforgeeks.org/python-convert-list-of-tuples-into-list/
+        the_ten_lists.append(list(itertools.chain(*records)))
 
+    conn.close()
     return the_ten_lists
 
 
