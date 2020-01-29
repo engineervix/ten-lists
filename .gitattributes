@@ -2,6 +2,7 @@
 * text=auto
 
 # Ensure those won't be messed up with
+*.db binary
 *.jpg binary
 *.png binary
 *.pdf binary
