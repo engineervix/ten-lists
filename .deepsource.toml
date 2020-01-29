@@ -3,6 +3,15 @@ version = 1
 [[analyzers]]
 name = "python"
 enabled = true
+dependency_file_paths = [
+  "requirements.txt",
+  "Pipfile"
+]
 
   [analyzers.meta]
   runtime_version = "3.x.x"
+
+test_patterns = [
+  "tests/**",
+  "test_*.py"
+]
