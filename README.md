@@ -34,25 +34,13 @@ python bible_playlist_generator.py --help
 
 * Python must be installed on your computer and [added to the PATH](http://superuser.com/questions/143119/how-to-add-python-to-the-windows-path) (the script has been tested on GNU/Linux and Windows<sup>[1](#footnote1)</sup> running Python ~2.7~ 3.6 / 3.7. I have since moved to python3. If you are still using python2, you need to [switch to python3](https://docs.python-guide.org/starting/which-python/#recommendations)!).
 
-* Install the dependencies:
+* [Create a virtual environment](https://realpython.com/python-virtual-environments-a-primer/) and install the dependencies:
 
 ```
 pip install -r requirements.txt
 ```
 
-* The script requires the following files, which are in the `data` subdirectory:
-  * list_01.txt
-  * list_02.txt
-  * list_03.txt
-  * list_04.txt
-  * list_05.txt
-  * list_06.txt
-  * list_07.txt
-  * list_08.txt
-  * list_09.txt
-  * list_10.txt
-
-These text files contain the Bible Chapters in the lists from Professor Grant Horner's Bible-Reading System.
+* The script requires the [`ten_lists.db`](https://github.com/engineervix/Bible-Playlist-Generator/blob/master/ten_lists.db) SQLite Database. Please see the [`helpers`](https://github.com/engineervix/Bible-Playlist-Generator/tree/master/helpers) directory for details on how this SQLite Database was created.
 
 * In addition to the above, it is assumed that:
 
