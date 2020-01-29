@@ -430,14 +430,14 @@ def create_mp3_dir(day, bible_dir):
     try:
         for i in reading_list(day, bible_dir):
             tmp = list(i.strip().replace(bible_dir, out_dir + "/", 1))
-            f = "".join(tmp)
-            audiofile = eyed3.load(f)
+            _f = "".join(tmp)
+            audiofile = eyed3.load(_f)
             audiofile.tag.track_num = track_number
             audiofile.tag.save()
-            filename = f.replace(out_dir + "/", "")
+            filename = _f.replace(out_dir + "/", "")
             # add a filename prefix with leading zeroes
             f_new = out_dir + "/" + str(track_number).zfill(3) + filename[4:]
-            os.rename(f, f_new)
+            os.rename(_f, f_new)
             track_number += 1
     except EnvironmentError as ex:
         log("Oops! Something went wrong while processing the mp3 files", "red")
