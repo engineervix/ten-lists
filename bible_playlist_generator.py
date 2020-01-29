@@ -389,7 +389,7 @@ def create_m3u(day, bible_dir):
         with open(m3u_filename, "a") as m3u:
             m3u.write("#EXTM3U\n")
             m3u.write("\n".join(reading_list(day, bible_dir)))
-    except Exception as ex:
+    except EnvironmentError as ex:
         log(
             "✗ Oops! Something went wrong while attempting to " + "create a playlist.",
             "red",
@@ -412,7 +412,7 @@ def create_mp3_dir(day, bible_dir):
         for i in reading_list(day, bible_dir):
             tmp = list(i.strip())
             copy("".join(tmp), out_dir)
-    except Exception as ex:
+    except EnvironmentError as ex:
         log("✗ Oops! Something went wrong while attempting to copy files", "red")
         log_traceback(ex)
     else:
@@ -439,7 +439,7 @@ def create_mp3_dir(day, bible_dir):
             f_new = out_dir + "/" + str(track_number).zfill(3) + filename[4:]
             os.rename(f, f_new)
             track_number += 1
-    except Exception as ex:
+    except EnvironmentError as ex:
         log("Oops! Something went wrong while processing the mp3 files", "red")
         log_traceback(ex)
     else:
