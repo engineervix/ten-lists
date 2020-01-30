@@ -14,6 +14,7 @@ ENGESVC2DA/
 **/CACHE
 __pycache__
 .coverage
+coverage.xml
 .pytest_cache/
 htmlcov/
 *.db
@@ -21,6 +22,7 @@ htmlcov/
 *.sqlite3
 *.conf
 !.gitignore
+bin/
 
 ### VisualStudioCode ###
 .vscode/*
