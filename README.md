@@ -40,7 +40,7 @@ python bible_playlist_generator.py --help
 pip install -r requirements.txt
 ```
 
-* The script requires the [`ten_lists.db`](https://github.com/engineervix/Bible-Playlist-Generator/blob/master/ten_lists.db) SQLite Database. Please see the [`helpers`](https://github.com/engineervix/Bible-Playlist-Generator/tree/master/helpers) directory for details on how this SQLite Database was created.
+* The script requires the [`ten_lists.json`](https://github.com/engineervix/Bible-Playlist-Generator/blob/master/ten_lists.json) file. Please see the [`helpers`](https://github.com/engineervix/Bible-Playlist-Generator/tree/master/helpers) directory for details on how this JSON file was created.
 
 * In addition to the above, it is assumed that:
 
@@ -88,7 +88,8 @@ pytest -vv --cov=. --cov-report term-missing
 
 ### :boom: :construction:
 
-- while I've moved away from using plain text files, having switched to SQLite, I still need to improve the SQLite code, which currently doesn't even have any error handling mechanisms.
+- while I've moved away from using plain text files, having switched to JSON, I still need to improve the JSON code, which currently doesn't even have any error handling mechanisms.
+- I used [`grunt-json-minification`](https://www.npmjs.com/package/grunt-json-minification) to minify the JSON file (This could easily be done at `json.dumps` stage). I have used it on other projects before, thus implementing it here was a trivial task. I know it's probably overkill and un-necessary to bring in all overheads that come with `node.js`, just to use one tool! However, since I intend to create a web service in the future, I might as well begin incorporating `node.js` into the workflow.
 
 ----
 
