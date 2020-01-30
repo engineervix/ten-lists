@@ -1,3 +1,2 @@
 [bandit]
-exclude_dirs:
-  - tests.py
+exclude: tests.py
