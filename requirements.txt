@@ -17,6 +17,7 @@ doc8==0.8.0
 # flake8==3.7.8  # now using black
 pep8==1.7.1
 pylint==2.4.4
+flake8==3.7.9
 
 # dev tools
 bpython==0.18
