@@ -1,0 +1,24 @@
+{
+  "name": "bible-playlist-generator",
+  "version": "0.6.2",
+  "description": "This python script generates an m3u playlist of 10 Bible Chapters (represented by 10 mp3 files) to be listened to on any given day x, according to Professor Grant Horner's Bible-Reading System. The audio Bible is the ESV dramatized version, as downloaded from the Faith Comes by Hearing® website.",
+  "main": "",
+  "scripts": {
+    "test": "pytest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/engineervix/Bible-Playlist-Generator.git"
+  },
+  "author": "Victor Miti",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/engineervix/Bible-Playlist-Generator/issues"
+  },
+  "homepage": "https://github.com/engineervix/Bible-Playlist-Generator#readme",
+  "private": true,
+  "devDependencies": {
+    "grunt": "^1.0.4",
+    "grunt-json-minification": "^0.2.1"
+  }
+}
