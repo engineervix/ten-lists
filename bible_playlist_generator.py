@@ -71,16 +71,16 @@ def reading_list(day, bible_dir):
     The generated reading (or listening) list for the given day.
     bible_dir is the directory containing the mp3 files.
     """
-    list_1 = ten_lists()[0]  # len(list_1)  = 89
-    list_2 = ten_lists()[1]  # len(list_2)  = 187
-    list_3 = ten_lists()[2]  # len(list_3)  = 78
-    list_4 = ten_lists()[3]  # len(list_4)  = 65
-    list_5 = ten_lists()[4]  # len(list_5)  = 62
-    list_6 = ten_lists()[5]  # len(list_6)  = 150
-    list_7 = ten_lists()[6]  # len(list_7)  = 31
-    list_8 = ten_lists()[7]  # len(list_8)  = 249
-    list_9 = ten_lists()[8]  # len(list_9)  = 250
-    list_10 = ten_lists()[9]  # len(list_10) = 28
+    list_1 = ten_lists()[0]
+    list_2 = ten_lists()[1]
+    list_3 = ten_lists()[2]
+    list_4 = ten_lists()[3]
+    list_5 = ten_lists()[4]
+    list_6 = ten_lists()[5]
+    list_7 = ten_lists()[6]
+    list_8 = ten_lists()[7]
+    list_9 = ten_lists()[8]
+    list_10 = ten_lists()[9]
 
     listening_list = []
 
