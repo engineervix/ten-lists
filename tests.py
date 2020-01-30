@@ -397,7 +397,8 @@ def test_mp3_filenames(day, listening_list):
     # create_mp3_dir(day, BIBLE_DIR)  already created since scope=session
     output_dir = "day" + str(day).zfill(3)
     filelist = glob.glob(os.path.join(output_dir, "*.mp3"))
-    # Here we use pathlib.Path to remove the first folder in a path. See https://stackoverflow.com/a/26724369
+    # Here we use pathlib.Path to remove the first folder in a path.
+    # See https://stackoverflow.com/a/26724369
     mp3_filelist = [list(Path(mp3_file).parts[1:])[0] for mp3_file in filelist]
     # because of our fixture having session scope, the `listening_list` may
     # have been modified in a previous test by prepending it with "#EXTM3U"
