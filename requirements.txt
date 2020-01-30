@@ -21,7 +21,8 @@ pylint==2.4.4
 # dev tools
 bpython==0.18
 rope==0.16.0
-pre-commit==2.0.0
+pre-commit==2.0.1
+requires.io==0.2.6
 
 # "clean" requirements
 pip_chill
