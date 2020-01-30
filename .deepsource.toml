@@ -7,6 +7,10 @@ test_patterns = [
 ]
 
 [[analyzers]]
+name = "test-coverage"
+enabled = true
+
+[[analyzers]]
 name = "python"
 enabled = true
 dependency_file_paths = [
