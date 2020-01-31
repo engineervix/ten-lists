@@ -31,8 +31,7 @@ def prepare_data():
 
     bible_directory = os.path.join(os.getcwd(), BIBLE_DIR)
 
-    if not os.path.exists(bible_directory):
-        os.makedirs(bible_directory)
+    os.makedirs(bible_directory, exist_ok=True)
 
     # now we're gonna programmatically create an audio file
 
@@ -69,7 +68,7 @@ def prepare_data():
             if os.path.isdir(path):
                 rmtree(path)
     except OSError as ex:  # if failed, report it back to the user
-        print("Error: %s - %s." % (ex.filename, ex.strerror))
+        print(f"Error: {ex.filename} - {ex.strerror}.")
 
     stop = timeit.default_timer()
     total_time = stop - start
@@ -318,12 +317,12 @@ BASIC_CLI_IDS = [f"day_{str(data[0])}_basic_CLI_check" for data in TEST_DATA]
 
 def test_ten_lists():
     """`ten_lists()` should return a list"""
-    assert isinstance(ten_lists(), list)
+    assert isinstance(ten_lists(), list)  # nosec
 
 
 def test_ten_lists_length():
     """`ten_lists()` should have a length of 10"""
-    assert len(ten_lists()) == 10
+    assert len(ten_lists()) == 10  # nosec
 
 
 def test_ten_lists_chapters():
@@ -331,13 +330,13 @@ def test_ten_lists_chapters():
     num_of_chapters = [89, 187, 78, 65, 62, 150, 31, 249, 250, 28]
 
     for chapters, bible_list in zip(num_of_chapters, ten_lists()):
-        assert len(bible_list) == chapters
+        assert len(bible_list) == chapters  # nosec
 
 
 @pytest.mark.parametrize("day, listening_list", TEST_DATA, ids=PLAYLIST_IDS)
 def test_reading_list(day, listening_list):
     """test generated reading lists using TEST_DATA"""
-    assert reading_list(day, BIBLE_DIR) == listening_list
+    assert reading_list(day, BIBLE_DIR) == listening_list  # nosec
 
 
 @pytest.mark.usefixtures("prepare_data")
@@ -346,7 +345,7 @@ def test_m3u_creation(day):
     """tests the creation of m3u playlist files"""
     create_m3u(day, BIBLE_DIR)
     m3u_filename = "day" + str(day).zfill(3) + ".m3u"
-    assert os.path.exists(m3u_filename)
+    assert os.path.exists(m3u_filename)  # nosec
 
 
 @pytest.mark.usefixtures("prepare_data")
@@ -358,7 +357,7 @@ def test_m3u_content(day, listening_list):
     m3u_filename = "day" + str(day).zfill(3) + ".m3u"
     listening_list.insert(0, "#EXTM3U")
     with open(m3u_filename, "r") as m3u:
-        assert m3u.read().splitlines() == listening_list
+        assert m3u.read().splitlines() == listening_list  # nosec
 
 
 @pytest.mark.usefixtures("prepare_data")
@@ -367,7 +366,7 @@ def test_mp3_dir_creation(day):
     """tests the creation of the directory containing mp3 files"""
     create_mp3_dir(day, BIBLE_DIR)
     output_dir = "day" + str(day).zfill(3)
-    assert os.path.exists(output_dir)
+    assert os.path.exists(output_dir)  # nosec
 
 
 @pytest.mark.usefixtures("prepare_data")
@@ -376,7 +375,7 @@ def test_mp3_dir_count(day):
     """tests the presence of 10 files in the created directories"""
     # create_mp3_dir(day, BIBLE_DIR)  already created since scope=session
     output_dir = "day" + str(day).zfill(3)
-    assert len(os.listdir(output_dir)) == 10
+    assert len(os.listdir(output_dir)) == 10  # nosec
 
 
 @pytest.mark.usefixtures("prepare_data")
@@ -387,7 +386,7 @@ def test_mp3_files_creation(day):
     output_dir = "day" + str(day).zfill(3)
     ext = "*.mp3"
     for entry in os.listdir(output_dir):
-        assert fnmatch.fnmatch(entry, ext)
+        assert fnmatch.fnmatch(entry, ext)  # nosec
 
 
 @pytest.mark.usefixtures("prepare_data")
@@ -409,7 +408,7 @@ def test_mp3_filenames(day, listening_list):
     ]
     files = [item.replace(f"{output_dir}/", "") for item in filenames]
     mp3_files = [str(idx).zfill(3) + mp3[4:] for idx, mp3 in enumerate(files, start=1)]
-    assert sorted(mp3_filelist) == mp3_files
+    assert sorted(mp3_filelist) == mp3_files  # nosec
 
 
 @pytest.mark.usefixtures("prepare_data")
@@ -422,7 +421,7 @@ def test_mp3_id3_tags(day):
     for index, entry in enumerate(sorted(filelist), start=1):
         audiofile = eyed3.load(entry)
         # audiofile.tag.track_num is a tuple in the form (1, None)
-        assert audiofile.tag.track_num[0] == index
+        assert audiofile.tag.track_num[0] == index  # nosec
 
 
 @pytest.mark.usefixtures("prepare_data")
@@ -436,5 +435,5 @@ def test_cli(day):
     """
     runner = CliRunner()
     result = runner.invoke(cmd, ["-d", day])
-    assert result.exit_code == 0
-    assert not result.exception
+    assert result.exit_code == 0  # nosec
+    assert not result.exception  # nosec
