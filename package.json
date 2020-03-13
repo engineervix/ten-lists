@@ -19,6 +19,7 @@
   "private": true,
   "devDependencies": {
     "grunt": "^1.0.4",
-    "grunt-json-minification": "^0.2.1"
+    "grunt-json-minification": "^0.2.1",
+    "clean-css": ">=4.1.11"
   }
 }
