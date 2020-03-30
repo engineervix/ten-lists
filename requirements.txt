@@ -21,7 +21,7 @@ pylint==2.4.4
 flake8==3.7.9
 
 # dev tools
-bpython==0.18
+bpython==0.19
 rope==0.16.0
 pre-commit==2.2.0
 requires.io==0.2.6
