@@ -13,7 +13,7 @@ tqdm==4.45.0
 
 # python style
 black
-autopep8==1.5
+autopep8==1.5.1
 doc8==0.8.0
 # flake8==3.7.8  # now using black
 pep8==1.7.1
