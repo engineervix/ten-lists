@@ -23,7 +23,7 @@ flake8==3.7.9
 # dev tools
 bpython==0.19
 rope==0.17.0
-pre-commit==2.3.0
+pre-commit==2.4.0
 requires.io==0.2.6
 
 # "clean" requirements
