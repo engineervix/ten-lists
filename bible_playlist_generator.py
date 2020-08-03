@@ -54,8 +54,10 @@ def log_traceback(ex):
 def ten_lists():
     """create the 10 lists from the ten_lists.json file"""
     the_ten_lists = []
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    json_file = os.path.join(dir_path, "ten_lists.json")
 
-    with open("ten_lists.json", "r") as read_file:
+    with open(json_file, "r") as read_file:
         data = json.load(read_file)
 
     for idx, _list in enumerate(data, start=1):
