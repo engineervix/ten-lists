@@ -5,17 +5,34 @@ colorama==0.4.3
 pyfiglet==0.8.post1
 termcolor==1.1.0
 
+# web-app
+python-dotenv==0.14.0
+
+Flask==1.1.2
+flask-restful==0.3.8
+flask-debugtoolbar==0.11.0
+flask-script==2.0.6
+flask-mail==0.9.1
+flask-moment==0.10.0
+
+sentry-sdk[flask]==0.16.2
+
+Flask-HTTPAuth==4.1.0
+flask-login==0.5.0
+flask-bcrypt==0.7.1
+flask-wtf==0.14.3
+
 # for testing
 gtts==2.1.1
 pytest-cov==2.10.0
 pytest-bandit==0.5.2
 tqdm==4.48.0
+Faker==4.1.1
 
 # python style
 black
 autopep8==1.5.3
 doc8==0.8.1
-# flake8==3.7.8  # now using black
 pep8==1.7.1
 pylint==2.5.3
 flake8==3.8.3
@@ -27,4 +44,4 @@ pre-commit==2.6.0
 requires.io==0.2.6
 
 # "clean" requirements
-pip_chill
+pip-chill==1.0.0
