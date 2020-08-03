@@ -1,0 +1,5 @@
+*.db
+*.sqlite3
+*.conf
+*.gz
+!.gitignore
