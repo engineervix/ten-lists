@@ -1,0 +1,162 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Ten Lists
+{% endblock %}
+
+{% block extrameta %}
+<meta name="description" content="Ten Lists Bible Reading Plan">
+<meta name="author" content="Victor Miti">
+<meta name="keywords" content="Bible, Spiritual Discipline">
+<meta property="og:title" content="Ten Lists Bible Reading Plan" />
+<meta property="og:type" content="website" />
+<meta property="og:description" content="Ten Lists Bible Reading Plan">
+<meta property="og:site_name" content="Ten Lists Bible Reading Plan">
+<meta property="og:url" content="{{ url_for('main.index', _external=True) }}" />
+<meta property="og:image" content="{{ url_for('static', filename='img/book.png', _external=True) }}" />
+<meta property="og:locale" content="en_ZM" />
+<meta property="og:locale:alternate" content="en_ZA" />
+<meta property="og:locale:alternate" content="en_GB" />
+<meta property="og:locale:alternate" content="en_US" />
+{% endblock %}
+
+
+{% block body %}
+
+<h1 class="text-center text-white">
+  <i class="fa fa-book"></i> 10 Lists Audio
+  <a id="starting-point" class="btn btn-outline-info" href="/" role="button">Generate New Playlist</a>
+</h1>
+
+<div class="alert alert-info" role="alert">
+  <p class="lead text-center text-body text-white"><i class="fa fa-volume-up"></i> A daily Bible listening app based on <a href="https://sohmer.net/media/professor_grant_horners_bible_reading_system.pdf" class="alert-link">Professor Grant Horner's Bible-Reading System</a></p>
+</div>
+
+<div class="day-chooser">
+  <div class="form-row justify-content-center">
+    <div class="col-sm-3 my-1">
+      <label class="sr-only" for="which-day">Reading Plan Day</label>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text">Reading Plan Day</div>
+        </div>
+        <input type="number" id="which-day" name="day" min="1" max="600" class="form-control" id="which-day" />
+      </div>
+    </div>
+    <div class="col-auto my-1">
+      <input type="button" id="generate-playlist" value="Generate Playlist" disabled="disabled" class="btn btn-info" />
+    </div>
+  </div>
+</div>
+
+<div id="flat-black-player-container" class="pb-4 mb-4">
+  <div id="list-screen" class="slide-in-top">
+    <div id="list-screen-header" class="hide-playlist pb-4 mb-4">
+      <img id="up-arrow" src="{{ url_for('static', filename='img/up.svg') }}"/>
+      Hide Playlist
+    </div>
+
+    <div id="list">
+
+    </div>
+
+    <div id="list-screen-footer">
+      <div id="list-screen-meta-container">
+        <span data-amplitude-song-info="name" class="song-name"></span>
+
+        <div class="song-artist-album">
+          <span data-amplitude-song-info="artist"></span>
+        </div>
+      </div>
+      <div class="list-controls">
+        <div class="list-previous amplitude-prev"></div>
+        <div class="list-play-pause amplitude-play-pause"></div>
+        <div class="list-next amplitude-next"></div>
+      </div>
+    </div>
+  </div>
+  <div id="player-screen">
+    <div class="player-header down-header pb-5 mb-3">
+      <img id="down" src="{{ url_for('static', filename='img/down.svg') }}"/>
+      Show Playlist
+    </div>
+    <div id="player-top">
+      <img data-amplitude-song-info="cover_art_url"/>
+    </div>
+    <div id="player-progress-bar-container">
+      <progress id="song-played-progress" class="amplitude-song-played-progress"></progress>
+      <progress id="song-buffered-progress" class="amplitude-buffered-progress" value="0"></progress>
+    </div>
+    <div id="player-middle">
+      <div id="time-container">
+        <span class="amplitude-current-time time-container"></span>
+        <span class="amplitude-duration-time time-container"></span>
+      </div>
+      <div id="meta-container">
+        <span data-amplitude-song-info="name" class="song-name"></span>
+
+        <div class="song-artist-album">
+          <span data-amplitude-song-info="artist"></span>
+        </div>
+      </div>
+    </div>
+    <div id="player-bottom">
+      <div id="control-container" class="pb-5 mb-5">
+
+        <div id="shuffle-container">
+          <div class="amplitude-shuffle amplitude-shuffle-off" id="shuffle"></div>
+        </div>
+
+        <div id="prev-container">
+          <div class="amplitude-prev" id="previous"></div>
+        </div>
+
+        <div id="play-pause-container">
+          <div class="amplitude-play-pause" id="play-pause"></div>
+        </div>
+
+        <div id="next-container">
+          <div class="amplitude-next" id="next"></div>
+        </div>
+
+        <div id="repeat-container">
+          <div class="amplitude-repeat" id="repeat"></div>
+        </div>
+
+      </div>
+
+      <div id="volume-container">
+        <img class="pt-2" src="{{ url_for('static', filename='img/volume.svg') }}"/><input type="range" class="custom-range amplitude-volume-slider" step=".1"/>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  var generated_songs;
+  var tenlists_base_url = "{{ config['TENLISTS_API_BASE']  }}";
+
+  // Should not be there by default
+  $('#flat-black-player-container').hide();
+  $('#starting-point').hide();
+
+  $('.input-group input ').keyup(function() {
+
+    var empty = false;
+    $('.input-group input ').each(function() {
+        if ($(this).val() == '') {
+            empty = true;
+        }
+    });
+
+    if (empty) {
+        $('#generate-playlist').attr('disabled', 'disabled');
+    } else {
+        $('#generate-playlist').removeAttr('disabled');
+    }
+  });
+</script>
+{% endblock %}
