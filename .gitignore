@@ -23,6 +23,7 @@ htmlcov/
 *.conf
 !.gitignore
 bin/
+*.mp3
 
 ### VisualStudioCode ###
 .vscode/*
