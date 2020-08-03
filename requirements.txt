@@ -9,7 +9,7 @@ termcolor==1.1.0
 gtts==2.1.1
 pytest-cov==2.10.0
 pytest-bandit==0.5.2
-tqdm==4.48.0
+tqdm==4.48.1
 
 # python style
 black
