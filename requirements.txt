@@ -28,10 +28,11 @@ pytest-cov==2.10.0
 pytest-bandit==0.5.2
 tqdm==4.48.0
 Faker==4.1.1
+tqdm==4.48.1
 
 # python style
 black
-autopep8==1.5.3
+autopep8==1.5.4
 doc8==0.8.1
 pep8==1.7.1
 pylint==2.5.3
