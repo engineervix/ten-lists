@@ -24,7 +24,7 @@ flask-wtf==0.14.3
 
 # for testing
 gtts==2.1.1
-pytest-cov==2.10.0
+pytest-cov==2.10.1
 pytest-bandit==0.5.2
 Faker==4.1.1
 tqdm==4.48.2
