@@ -35,7 +35,7 @@ black
 autopep8==1.5.4
 doc8==0.8.1
 pep8==1.7.1
-pylint==2.5.3
+pylint==2.6.0
 flake8==3.8.3
 
 # dev tools
