@@ -6,7 +6,7 @@ pyfiglet==0.8.post1
 termcolor==1.1.0
 
 # web-app
-python-dotenv==0.14.0
+python-dotenv==0.15.0
 
 Flask==1.1.2
 flask-restful==0.3.8
