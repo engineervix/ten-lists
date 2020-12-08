@@ -26,7 +26,7 @@ distlib==0.3.1            # via virtualenv
 doc8==0.8.1               # via -r requirements.in
 docutils==0.16            # via doc8, restructuredtext-lint
 eyed3==0.9.5              # via -r requirements.in
-faker==5.0.0              # via -r requirements.in
+faker==5.0.1              # via -r requirements.in
 filelock==3.0.12          # via virtualenv
 filetype==1.0.7           # via eyed3
 flake8==3.8.4             # via -r requirements.in
