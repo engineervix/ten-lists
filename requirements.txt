@@ -76,7 +76,7 @@ pyyaml==5.3.1             # via pre-commit
 regex==2020.11.13         # via black
 requests==2.25.0          # via bpython, gtts
 restructuredtext-lint==1.3.1  # via doc8
-sentry-sdk[flask]==0.19.4  # via -r requirements.in
+sentry-sdk[flask]==0.19.5  # via -r requirements.in
 six==1.15.0               # via bcrypt, blessings, bpython, doc8, flask-restful, gtts, packaging, pip-tools, python-dateutil, virtualenv
 stevedore==3.2.2          # via doc8
 termcolor==1.1.0          # via -r requirements.in
