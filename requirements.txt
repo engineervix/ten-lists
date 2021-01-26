@@ -25,7 +25,7 @@ blinker==1.4
     #   flask-debugtoolbar
     #   flask-mail
     #   sentry-sdk
-bpython==0.20.1
+bpython==0.21
     # via -r requirements.in
 certifi==2020.11.8
     # via
@@ -52,8 +52,12 @@ coverage[toml]==5.3.1
     # via
     #   eyed3
     #   pytest-cov
-curtsies==0.3.4
+curtsies==0.3.5
     # via bpython
+cwcwidth==0.1.1
+    # via
+    #   bpython
+    #   curtsies
 deprecation==2.1.0
     # via eyed3
 distlib==0.3.1
@@ -183,6 +187,8 @@ python-dotenv==0.15.0
     # via -r requirements.in
 pytz==2020.4
     # via flask-restful
+pyxdg==0.27
+    # via bpython
 pyyaml==5.3.1
     # via pre-commit
 regex==2020.11.13
@@ -199,7 +205,6 @@ six==1.15.0
     # via
     #   bcrypt
     #   blessings
-    #   bpython
     #   doc8
     #   flask-restful
     #   gtts
@@ -231,10 +236,6 @@ urllib3==1.26.2
     #   sentry-sdk
 virtualenv==20.2.1
     # via pre-commit
-wcwidth==0.2.5
-    # via
-    #   bpython
-    #   curtsies
 werkzeug==1.0.1
     # via
     #   flask
