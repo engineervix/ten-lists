@@ -70,7 +70,7 @@ docutils==0.16
     #   restructuredtext-lint
 eyed3==0.9.6
     # via -r requirements.in
-faker==5.8.0
+faker==6.0.0
     # via -r requirements.in
 filelock==3.0.12
     # via virtualenv
