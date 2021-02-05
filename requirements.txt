@@ -112,7 +112,7 @@ flask==1.1.2
     #   sentry-sdk
 greenlet==0.4.17
     # via bpython
-gtts==2.2.1
+gtts==2.2.2
     # via -r requirements.in
 identify==1.5.10
     # via pre-commit
