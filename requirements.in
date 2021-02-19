@@ -19,7 +19,7 @@ flask-restful==0.3.8
 flask-script==2.0.6
 flask-wtf==0.14.3
 
-sentry-sdk[flask]==0.19.5
+sentry-sdk[flask]==0.20.3
 
 # for testing
 Faker
