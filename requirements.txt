@@ -153,7 +153,7 @@ pip-tools==5.5.0
     # via -r requirements.in
 pluggy==0.13.1
     # via pytest
-pre-commit==2.10.0
+pre-commit==2.11.0
     # via -r requirements.in
 py==1.10.0
     # via pytest
