@@ -149,7 +149,7 @@ pep8==1.7.1
     # via -r requirements.in
 pip-chill==1.0.1
     # via -r requirements.in
-pip-tools==5.5.0
+pip-tools==6.0.0
     # via -r requirements.in
 pluggy==0.13.1
     # via pytest
