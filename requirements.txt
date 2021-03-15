@@ -76,7 +76,7 @@ filelock==3.0.12
     # via virtualenv
 filetype==1.0.7
     # via eyed3
-flake8==3.8.4
+flake8==3.9.0
     # via -r requirements.in
 flask-bcrypt==0.7.1
     # via -r requirements.in
@@ -157,7 +157,7 @@ pre-commit==2.10.0
     # via -r requirements.in
 py==1.10.0
     # via pytest
-pycodestyle==2.6.0
+pycodestyle==2.7.0
     # via
     #   autopep8
     #   flake8
@@ -165,7 +165,7 @@ pycparser==2.20
     # via cffi
 pyfiglet==0.8.post1
     # via -r requirements.in
-pyflakes==2.2.0
+pyflakes==2.3.0
     # via flake8
 pygments==2.7.2
     # via
