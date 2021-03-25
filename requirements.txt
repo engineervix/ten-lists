@@ -167,7 +167,7 @@ pyfiglet==0.8.post1
     # via -r requirements.in
 pyflakes==2.2.0
     # via flake8
-pygments==2.7.2
+pygments==2.7.4
     # via
     #   bpython
     #   doc8
