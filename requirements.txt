@@ -125,7 +125,7 @@ itsdangerous==1.1.0
     #   flask
     #   flask-debugtoolbar
     #   flask-wtf
-jinja2==2.11.2
+jinja2==2.11.3
     # via flask
 markupsafe==1.1.1
     # via
@@ -167,7 +167,7 @@ pyfiglet==0.8.post1
     # via -r requirements.in
 pyflakes==2.2.0
     # via flake8
-pygments==2.7.2
+pygments==2.7.4
     # via
     #   bpython
     #   doc8
@@ -189,7 +189,7 @@ pytz==2020.4
     # via flask-restful
 pyxdg==0.27
     # via bpython
-pyyaml==5.3.1
+pyyaml==5.4
     # via pre-commit
 regex==2020.11.13
     # via black
@@ -230,7 +230,7 @@ typed-ast==1.4.1
     # via black
 typing-extensions==3.7.4.3
     # via black
-urllib3==1.26.2
+urllib3==1.26.4
     # via
     #   requests
     #   sentry-sdk
