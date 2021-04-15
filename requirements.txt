@@ -145,11 +145,13 @@ pathspec==0.8.1
     # via black
 pbr==5.5.1
     # via stevedore
+pep517==0.10.0
+    # via pip-tools
 pep8==1.7.1
     # via -r requirements.in
 pip-chill==1.0.1
     # via -r requirements.in
-pip-tools==5.5.0
+pip-tools==6.1.0
     # via -r requirements.in
 pluggy==0.13.1
     # via pytest
@@ -222,6 +224,7 @@ toml==0.10.2
     #   autopep8
     #   black
     #   coverage
+    #   pep517
     #   pre-commit
     #   pytest
 tqdm==4.56.0
