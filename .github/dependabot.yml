@@ -1,0 +1,54 @@
+version: 2
+updates:
+- package-ecosystem: pip
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "03:00"
+    timezone: Africa/Lusaka
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: faker
+    versions:
+    - 6.0.0
+    - 6.1.1
+    - 6.3.0
+    - 6.4.1
+    - 6.5.0
+    - 6.5.2
+    - 6.6.0
+    - 6.6.1
+    - 6.6.2
+    - 6.6.3
+    - 7.0.1
+    - 8.0.0
+    - 8.1.0
+  - dependency-name: tqdm
+    versions:
+    - 4.56.1
+    - 4.56.2
+    - 4.57.0
+    - 4.58.0
+    - 4.59.0
+  - dependency-name: pre-commit
+    versions:
+    - 2.10.1
+    - 2.11.0
+    - 2.11.1
+    - 2.12.0
+  - dependency-name: urllib3
+    versions:
+    - 1.26.3
+  - dependency-name: pip-tools
+    versions:
+    - 6.0.0
+    - 6.0.1
+  - dependency-name: flake8
+    versions:
+    - 3.9.0
+  - dependency-name: sentry-sdk[flask]
+    versions:
+    - 0.20.0
+    - 0.20.1
+    - 0.20.2
+    - 0.20.3
