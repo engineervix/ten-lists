@@ -12,7 +12,7 @@ appdirs==1.4.4
     #   virtualenv
 attrs==20.3.0
     # via pytest
-autopep8==1.5.4
+autopep8==1.5.5
     # via -r requirements.in
 bcrypt==3.2.0
     # via flask-bcrypt
@@ -70,13 +70,13 @@ docutils==0.16
     #   restructuredtext-lint
 eyed3==0.9.6
     # via -r requirements.in
-faker==5.8.0
+faker==8.1.3
     # via -r requirements.in
 filelock==3.0.12
     # via virtualenv
 filetype==1.0.7
     # via eyed3
-flake8==3.8.4
+flake8==3.9.2
     # via -r requirements.in
 flask-bcrypt==0.7.1
     # via -r requirements.in
@@ -112,7 +112,7 @@ flask==1.1.2
     #   sentry-sdk
 greenlet==0.4.17
     # via bpython
-gtts==2.2.1
+gtts==2.2.2
     # via -r requirements.in
 identify==1.5.10
     # via pre-commit
@@ -125,7 +125,7 @@ itsdangerous==1.1.0
     #   flask
     #   flask-debugtoolbar
     #   flask-wtf
-jinja2==2.11.2
+jinja2==2.11.3
     # via flask
 markupsafe==1.1.1
     # via
@@ -145,19 +145,21 @@ pathspec==0.8.1
     # via black
 pbr==5.5.1
     # via stevedore
+pep517==0.10.0
+    # via pip-tools
 pep8==1.7.1
     # via -r requirements.in
 pip-chill==1.0.1
     # via -r requirements.in
-pip-tools==5.5.0
+pip-tools==6.1.0
     # via -r requirements.in
 pluggy==0.13.1
     # via pytest
-pre-commit==2.10.0
+pre-commit==2.12.1
     # via -r requirements.in
 py==1.10.0
     # via pytest
-pycodestyle==2.6.0
+pycodestyle==2.7.0
     # via
     #   autopep8
     #   flake8
@@ -165,7 +167,7 @@ pycparser==2.20
     # via cffi
 pyfiglet==0.8.post1
     # via -r requirements.in
-pyflakes==2.2.0
+pyflakes==2.3.1
     # via flake8
 pygments==2.7.4
     # via
@@ -175,7 +177,7 @@ pyparsing==2.4.7
     # via packaging
 pytest-cov==2.11.1
     # via -r requirements.in
-pytest-flask==1.1.0
+pytest-flask==1.2.0
     # via -r requirements.in
 pytest==6.1.2
     # via
@@ -189,7 +191,7 @@ pytz==2020.4
     # via flask-restful
 pyxdg==0.27
     # via bpython
-pyyaml==5.3.1
+pyyaml==5.4
     # via pre-commit
 regex==2020.11.13
     # via black
@@ -199,7 +201,7 @@ requests==2.25.0
     #   gtts
 restructuredtext-lint==1.3.1
     # via doc8
-sentry-sdk[flask]==0.19.5
+sentry-sdk[flask]==1.1.0
     # via -r requirements.in
 six==1.15.0
     # via
@@ -222,15 +224,16 @@ toml==0.10.2
     #   autopep8
     #   black
     #   coverage
+    #   pep517
     #   pre-commit
     #   pytest
-tqdm==4.56.0
+tqdm==4.60.0
     # via -r requirements.in
 typed-ast==1.4.1
     # via black
 typing-extensions==3.7.4.3
     # via black
-urllib3==1.26.2
+urllib3==1.26.4
     # via
     #   requests
     #   sentry-sdk
