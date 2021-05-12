@@ -39,7 +39,7 @@ chardet==3.0.4
     # via
     #   doc8
     #   requests
-click==7.1.2
+click==8.0.0
     # via
     #   -r requirements.in
     #   black
