@@ -12,7 +12,7 @@ appdirs==1.4.4
     #   virtualenv
 attrs==20.3.0
     # via pytest
-autopep8==1.5.5
+autopep8==1.5.7
     # via -r requirements.in
 bcrypt==3.2.0
     # via flask-bcrypt
