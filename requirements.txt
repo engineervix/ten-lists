@@ -12,11 +12,11 @@ appdirs==1.4.4
     #   virtualenv
 attrs==20.3.0
     # via pytest
-autopep8==1.5.5
+autopep8==1.5.7
     # via -r requirements.in
 bcrypt==3.2.0
     # via flask-bcrypt
-black==20.8b1
+black==21.5b1
     # via -r requirements.in
 blessings==1.7
     # via curtsies
@@ -229,10 +229,6 @@ toml==0.10.2
     #   pytest
 tqdm==4.60.0
     # via -r requirements.in
-typed-ast==1.4.1
-    # via black
-typing-extensions==3.7.4.3
-    # via black
 urllib3==1.26.4
     # via
     #   requests
