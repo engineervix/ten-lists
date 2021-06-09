@@ -16,7 +16,7 @@ autopep8==1.5.7
     # via -r requirements.in
 bcrypt==3.2.0
     # via flask-bcrypt
-black==21.5b1
+black==21.5b2
     # via -r requirements.in
 blessings==1.7
     # via curtsies
