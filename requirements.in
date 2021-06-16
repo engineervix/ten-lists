@@ -1,5 +1,5 @@
 # core
-Click==7.1.2
+Click==8.0.1
 colorama==0.4.4
 eyed3==0.9.6
 pyfiglet==0.8.post1
@@ -14,10 +14,10 @@ flask-debugtoolbar==0.11.0
 Flask-HTTPAuth==4.4.0
 flask-login==0.5.0
 flask-mail==0.9.1
-flask-moment==0.11.0
-flask-restful==0.3.8
+flask-moment==1.0.1
+flask-restful==0.3.9
 flask-script==2.0.6
-flask-wtf==0.14.3
+flask-wtf==0.15.1
 
 sentry-sdk[flask]==1.1.0
 
