@@ -227,7 +227,7 @@ toml==0.10.2
     #   pep517
     #   pre-commit
     #   pytest
-tqdm==4.60.0
+tqdm==4.61.1
     # via -r requirements.in
 urllib3==1.26.4
     # via
