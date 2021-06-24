@@ -70,7 +70,7 @@ docutils==0.16
     #   restructuredtext-lint
 eyed3==0.9.6
     # via -r requirements.in
-faker==8.8.0
+faker==8.8.2
     # via -r requirements.in
 filelock==3.0.12
     # via virtualenv
@@ -78,6 +78,20 @@ filetype==1.0.7
     # via eyed3
 flake8==3.9.2
     # via -r requirements.in
+flask==1.1.2
+    # via
+    #   -r requirements.in
+    #   flask-bcrypt
+    #   flask-debugtoolbar
+    #   flask-httpauth
+    #   flask-login
+    #   flask-mail
+    #   flask-moment
+    #   flask-restful
+    #   flask-script
+    #   flask-wtf
+    #   pytest-flask
+    #   sentry-sdk
 flask-bcrypt==0.7.1
     # via -r requirements.in
 flask-debugtoolbar==0.11.0
@@ -96,20 +110,6 @@ flask-script==2.0.6
     # via -r requirements.in
 flask-wtf==0.15.1
     # via -r requirements.in
-flask==1.1.2
-    # via
-    #   -r requirements.in
-    #   flask-bcrypt
-    #   flask-debugtoolbar
-    #   flask-httpauth
-    #   flask-login
-    #   flask-mail
-    #   flask-moment
-    #   flask-restful
-    #   flask-script
-    #   flask-wtf
-    #   pytest-flask
-    #   sentry-sdk
 greenlet==0.4.17
     # via bpython
 gtts==2.2.2
@@ -175,14 +175,14 @@ pygments==2.7.4
     #   doc8
 pyparsing==2.4.7
     # via packaging
-pytest-cov==2.12.1
-    # via -r requirements.in
-pytest-flask==1.2.0
-    # via -r requirements.in
 pytest==6.1.2
     # via
     #   pytest-cov
     #   pytest-flask
+pytest-cov==2.12.1
+    # via -r requirements.in
+pytest-flask==1.2.0
+    # via -r requirements.in
 python-dateutil==2.8.1
     # via faker
 python-dotenv==0.17.1
