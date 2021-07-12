@@ -1,5 +1,9 @@
 {
   "extends": ["config:base"],
+  "pin": {
+    "automerge": true,
+    "labels": ["dependencies"]
+  },
   "packageRules": [
     {
       "matchLanguages": ["python"],
