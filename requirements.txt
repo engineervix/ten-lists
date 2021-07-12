@@ -31,7 +31,7 @@ certifi==2020.11.8
     # via
     #   requests
     #   sentry-sdk
-cffi==1.14.3
+cffi==1.14.6
     # via bcrypt
 cfgv==3.2.0
     # via pre-commit
