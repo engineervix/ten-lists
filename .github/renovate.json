@@ -1,5 +1,8 @@
 {
   "extends": ["config:base"],
+  "pin": {
+    "automerge": true
+  },
   "packageRules": [
     {
       "matchLanguages": ["python"],
