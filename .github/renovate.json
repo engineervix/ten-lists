@@ -39,6 +39,24 @@
       "updateTypes": ["minor", "patch", "pin", "digest"],
       "automerge": true,
       "semanticCommitType": "build"
+    },
+    {
+      "matchManagers": ["pre-commit"],
+      "updateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": true,
+      "semanticCommitType": "ci"
+    },
+    {
+      "matchManagers": ["circle"],
+      "updateTypes": ["patch", "pin", "digest"],
+      "automerge": true,
+      "semanticCommitType": "ci"
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "updateTypes": ["patch", "pin", "digest"],
+      "automerge": true,
+      "semanticCommitType": "ci"
     }
   ],
   "timezone": "Africa/Lusaka",
