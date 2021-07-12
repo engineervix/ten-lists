@@ -26,6 +26,7 @@ jobs:
             curl https://deepsource.io/cli | sh
             # copy vendor libs
             sudo npm install -g grunt-cli
+            npm install
             grunt all
             # ENV variables
             mkdir -p tenlists/webapp/conf/env/
