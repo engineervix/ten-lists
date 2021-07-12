@@ -1,6 +1,6 @@
 from flask_script import Manager
 
-from ten_lists import create_app
+from tenlists.webapp.ten_lists import create_app
 
 # Setup Flask-Script with command line commands
 manager = Manager(create_app)

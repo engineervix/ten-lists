@@ -8,6 +8,7 @@ from tqdm import tqdm
 from gtts import gTTS
 import eyed3
 from tenlists.cli.__main__ import ten_lists
+from tenlists.webapp.ten_lists import create_app
 
 BIBLE_DIR = "_ENGESVC2DA"
 
@@ -64,6 +65,12 @@ def prepare_data():
     total_time = stop - start
 
     print(f"Total running time: {total_time} seconds")
+
+
+@pytest.fixture
+def app():
+    app = create_app()
+    return app
 
 
 TEST_DATA = [

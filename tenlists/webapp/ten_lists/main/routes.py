@@ -2,7 +2,7 @@
 
 """A Simple RESTful server implemented using the Flask-RESTful extension."""
 
-import sys
+# import sys
 import os
 import time
 from datetime import datetime
@@ -13,15 +13,15 @@ from flask_restful import Resource, reqparse, fields, marshal
 
 import eyed3
 
-project_dir = os.path.abspath(os.path.join(__file__, "../../../../"))
-dir_path = os.path.dirname(os.path.realpath(__file__))
-relative_project_dir = os.path.relpath(project_dir, dir_path)
+# project_dir = os.path.abspath(os.path.join(__file__, "../../../../"))
+# dir_path = os.path.dirname(os.path.realpath(__file__))
+# relative_project_dir = os.path.relpath(project_dir, dir_path)
 
-sys.path.append(project_dir)
+# sys.path.append(project_dir)
 
 from tenlists.cli.__main__ import reading_list  # noqa: E402
 
-BIBLE_DIR = os.path.join("ten_lists/static/", "ENGESVC2DA")
+BIBLE_DIR = os.path.join("tenlists/webapp/ten_lists/static/", "ENGESVC2DA")
 
 main = Blueprint("main", __name__)
 
@@ -64,7 +64,7 @@ def generate_playlist(day):
                 "artist": audio.tag.artist,
                 "album": audio.tag.album,
                 # 'url': "../" + mp3_file,
-                "url": mp3_file.replace("ten_lists/static/", "static/"),
+                "url": mp3_file.replace("tenlists/webapp/ten_lists/static/", "static/"),
                 "cover_art_url": COVER_ART,
                 "duration": mp3_duration(audio.info.time_secs),
             }

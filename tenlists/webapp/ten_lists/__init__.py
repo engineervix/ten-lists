@@ -9,10 +9,10 @@ from flask_debugtoolbar import DebugToolbarExtension
 from flask_moment import Moment
 
 config = {
-    "production": "ten_lists.config.ProductionConfig",
-    "staging": "ten_lists.config.StagingConfig",
-    "development": "ten_lists.config.DevelopmentConfig",
-    "default": "ten_lists.config.BaseConfig",
+    "production": "tenlists.webapp.ten_lists.config.ProductionConfig",
+    "staging": "tenlists.webapp.ten_lists.config.StagingConfig",
+    "development": "tenlists.webapp.ten_lists.config.DevelopmentConfig",
+    "default": "tenlists.webapp.ten_lists.config.BaseConfig",
 }
 
 moment = Moment()
@@ -33,9 +33,9 @@ def create_app():
     toolbar.init_app(app)
     api = Api(app)
 
-    from ten_lists.main.routes import initialize_routes
-    from ten_lists.main.routes import main
-    from ten_lists.errors.handlers import errors
+    from tenlists.webapp.ten_lists.main.routes import initialize_routes
+    from tenlists.webapp.ten_lists.main.routes import main
+    from tenlists.webapp.ten_lists.errors.handlers import errors
 
     app.register_blueprint(errors)
     app.register_blueprint(main)
