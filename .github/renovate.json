@@ -1,0 +1,46 @@
+{
+  "extends": ["config:base"],
+  "packageRules": [
+    {
+      "matchLanguages": ["python"],
+      "labels": ["dependencies", "python"],
+      "matchPackagePatterns": [
+        "flask*",
+        "colorama",
+        "eyed3",
+        "termcolor",
+        "python-dotenv",
+        "pyfiglet"
+      ],
+      "updateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": true,
+      "semanticCommitType": "build",
+      "semanticCommitScope": "deps"
+    },
+    {
+      "matchLanguages": ["python"],
+      "labels": ["dependencies", "python"],
+      "excludePackagePatterns": [
+        "flask*",
+        "colorama",
+        "eyed3",
+        "termcolor",
+        "python-dotenv",
+        "pyfiglet"
+      ],
+      "updateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": true,
+      "semanticCommitType": "build",
+      "semanticCommitScope": "deps-dev"
+    },
+    {
+      "matchLanguages": ["javascript"],
+      "labels": ["dependencies", "javascript"],
+      "updateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": true,
+      "semanticCommitType": "build"
+    }
+  ],
+  "timezone": "Africa/Lusaka",
+  "schedule": ["after 10pm every weekday", "every weekend"]
+}
