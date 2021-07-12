@@ -191,7 +191,7 @@ pytz==2020.4
     # via flask-restful
 pyxdg==0.27
     # via bpython
-pyyaml==5.4
+pyyaml==5.4.1
     # via pre-commit
 regex==2020.11.13
     # via black
