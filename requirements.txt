@@ -228,7 +228,7 @@ toml==0.10.2
     #   pre-commit
     #   pytest
     #   pytest-cov
-tqdm==4.61.1
+tqdm==4.61.2
     # via -r requirements.in
 urllib3==1.26.5
     # via
