@@ -60,7 +60,7 @@ cwcwidth==0.1.1
     #   curtsies
 deprecation==2.1.0
     # via eyed3
-distlib==0.3.1
+distlib==0.3.2
     # via virtualenv
 doc8==0.8.1
     # via -r requirements.in
