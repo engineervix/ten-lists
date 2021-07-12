@@ -34,11 +34,11 @@ printf "\n \nFirst we shall remove any existing m3u files...\n"
 rm -v *.m3u
 
 
-START=$1	# the 1st argument
+START=$1  # the 1st argument
 END=`expr $START + 6`
 
 for (( d=$START; d<=$END; d++ ))
-	do python scripture_playlist_gen.py $d;
+  do python tenlists/cli/__main__.py $d;
 done
 
 a=0
@@ -47,8 +47,8 @@ printf "\n \nRenaming the m3u files...\n"
 # For this to work as expected, there shouldn't be any existing m3u files
 # other than those created in the operation above
 for f in *.m3u;
-	do mv -v "$f" "${f%.m3u}_$(date -d "$a days" +"%Y-%b-%d-%a").m3u";
-	let a=a+1;
+  do mv -v "$f" "${f%.m3u}_$(date -d "$a days" +"%Y-%b-%d-%a").m3u";
+  let a=a+1;
 done
 
 b=0
@@ -56,10 +56,10 @@ printf "\n \nNow renaming the directories...\n"
 # For this to work as expected, there shouldn't be any existing directories
 # with a 'day' prefix other than those created in the operation above
 for x in `ls | grep day`; do
-	if [ -d "$x" ]; then
-		mv -v "$x" "${x}_$(date -d "$b days" +"%Y-%b-%d-%a")"
-		let b=b+1;
-	fi
+  if [ -d "$x" ]; then
+    mv -v "$x" "${x}_$(date -d "$b days" +"%Y-%b-%d-%a")"
+    let b=b+1;
+  fi
 done
 
 # Now let's move the folders into the "_playlists.current" folder
@@ -68,18 +68,18 @@ CURRENT_PLAYLISTS='./_playlists.current'
 
 # (1) First check to see if it exists or not, and (2) whether or not it's empty
 if [ ! -d "$CURRENT_PLAYLISTS" ]; then
-	printf "\n \nCreating the '$CURRENT_PLAYLISTS' directory"
-	mkdir $CURRENT_PLAYLISTS
+  printf "\n \nCreating the '$CURRENT_PLAYLISTS' directory"
+  mkdir $CURRENT_PLAYLISTS
 elif [ "$(ls -A $CURRENT_PLAYLISTS)" ]; then
-	printf "\n \nThe '$CURRENT_PLAYLISTS' directory isn't empty, Now deleting existing content ...\n\n"
-	rm -rfv $CURRENT_PLAYLISTS/*
+  printf "\n \nThe '$CURRENT_PLAYLISTS' directory isn't empty, Now deleting existing content ...\n\n"
+  rm -rfv $CURRENT_PLAYLISTS/*
 fi
 
 printf "\n \nNow moving directories into the '$CURRENT_PLAYLISTS' directory\n"
 for dir in `ls | grep day`; do
-	if [ -d "$dir" ]; then
-		mv -v "$dir" $CURRENT_PLAYLISTS
-	fi
+  if [ -d "$dir" ]; then
+    mv -v "$dir" $CURRENT_PLAYLISTS
+  fi
 done
 
 

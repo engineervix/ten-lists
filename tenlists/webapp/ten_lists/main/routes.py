@@ -19,7 +19,7 @@ relative_project_dir = os.path.relpath(project_dir, dir_path)
 
 sys.path.append(project_dir)
 
-from bible_playlist_generator import reading_list  # noqa: E402
+from tenlists.cli.__main__ import reading_list  # noqa: E402
 
 BIBLE_DIR = os.path.join("ten_lists/static/", "ENGESVC2DA")
 

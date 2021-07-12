@@ -7,7 +7,7 @@ import pytest
 from tqdm import tqdm
 from gtts import gTTS
 import eyed3
-from bible_playlist_generator import ten_lists
+from tenlists.cli.__main__ import ten_lists
 
 BIBLE_DIR = "_ENGESVC2DA"
 

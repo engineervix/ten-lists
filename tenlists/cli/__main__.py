@@ -13,6 +13,7 @@ import os
 import json
 import traceback
 from shutil import copy
+from pathlib import Path
 import eyed3
 import click
 from pyfiglet import figlet_format
@@ -54,8 +55,10 @@ def log_traceback(ex):
 def ten_lists():
     """create the 10 lists from the ten_lists.json file"""
     the_ten_lists = []
-    dir_path = os.path.dirname(os.path.realpath(__file__))
-    json_file = os.path.join(dir_path, "ten_lists.json")
+    this_file = Path(__file__)
+    root_module = this_file.parents[1]
+    data_dir = root_module / "data"
+    json_file = os.path.join(data_dir, "ten_lists.json")
 
     with open(json_file, "r") as read_file:
         data = json.load(read_file)

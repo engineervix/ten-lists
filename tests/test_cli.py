@@ -7,14 +7,14 @@ import fnmatch
 import pytest
 from click.testing import CliRunner
 import eyed3
-from bible_playlist_generator import (
+from tenlists.cli.__main__ import (
     ten_lists,
     reading_list,
     create_m3u,
     create_mp3_dir,
     cmd,
 )
-from conftest import (
+from .conftest import (
     TEST_DATA,
     BIBLE_DIR,
     PLAYLIST_IDS,
