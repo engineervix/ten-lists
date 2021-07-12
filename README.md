@@ -8,12 +8,13 @@ Bible-Playlist-Generator
 This project provides both a CLI (using [click](https://click.palletsprojects.com/en/7.x/)) and a webapp (using [flask](https://palletsprojects.com/p/flask/)), which generate a playlist of 10 Bible Chapters (represented by 10 mp3 files) to be listened to on any given day _x_, according to [**Professor Grant Horner's Bible-Reading System**](https://sohmer.net/media/professor_grant_horners_bible_reading_system.pdf). The audio Bible is as downloaded from the [_Faith Comes by Hearing®_ website](http://www.bible.is/audiodownloader).
 
 ---
-💥 **WARNING: DOCS ARE OUT OF DATE**: This project is currently undergoing major refactoring (See #104, and [Milestone 1](https://github.com/engineervix/Bible-Playlist-Generator/milestone/1))
+
+💥 **WARNING: DOCS ARE OUT OF DATE**: This project is currently undergoing major refactoring (See [#104](https://github.com/engineervix/Bible-Playlist-Generator/issues/104), and [Milestone 1](https://github.com/engineervix/Bible-Playlist-Generator/milestone/1))
+
 ---
 
 > These docs pertain primarily to the CLI. I'll update the docs to be more complete, as I refactor the app (see issue [#104](https://github.com/engineervix/Bible-Playlist-Generator/issues/104) and [milestone 1](https://github.com/engineervix/Bible-Playlist-Generator/milestone/1)).
 > You can see the webapp in action [here](https://ten.stockpile.pw/)
-
 
 The `bible_playlist_generator.py` script also copies the files on the playlist into a new folder
 so that you can carry the folder on your USB or any other device and listen anywhere (car, home theatre, phone, tablet, etc).
