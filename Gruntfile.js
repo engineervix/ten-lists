@@ -9,9 +9,9 @@ module.exports = function(grunt) {
             dist: {
                 files: [{
                     expand: true,
-                    cwd: 'helpers',
+                    cwd: 'tenlists/utils',
                     src: ['ten_lists.json'],
-                    dest: '.',
+                    dest: 'tenlists/data',
                     ext: '.json'
                 }]
             }
@@ -22,43 +22,43 @@ module.exports = function(grunt) {
               expand: true,
               cwd: "node_modules/font-awesome/",
               src: ["css/*.css", "fonts/*"],
-              dest: "webapp/ten_lists/static/vendors/font-awesome/"
+              dest: "tenlists/webapp/ten_lists/static/vendors/font-awesome/"
           },
           bootstrap: {
               expand: true,
               cwd: "node_modules/bootstrap/dist/",
               src: ["css/*.css", "js/*.js"],
-              dest: "webapp/ten_lists/static/vendors/bootstrap/"
+              dest: "tenlists/webapp/ten_lists/static/vendors/bootstrap/"
           },
           // balloon_css: {
           //     expand: true,
           //     cwd: "node_modules/balloon-css/",
           //     src: ["*.css"],
-          //     dest: "webapp/ten_lists/static/vendors/balloon-css/"
+          //     dest: "tenlists/webapp/ten_lists/static/vendors/balloon-css/"
           // },
           // bootswatch: {
           //     expand: true,
           //     cwd: "node_modules/bootswatch/dist/",
           //     src: ["**/*", "!**/*.scss"],
-          //     dest: "webapp/ten_lists/static/vendors/bootswatch/"
+          //     dest: "tenlists/webapp/ten_lists/static/vendors/bootswatch/"
           // },
           // holderjs: {
           //     expand: true,
           //     cwd: "node_modules/holderjs/",
           //     src: ["holder.js", "holder.min.js"],
-          //     dest: "webapp/ten_lists/static/vendors/holderjs/"
+          //     dest: "tenlists/webapp/ten_lists/static/vendors/holderjs/"
           // },
           jquery: {
               expand: true,
               cwd: "node_modules/jquery/dist/",
               src: ["**/*", "!*.map"],
-              dest: "webapp/ten_lists/static/vendors/jquery/"
+              dest: "tenlists/webapp/ten_lists/static/vendors/jquery/"
           },
           moment: {
               expand: true,
               cwd: "node_modules/moment/min/",
               src: ["**/*", "!*.map"],
-              dest: "webapp/ten_lists/static/vendors/moment/"
+              dest: "tenlists/webapp/ten_lists/static/vendors/moment/"
           }
       },
 
@@ -66,9 +66,9 @@ module.exports = function(grunt) {
           dist: {
               files: [{
                   expand: true,
-                  cwd: "webapp/ten_lists/static/css/",
+                  cwd: "tenlists/webapp/ten_lists/static/css/",
                   src: ["custom.css"],
-                  dest: "webapp/ten_lists/static/css/",
+                  dest: "tenlists/webapp/ten_lists/static/css/",
                   ext: ".min.css"
               }]
           }
@@ -78,9 +78,9 @@ module.exports = function(grunt) {
         dist: {
             files: [{
                 expand: true,
-                cwd: "webapp/ten_lists/static/js/",
+                cwd: "tenlists/webapp/ten_lists/static/js/",
                 src: ["custom.js"],
-                dest: "webapp/ten_lists/static/js/",
+                dest: "tenlists/webapp/ten_lists/static/js/",
                 ext: ".min.js"
             }]
         }
@@ -89,32 +89,32 @@ module.exports = function(grunt) {
     watch: {
         css: {
             files: [
-                "webapp/ten_lists/static/css/custom.css"
+                "tenlists/webapp/ten_lists/static/css/custom.css"
             ],
             tasks: ["cssmin"]
         },
         js: {
             files: [
-                "webapp/ten_lists/static/js/custom.js"
+                "tenlists/webapp/ten_lists/static/js/custom.js"
             ],
             tasks: ["uglify"]
         }
     },
 
     clean: {
-        dist: ["webapp/ten_lists/static/vendors/*"]
+        dist: ["tenlists/webapp/ten_lists/static/vendors/*"]
     },
 
     browserSync: {
         dev: {
             bsFiles: {
                 src: [
-                    "webapp/ten_lists/static/css/*.css",
-                    "webapp/ten_lists/static/js/*.js",
-                    "webapp/ten_lists/static/vendors/**/*.css",
-                    "webapp/ten_lists/static/vendors/**/*.js",
-                    "webapp/ten_lists/templates/**/*.html",
-                    "webapp/ten_lists/**/*.py"
+                    "tenlists/webapp/ten_lists/static/css/*.css",
+                    "tenlists/webapp/ten_lists/static/js/*.js",
+                    "tenlists/webapp/ten_lists/static/vendors/**/*.css",
+                    "tenlists/webapp/ten_lists/static/vendors/**/*.js",
+                    "tenlists/webapp/ten_lists/templates/**/*.html",
+                    "tenlists/webapp/ten_lists/**/*.py"
                 ]
             },
             options: {
