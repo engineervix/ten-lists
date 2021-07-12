@@ -47,13 +47,13 @@
       "semanticCommitType": "ci"
     },
     {
-      "matchManagers": ["circleci"],
+      "matchDatasources": ["docker"],
       "updateTypes": ["patch", "pin", "digest"],
       "automerge": true,
       "semanticCommitType": "ci"
     },
     {
-      "matchManagers": ["github-actions"],
+      "matchManagers": ["circleci", "github-actions"],
       "updateTypes": ["patch", "pin", "digest"],
       "automerge": true,
       "semanticCommitType": "ci"
