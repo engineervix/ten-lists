@@ -2,7 +2,7 @@
 
 colorama==0.4.4
 eyed3==0.9.6
-flask==1.1.2
+flask==1.1.4
 flask-bcrypt==0.7.1
 flask-debugtoolbar==0.11.0
 flask-httpauth==4.4.0
