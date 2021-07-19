@@ -20,7 +20,7 @@ pyfiglet==0.8.post1
 
 autopep8==1.5.7
 black==21.5b2
-doc8==0.8.1
+doc8==0.9.0
 flake8==3.9.2
 pep8==1.7.1
 pre-commit==2.13.0
