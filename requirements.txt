@@ -27,7 +27,7 @@ pre-commit==2.13.0
 
 # tests
 
-faker==8.10.3
+faker==8.11.0
 gtts==2.2.3
 tqdm==4.62.0
 pytest-cov==2.12.1
