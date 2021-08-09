@@ -53,6 +53,27 @@ def log_traceback(ex):
     log(tb_text, "red")
 
 
+def iterate_lists(collection: List[List], day: int) -> List:
+    """
+    iterates through the given ``collection``, which is
+    a list of lists, and tries to get a particular item
+    from each list, based on the given ``day``
+    """
+    result: List = []
+    for lst in collection:
+        idx = day - 1
+        if idx < len(lst):
+            item = lst[idx]
+            result.append(item)
+        else:
+            while idx >= len(lst):
+                idx -= len(lst)
+            item = lst[idx]
+            result.append(item)
+
+    return result
+
+
 def ten_lists():
     """create the 10 lists from the ten_lists.json file"""
     the_ten_lists = []
@@ -77,299 +98,14 @@ def reading_list(day: int, bible_dir: str) -> List:
     The generated reading (or listening) list for the given day.
     bible_dir is the directory containing the mp3 files.
     """
-    list_1 = ten_lists()[0]
-    list_2 = ten_lists()[1]
-    list_3 = ten_lists()[2]
-    list_4 = ten_lists()[3]
-    list_5 = ten_lists()[4]
-    list_6 = ten_lists()[5]
-    list_7 = ten_lists()[6]
-    list_8 = ten_lists()[7]
-    list_9 = ten_lists()[8]
-    list_10 = ten_lists()[9]
 
     listening_list = []
 
     # append trailing slash to bible_dir
     bible_dir += "/"
 
-    try:
-        # for indexing purposes, since the first index is represented by 0
-        index = day - 1
-        current_reading_list = [bible_list[index] for bible_list in ten_lists()]
-        for chapter in current_reading_list:
-            listening_list.append(bible_dir + chapter)
-
-    except IndexError:
-        if len(ten_lists()[6]) >= day > len(ten_lists()[9]):
-            current_reading_list = [
-                bible_list[index] for bible_list in ten_lists()[:-1]
-            ]
-            for chapter in current_reading_list:
-                listening_list.append(bible_dir + chapter)
-            index = day - 1 - len(ten_lists()[9])
-            listening_list.append(bible_dir + list_10[index])
-
-        if len(ten_lists()[4]) >= day > len(ten_lists()[6]):
-            current_reading_list = [
-                bible_list[index] for bible_list in ten_lists()[:-4]
-            ]
-            for chapter in current_reading_list:
-                listening_list.append(bible_dir + chapter)
-            index = day - 1 - len(ten_lists()[6])
-            listening_list.append(bible_dir + list_7[index])
-            listening_list.append(bible_dir + list_8[day - 1])
-            listening_list.append(bible_dir + list_9[day - 1])
-            index = day - 1 - len(ten_lists()[9])
-            while index >= len(ten_lists()[9]):
-                index = index - len(ten_lists()[9])
-            listening_list.append(bible_dir + list_10[index])
-
-        if len(ten_lists()[3]) >= day > len(ten_lists()[4]):
-            current_reading_list = [bible_list[index] for bible_list in ten_lists()[:4]]
-            for chapter in current_reading_list:
-                listening_list.append(bible_dir + chapter)
-            index = day - 1 - len(ten_lists()[4])
-            listening_list.append(bible_dir + list_5[index])
-            listening_list.append(bible_dir + list_6[day - 1])
-            index = day - 1 - len(ten_lists()[6])
-            while index >= len(ten_lists()[6]):
-                index = index - len(ten_lists()[6])
-            listening_list.append(bible_dir + list_7[index])
-            listening_list.append(bible_dir + list_8[day - 1])
-            listening_list.append(bible_dir + list_9[day - 1])
-            index = day - 1 - len(ten_lists()[9])
-            while index >= len(ten_lists()[9]):
-                index = index - len(ten_lists()[9])
-            listening_list.append(bible_dir + list_10[index])
-
-        if len(ten_lists()[2]) >= day > len(ten_lists()[3]):
-            current_reading_list = [bible_list[index] for bible_list in ten_lists()[:3]]
-            for chapter in current_reading_list:
-                listening_list.append(bible_dir + chapter)
-            index = day - 1 - len(ten_lists()[3])
-            listening_list.append(bible_dir + list_4[index])
-            index = day - 1 - len(ten_lists()[4])
-            while index >= len(ten_lists()[4]):
-                index = index - len(ten_lists()[4])
-            listening_list.append(bible_dir + list_5[index])
-            listening_list.append(bible_dir + list_6[day - 1])
-            index = day - 1 - len(ten_lists()[6])
-            while index >= len(ten_lists()[6]):
-                index = index - len(ten_lists()[6])
-            listening_list.append(bible_dir + list_7[index])
-            listening_list.append(bible_dir + list_8[day - 1])
-            listening_list.append(bible_dir + list_9[day - 1])
-            index = day - 1 - len(ten_lists()[9])
-            while index >= len(ten_lists()[9]):
-                index = index - len(ten_lists()[9])
-            listening_list.append(bible_dir + list_10[index])
-
-        if len(ten_lists()[0]) >= day > len(ten_lists()[2]):
-            current_reading_list = [bible_list[index] for bible_list in ten_lists()[:2]]
-            for chapter in current_reading_list:
-                listening_list.append(bible_dir + chapter)
-            index = day - 1 - len(ten_lists()[2])
-            listening_list.append(bible_dir + list_3[index])
-            index = day - 1 - len(ten_lists()[3])
-            while index >= len(ten_lists()[3]):
-                index = index - len(ten_lists()[3])
-            listening_list.append(bible_dir + list_4[index])
-            index = day - 1 - len(ten_lists()[4])
-            while index >= len(ten_lists()[4]):
-                index = index - len(ten_lists()[4])
-            listening_list.append(bible_dir + list_5[index])
-            listening_list.append(bible_dir + list_6[day - 1])
-            index = day - 1 - len(ten_lists()[6])
-            while index >= len(ten_lists()[6]):
-                index = index - len(ten_lists()[6])
-            listening_list.append(bible_dir + list_7[index])
-            listening_list.append(bible_dir + list_8[day - 1])
-            listening_list.append(bible_dir + list_9[day - 1])
-            index = day - 1 - len(ten_lists()[9])
-            while index >= len(ten_lists()[9]):
-                index = index - len(ten_lists()[9])
-            listening_list.append(bible_dir + list_10[index])
-
-        if len(ten_lists()[5]) >= day > len(ten_lists()[0]):
-            index = day - 1 - len(ten_lists()[0])
-            while index >= len(ten_lists()[0]):
-                index = index - len(ten_lists()[0])
-            listening_list.append(bible_dir + list_1[index])
-            listening_list.append(bible_dir + list_2[day - 1])
-            index = day - 1 - len(ten_lists()[2])
-            while index >= len(ten_lists()[2]):
-                index = index - len(ten_lists()[2])
-            listening_list.append(bible_dir + list_3[index])
-            index = day - 1 - len(ten_lists()[3])
-            while index >= len(ten_lists()[3]):
-                index = index - len(ten_lists()[3])
-            listening_list.append(bible_dir + list_4[index])
-            index = day - 1 - len(ten_lists()[4])
-            while index >= len(ten_lists()[4]):
-                index = index - len(ten_lists()[4])
-            listening_list.append(bible_dir + list_5[index])
-            listening_list.append(bible_dir + list_6[day - 1])
-            index = day - 1 - len(ten_lists()[6])
-            while index >= len(ten_lists()[6]):
-                index = index - len(ten_lists()[6])
-            listening_list.append(bible_dir + list_7[index])
-            listening_list.append(bible_dir + list_8[day - 1])
-            listening_list.append(bible_dir + list_9[day - 1])
-            index = day - 1 - len(ten_lists()[9])
-            while index >= len(ten_lists()[9]):
-                index = index - len(ten_lists()[9])
-            listening_list.append(bible_dir + list_10[index])
-
-        if len(ten_lists()[1]) >= day > len(ten_lists()[5]):
-            index = day - 1 - len(ten_lists()[0])
-            while index >= len(ten_lists()[0]):
-                index = index - len(ten_lists()[0])
-            listening_list.append(bible_dir + list_1[index])
-            listening_list.append(bible_dir + list_2[day - 1])
-            index = day - 1 - len(ten_lists()[2])
-            while index >= len(ten_lists()[2]):
-                index = index - len(ten_lists()[2])
-            listening_list.append(bible_dir + list_3[index])
-            index = day - 1 - len(ten_lists()[3])
-            while index >= len(ten_lists()[3]):
-                index = index - len(ten_lists()[3])
-            listening_list.append(bible_dir + list_4[index])
-            index = day - 1 - len(ten_lists()[4])
-            while index >= len(ten_lists()[4]):
-                index = index - len(ten_lists()[4])
-            listening_list.append(bible_dir + list_5[index])
-            index = day - 1 - len(ten_lists()[5])
-            while index >= len(ten_lists()[5]):
-                index = index - len(ten_lists()[5])
-            listening_list.append(bible_dir + list_6[index])
-            index = day - 1 - len(ten_lists()[6])
-            while index >= len(ten_lists()[6]):
-                index = index - len(ten_lists()[6])
-            listening_list.append(bible_dir + list_7[index])
-            listening_list.append(bible_dir + list_8[day - 1])
-            listening_list.append(bible_dir + list_9[day - 1])
-            index = day - 1 - len(ten_lists()[9])
-            while index >= len(ten_lists()[9]):
-                index = index - len(ten_lists()[9])
-            listening_list.append(bible_dir + list_10[index])
-
-        if len(ten_lists()[7]) >= day > len(ten_lists()[1]):
-            index = day - 1 - len(ten_lists()[0])
-            while index >= len(ten_lists()[0]):
-                index = index - len(ten_lists()[0])
-            listening_list.append(bible_dir + list_1[index])
-            index = day - 1 - len(ten_lists()[1])
-            while index >= len(ten_lists()[1]):
-                index = index - len(ten_lists()[1])
-            listening_list.append(bible_dir + list_2[index])
-            index = day - 1 - len(ten_lists()[2])
-            while index >= len(ten_lists()[2]):
-                index = index - len(ten_lists()[2])
-            listening_list.append(bible_dir + list_3[index])
-            index = day - 1 - len(ten_lists()[3])
-            while index >= len(ten_lists()[3]):
-                index = index - len(ten_lists()[3])
-            listening_list.append(bible_dir + list_4[index])
-            index = day - 1 - len(ten_lists()[4])
-            while index >= len(ten_lists()[4]):
-                index = index - len(ten_lists()[4])
-            listening_list.append(bible_dir + list_5[index])
-            index = day - 1 - len(ten_lists()[5])
-            while index >= len(ten_lists()[5]):
-                index = index - len(ten_lists()[5])
-            listening_list.append(bible_dir + list_6[index])
-            index = day - 1 - len(ten_lists()[6])
-            while index >= len(ten_lists()[6]):
-                index = index - len(ten_lists()[6])
-            listening_list.append(bible_dir + list_7[index])
-            listening_list.append(bible_dir + list_8[day - 1])
-            listening_list.append(bible_dir + list_9[day - 1])
-            index = day - 1 - len(ten_lists()[9])
-            while index >= len(ten_lists()[9]):
-                index = index - len(ten_lists()[9])
-            listening_list.append(bible_dir + list_10[index])
-
-        if len(ten_lists()[8]) >= day > len(ten_lists()[7]):
-            index = day - 1 - len(ten_lists()[0])
-            while index >= len(ten_lists()[0]):
-                index = index - len(ten_lists()[0])
-            listening_list.append(bible_dir + list_1[index])
-            index = day - 1 - len(ten_lists()[1])
-            while index >= len(ten_lists()[1]):
-                index = index - len(ten_lists()[1])
-            listening_list.append(bible_dir + list_2[index])
-            index = day - 1 - len(ten_lists()[2])
-            while index >= len(ten_lists()[2]):
-                index = index - len(ten_lists()[2])
-            listening_list.append(bible_dir + list_3[index])
-            index = day - 1 - len(ten_lists()[3])
-            while index >= len(ten_lists()[3]):
-                index = index - len(ten_lists()[3])
-            listening_list.append(bible_dir + list_4[index])
-            index = day - 1 - len(ten_lists()[4])
-            while index >= len(ten_lists()[4]):
-                index = index - len(ten_lists()[4])
-            listening_list.append(bible_dir + list_5[index])
-            index = day - 1 - len(ten_lists()[5])
-            while index >= len(ten_lists()[5]):
-                index = index - len(ten_lists()[5])
-            listening_list.append(bible_dir + list_6[index])
-            index = day - 1 - len(ten_lists()[6])
-            while index >= len(ten_lists()[6]):
-                index = index - len(ten_lists()[6])
-            listening_list.append(bible_dir + list_7[index])
-            index = day - 1 - len(ten_lists()[7])
-            while index >= len(ten_lists()[7]):
-                index = index - len(ten_lists()[7])
-            listening_list.append(bible_dir + list_8[index])
-            listening_list.append(bible_dir + list_9[day - 1])
-            index = day - 1 - len(ten_lists()[9])
-            while index >= len(ten_lists()[9]):
-                index = index - len(ten_lists()[9])
-            listening_list.append(bible_dir + list_10[index])
-
-        if day > len(ten_lists()[8]):
-            index = day - 1 - len(ten_lists()[0])
-            while index >= len(ten_lists()[0]):
-                index = index - len(ten_lists()[0])
-            listening_list.append(bible_dir + list_1[index])
-            index = day - 1 - len(ten_lists()[1])
-            while index >= len(ten_lists()[1]):
-                index = index - len(ten_lists()[1])
-            listening_list.append(bible_dir + list_2[index])
-            index = day - 1 - len(ten_lists()[2])
-            while index >= len(ten_lists()[2]):
-                index = index - len(ten_lists()[2])
-            listening_list.append(bible_dir + list_3[index])
-            index = day - 1 - len(ten_lists()[3])
-            while index >= len(ten_lists()[3]):
-                index = index - len(ten_lists()[3])
-            listening_list.append(bible_dir + list_4[index])
-            index = day - 1 - len(ten_lists()[4])
-            while index >= len(ten_lists()[4]):
-                index = index - len(ten_lists()[4])
-            listening_list.append(bible_dir + list_5[index])
-            index = day - 1 - len(ten_lists()[5])
-            while index >= len(ten_lists()[5]):
-                index = index - len(ten_lists()[5])
-            listening_list.append(bible_dir + list_6[index])
-            index = day - 1 - len(ten_lists()[6])
-            while index >= len(ten_lists()[6]):
-                index = index - len(ten_lists()[6])
-            listening_list.append(bible_dir + list_7[index])
-            index = day - 1 - len(ten_lists()[7])
-            while index >= len(ten_lists()[7]):
-                index = index - len(ten_lists()[7])
-            listening_list.append(bible_dir + list_8[index])
-            index = day - 1 - len(ten_lists()[8])
-            while index >= len(ten_lists()[8]):
-                index = index - len(ten_lists()[8])
-            listening_list.append(bible_dir + list_9[index])
-            index = day - 1 - len(ten_lists()[9])
-            while index >= len(ten_lists()[9]):
-                index = index - len(ten_lists()[9])
-            listening_list.append(bible_dir + list_10[index])
+    for chapter in iterate_lists(ten_lists(), day):
+        listening_list.append(bible_dir + chapter)
 
     return listening_list
 
