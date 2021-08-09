@@ -409,16 +409,15 @@ def create_mp3_dir(day, bible_dir):
         for i in reading_list(day, bible_dir):
             tmp = list(i.strip())
             copy("".join(tmp), out_dir)
-    except EnvironmentError as ex:
-        log("✗ Oops! Something went wrong while attempting to copy files", "red")
-        log_traceback(ex)
-    else:
         log(
             "✓ Copying of the Bible Chapters into the "
             + out_dir
             + " directory was successful.",
             "green",
         )
+    except EnvironmentError as ex:
+        log("✗ Oops! Something went wrong while attempting to copy files", "red")
+        log_traceback(ex)
 
     # We now change the ID3 tag information (track number)
     # We also rename the files in the destination directory
@@ -436,10 +435,6 @@ def create_mp3_dir(day, bible_dir):
             f_new = out_dir + "/" + str(track_number).zfill(3) + filename[4:]
             os.rename(_f, f_new)
             track_number += 1
-    except EnvironmentError as ex:
-        log("Oops! Something went wrong while processing the mp3 files", "red")
-        log_traceback(ex)
-    else:
         log(
             "✓ ID3 tag info for the generated files in this "
             "directory has been updated.",
@@ -447,6 +442,9 @@ def create_mp3_dir(day, bible_dir):
         )
         log("✓ The files have been renamed in a sequential order.", "green")
         log("\n-----Soli Deo Gloria-----\n", "cyan")
+    except EnvironmentError as ex:
+        log("Oops! Something went wrong while processing the mp3 files", "red")
+        log_traceback(ex)
 
 
 @click.command()
