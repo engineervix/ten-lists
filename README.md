@@ -6,7 +6,7 @@ ten-lists
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![DeepSource](https://static.deepsource.io/deepsource-badge-light-mini.svg)](https://deepsource.io/gh/engineervix/ten-lists/?ref=repository-badge) [![Requirements Status](https://requires.io/github/engineervix/ten-lists/requirements.svg?branch=master)](https://requires.io/github/engineervix/ten-lists/requirements/?branch=master)
 [![Maintainability](https://api.codeclimate.com/v1/badges/3cb6f02b618365d7475d/maintainability)](https://codeclimate.com/github/engineervix/ten-lists/maintainability)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b4119ec705734484b2415e0bc2ce86ea)](https://app.codacy.com/manual/engineervix/ten-lists?utm_source=github.com&utm_medium=referral&utm_content=engineervix/ten-lists&utm_campaign=Badge_Grade_Dashboard)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/f566d7c0bd464cb2b17ef9604b61a748)](https://www.codacy.com/gh/engineervix/ten-lists/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=engineervix/ten-lists&amp;utm_campaign=Badge_Grade)
 
 This project provides both a CLI (using [click](https://click.palletsprojects.com/en/7.x/)) and a webapp (using [flask](https://palletsprojects.com/p/flask/)), which generate a playlist of 10 Bible Chapters (represented by 10 mp3 files) to be listened to on any given day _x_, according to [**Professor Grant Horner's Bible-Reading System**](https://sohmer.net/media/professor_grant_horners_bible_reading_system.pdf). The audio Bible is as downloaded from the [_Faith Comes by Hearing®_ website](http://www.bible.is/audiodownloader).
 
