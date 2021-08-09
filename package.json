@@ -4,9 +4,9 @@
   "description": "This python script generates an m3u playlist of 10 Bible Chapters (represented by 10 mp3 files) to be listened to on any given day x, according to Professor Grant Horner's Bible-Reading System. The audio Bible is the ESV dramatized version, as downloaded from the Faith Comes by Hearing® website.",
   "main": "",
   "scripts": {
-    "test": "export FLASK_CONFIGURATION=development && export FLASK_ENV=development && pytest",
+    "test": "cross-env FLASK_CONFIGURATION=development FLASK_ENV=development pytest",
     "flask": "python manage.py runserver",
-    "dev-server": "export FLASK_CONFIGURATION=development && export FLASK_ENV=development && concurrently --raw --kill-others \"npm run flask\" \"lcp --proxyUrl http://localhost:5000/ten-lists/api/v1.0\" \"grunt sync\""
+    "dev-server": "cross-env FLASK_CONFIGURATION=development FLASK_ENV=development concurrently --raw --kill-others \"npm run flask\" \"lcp --proxyUrl http://localhost:5000/ten-lists/api/v1.0\" \"grunt sync\""
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,7 @@
   "private": true,
   "devDependencies": {
     "clean-css": ">=5.1.3",
+    "cross-env": "^7.0.3",
     "grunt": "^1.4.1",
     "grunt-browser-sync": "^2.2.0",
     "grunt-contrib-clean": "^2.0.0",
