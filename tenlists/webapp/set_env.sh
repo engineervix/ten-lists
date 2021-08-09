@@ -2,7 +2,7 @@
 
 # requires the dialog package (https://hightek.org/projects/dialog)
 #   on Ubuntu: sudo apt install dialog
-#   on a Mac: brew install dialog 
+#   on a Mac: brew install dialog
 #   on Windows via cygwin: apt-cyg install dialog
 
 # Usage: . set_env.sh
