@@ -1,22 +1,22 @@
-Bible-Playlist-Generator
-========================
+ten-lists
+==========
 
 [![forthebadge](https://forthebadge.com/images/badges/made-with-python.svg)](https://forthebadge.com)
 
-[![python3](https://img.shields.io/badge/python-3.6%20%7C%203.7%20%7C%203.8-brightgreen.svg)](https://python3statement.org/#sections50-why) [![CircleCI](https://circleci.com/gh/engineervix/Bible-Playlist-Generator/tree/master.svg?style=svg)](https://circleci.com/gh/engineervix/Bible-Playlist-Generator/tree/master) [![Coverage Status](https://coveralls.io/repos/github/engineervix/Bible-Playlist-Generator/badge.svg)](https://coveralls.io/github/engineervix/Bible-Playlist-Generator) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black) [![DeepSource](https://static.deepsource.io/deepsource-badge-light-mini.svg)](https://deepsource.io/gh/engineervix/Bible-Playlist-Generator/?ref=repository-badge) [![Requirements Status](https://requires.io/github/engineervix/Bible-Playlist-Generator/requirements.svg?branch=master)](https://requires.io/github/engineervix/Bible-Playlist-Generator/requirements/?branch=master) [![Maintainability](https://api.codeclimate.com/v1/badges/3cb6f02b618365d7475d/maintainability)](https://codeclimate.com/github/engineervix/Bible-Playlist-Generator/maintainability) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b4119ec705734484b2415e0bc2ce86ea)](https://app.codacy.com/manual/engineervix/Bible-Playlist-Generator?utm_source=github.com&utm_medium=referral&utm_content=engineervix/Bible-Playlist-Generator&utm_campaign=Badge_Grade_Dashboard)
+[![python3](https://img.shields.io/badge/python-3.6%20%7C%203.7%20%7C%203.8-brightgreen.svg)](https://python3statement.org/#sections50-why) [![CircleCI](https://circleci.com/gh/engineervix/ten-lists/tree/master.svg?style=svg)](https://circleci.com/gh/engineervix/ten-lists/tree/master) [![Coverage Status](https://coveralls.io/repos/github/engineervix/ten-lists/badge.svg)](https://coveralls.io/github/engineervix/ten-lists) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black) [![DeepSource](https://static.deepsource.io/deepsource-badge-light-mini.svg)](https://deepsource.io/gh/engineervix/ten-lists/?ref=repository-badge) [![Requirements Status](https://requires.io/github/engineervix/ten-lists/requirements.svg?branch=master)](https://requires.io/github/engineervix/ten-lists/requirements/?branch=master) [![Maintainability](https://api.codeclimate.com/v1/badges/3cb6f02b618365d7475d/maintainability)](https://codeclimate.com/github/engineervix/ten-lists/maintainability) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b4119ec705734484b2415e0bc2ce86ea)](https://app.codacy.com/manual/engineervix/ten-lists?utm_source=github.com&utm_medium=referral&utm_content=engineervix/ten-lists&utm_campaign=Badge_Grade_Dashboard)
 
 This project provides both a CLI (using [click](https://click.palletsprojects.com/en/7.x/)) and a webapp (using [flask](https://palletsprojects.com/p/flask/)), which generate a playlist of 10 Bible Chapters (represented by 10 mp3 files) to be listened to on any given day _x_, according to [**Professor Grant Horner's Bible-Reading System**](https://sohmer.net/media/professor_grant_horners_bible_reading_system.pdf). The audio Bible is as downloaded from the [_Faith Comes by Hearing®_ website](http://www.bible.is/audiodownloader).
 
 ---
 
-💥 **WARNING: DOCS ARE OUT OF DATE**: This project is currently undergoing major refactoring (See [#104](https://github.com/engineervix/Bible-Playlist-Generator/issues/104), and [Milestone 1](https://github.com/engineervix/Bible-Playlist-Generator/milestone/1))
+💥 **WARNING: DOCS ARE OUT OF DATE**: This project is currently undergoing major refactoring (See [#104](https://github.com/engineervix/ten-lists/issues/104), and [Milestone 1](https://github.com/engineervix/ten-lists/milestone/1))
 
 ---
 
-> These docs pertain primarily to the CLI. I'll update the docs to be more complete, as I refactor the app (see issue [#104](https://github.com/engineervix/Bible-Playlist-Generator/issues/104) and [milestone 1](https://github.com/engineervix/Bible-Playlist-Generator/milestone/1)).
+> These docs pertain primarily to the CLI. I'll update the docs to be more complete, as I refactor the app (see issue [#104](https://github.com/engineervix/ten-lists/issues/104) and [milestone 1](https://github.com/engineervix/ten-lists/milestone/1)).
 > You can see the webapp in action [here](https://ten.stockpile.pw/)
 
-The `bible_playlist_generator.py` script also copies the files on the playlist into a new folder
+The `tenlists/cli/__main__.py` script also copies the files on the playlist into a new folder
 so that you can carry the folder on your USB or any other device and listen anywhere (car, home theatre, phone, tablet, etc).
 
 ### Usage
@@ -24,19 +24,19 @@ so that you can carry the folder on your USB or any other device and listen anyw
 From the command prompt,
 
 ```
-python bible_playlist_generator.py -d x
+python tenlists/cli/__main__.py -d x
 ```
 
 where *x* is an integer that represents the day on the Bible-Reading System, as in day 1, day 2, ... day 524, etc. For example, if you want the playlist for day *37*;
 
 ```
-python bible_playlist_generator.py -d 37
+python tenlists/cli/__main__.py -d 37
 ```
 
 ### Help
 
 ```
-python bible_playlist_generator.py --help
+python tenlists/cli/__main__.py --help
 ```
 
 ### Prerequisites / Assumptions
@@ -49,7 +49,7 @@ python bible_playlist_generator.py --help
 pip install -r requirements.txt
 ```
 
-* The script requires the [`ten_lists.json`](https://github.com/engineervix/Bible-Playlist-Generator/blob/master/ten_lists.json) file. Please see the [`helpers`](https://github.com/engineervix/Bible-Playlist-Generator/tree/master/helpers) directory for details on how this JSON file was created.
+* The script requires the [`ten_lists.json`](https://github.com/engineervix/ten-lists/blob/master/ten_lists.json) file. Please see the [`helpers`](https://github.com/engineervix/ten-lists/tree/master/helpers) directory for details on how this JSON file was created.
 
 * In addition to the above, it is assumed that:
 
@@ -57,7 +57,7 @@ pip install -r requirements.txt
   2. the Bible folder is named `ENGESVC2DA` by default. If your Bible folder is named differently, pass the folder name as an argument to the script:
 
   ```bash
-  python bible_playlist_generator.py -d 37 -f "Name_of_folder"
+  python tenlists/cli/__main__.py -d 37 -f "Name_of_folder"
   ```
 
 ### Important Notes
@@ -81,18 +81,18 @@ If you want playlists for a period longer than seven days, edit the script and m
 
 ## Tests
 
-Simply run `pytest` in the root directory of this repository. If you want to check the coverage and get more details of the tests, you could run
+Simply run `npm run test` in the root directory of this repository. This is a shortcut for
 
 ```bash
-pytest -vv --cov=. --cov-report term-missing
+export FLASK_CONFIGURATION=development && export FLASK_ENV=development && pytest
 ```
 
 ## TODO
 
-- [ ] Address [#1](https://github.com/engineervix/Bible-Playlist-Generator/issues/1). [`configparser`](https://docs.python.org/3/library/configparser.html) might come in handy here.
+- [ ] Address [#1](https://github.com/engineervix/ten-lists/issues/1). [`configparser`](https://docs.python.org/3/library/configparser.html) might come in handy here.
 - [ ] [Package](https://packaging.python.org/tutorials/packaging-projects/) this project. [This is a must read](https://packaging.python.org/guides/distributing-packages-using-setuptools/#configuring-your-project).
-- [ ] [Improve Code Quality](https://codeclimate.com/github/engineervix/Bible-Playlist-Generator/issues)
-- [x] Rather than using [plain text files](https://github.com/engineervix/Bible-Playlist-Generator/tree/v0.6.2/data), find a better way of storing the Bible Chapters ([JSON file](https://www.lucidchart.com/techblog/2018/07/16/why-json-isnt-a-good-configuration-language/), [SQLite database](https://www.sqlite.org/whentouse.html), [TinyDB](https://tinydb.readthedocs.io/en/latest/), etc)
+- [ ] [Improve Code Quality](https://codeclimate.com/github/engineervix/ten-lists/issues)
+- [x] Rather than using [plain text files](https://github.com/engineervix/ten-lists/tree/v0.6.2/data), find a better way of storing the Bible Chapters ([JSON file](https://www.lucidchart.com/techblog/2018/07/16/why-json-isnt-a-good-configuration-language/), [SQLite database](https://www.sqlite.org/whentouse.html), [TinyDB](https://tinydb.readthedocs.io/en/latest/), etc)
 - [x] Create a ~~GUI frontend or~~ web service ~~[to cater for non-tech users](https://www.inc.com/drew-hendricks/building-or-enhancing-software-for-non-technical-users-is-more-important-than-ev.html)~~ in order to not only cater for non-tech users but also to listen on-the-go. See the `webapp` directory for the source code. Also see the `package.json` file.
 
 ### :boom: :construction:
