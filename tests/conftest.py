@@ -1,9 +1,11 @@
 # pylint: disable=missing-module-docstring
-import os
 import glob
-from shutil import copy, rmtree
+import os
+import random
 import timeit
+from shutil import copy, rmtree, copytree
 import pytest
+from faker import Faker
 from tqdm import tqdm
 from gtts import gTTS
 import eyed3
@@ -11,6 +13,7 @@ from tenlists.cli.__main__ import ten_lists
 from tenlists.webapp.ten_lists import create_app
 
 BIBLE_DIR = "_ENGESVC2DA"
+fake = Faker()
 
 
 @pytest.fixture(scope="session")
@@ -26,14 +29,16 @@ def prepare_data():
 
     # now we're gonna programmatically create an audio file
 
-    tts = gTTS("audio", lang="en")
+    tts = gTTS(fake.paragraph(), lang="en")
     audio_file = os.path.join(os.getcwd(), "audio_file.mp3")
     tts.save(audio_file)
 
     # add ID3 tag info to the file
     mp3_file = eyed3.load(audio_file)
     mp3_file.initTag()
-    mp3_file.tag.artist = "test"
+    mp3_file.tag.title = fake.sentence()
+    mp3_file.tag.artist = fake.name()
+    mp3_file.tag.album = random.choice(["New Testament", "Old Testament"])
     mp3_file.tag.track_num = 1
     mp3_file.tag.save()
 
@@ -44,6 +49,15 @@ def prepare_data():
             new_mp3_file = os.path.join(bible_directory, mp3)
             copy(audio_file, new_mp3_file)
 
+    # copy `bible_directory` to `tenlists/webapp/ten_lists/static/`
+    destination = os.path.join(
+        os.getcwd(), "tenlists", "webapp", "ten_lists", "static", "ENGESVC2DA"
+    )
+    copytree(
+        os.path.join(os.getcwd(), bible_directory),
+        os.path.join(os.getcwd(), destination),
+    )
+
     yield  # This is where the testing happens
 
     # Teardown : discard the data
@@ -53,6 +67,7 @@ def prepare_data():
     try:
         os.remove(audio_file)
         rmtree(os.path.join(os.getcwd(), bible_directory))
+        rmtree(destination)
         for m3u_file in m3u_files:
             os.remove(m3u_file)
         for path in generated_mp3_dirs:
@@ -67,7 +82,7 @@ def prepare_data():
     print(f"Total running time: {total_time} seconds")
 
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def app():
     app = create_app()
     return app

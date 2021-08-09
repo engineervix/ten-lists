@@ -21,7 +21,9 @@ import eyed3
 
 from tenlists.cli.__main__ import reading_list  # noqa: E402
 
-BIBLE_DIR = os.path.join("tenlists/webapp/ten_lists/static/", "ENGESVC2DA")
+BIBLE_DIR = os.path.join(
+    "tenlists", "webapp", "ten_lists", "static", "ENGESVC2DA"
+).replace("\\", "/")
 
 main = Blueprint("main", __name__)
 
@@ -39,7 +41,7 @@ def mp3_duration(seconds):
     """
     Convert seconds into minutes and seconds (%-M:%S)
     """
-    return time.strftime("%-M:%S", time.gmtime(seconds))
+    return time.strftime("%M:%S", time.gmtime(seconds))
 
 
 def generate_playlist(day):
@@ -107,30 +109,30 @@ class MP3ListAPI(Resource):
         return {"mp3s": [marshal(mp3, mp3_fields) for mp3 in mp3s]}
 
 
-class MP3API(Resource):
-    def __init__(self):
-        self.reqparse = reqparse.RequestParser()
-        self.reqparse.add_argument("name", type=str, location="json")
-        self.reqparse.add_argument("artist", type=str, location="json")
-        self.reqparse.add_argument("album", type=str, location="json")
-        self.reqparse.add_argument("url", type=str, location="json")
-        self.reqparse.add_argument("cover_art_url", type=str, location="json")
-        self.reqparse.add_argument("duration", type=str, location="json")
-        super(MP3API, self).__init__()
+# class MP3API(Resource):
+#     def __init__(self):
+#         self.reqparse = reqparse.RequestParser()
+#         self.reqparse.add_argument("name", type=str, location="json")
+#         self.reqparse.add_argument("artist", type=str, location="json")
+#         self.reqparse.add_argument("album", type=str, location="json")
+#         self.reqparse.add_argument("url", type=str, location="json")
+#         self.reqparse.add_argument("cover_art_url", type=str, location="json")
+#         self.reqparse.add_argument("duration", type=str, location="json")
+#         super(MP3API, self).__init__()
 
-    def get(self, id):
-        # Get `day` from request args
-        day = int(request.args.get("day"))
-        if day > 600 or day < 1:
-            abort(403)
-        generate_playlist(day)
+#     def get(self, id):
+#         # Get `day` from request args
+#         day = int(request.args.get("day"))
+#         if day > 600 or day < 1:
+#             abort(403)
+#         generate_playlist(day)
 
-        mp3 = [mp3 for mp3 in mp3s if mp3["id"] == id]
-        if len(mp3) == 0:
-            abort(404)
-        return {"mp3": marshal(mp3[0], mp3_fields)}
+#         mp3 = [mp3 for mp3 in mp3s if mp3["id"] == id]
+#         if len(mp3) == 0:
+#             abort(404)
+#         return {"mp3": marshal(mp3[0], mp3_fields)}
 
 
 def initialize_routes(api):
     api.add_resource(MP3ListAPI, "/ten-lists/api/v1.0/mp3s", endpoint="mp3s")
-    api.add_resource(MP3API, "/ten-lists/api/v1.0/mp3s/<int:id>", endpoint="mp3")
+    # api.add_resource(MP3API, "/ten-lists/api/v1.0/mp3s/<int:id>", endpoint="mp3")
