@@ -14,6 +14,7 @@ import json
 import traceback
 from shutil import copy
 from pathlib import Path
+from typing import List
 import eyed3
 import click
 from pyfiglet import figlet_format
@@ -71,7 +72,7 @@ def ten_lists():
     return the_ten_lists
 
 
-def reading_list(day, bible_dir):
+def reading_list(day: int, bible_dir: str) -> List:
     """
     The generated reading (or listening) list for the given day.
     bible_dir is the directory containing the mp3 files.
@@ -98,7 +99,6 @@ def reading_list(day, bible_dir):
         current_reading_list = [bible_list[index] for bible_list in ten_lists()]
         for chapter in current_reading_list:
             listening_list.append(bible_dir + chapter)
-        return listening_list
 
     except IndexError:
         if len(ten_lists()[6]) >= day > len(ten_lists()[9]):
@@ -109,7 +109,6 @@ def reading_list(day, bible_dir):
                 listening_list.append(bible_dir + chapter)
             index = day - 1 - len(ten_lists()[9])
             listening_list.append(bible_dir + list_10[index])
-            return listening_list
 
         if len(ten_lists()[4]) >= day > len(ten_lists()[6]):
             current_reading_list = [
@@ -125,7 +124,6 @@ def reading_list(day, bible_dir):
             while index >= len(ten_lists()[9]):
                 index = index - len(ten_lists()[9])
             listening_list.append(bible_dir + list_10[index])
-            return listening_list
 
         if len(ten_lists()[3]) >= day > len(ten_lists()[4]):
             current_reading_list = [bible_list[index] for bible_list in ten_lists()[:4]]
@@ -144,7 +142,6 @@ def reading_list(day, bible_dir):
             while index >= len(ten_lists()[9]):
                 index = index - len(ten_lists()[9])
             listening_list.append(bible_dir + list_10[index])
-            return listening_list
 
         if len(ten_lists()[2]) >= day > len(ten_lists()[3]):
             current_reading_list = [bible_list[index] for bible_list in ten_lists()[:3]]
@@ -167,7 +164,6 @@ def reading_list(day, bible_dir):
             while index >= len(ten_lists()[9]):
                 index = index - len(ten_lists()[9])
             listening_list.append(bible_dir + list_10[index])
-            return listening_list
 
         if len(ten_lists()[0]) >= day > len(ten_lists()[2]):
             current_reading_list = [bible_list[index] for bible_list in ten_lists()[:2]]
@@ -194,7 +190,6 @@ def reading_list(day, bible_dir):
             while index >= len(ten_lists()[9]):
                 index = index - len(ten_lists()[9])
             listening_list.append(bible_dir + list_10[index])
-            return listening_list
 
         if len(ten_lists()[5]) >= day > len(ten_lists()[0]):
             index = day - 1 - len(ten_lists()[0])
@@ -225,7 +220,6 @@ def reading_list(day, bible_dir):
             while index >= len(ten_lists()[9]):
                 index = index - len(ten_lists()[9])
             listening_list.append(bible_dir + list_10[index])
-            return listening_list
 
         if len(ten_lists()[1]) >= day > len(ten_lists()[5]):
             index = day - 1 - len(ten_lists()[0])
@@ -259,7 +253,6 @@ def reading_list(day, bible_dir):
             while index >= len(ten_lists()[9]):
                 index = index - len(ten_lists()[9])
             listening_list.append(bible_dir + list_10[index])
-            return listening_list
 
         if len(ten_lists()[7]) >= day > len(ten_lists()[1]):
             index = day - 1 - len(ten_lists()[0])
@@ -296,7 +289,6 @@ def reading_list(day, bible_dir):
             while index >= len(ten_lists()[9]):
                 index = index - len(ten_lists()[9])
             listening_list.append(bible_dir + list_10[index])
-            return listening_list
 
         if len(ten_lists()[8]) >= day > len(ten_lists()[7]):
             index = day - 1 - len(ten_lists()[0])
@@ -336,7 +328,6 @@ def reading_list(day, bible_dir):
             while index >= len(ten_lists()[9]):
                 index = index - len(ten_lists()[9])
             listening_list.append(bible_dir + list_10[index])
-            return listening_list
 
         if day > len(ten_lists()[8]):
             index = day - 1 - len(ten_lists()[0])
@@ -379,7 +370,8 @@ def reading_list(day, bible_dir):
             while index >= len(ten_lists()[9]):
                 index = index - len(ten_lists()[9])
             listening_list.append(bible_dir + list_10[index])
-            return listening_list
+
+    return listening_list
 
 
 def create_m3u(day, bible_dir):
