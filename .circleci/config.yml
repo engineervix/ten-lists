@@ -57,6 +57,10 @@ jobs:
             ./cc-test-reporter after-build --coverage-input-type coverage.py
             # Report coverage artifact to 'test-coverage' analyzer
             ./bin/deepsource report --analyzer test-coverage --key python --value-file ./coverage.xml
+      - run:
+          name: Codacy Coverage Reporter
+          command: |
+            bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r coverage.xml
       - store_artifacts:
           path: htmlcov
       - store_artifacts:
