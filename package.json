@@ -1,5 +1,5 @@
 {
-  "name": "bible-playlist-generator",
+  "name": "ten-lists",
   "version": "0.6.2",
   "description": "This python script generates an m3u playlist of 10 Bible Chapters (represented by 10 mp3 files) to be listened to on any given day x, according to Professor Grant Horner's Bible-Reading System. The audio Bible is the ESV dramatized version, as downloaded from the Faith Comes by Hearing® website.",
   "main": "",
