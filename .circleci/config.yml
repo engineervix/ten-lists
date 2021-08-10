@@ -84,7 +84,7 @@ jobs:
             . ../venv/bin/activate
             pip install --upgrade pip
             pip install -r requirements.txt
-            npm install -g grunt-cli
+            sudo npm install -g grunt-cli
             npm install && grunt all
       # Step 3: run linters
       # - run:
@@ -139,7 +139,7 @@ jobs:
             . ../venv/bin/activate
             pip install --upgrade pip
             pip install -r requirements.txt
-            npm install -g grunt-cli
+            sudo npm install -g grunt-cli
             npm install && grunt all
       # Step 5: generates and store a cache
       - save_cache:
