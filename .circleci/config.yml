@@ -1,7 +1,7 @@
 # Python CircleCI 2.0 configuration file
 version: 2.1
 jobs:
-  build:
+  test:
     docker:
       - image: cimg/python:3.8-node
 
@@ -67,3 +67,98 @@ jobs:
           path: coverage.xml
       # - store_artifacts:
       #     path: pylint.svg
+  lint:
+    docker:
+      - image: cimg/python:3.8-node
+
+    working_directory: ~/repo
+
+    steps:
+      # Step 1: obtain repo from GitHub
+      - checkout
+      # Step 2: create virtual env and install dependencies
+      - run:
+          name: install dependencies
+          command: |
+            python3 -m venv ../venv
+            . ../venv/bin/activate
+            pip install --upgrade pip
+            pip install -r requirements.txt
+            npm install -g grunt-cli
+            npm install && grunt all
+      # Step 3: run linters
+      # - run:
+      #     name: MyPy
+      #     command: |
+      #       . ../venv/bin/activate
+      #       mypy tenlists
+      - run:
+          name: Black
+          command: |
+            . ../venv/bin/activate
+            black . --check
+      - run:
+          name: isort
+          command: |
+            . ../venv/bin/activate
+            isort . --check-only --profile black
+      - run:
+          name: Flake8
+          command: |
+            . ../venv/bin/activate
+            flake8 tests tenlists
+      # - run:
+      #     name: Stylelint
+      #     command: |
+      #       gulp lint-css
+  pre_commit:
+    # based on https://github.com/Unity-Technologies/ml-agents/blob/db19619775f0ca76c41a3780a4c776763aece141/.circleci/config.yml
+    docker:
+      - image: cimg/python:3.8-node
+
+    working_directory: ~/repo
+
+    steps:
+      # Step 1: obtain repo from GitHub
+      - checkout
+      # Step 2: pre-caching operations
+      - run:
+          name: Combine precommit config and python versions for caching
+          command: |
+            cp .pre-commit-config.yaml pre-commit-cache-key.txt
+            python --version --version >> pre-commit-cache-key.txt
+      # Step 3: rRestores a previously saved cache based on a key
+      - restore_cache:
+          keys:
+            - v1-pc-cache-{{ checksum "pre-commit-cache-key.txt" }}
+      # Step 4: create virtual env and install dependencies
+      - run:
+          name: install dependencies
+          command: |
+            python3 -m venv ../venv
+            . ../venv/bin/activate
+            pip install --upgrade pip
+            pip install -r requirements.txt
+            npm install -g grunt-cli
+            npm install && grunt all
+      # Step 5: generates and store a cache
+      - save_cache:
+          key: v1-pc-cache-{{ checksum "pre-commit-cache-key.txt" }}
+          paths:
+            - ~/.cache/pre-commit
+      # Step 6: run pre-commit
+      - run:
+          name: Check Code Style using pre-commit
+          command: |
+            . ../venv/bin/activate
+            pre-commit run --show-diff-on-failure --all-files
+workflows:
+  version: 2
+  lint_and_test:
+    jobs:
+      - lint
+      - pre_commit
+      - test:
+          requires:
+            - lint
+            - pre_commit
