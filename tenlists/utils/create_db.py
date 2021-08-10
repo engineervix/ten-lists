@@ -5,8 +5,8 @@ This python script creates an SQLite Database from 10 text files.
 Each text file represents a separate list.
 """
 
-import os
 import glob
+import os
 import sqlite3
 
 CONN = sqlite3.connect("ten_lists.db")

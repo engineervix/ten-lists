@@ -9,14 +9,15 @@ The audio Bible is the `ESV version <https://www.esv.org/>`_ available on
 the `Faith Comes by Hearing® website <http://www.bible.is/audiodownloader>`_
 """
 
-import os
 import json
+import os
 import traceback
-from shutil import copy
 from pathlib import Path
+from shutil import copy
 from typing import List
-import eyed3
+
 import click
+import eyed3
 from pyfiglet import figlet_format
 
 try:

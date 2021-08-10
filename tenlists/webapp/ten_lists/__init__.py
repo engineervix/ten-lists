@@ -1,12 +1,11 @@
 import os
 
 from flask import Flask
-from werkzeug.middleware.proxy_fix import ProxyFix
-
-from flask_restful import Api
-from flask_mail import Mail
 from flask_debugtoolbar import DebugToolbarExtension
+from flask_mail import Mail
 from flask_moment import Moment
+from flask_restful import Api
+from werkzeug.middleware.proxy_fix import ProxyFix
 
 config = {
     "production": "tenlists.webapp.ten_lists.config.ProductionConfig",
@@ -33,9 +32,8 @@ def create_app():
     toolbar.init_app(app)
     api = Api(app)
 
-    from tenlists.webapp.ten_lists.main.routes import initialize_routes
-    from tenlists.webapp.ten_lists.main.routes import main
     from tenlists.webapp.ten_lists.errors.handlers import errors
+    from tenlists.webapp.ten_lists.main.routes import initialize_routes, main
 
     app.register_blueprint(errors)
     app.register_blueprint(main)

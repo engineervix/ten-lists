@@ -1,8 +1,7 @@
 import os
 
-from dotenv import load_dotenv
-
 import sentry_sdk
+from dotenv import load_dotenv
 from sentry_sdk.integrations.flask import FlaskIntegration
 
 APP_ROOT = os.path.join(os.path.dirname(__file__), "..")  # refers to application_top

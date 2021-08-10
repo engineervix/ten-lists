@@ -7,11 +7,11 @@ import os
 import time
 from datetime import datetime
 
-from flask import Blueprint, render_template, abort, request
-
-from flask_restful import Resource, reqparse, fields, marshal
-
 import eyed3
+from flask import Blueprint, abort, render_template, request
+from flask_restful import Resource, fields, marshal, reqparse
+
+from tenlists.cli.__main__ import reading_list  # noqa: E402
 
 # project_dir = os.path.abspath(os.path.join(__file__, "../../../../"))
 # dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -19,7 +19,6 @@ import eyed3
 
 # sys.path.append(project_dir)
 
-from tenlists.cli.__main__ import reading_list  # noqa: E402
 
 BIBLE_DIR = os.path.join(
     "tenlists", "webapp", "ten_lists", "static", "ENGESVC2DA"

@@ -3,12 +3,14 @@ import glob
 import os
 import random
 import timeit
-from shutil import copy, rmtree, copytree
+from shutil import copy, copytree, rmtree
+
+import eyed3
 import pytest
 from faker import Faker
-from tqdm import tqdm
 from gtts import gTTS
-import eyed3
+from tqdm import tqdm
+
 from tenlists.cli.__main__ import ten_lists
 from tenlists.webapp.ten_lists import create_app
 

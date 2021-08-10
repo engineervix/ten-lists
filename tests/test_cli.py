@@ -1,31 +1,34 @@
 """tests for the `bible_playlist_generator.py` script"""
 
-import os
-import glob
-from pathlib import Path
 import fnmatch
+import glob
+import os
+from pathlib import Path
+
+import eyed3
 import pytest
 from click.testing import CliRunner
-import eyed3
+
 from tenlists.cli.__main__ import (
-    ten_lists,
-    reading_list,
+    cmd,
     create_m3u,
     create_mp3_dir,
-    cmd,
+    reading_list,
+    ten_lists,
 )
+
 from .conftest import (
-    TEST_DATA,
+    BASIC_CLI_IDS,
     BIBLE_DIR,
-    PLAYLIST_IDS,
-    M3U_IDS,
     M3U_CONTENT_IDS,
-    MP3_DIR_IDS,
+    M3U_IDS,
     MP3_DIR_COUNT,
+    MP3_DIR_IDS,
     MP3S_EXIST_IDS,
     MP3S_FILENAMES_IDS,
     MP3S_ID3_TAGINFO,
-    BASIC_CLI_IDS,
+    PLAYLIST_IDS,
+    TEST_DATA,
 )
 
 

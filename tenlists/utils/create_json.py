@@ -5,10 +5,10 @@ This python script creates a JSON file from 10 text files.
 Each text file represents a separate list.
 """
 
-import os
 import glob
-import json
 import io
+import json
+import os
 
 # Create the 10 lists from the text files in ./data/
 THE_TEN_LISTS = []
