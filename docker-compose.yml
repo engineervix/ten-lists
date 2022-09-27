@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: ./docker/flask/Dockerfile
-    command: python manage.py runserver --host 0.0.0.0
+    command: inv dev
     volumes:
       - ./:/home/flask/app/
     ports:
