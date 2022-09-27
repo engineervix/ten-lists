@@ -3,7 +3,7 @@ requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [tool.black]
-# line-length = 88
+line-length = 120
 target-version = ['py36', 'py37', 'py38', 'py39']
 include = '\.pyi?$'
 exclude = '''
@@ -27,4 +27,9 @@ exclude = '''
 
 [tool.isort]
 profile = "black"
-known_third_party = ["click", "dotenv", "eyed3", "faker", "flask", "flask_debugtoolbar", "flask_mail", "flask_moment", "flask_restful", "flask_script", "gtts", "pyfiglet", "pytest", "sentry_sdk", "tqdm", "werkzeug"]
+skip = ["node_modules", ".git", "__pycache__", "LC_MESSAGES", "venv", ".venv"]
+blocked_extensions = ["rst", "html", "js", "svg", "txt", "css", "scss", "png", "snap", "ts", "tsx"]
+known_first_party = "tenlists"
+known_flask = ["flask", "flask_debugtoolbar", "flask_mail", "flask_moment", "flask_restful", "flask_script"]
+sections = ["FUTURE", "STDLIB", "FLASK", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
+default_section = "THIRDPARTY"
