@@ -1,10 +1,12 @@
 import os
+from pathlib import Path
 
 import sentry_sdk
 from dotenv import load_dotenv
 from sentry_sdk.integrations.flask import FlaskIntegration
 
-APP_ROOT = os.path.join(os.path.dirname(__file__), "..")  # refers to application_top
+# APP_ROOT = os.path.join(os.path.dirname(__file__), "..")  # refers to webapp dir
+PROJECT_ROOT = Path(__file__).parents[3]  # 4 levels up
 
 
 class BaseConfig(object):
@@ -17,7 +19,7 @@ class BaseConfig(object):
 
     TIMEZONE = "Africa/Lusaka"
 
-    env_path = os.path.join(APP_ROOT, "conf/env/.default.env")
+    env_path = os.path.join(PROJECT_ROOT, "env/.default.env")
     load_dotenv(dotenv_path=env_path)
 
     # Secret key for generating tokens
@@ -42,8 +44,8 @@ class DevelopmentConfig(BaseConfig):
     # DEBUG can only be set to True in a development environment for security reasons
     DEBUG = True
 
-    env_path = os.path.join(APP_ROOT, "conf/env/.dev.env")
-    load_dotenv(dotenv_path=env_path, override=True)
+    env_path = os.path.join(PROJECT_ROOT, "env/.dev.env")
+    load_dotenv(dotenv_path=env_path, override=True, verbose=True)
 
     # Secret key for generating tokens
     SECRET_KEY = os.getenv("TENLISTS_SECRET_KEY_DEV")
@@ -58,7 +60,7 @@ class DevelopmentConfig(BaseConfig):
     MAIL_PASSWORD = os.getenv("TENLISTS_EMAIL_PWD_DEV")
     MAIL_USE_TLS = os.getenv("MAIL_USE_TLS")
     MAIL_USE_SSL = os.getenv("MAIL_USE_SSL")
-    MAIL_DEFAULT_SENDER = '"Ten Lists App" <noreply@example.com>'
+    MAIL_DEFAULT_SENDER = "Ten Lists App <noreply@example.com>"
 
     # Other
     EXPLAIN_TEMPLATE_LOADING = True
@@ -73,7 +75,7 @@ class StagingConfig(BaseConfig):
 
     DEBUG = False
 
-    env_path = os.path.join(APP_ROOT, "conf/env/.stage.env")
+    env_path = os.path.join(PROJECT_ROOT, "env/.stage.env")
     load_dotenv(dotenv_path=env_path, override=True)
 
     # Secret key for generating tokens
@@ -100,7 +102,7 @@ class ProductionConfig(BaseConfig):
     DEBUG = False
     SESSION_COOKIE_SECURE = True
 
-    env_path = os.path.join(APP_ROOT, "conf/env/.prod.env")
+    env_path = os.path.join(PROJECT_ROOT, "env/.prod.env")
     load_dotenv(dotenv_path=env_path, override=True)
 
     # Secret key for generating tokens
