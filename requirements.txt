@@ -34,7 +34,7 @@ pre-commit==2.14.0
 faker==8.11.0
 gtts==2.2.3
 tqdm==4.62.0
-pytest-cov==2.12.1
+pytest-cov==3.0.0
 pytest-flask==1.2.0
 
 # production
