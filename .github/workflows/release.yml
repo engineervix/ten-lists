@@ -1,0 +1,227 @@
+name: Release
+
+# Enable Buildkit and let compose use it to speed up image building
+env:
+  DOCKER_BUILDKIT: 1
+  COMPOSE_DOCKER_CLI_BUILD: 1
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  # runs all of the steps inside the specified container rather than on the VM host.
+  # Because of this the network configuration changes from host based network to a container network.
+  linter_isort:
+    runs-on: ubuntu-20.04
+    container: python:3.8-slim-bullseye
+
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v3
+
+      - name: Install Dependencies
+        run: |
+          pip install -q isort[requirements_deprecated_finder]==5.10.1
+
+      - name: isort
+        run: |
+          isort . --check-only --profile black
+
+  # runs all of the steps inside the specified container rather than on the VM host.
+  # Because of this the network configuration changes from host based network to a container network.
+  linter_black:
+    runs-on: ubuntu-20.04
+    container: python:3.8-slim-bullseye
+
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v3
+
+      - name: Install Dependencies
+        run: |
+          pip install -q black==22.8.0
+
+      - name: black
+        run: |
+          black . --check
+
+  # runs all of the steps inside the specified container rather than on the VM host.
+  # Because of this the network configuration changes from host based network to a container network.
+  linter_flake8:
+    runs-on: ubuntu-20.04
+    container: python:3.8-slim-bullseye
+
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v3
+
+      - name: Install Dependencies
+        run: |
+          pip install -q flake8==5.0.4
+
+      - name: flake8
+        run: |
+          flake8 tests tenlists
+
+  # runs all of the steps inside the specified container rather than on the VM host.
+  # Because of this the network configuration changes from host based network to a container network.
+  pytest:
+    runs-on: ubuntu-20.04
+    needs: [linter_isort, linter_black, linter_flake8]
+    container: python:3.8-slim-bullseye
+
+    env:
+      FLASK_CONFIGURATION: development
+      FLASK_ENV: development
+
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v3
+
+      # https://github.com/actions/runner/issues/652
+      # - name: Get pip cache dir
+      #   id: pip-cache
+      #   run: |
+      #     echo "::set-output name=dir::$(pip cache dir)"
+
+      # - name: pip cache
+      #   uses: actions/cache@v3
+      #   with:
+      #     path: ${{ steps.pip-cache.outputs.dir }}
+      #     key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements-dev.txt') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-pip-
+
+      - name: Install Dependencies
+        shell: bash
+        run: |
+
+          export DEBIAN_FRONTEND=noninteractive
+          export PYTHONUNBUFFERED=1
+          export PYTHONHASHSEED=random
+          mkdir -p $PYENV_ROOT
+          ln -fs /usr/share/zoneinfo/Africa/Lusaka /etc/localtime
+          dpkg-reconfigure --frontend noninteractive tzdata
+          apt-get update -y
+          apt-get install -y --no-install-recommends \
+            build-essential \
+            curl \
+            git \
+            libjpeg62-turbo-dev \
+            libmariadb-dev-compat libmariadb-dev \
+            libpq-dev \
+            libwebp-dev \
+            zlib1g-dev
+          python -VV # Print out python version for debugging
+          which python # for debugging
+          pip3 install virtualenv
+          virtualenv ../venv
+          source ../venv/bin/activate
+          export LC_ALL=C.UTF-8
+          export LANG=C.UTF-8
+          pip install --upgrade pip
+          # pip install pip-tools
+          # pip-compile requirements.in
+          # pip-sync
+          pip install -r requirements.txt
+          curl -sL https://deb.nodesource.com/setup_14.x | bash -
+          apt install nodejs -yqq
+          npm install -g grunt-cli
+          npm ci && grunt all
+          mkdir -p env/ && touch env/.env
+          echo "TENLISTS_SECRET_KEY_DEV='d765978f74057742ccb70338711946f356aa194e2e0f79f7373c9cbad3c34c54'" >> env/.dev.env
+          echo "MAIL_SERVER_DEV=" >> env/.dev.env
+          echo "MAIL_SERVER_DEV=smtp.mailtrap.io" >> env/.dev.env
+          echo "MAIL_PORT_DEV=2525" >> env/.dev.env
+          echo "TENLISTS_EMAIL_USER_DEV=" >> env/.dev.env
+          echo "TENLISTS_EMAIL_PWD_DEV=" >> env/.dev.env
+          echo "MAIL_USE_TLS=True" >> env/.dev.env
+          echo "MAIL_USE_SSL=False" >> env/.dev.env
+          echo "TENLISTS_API_BASE=http://localhost:5000/ten-lists/api/v1.0/mp3s" >> env/.dev.env
+
+      - name: test
+        shell: bash
+        run: |
+
+          # Note that you have to activate the virtualenv in every step
+          # because GitHub actions doesn't preserve the environment
+          source ../venv/bin/activate
+
+          # Run back-end tests
+          pytest
+
+  # Runs all steps on the VM
+  # Creates a GitHub Release when the lint & test jobs succeeds, and only on pushes to tags.
+  release:
+    needs: [linter_isort, linter_black, linter_flake8, pytest]
+
+    if: needs.pytest.result == 'success' && startsWith( github.ref, 'refs/tags/v' )
+
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install invoke colorama tomli
+      - name: Get the version
+        id: get_version
+        run: |
+          echo "${{ github.ref }}"
+          echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+      - name: Generate Release Title
+        id: get_release_title
+        shell: bash
+        run: |
+          export TODAY="($(TZ=Africa/Lusaka date --iso))"
+          echo ::set-output name=RELEASE_NAME::"${{ steps.get_version.outputs.VERSION }} $TODAY"
+      - name: Extract Release Notes
+        # This creates a file LATEST_RELEASE_NOTES.md in the parent directory (../)
+        shell: bash
+        run: |
+          invoke get-release-notes
+      - name: GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: ${{ steps.get_release_title.outputs.RELEASE_NAME }}
+          body_path: ../LATEST_RELEASE_NOTES.md
+
+  # deploy_railway:
+  #   needs: [linter_isort,linter_black,linter_flake8,pytest]
+  #   if: needs.pytest.result == 'success'
+  #   runs-on: ubuntu-20.04
+
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v2
+
+  #     - name: Install Railway
+  #       run: npm i -g @railway/cli
+
+  #     - name: Deploy
+  #       run: railway up
+  #       env:
+  #         RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+
+  # deploy_dokku:
+  #   needs: [linter_isort,linter_black,linter_flake8,pytest]
+  #   if: needs.pytest.result == 'success'
+  #   runs-on: ubuntu-20.04
+
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v2
+  #       with:
+  #         fetch-depth: 0
+
+  #     - name: Push to dokku
+  #       uses: dokku/github-action@master
+  #       with:
+  #         # specify the `main` branch as the remote branch to push to
+  #         branch: 'main'
+  #         git_remote_url: ${{ secrets.GIT_REMOTE_URL }}
+  #         ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
