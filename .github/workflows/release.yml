@@ -101,7 +101,6 @@ jobs:
           export DEBIAN_FRONTEND=noninteractive
           export PYTHONUNBUFFERED=1
           export PYTHONHASHSEED=random
-          mkdir -p $PYENV_ROOT
           ln -fs /usr/share/zoneinfo/Africa/Lusaka /etc/localtime
           dpkg-reconfigure --frontend noninteractive tzdata
           apt-get update -y
