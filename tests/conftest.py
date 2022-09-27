@@ -58,6 +58,7 @@ def prepare_data():
     copytree(
         os.path.join(os.getcwd(), bible_directory),
         os.path.join(os.getcwd(), destination),
+        dirs_exist_ok=True,
     )
 
     yield  # This is where the testing happens
