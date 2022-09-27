@@ -4,12 +4,17 @@ This project provides both a CLI (using [click](https://click.palletsprojects.co
 
 > God-willing, you'll soon be able to see the webapp in action [here](https://ten.dumela.cc/)
 
+[![python3.8](https://img.shields.io/badge/python-3.8-brightgreen.svg)](https://python.org/)
 [![CircleCI](https://circleci.com/gh/engineervix/ten-lists/tree/master.svg?style=svg)](https://circleci.com/gh/engineervix/ten-lists/tree/master)
 [![Coverage Status](https://coveralls.io/repos/github/engineervix/ten-lists/badge.svg)](https://coveralls.io/github/engineervix/ten-lists)
 [![Maintainability](https://api.codeclimate.com/v1/badges/0f58287b5eaf57213fa2/maintainability)](https://codeclimate.com/github/engineervix/ten-lists/maintainability)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/f566d7c0bd464cb2b17ef9604b61a748)](https://www.codacy.com/gh/engineervix/ten-lists/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=engineervix/ten-lists&amp;utm_campaign=Badge_Grade)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-[![DeepSource](https://static.deepsource.io/deepsource-badge-light-mini.svg)](https://deepsource.io/gh/engineervix/ten-lists/?ref=repository-badge) [![Requirements Status](https://requires.io/github/engineervix/ten-lists/requirements.svg?branch=master)](https://requires.io/github/engineervix/ten-lists/requirements/?branch=master)
+[![DeepSource](https://static.deepsource.io/deepsource-badge-light-mini.svg)](https://deepsource.io/gh/engineervix/ten-lists/?ref=repository-badge)
+[![Requirements Status](https://requires.io/github/engineervix/ten-lists/requirements.svg?branch=master)](https://requires.io/github/engineervix/ten-lists/requirements/?branch=master)
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+[![Conventional Changelog](https://img.shields.io/badge/changelog-conventional-brightgreen.svg)](http://conventional-changelog.github.io)
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
