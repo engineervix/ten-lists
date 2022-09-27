@@ -52,9 +52,7 @@ def prepare_data():
             copy(audio_file, new_mp3_file)
 
     # copy `bible_directory` to `tenlists/webapp/ten_lists/static/`
-    destination = os.path.join(
-        os.getcwd(), "tenlists", "webapp", "ten_lists", "static", "ENGESVC2DA"
-    )
+    destination = os.path.join(os.getcwd(), "tenlists", "webapp", "ten_lists", "static", "ENGESVC2DA")
     copytree(
         os.path.join(os.getcwd(), bible_directory),
         os.path.join(os.getcwd(), destination),

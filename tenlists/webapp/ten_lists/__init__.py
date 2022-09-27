@@ -5,6 +5,7 @@ from flask_debugtoolbar import DebugToolbarExtension
 from flask_mail import Mail
 from flask_moment import Moment
 from flask_restful import Api
+
 from werkzeug.middleware.proxy_fix import ProxyFix
 
 config = {

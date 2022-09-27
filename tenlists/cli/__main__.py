@@ -147,9 +147,7 @@ def create_mp3_dir(day, bible_dir):
             tmp = list(i.strip())
             copy("".join(tmp), out_dir)
         log(
-            "✓ Copying of the Bible Chapters into the "
-            + out_dir
-            + " directory was successful.",
+            "✓ Copying of the Bible Chapters into the " + out_dir + " directory was successful.",
             "green",
         )
     except EnvironmentError as ex:
@@ -173,8 +171,7 @@ def create_mp3_dir(day, bible_dir):
             os.rename(_f, f_new)
             track_number += 1
         log(
-            "✓ ID3 tag info for the generated files in this "
-            "directory has been updated.",
+            "✓ ID3 tag info for the generated files in this " "directory has been updated.",
             "green",
         )
         log("✓ The files have been renamed in a sequential order.", "green")

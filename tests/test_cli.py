@@ -118,11 +118,7 @@ def test_mp3_filenames(day, listening_list):
     mp3_filelist = [list(Path(mp3_file).parts[1:])[0] for mp3_file in filelist]
     # because of our fixture having session scope, the `listening_list` may
     # have been modified in a previous test by prepending it with "#EXTM3U"
-    filenames = [
-        mp3.strip().replace(f"{BIBLE_DIR}", f"{output_dir}/", 1)
-        for mp3 in listening_list
-        if mp3 != "#EXTM3U"
-    ]
+    filenames = [mp3.strip().replace(f"{BIBLE_DIR}", f"{output_dir}/", 1) for mp3 in listening_list if mp3 != "#EXTM3U"]
     files = [item.replace(f"{output_dir}/", "") for item in filenames]
     mp3_files = [str(idx).zfill(3) + mp3[4:] for idx, mp3 in enumerate(files, start=1)]
     assert sorted(mp3_filelist) == mp3_files  # nosec
