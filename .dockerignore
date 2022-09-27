@@ -1,0 +1,18 @@
+*.env
+
+# Python and others
+__pycache__
+*.pyc
+.DS_Store
+*.swp
+node_modules/
+/npm-debug.log
+/.idea/
+.vscode
+coverage*
+.coverage
+.backups/
+.logs
+.resources
+.pytest_cache
+htmlcov

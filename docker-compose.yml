@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: ./docker/flask/Dockerfile
+    command: python manage.py runserver --host 0.0.0.0
+    volumes:
+      - ./:/home/flask/app/
+    ports:
+      - 5000:5000
+    env_file:
+      - env/.dev.env
+    environment:
+      - FLASK_CONFIGURATION=development
+      - FLASK_ENV=development
+
+  node:
+    build:
+      context: .
+      dockerfile: ./docker/node/Dockerfile
+    depends_on:
+      - web
+    volumes:
+      - ./:/usr/src/app/
+      # http://jdlm.info/articles/2016/03/06/lessons-building-node-app-docker.html
+      - /usr/src/app/node_modules
+    command: npm start
+    ports:
+      - 3000:3000
+      # Expose browsersync UI: https://www.browsersync.io/docs/options/#option-ui
+      - 3001:3001
+    environment:
+      - NODE_ENV=development
