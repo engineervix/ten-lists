@@ -33,3 +33,18 @@ known_first_party = "tenlists"
 known_flask = ["flask", "flask_debugtoolbar", "flask_mail", "flask_moment", "flask_restful", "flask_script"]
 sections = ["FUTURE", "STDLIB", "FLASK", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
 default_section = "THIRDPARTY"
+
+[tool.commitizen]
+version = "0.6.2"
+version_files = [
+    # "package.json",
+    "tenlists/__init__.py",
+    "tenlists/cli/__init__.py",
+    "tenlists/utils/__init__.py",
+    "tenlists/webapp/__init__.py",
+]
+tag_format = "v$major.$minor.$patch"
+annotated_tag = true
+update_changelog_on_bump = false
+# changelog_file = "CHANGELOG.md"
+# changelog_incremental = true
