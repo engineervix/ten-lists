@@ -29,17 +29,17 @@ jobs:
             npm install
             grunt all
             # ENV variables
-            mkdir -p tenlists/webapp/conf/env/
-            touch tenlists/webapp/conf/env/.dev.env
-            echo "TENLISTS_SECRET_KEY_DEV='d765978f74057742ccb70338711946f356aa194e2e0f79f7373c9cbad3c34c54'" >> tenlists/webapp/conf/env/.dev.env
-            echo "MAIL_SERVER_DEV=" >> tenlists/webapp/conf/env/.dev.env
-            echo "MAIL_SERVER_DEV=smtp.mailtrap.io" >> tenlists/webapp/conf/env/.dev.env
-            echo "MAIL_PORT_DEV=2525" >> tenlists/webapp/conf/env/.dev.env
-            echo "TENLISTS_EMAIL_USER_DEV=" >> tenlists/webapp/conf/env/.dev.env
-            echo "TENLISTS_EMAIL_PWD_DEV=" >> tenlists/webapp/conf/env/.dev.env
-            echo "MAIL_USE_TLS=True" >> tenlists/webapp/conf/env/.dev.env
-            echo "MAIL_USE_SSL=False" >> tenlists/webapp/conf/env/.dev.env
-            echo "TENLISTS_API_BASE=http://localhost:5000/ten-lists/api/v1.0/mp3s" >> tenlists/webapp/conf/env/.dev.env
+            mkdir -p env/
+            touch env/.dev.env
+            echo "TENLISTS_SECRET_KEY_DEV='d765978f74057742ccb70338711946f356aa194e2e0f79f7373c9cbad3c34c54'" >> env/.dev.env
+            echo "MAIL_SERVER_DEV=" >> env/.dev.env
+            echo "MAIL_SERVER_DEV=smtp.mailtrap.io" >> env/.dev.env
+            echo "MAIL_PORT_DEV=2525" >> env/.dev.env
+            echo "TENLISTS_EMAIL_USER_DEV=" >> env/.dev.env
+            echo "TENLISTS_EMAIL_PWD_DEV=" >> env/.dev.env
+            echo "MAIL_USE_TLS=True" >> env/.dev.env
+            echo "MAIL_USE_SSL=False" >> env/.dev.env
+            echo "TENLISTS_API_BASE=http://localhost:5000/ten-lists/api/v1.0/mp3s" >> env/.dev.env
 
       # Step 3: run tests
       - run:
@@ -47,7 +47,7 @@ jobs:
           command: |
             . venv/bin/activate
             ./cc-test-reporter before-build
-            npm run test
+            pyest
             # flake8 --exclude=venv* --statistics
             # pylint --exit-zero --output-format=text *.py | tee pylint.txt
             # score=$(sed -n 's/^Your code has been rated at \([-0-9.]*\)\/.*/\1/p' pylint.txt)
@@ -127,7 +127,7 @@ jobs:
           command: |
             cp .pre-commit-config.yaml pre-commit-cache-key.txt
             python --version --version >> pre-commit-cache-key.txt
-      # Step 3: rRestores a previously saved cache based on a key
+      # Step 3: Restores a previously saved cache based on a key
       - restore_cache:
           keys:
             - v1-pc-cache-{{ checksum "pre-commit-cache-key.txt" }}
