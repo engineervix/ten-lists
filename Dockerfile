@@ -62,8 +62,7 @@ RUN pip install -r requirements.txt
 COPY --chown=flask:flask . .
 
 # Generate static assets
-RUN grunt rm \
-    && grunt all
+RUN npm run build
 
 # Runtime command that executes when "docker run" is called
 CMD ["gunicorn", "tenlists.webapp.ten_lists:create_app()"]
