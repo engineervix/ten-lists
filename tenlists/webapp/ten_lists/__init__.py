@@ -29,7 +29,10 @@ def create_app():
 
     mail.init_app(app)
     moment.init_app(app)
-    toolbar.init_app(app)
+
+    if app.debug:
+        toolbar.init_app(app)
+
     api = Api(app)
 
     from tenlists.webapp.ten_lists.errors.handlers import errors
