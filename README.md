@@ -11,7 +11,6 @@ This project provides both a CLI (using [click](https://click.palletsprojects.co
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/f566d7c0bd464cb2b17ef9604b61a748)](https://www.codacy.com/gh/engineervix/ten-lists/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=engineervix/ten-lists&amp;utm_campaign=Badge_Grade)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![DeepSource](https://static.deepsource.io/deepsource-badge-light-mini.svg)](https://deepsource.io/gh/engineervix/ten-lists/?ref=repository-badge)
-[![Requirements Status](https://requires.io/github/engineervix/ten-lists/requirements.svg?branch=master)](https://requires.io/github/engineervix/ten-lists/requirements/?branch=master)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 [![Conventional Changelog](https://img.shields.io/badge/changelog-conventional-brightgreen.svg)](http://conventional-changelog.github.io)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
@@ -19,19 +18,18 @@ This project provides both a CLI (using [click](https://click.palletsprojects.co
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [ten-lists](#ten-lists)
-  - [Developer setup 💻](#developer-setup-)
-    - [Requirements](#requirements)
-      - [Essential](#essential)
-      - [Extra](#extra)
-    - [Installation](#installation)
-      - [You need the MP3 files](#you-need-the-mp3-files)
-      - [Concerning the CLI tool](#concerning-the-cli-tool)
-    - [Tests](#tests)
-  - [Deployment](#deployment)
-  - [Notes](#notes)
-  - [TODO](#todo)
-  - [Credits](#credits)
+- [Developer setup 💻](#developer-setup-)
+  - [Requirements](#requirements)
+    - [Essential](#essential)
+    - [Extra](#extra)
+  - [Installation](#installation)
+    - [You need the MP3 files](#you-need-the-mp3-files)
+    - [Concerning the CLI tool](#concerning-the-cli-tool)
+  - [Tests](#tests)
+- [Deployment](#deployment)
+- [Notes](#notes)
+- [TODO](#todo)
+- [Credits](#credits)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
