@@ -4,6 +4,8 @@
   "description": "This project provides both a CLI and a webapp, which generate a playlist of 10 Bible Chapters (represented by 10 mp3 files) to be listened to on any given day, according to Professor Grant Horner's 10 lists Bible-Reading System.",
   "scripts": {
     "build": "grunt rm && grunt all",
+    "commit": "git-cz",
+    "release": "standard-version",
     "start": "grunt"
   },
   "repository": {
@@ -28,7 +30,9 @@
   },
   "devDependencies": {
     "clean-css": "^5.1.5",
+    "commitizen": "^4.2.5",
     "cross-env": "^7.0.3",
+    "cz-conventional-changelog": "^3.3.0",
     "grunt": "^1.4.1",
     "grunt-browser-sync": "^2.2.0",
     "grunt-contrib-clean": "^2.0.0",
@@ -40,6 +44,81 @@
     "grunt-json-minification": "^0.2.1",
     "grunt-newer": "^1.3.0",
     "popper.js": "^1.16.1",
+    "standard-version": "^9.5.0",
     "time-grunt": "^2.0.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "standard-version": {
+    "header": "# Changelog\n\nAll notable changes to this project will be documented here.\n\nThe format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project attempts to adhere to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).\n",
+    "types": [
+      {
+        "type": "feat",
+        "section": "🚀 Features"
+      },
+      {
+        "type": "fix",
+        "section": "🐛 Bug Fixes"
+      },
+      {
+        "type": "docs",
+        "section": "📝 Docs",
+        "hidden": false
+      },
+      {
+        "type": "style",
+        "section": "💄 Styling",
+        "hidden": false
+      },
+      {
+        "type": "refactor",
+        "hidden": false,
+        "section": "♻️ Code Refactoring"
+      },
+      {
+        "type": "perf",
+        "section": "⚡️ Performance Improvements",
+        "hidden": false
+      },
+      {
+        "type": "test",
+        "section": "✅ Tests",
+        "hidden": false
+      },
+      {
+        "type": "build",
+        "section": "⚙️ Build System",
+        "hidden": false
+      },
+      {
+        "type": "ci",
+        "section": "👷 CI/CD",
+        "hidden": false
+      },
+      {
+        "type": "chore",
+        "section": "🚧 Others",
+        "hidden": true
+      },
+      {
+        "type": "revert",
+        "section": "⏪️ Reverts",
+        "hidden": true
+      }
+    ],
+    "scripts": {
+      "prechangelog": "sed -e '1,6d' -i CHANGELOG.md",
+      "postchangelog": "sed -e 's/###\\ \\[/##\\ \\[v/g' -i CHANGELOG.md && sed -re 's/##\\ \\[([0-9])/##\\ \\[v\\1/g' -i CHANGELOG.md"
+    }
+  },
+  "engines": {
+    "node": ">= 14 <15",
+    "npm": ">= 6.13.4"
+  },
+  "volta": {
+    "node": "14.20.1"
   }
 }
