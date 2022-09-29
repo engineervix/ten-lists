@@ -2,7 +2,7 @@
 
 This project provides both a CLI (using [click](https://click.palletsprojects.com/en/7.x/)) and a webapp (using [flask](https://palletsprojects.com/p/flask/)), which generate a playlist of 10 Bible Chapters (represented by 10 mp3 files) to be listened to on any given day _x_, according to [**Professor Grant Horner's Bible-Reading System**](https://sohmer.net/media/professor_grant_horners_bible_reading_system.pdf). The audio Bible is as downloaded from the [_Faith Comes by Hearing®_ website](http://www.bible.is/audiodownloader).
 
-> God-willing, you'll soon be able to see the webapp in action [here](https://ten.dumela.cc/)
+> You can see the webapp in action [here](https://ten.dumela.cc/)
 
 [![python3.8](https://img.shields.io/badge/python-3.8-brightgreen.svg)](https://python.org/)
 [![CircleCI](https://circleci.com/gh/engineervix/ten-lists/tree/master.svg?style=svg)](https://circleci.com/gh/engineervix/ten-lists/tree/master)
@@ -18,18 +18,19 @@ This project provides both a CLI (using [click](https://click.palletsprojects.co
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [Developer setup 💻](#developer-setup-)
-  - [Requirements](#requirements)
-    - [Essential](#essential)
-    - [Extra](#extra)
-  - [Installation](#installation)
-    - [You need the MP3 files](#you-need-the-mp3-files)
-    - [Concerning the CLI tool](#concerning-the-cli-tool)
-  - [Tests](#tests)
-- [Deployment](#deployment)
-- [Notes](#notes)
-- [TODO](#todo)
-- [Credits](#credits)
+- [ten-lists](#ten-lists)
+  - [Developer setup 💻](#developer-setup-)
+    - [Requirements](#requirements)
+      - [Essential](#essential)
+      - [Extra](#extra)
+    - [Installation](#installation)
+      - [You need the MP3 files](#you-need-the-mp3-files)
+      - [Concerning the CLI tool](#concerning-the-cli-tool)
+    - [Tests](#tests)
+  - [Deployment](#deployment)
+  - [Notes](#notes)
+  - [TODO](#todo)
+  - [Credits](#credits)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -71,7 +72,7 @@ Then create the required environment variables file (`.env`) by making a copy of
 cp -v .env.sample .env
 ```
 
-> NOTE: For production, the file should be `.prod.env`, for staging `.stage.dev`
+> NOTE: If you're not using a docker-based deployment approach, then, for production, the file should be `.prod.env`, for staging `.stage.dev`
 
 You should be able to run the project without updating anything. If you wanna update the mail settings (which you probably don't really need immediately) -- you could use a service like [mailtrap.io](https://mailtrap.io/) for development. If you choose Mailtrap, then the variables to update are `TENLISTS_EMAIL_USER_DEV` and `TENLISTS_EMAIL_PWD_DEV`. The other settings are for use in production (`SERVER_NAME` and `SENTRY_DSN`).
 
@@ -180,9 +181,11 @@ You can access the dev server at <http://127.0.0.1:5000>.
 
 #### You need the MP3 files
 
-Now, at this stage, you probably won't get much from the now running app, because you actually need the MP3 files to work with! So you have to download the Audio Bible from the [_Faith Comes by Hearing®_ website](http://www.bible.is/audiodownloader). The 2001 ESV dramatized Bible (size is over 2Gb) formed the basis for this project's code, including the expected filenames. If the file naming convention has changed, then there's a chance everything will break. Anyway, I hope that won't be the case ... so, create a directory `ENGESVC2DA` in `tenlists/webapp/ten_lists/static/` and place your downloaded MP3 files in there. See [this line in `tenlists/webapp/ten_lists/main/routes.py`](https://github.com/engineervix/ten-lists/blob/0878900c45e2a2664ea8328562942120ccced2a2/tenlists/webapp/ten_lists/main/routes.py#L23-L25).
+Now, at this stage, you probably won't get much from the now running app, because you actually need the MP3 files to work with! So, especially for the CLI tool, you have to download the Audio Bible from the [_Faith Comes by Hearing®_ website](http://www.bible.is/audiodownloader). The 2001 ESV dramatized Bible (size is over 2Gb) formed the basis for this project's code, including the expected filenames. If the file naming convention has changed, then there's a chance everything will break. Anyway, I hope that won't be the case ...
 
-> NOTE: I am working on modifying this setup so that one can use a cloud service ([s3](https://aws.amazon.com/s3/), [MinIO](https://min.io/), [Backblaze](https://www.backblaze.com/), [Cloudinary](https://cloudinary.com/), etc.) for the files. This should hopefuly simplify both on-boarding and deployment, especially that at the time of writing this I intend to deploy the webapp using [Dokku](https://dokku.com/).
+For the web app, we previously would create a directory `ENGESVC2DA` in `tenlists/webapp/ten_lists/static/` and place your downloaded MP3 files in there. See [this line in `tenlists/webapp/ten_lists/main/routes.py`](https://github.com/engineervix/ten-lists/blob/0878900c45e2a2664ea8328562942120ccced2a2/tenlists/webapp/ten_lists/main/routes.py#L23-L25).
+
+However, the code has been rewritten in such a way as to use a cloud service ([s3](https://aws.amazon.com/s3/), [MinIO](https://min.io/), [Backblaze](https://www.backblaze.com/), [Cloudinary](https://cloudinary.com/), etc.) for the files. This should hopefuly simplify both on-boarding and deployment, especially that at the time of writing this the webapp is deployed using [Dokku](https://dokku.com/). You'll therefore have to upload these files to your preferred cloud provider, and set the environment variable `TENLISTS_MP3_CLOUD_STORAGE_BASE_URL` (see that `.env.sample` file for details).
 
 #### Concerning the CLI tool
 
@@ -269,7 +272,7 @@ If you're gonna use Dokku, feel free to use [@engineervix/pre-dokku-server-setup
 ## TODO
 
 - [ ] Fix test to avoid overwriting `tenlists/webapp/ten_lists/static/ENGESVC2DA/` and deleting its contents
-- [ ] Use [Invoke](https://www.pyinvoke.org/) to encapsulate some tasks. For instance, `docker-compose exec web python tenlists/cli/__main__.py --help` is too long to type!
+- [X] Use [Invoke](https://www.pyinvoke.org/) to encapsulate some tasks. For instance, `docker-compose exec web python tenlists/cli/__main__.py --help` is too long to type!
 - [ ] Address [#1](https://github.com/engineervix/ten-lists/issues/1). [`configparser`](https://docs.python.org/3/library/configparser.html) might come in handy here.
 - [ ] [Package](https://packaging.python.org/tutorials/packaging-projects/) this project. [This is a must read](https://packaging.python.org/guides/distributing-packages-using-setuptools/#configuring-your-project).
 - [ ] [Improve Code Quality](https://codeclimate.com/github/engineervix/ten-lists/issues)
