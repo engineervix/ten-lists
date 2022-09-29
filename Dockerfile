@@ -30,6 +30,7 @@ ENV PYTHONUNBUFFERED=1 \
 RUN apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-recommends \
     build-essential \
     curl \
+    ffmpeg \
     git \
     libjpeg62-turbo-dev \
     libmariadb-dev-compat libmariadb-dev \

@@ -23,6 +23,7 @@ RUN apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-r
     build-essential \
     curl \
     git \
+    ffmpeg \
     libjpeg62-turbo-dev \
     libmariadb-dev-compat libmariadb-dev \
     libpq-dev \

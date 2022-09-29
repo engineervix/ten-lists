@@ -107,6 +107,7 @@ jobs:
           apt-get install -y --no-install-recommends \
             build-essential \
             curl \
+            ffmpeg \
             git \
             libjpeg62-turbo-dev \
             libmariadb-dev-compat libmariadb-dev \
