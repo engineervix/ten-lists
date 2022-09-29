@@ -11,8 +11,7 @@ from typing import List
 from flask import Blueprint, abort, render_template, request
 from flask_restful import Resource, fields, marshal, reqparse
 
-from tenlists.cli.__main__ import reading_list  # noqa: E402
-from tenlists.webapp.ten_lists.main.ffprobe import get_audio_metadata
+from tenlists.cli.__main__ import web_listening_list  # noqa: E402
 
 # import eyed3
 
@@ -48,27 +47,25 @@ def generate_playlist(day):
     """
     generates playlist for a particular `day`
     """
-    selected_playlist = reading_list(day, TENLISTS_MP3_CLOUD_STORAGE_BASE_URL)
+    selected_playlist = web_listening_list(day, TENLISTS_MP3_CLOUD_STORAGE_BASE_URL)
 
     if len(mp3s) != 0:
         mp3s.clear()
 
-    for idx, mp3_file in enumerate(selected_playlist, start=1):
-        audio = get_audio_metadata(mp3_file)
-        if "New Testament" in audio.get("album"):
+    for idx, data in enumerate(selected_playlist, start=1):
+        if "New Testament" in data.get("album"):
             COVER_ART = "static/img/album_art/new_testament_cover_art.jpg"
         else:
             COVER_ART = "static/img/album_art/old_testament_cover_art.jpg"
         mp3s.append(
             {
                 "id": idx,
-                "name": audio.get("title"),
-                "artist": audio.get("artist"),
-                "album": audio.get("album"),
-                # 'url': "../" + mp3_file,
-                "url": mp3_file,
+                "name": data.get("title"),
+                "artist": data.get("artist"),
+                "album": data.get("album"),
+                "url": data.get("mp3_file"),
                 "cover_art_url": COVER_ART,
-                "duration": mp3_duration(audio.get("duration")),
+                "duration": mp3_duration(data.get("duration")),
             }
         )
 

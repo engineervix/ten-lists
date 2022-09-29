@@ -11,7 +11,7 @@ module.exports = function (grunt) {
           {
             expand: true,
             cwd: "tenlists/utils",
-            src: ["ten_lists.json"],
+            src: ["ten_lists.json", "ten_lists_slim.json"],
             dest: "tenlists/data",
             ext: ".json",
           },

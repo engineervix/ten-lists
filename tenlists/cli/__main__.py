@@ -181,6 +181,47 @@ def create_mp3_dir(day: int, bible_dir: str):
         log_traceback(ex)
 
 
+def web_ten_lists() -> List:
+    """
+    create the webapp version of the 10 lists
+    from the ten_lists.json file
+    """
+    the_ten_lists: List = []
+    this_file = Path(__file__)
+    root_module = this_file.parents[1]
+    data_dir = root_module / "data"
+    json_file = os.path.join(data_dir, "ten_lists.json")
+
+    with open(json_file, "r") as read_file:
+        data = json.load(read_file)
+
+    for idx, _list in enumerate(data, start=1):
+        list_of_dicts = _list[f"list_{str(idx).zfill(2)}"]
+        mp3_files_list = [item for item in list_of_dicts]  # here item is also a dict
+        the_ten_lists.append(mp3_files_list)
+
+    return the_ten_lists
+
+
+def web_listening_list(day: int, bible_dir: str) -> List:
+    """
+    The generated listening list for the given day.
+    `bible_dir` is the directory containing the mp3 files.
+    """
+
+    listening_list: List = []
+
+    # append trailing slash to bible_dir
+    bible_dir += "/"
+
+    for _dict in iterate_lists(web_ten_lists(), day):
+        mp3_file = _dict.get("mp3_file")
+        _dict.update({"mp3_file": bible_dir + mp3_file})
+        listening_list.append(_dict)
+
+    return listening_list
+
+
 @click.command()
 @click.option(
     "--day",
