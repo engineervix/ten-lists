@@ -40,6 +40,7 @@ jobs:
             echo "TENLISTS_EMAIL_PWD_DEV=" >> env/.dev.env
             echo "MAIL_USE_TLS=True" >> env/.dev.env
             echo "MAIL_USE_SSL=False" >> env/.dev.env
+            echo "TENLISTS_MP3_CLOUD_STORAGE_BASE_URL=https://example.com/path/to/folder" >> env/.dev.env
             echo "TENLISTS_API_BASE=http://localhost:5000/ten-lists/api/v1.0/mp3s" >> env/.dev.env
 
       # Step 3: run tests
