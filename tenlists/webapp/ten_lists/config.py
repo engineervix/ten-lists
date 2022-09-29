@@ -19,8 +19,10 @@ class BaseConfig(object):
 
     TIMEZONE = "Africa/Lusaka"
 
-    env_path = os.path.join(PROJECT_ROOT, "env/.default.env")
-    load_dotenv(dotenv_path=env_path)
+    # This is rather redundant, as it is handled in create_app()
+    if os.environ.get("FLASK_CONFIGURATION") == "default":
+        env_path = os.path.join(PROJECT_ROOT, "env/.default.env")
+        load_dotenv(dotenv_path=env_path)
 
     # Secret key for generating tokens
     SECRET_KEY = os.getenv("TENLISTS_SECRET_KEY")
@@ -44,8 +46,10 @@ class DevelopmentConfig(BaseConfig):
     # DEBUG can only be set to True in a development environment for security reasons
     DEBUG = True
 
-    env_path = os.path.join(PROJECT_ROOT, "env/.dev.env")
-    load_dotenv(dotenv_path=env_path, override=True, verbose=True)
+    # This is rather redundant, as it is handled in create_app()
+    if os.environ.get("FLASK_CONFIGURATION") == "development":
+        env_path = os.path.join(PROJECT_ROOT, "env/.dev.env")
+        load_dotenv(dotenv_path=env_path, override=True, verbose=True)
 
     # Secret key for generating tokens
     SECRET_KEY = os.getenv("TENLISTS_SECRET_KEY_DEV")
@@ -75,8 +79,10 @@ class StagingConfig(BaseConfig):
 
     DEBUG = False
 
-    env_path = os.path.join(PROJECT_ROOT, "env/.stage.env")
-    load_dotenv(dotenv_path=env_path, override=True)
+    # This is rather redundant, as it is handled in create_app()
+    if os.environ.get("FLASK_CONFIGURATION") == "staging":
+        env_path = os.path.join(PROJECT_ROOT, "env/.stage.env")
+        load_dotenv(dotenv_path=env_path, override=True)
 
     # Secret key for generating tokens
     SECRET_KEY = os.getenv("TENLISTS_SECRET_KEY")
@@ -102,8 +108,16 @@ class ProductionConfig(BaseConfig):
     DEBUG = False
     SESSION_COOKIE_SECURE = True
 
-    env_path = os.path.join(PROJECT_ROOT, "env/.prod.env")
-    load_dotenv(dotenv_path=env_path, override=True)
+    # =========================================================== #
+
+    # skip loading .prod.env file since we're running in docker container
+
+    # Also, this is rather redundant, as it is handled in create_app()
+    # if os.environ.get("FLASK_CONFIGURATION") == "production":
+    #     env_path = os.path.join(PROJECT_ROOT, "env/.prod.env")
+    #     load_dotenv(dotenv_path=env_path, override=True)
+
+    # =========================================================== #
 
     # Secret key for generating tokens
     SECRET_KEY = os.getenv("TENLISTS_SECRET_KEY")
