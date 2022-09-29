@@ -21,6 +21,7 @@ pyfiglet==0.8.post1
 
 autopep8==1.5.7
 black==21.12b0
+bpython==0.23
 commitizen==2.35.0
 doc8==0.9.0
 flake8==3.9.2
