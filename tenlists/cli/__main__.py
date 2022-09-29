@@ -75,9 +75,9 @@ def iterate_lists(collection: List[List], day: int) -> List:
     return result
 
 
-def ten_lists():
+def ten_lists() -> List:
     """create the 10 lists from the ten_lists.json file"""
-    the_ten_lists = []
+    the_ten_lists: List = []
     this_file = Path(__file__)
     root_module = this_file.parents[1]
     data_dir = root_module / "data"
@@ -97,10 +97,10 @@ def ten_lists():
 def reading_list(day: int, bible_dir: str) -> List:
     """
     The generated reading (or listening) list for the given day.
-    bible_dir is the directory containing the mp3 files.
+    `bible_dir` is the directory containing the mp3 files.
     """
 
-    listening_list = []
+    listening_list: List = []
 
     # append trailing slash to bible_dir
     bible_dir += "/"
@@ -111,7 +111,7 @@ def reading_list(day: int, bible_dir: str) -> List:
     return listening_list
 
 
-def create_m3u(day, bible_dir):
+def create_m3u(day: int, bible_dir: str):
     """creates an m3u playlist based on specified day's listening list"""
     m3u_filename = "day" + str(day).zfill(3) + ".m3u"
     # check if file exists, and if it does, os.remove()
@@ -134,7 +134,7 @@ def create_m3u(day, bible_dir):
         log(success_msg, "green")
 
 
-def create_mp3_dir(day, bible_dir):
+def create_mp3_dir(day: int, bible_dir: str):
     """Copies the generated mp3 files into separate directory"""
     # Now we copy the files into a new folder
     out_dir = "day" + str(day).zfill(3)

@@ -6,20 +6,24 @@
 import os
 import time
 from datetime import datetime
+from typing import List
 
 from flask import Blueprint, abort, render_template, request
 from flask_restful import Resource, fields, marshal, reqparse
 
-import eyed3
-
 from tenlists.cli.__main__ import reading_list  # noqa: E402
+from tenlists.webapp.ten_lists.main.ffprobe import get_audio_metadata
+
+# import eyed3
+
 
 # project_dir = os.path.abspath(os.path.join(__file__, "../../../../"))
 # dir_path = os.path.dirname(os.path.realpath(__file__))
 # relative_project_dir = os.path.relpath(project_dir, dir_path)
 
 # sys.path.append(project_dir)
-BIBLE_DIR = os.path.join("tenlists", "webapp", "ten_lists", "static", "ENGESVC2DA").replace("\\", "/")
+# BIBLE_DIR = os.path.join("tenlists", "webapp", "ten_lists", "static", "ENGESVC2DA").replace("\\", "/")
+TENLISTS_MP3_CLOUD_STORAGE_BASE_URL = os.getenv("TENLISTS_MP3_CLOUD_STORAGE_BASE_URL")
 
 main = Blueprint("main", __name__)
 
@@ -30,7 +34,7 @@ def index():
     return render_template("home.html", now=now)
 
 
-mp3s = []
+mp3s: List = []
 
 
 def mp3_duration(seconds):
@@ -44,27 +48,27 @@ def generate_playlist(day):
     """
     generates playlist for a particular `day`
     """
-    selected_playlist = reading_list(day, BIBLE_DIR)
+    selected_playlist = reading_list(day, TENLISTS_MP3_CLOUD_STORAGE_BASE_URL)
 
     if len(mp3s) != 0:
         mp3s.clear()
 
     for idx, mp3_file in enumerate(selected_playlist, start=1):
-        audio = eyed3.load(mp3_file)
-        if "New Testament" in audio.tag.album:
+        audio = get_audio_metadata(mp3_file)
+        if "New Testament" in audio.get("album"):
             COVER_ART = "static/img/album_art/new_testament_cover_art.jpg"
         else:
             COVER_ART = "static/img/album_art/old_testament_cover_art.jpg"
         mp3s.append(
             {
                 "id": idx,
-                "name": audio.tag.title,
-                "artist": audio.tag.artist,
-                "album": audio.tag.album,
+                "name": audio.get("title"),
+                "artist": audio.get("artist"),
+                "album": audio.get("album"),
                 # 'url': "../" + mp3_file,
-                "url": mp3_file.replace("tenlists/webapp/ten_lists/static/", "static/"),
+                "url": mp3_file,
                 "cover_art_url": COVER_ART,
-                "duration": mp3_duration(audio.info.time_secs),
+                "duration": mp3_duration(audio.get("duration")),
             }
         )
 
