@@ -272,6 +272,7 @@ If you're gonna use Dokku, feel free to use [@engineervix/pre-dokku-server-setup
 ## TODO
 
 - [ ] Fix test to avoid overwriting `tenlists/webapp/ten_lists/static/ENGESVC2DA/` and deleting its contents
+- [ ] Use a CDN for the media files
 - [X] Use [Invoke](https://www.pyinvoke.org/) to encapsulate some tasks. For instance, `docker-compose exec web python tenlists/cli/__main__.py --help` is too long to type!
 - [ ] Address [#1](https://github.com/engineervix/ten-lists/issues/1). [`configparser`](https://docs.python.org/3/library/configparser.html) might come in handy here.
 - [ ] [Package](https://packaging.python.org/tutorials/packaging-projects/) this project. [This is a must read](https://packaging.python.org/guides/distributing-packages-using-setuptools/#configuring-your-project).
