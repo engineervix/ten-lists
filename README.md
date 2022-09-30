@@ -281,4 +281,5 @@ If you're gonna use Dokku, feel free to use [@engineervix/pre-dokku-server-setup
 
 ## Credits
 
+- `og:image`: <https://unsplash.com/photos/TNlHf4m4gpI>
 - Bible Icon: <https://www.pngrepo.com/svg/235374/bible>
