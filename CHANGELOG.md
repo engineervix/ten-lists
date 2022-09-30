@@ -4,6 +4,27 @@ All notable changes to this project will be documented here.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project attempts to adhere to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v1.0.1](https://github.com/engineervix/ten-lists/compare/v1.0.0...v1.0.1) (2022-09-30)
+
+
+### 🚀 Features
+
+* set up HTTP security headers ([2652a91](https://github.com/engineervix/ten-lists/commit/2652a911a7780c62b3579eb32f7ea15b80c0704b))
+
+
+### 🐛 Bug Fixes
+
+* add missing kwarg `content_security_policy` in Talisman init_app ([432cbdf](https://github.com/engineervix/ten-lists/commit/432cbdf289a986a5d9693c4d468346c8913e9025))
+* broken HTTP security headers configuration ([be42945](https://github.com/engineervix/ten-lists/commit/be429453fd34565f5a43b89d8a9a615d7681d80c))
+* change `permission_policy` to `permissions_policy` in flask-talisman config ([f6d363b](https://github.com/engineervix/ten-lists/commit/f6d363bfb73c159b9ae05debd6951027b6af4150))
+* cleanup Content Security Policy config ([18ef459](https://github.com/engineervix/ten-lists/commit/18ef459131655a16497d4cac29365ea8cbdc1972))
+* rewrite `autoplay` permissions_policy ([82bea8b](https://github.com/engineervix/ten-lists/commit/82bea8b8328000f5ed59ba50e749b8db98f4dfee))
+
+
+### 📝 Docs
+
+* add TODO item concerning CDN setup for mp3 files ([5fa653e](https://github.com/engineervix/ten-lists/commit/5fa653eb8e284a1c58111f1aec9045881b6255b8))
+
 ## [v1.0.0](https://github.com/engineervix/ten-lists/compare/v0.6.3...v1.0.0) (2022-09-30)
 
 
