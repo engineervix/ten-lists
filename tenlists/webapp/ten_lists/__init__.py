@@ -55,11 +55,11 @@ def create_app():
             "picture-in-picture": "()",
             "usb": "()",
         }
-        # strict_transport_security is already set by NGIИX
         Talisman(
             app,
-            os.getenv("CSP_DIRECTIVES", DEFAULT_CSP_POLICY),
+            # strict_transport_security is already set by NGIИX
             strict_transport_security=False,
+            content_security_policy=os.getenv("CSP_DIRECTIVES", DEFAULT_CSP_POLICY),
             permissions_policy=permissions_policy,
         )
 
