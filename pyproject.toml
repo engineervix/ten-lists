@@ -35,7 +35,7 @@ sections = ["FUTURE", "STDLIB", "FLASK", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDE
 default_section = "THIRDPARTY"
 
 [tool.commitizen]
-version = "0.6.3"
+version = "1.0.0"
 version_files = [
     # "package.json",
     "tenlists/__init__.py",

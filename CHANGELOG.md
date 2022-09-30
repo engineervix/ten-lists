@@ -4,6 +4,54 @@ All notable changes to this project will be documented here.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project attempts to adhere to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v1.0.0](https://github.com/engineervix/ten-lists/compare/v0.6.3...v1.0.0) (2022-09-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* For the web app, it is now recommended to have files in the cloud, instead of
+locally
+
+### 🚀 Features
+
+* install gunicorn & add production deployment config for Dokku ([6287f8f](https://github.com/engineervix/ten-lists/commit/6287f8f2e6433db28cd44bb8a08ccf723f0d1511))
+* remove metadata fetching using ffprobe ([85016e6](https://github.com/engineervix/ten-lists/commit/85016e66c9d0775f13a1e0fd5ef0192a9be50bd1))
+* store the mp3 files in the cloud and use ffprobe to get metadata ([d475e87](https://github.com/engineervix/ten-lists/commit/d475e87246290561f0411e51e18545c19c6e3d38))
+
+
+### ✅ Tests
+
+* fix broken webapp test ([acc1f58](https://github.com/engineervix/ten-lists/commit/acc1f583b22cd5b0e96f49c4627f9f5c24012e70))
+
+
+### ♻️ Code Refactoring
+
+* do not load .prod.env in production ([f493a0d](https://github.com/engineervix/ten-lists/commit/f493a0d51164fbfe47ca1fe364112994c8255ac5))
+
+
+### 👷 CI/CD
+
+* add TENLISTS_MP3_CLOUD_STORAGE_BASE_URL environment variable to test job ([78c3f3f](https://github.com/engineervix/ten-lists/commit/78c3f3fa3aac404a496557df3a0f703e495d22eb))
+* fix broken github actions test job ([ccac365](https://github.com/engineervix/ten-lists/commit/ccac365c02719771d525b45fb3e136b1bb289dc2))
+* fix broken test ([f2f2f76](https://github.com/engineervix/ten-lists/commit/f2f2f76cc740fdb8d0f6c7b2095338088274693c))
+* fix typo in circleci workflow ([ba604d5](https://github.com/engineervix/ten-lists/commit/ba604d54ab3082004a9ca5d44c719a765a53934c))
+
+
+### 📝 Docs
+
+* update README with info on mp3 files & cloud storage ([6461716](https://github.com/engineervix/ten-lists/commit/64617163207ab7d4ed4ae178439d0d96cf0a4a8a))
+
+
+### ⚙️ Build System
+
+* **deps-dev:** install bpython ([e502fce](https://github.com/engineervix/ten-lists/commit/e502fcecb4f4c22bfe4684d24fd120fa16f36858))
+* **deps:** install ffmpeg ([48cf8ae](https://github.com/engineervix/ten-lists/commit/48cf8ae57e441908999ff7fa8cabe83b8cde682d))
+* **docker:** ensure that node_modules/.bin is in PATH ([35e163d](https://github.com/engineervix/ten-lists/commit/35e163d8a97ed438ebe39dbc68bb24efc5670c6b))
+* **docker:** fix Dockerfile ([a69937b](https://github.com/engineervix/ten-lists/commit/a69937b4c793b1ad4cbd61f3f2a3fb16833f0329)), closes [/github.com/dokku/dokku/issues/2742#issuecomment-351405317](https://github.com/engineervix//github.com/dokku/dokku/issues/2742/issues/issuecomment-351405317)
+* RUN npm install -g grunt-cli ([5c2a08b](https://github.com/engineervix/ten-lists/commit/5c2a08b0f5addc2405eb43c295168e8f1f7bcd63))
+* update .dockerignore file ([181d0a4](https://github.com/engineervix/ten-lists/commit/181d0a49a812221053df5c7ee49f133036d86c61))
+* use `npm run build` instead of calling individual Grunt tasks ([4f5efc6](https://github.com/engineervix/ten-lists/commit/4f5efc6ada711f243a87c46571c468f8c3647746))
+
 ## [v0.6.3](https://github.com/engineervix/ten-lists/compare/v0.6.2...v0.6.3) (2022-09-27)
 
 
