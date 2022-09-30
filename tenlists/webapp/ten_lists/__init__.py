@@ -40,7 +40,7 @@ def create_app():
         permissions_policy = {
             "accelerometer": "()",
             "ambient-light-sensor": "()",
-            "autoplay": '(self f"{TENLISTS_MP3_CLOUD_STORAGE_BASE_URL}")',
+            "autoplay": '(self "{}")'.format(TENLISTS_MP3_CLOUD_STORAGE_BASE_URL),
             "camera": "()",
             "display-capture": "()",
             "document-domain": "()",
