@@ -6,7 +6,7 @@ from flask_mail import Mail
 from flask_moment import Moment
 from flask_restful import Api
 
-from flask_talisman import Talisman
+from flask_talisman import DEFAULT_CSP_POLICY, Talisman
 from werkzeug.middleware.proxy_fix import ProxyFix
 
 config = {
@@ -37,7 +37,6 @@ def create_app():
     if app.debug:
         toolbar.init_app(app)
     else:
-        csp = {"default-src": ["'self'", "cdn.jsdelivr.net", "analytics.umusebo.com"]}
         permissions_policy = {
             "accelerometer": "()",
             "ambient-light-sensor": "()",
@@ -58,7 +57,10 @@ def create_app():
         }
         # strict_transport_security is already set by NGIИX
         Talisman(
-            app, content_security_policy=csp, strict_transport_security=False, permissions_policy=permissions_policy
+            app,
+            os.getenv("CSP_DIRECTIVES", DEFAULT_CSP_POLICY),
+            strict_transport_security=False,
+            permissions_policy=permissions_policy,
         )
 
     api = Api(app)
