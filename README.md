@@ -251,7 +251,7 @@ docker-compose exec web pytest
 
 ## Deployment
 
-You can deploy this project using your [preferred choice of deployment](https://flask.palletsprojects.com/en/1.1.x/deploying/) (Docker, Heroku, Linux Server, etc.). However, I am working on setting it up to be ready "out of the box" for deployment to a [VPS](https://cloud.google.com/learn/what-is-a-virtual-private-server) using [Dokku](https://dokku.com/).
+You can deploy this project using your [preferred choice of deployment](https://flask.palletsprojects.com/en/1.1.x/deploying/) (Docker, Heroku, Linux Server, etc.). However, I have set it up to be ready "out of the box" for deployment to a [VPS](https://cloud.google.com/learn/what-is-a-virtual-private-server) using [Dokku](https://dokku.com/).
 
 If you're gonna use Dokku, feel free to use [@engineervix/pre-dokku-server-setup](https://github.com/engineervix/pre-dokku-server-setup) to setup an Ubuntu Server on your VPS prior to installation of Dokku. You can have a look at [this gist](https://gist.github.com/engineervix/8d1825a7301239e7c4df3af78aaee9a4) for more details of how to deploy an application to Dokku. Other excellent resources:
 
@@ -273,6 +273,7 @@ If you're gonna use Dokku, feel free to use [@engineervix/pre-dokku-server-setup
 
 - [ ] Fix test to avoid overwriting `tenlists/webapp/ten_lists/static/ENGESVC2DA/` and deleting its contents
 - [ ] Use a CDN for the media files
+- [ ] write a Dokku deploy script
 - [X] Use [Invoke](https://www.pyinvoke.org/) to encapsulate some tasks. For instance, `docker-compose exec web python tenlists/cli/__main__.py --help` is too long to type!
 - [ ] Address [#1](https://github.com/engineervix/ten-lists/issues/1). [`configparser`](https://docs.python.org/3/library/configparser.html) might come in handy here.
 - [ ] [Package](https://packaging.python.org/tutorials/packaging-projects/) this project. [This is a must read](https://packaging.python.org/guides/distributing-packages-using-setuptools/#configuring-your-project).
