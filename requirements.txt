@@ -11,6 +11,7 @@ flask-mail==0.9.1
 flask-moment==1.0.2
 flask-restful==0.3.9
 flask-script==2.0.6
+flask-talisman==1.0.0
 flask-wtf==0.15.1
 markupsafe==2.0.1  # https://stackoverflow.com/questions/72191560/importerror-cannot-import-name-soft-unicode-from-markupsafe
 termcolor==1.1.0

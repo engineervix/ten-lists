@@ -6,6 +6,7 @@ from flask_mail import Mail
 from flask_moment import Moment
 from flask_restful import Api
 
+from flask_talisman import Talisman
 from werkzeug.middleware.proxy_fix import ProxyFix
 
 config = {
@@ -30,6 +31,7 @@ def create_app():
 
     mail.init_app(app)
     moment.init_app(app)
+    Talisman(app)
 
     if app.debug:
         toolbar.init_app(app)
