@@ -16,3 +16,7 @@ coverage*
 .resources
 .pytest_cache
 htmlcov
+
+# others
+ENGESVC2DA/
+scripts/dokku*
