@@ -20,6 +20,8 @@ moment = Moment()
 mail = Mail()
 toolbar = DebugToolbarExtension()
 
+TENLISTS_MP3_CLOUD_STORAGE_BASE_URL = os.getenv("TENLISTS_MP3_CLOUD_STORAGE_BASE_URL")
+
 
 def create_app():
     app = Flask(__name__, instance_relative_config=True)
@@ -31,10 +33,31 @@ def create_app():
 
     mail.init_app(app)
     moment.init_app(app)
-    Talisman(app)
 
     if app.debug:
         toolbar.init_app(app)
+    else:
+        csp = {"default-src": ["'self'", "cdn.jsdelivr.net", "analytics.umusebo.com"]}
+        permission_policy = {
+            "accelerometer": "()",
+            "ambient-light-sensor": "()",
+            "autoplay": '(self f"{TENLISTS_MP3_CLOUD_STORAGE_BASE_URL}")',
+            "camera": "()",
+            "display-capture": "()",
+            "document-domain": "()",
+            "encrypted-media": "()",
+            "geolocation": "()",
+            "gyroscope": "()",
+            "interest-cohort": "()",
+            "magnetometer": "()",
+            "microphone": "()",
+            "midi": "()",
+            "payment": "()",
+            "picture-in-picture": "()",
+            "usb": "()",
+        }
+        # strict_transport_security is already set by NGIИX
+        Talisman(app, content_security_policy=csp, strict_transport_security=False, permission_policy=permission_policy)
 
     api = Api(app)
 
