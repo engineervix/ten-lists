@@ -42,6 +42,7 @@ RUN apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-r
 # install Node.js
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 RUN apt install nodejs -y
+RUN npm install -g grunt-cli
 
 # Use user "flask" to run the build commands below and the server itself.
 USER flask
