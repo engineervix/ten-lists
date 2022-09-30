@@ -38,7 +38,7 @@ def create_app():
         toolbar.init_app(app)
     else:
         csp = {"default-src": ["'self'", "cdn.jsdelivr.net", "analytics.umusebo.com"]}
-        permission_policy = {
+        permissions_policy = {
             "accelerometer": "()",
             "ambient-light-sensor": "()",
             "autoplay": '(self f"{TENLISTS_MP3_CLOUD_STORAGE_BASE_URL}")',
@@ -57,7 +57,9 @@ def create_app():
             "usb": "()",
         }
         # strict_transport_security is already set by NGIИX
-        Talisman(app, content_security_policy=csp, strict_transport_security=False, permission_policy=permission_policy)
+        Talisman(
+            app, content_security_policy=csp, strict_transport_security=False, permissions_policy=permissions_policy
+        )
 
     api = Api(app)
 
