@@ -67,4 +67,4 @@ COPY --chown=flask:flask . .
 RUN npm run build
 
 # Runtime command that executes when "docker run" is called
-CMD gunicorn tenlists.webapp.ten_lists:create_app()
+CMD gunicorn tenlists.webapp.ten_lists:create_app

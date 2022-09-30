@@ -1,1 +1,1 @@
-web: gunicorn tenlists.webapp.ten_lists:create_app()
+web: gunicorn tenlists.webapp.ten_lists:create_app
