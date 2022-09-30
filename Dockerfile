@@ -22,8 +22,9 @@ ENV PYTHONUNBUFFERED=1 \
     PORT=8000 \
     FLASK_CONFIGURATION=production \
     FLASK_ENV=production \
-    NODE_ENV=production \
-    USER=flask
+    # NODE_ENV=production \
+    USER=flask \
+    PATH=/home/flask/app/node_modules/.bin:$PATH
 
 # Install system dependencies
 RUN apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-recommends \
@@ -50,8 +51,6 @@ USER flask
 # where available (npm@5+)
 COPY ./package*.json  /home/flask/app/
 RUN npm ci
-# ENV PATH ./node_modules/.bin/:$PATH
-ENV PATH /home/flask/app/node_modules/.bin:$PATH
 
 # install python dependencies
 ENV VIRTUAL_ENV=/home/flask/venv
