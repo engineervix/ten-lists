@@ -42,4 +42,4 @@ pytest-flask==1.2.0
 # production
 
 gunicorn==20.1.0
-sentry-sdk==1.3.1
+sentry-sdk==1.14.0
