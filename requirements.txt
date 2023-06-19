@@ -29,7 +29,7 @@ flake8==3.9.2
 invoke==1.7.1
 isort[requirements_deprecated_finder]==5.9.3
 pep8==1.7.1
-pre-commit==2.14.0
+pre-commit==2.21.0
 
 # tests
 
