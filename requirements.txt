@@ -35,7 +35,7 @@ pre-commit==2.14.0
 
 faker==8.11.0
 gtts==2.2.3
-tqdm==4.62.0
+tqdm==4.66.4
 pytest-cov==2.12.1
 pytest-flask==1.2.0
 
