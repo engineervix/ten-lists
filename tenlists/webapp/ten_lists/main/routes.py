@@ -76,7 +76,7 @@ mp3_fields = {
     "album": fields.String,
     "url": fields.String,
     "cover_art_url": fields.String,
-    "duration": fields.String
+    "duration": fields.String,
     # 'uri': fields.Url('mp3')
 }
 
