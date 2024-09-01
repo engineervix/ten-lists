@@ -77,7 +77,6 @@ jobs:
         run: |
           sudo apt-get update --yes --quiet
           sudo apt-get install --yes --quiet --no-install-recommends ffmpeg
-          sudo npm install -g grunt-cli
           grunt all
 
       - name: Install Python dependencies & testing tools
@@ -95,7 +94,7 @@ jobs:
         run: |
           mkdir -p env/
           touch env/.dev.env
-          echo "TENLISTS_SECRET_KEY_DEV='d765978f74057742ccb70338711946f356aa194e2e0f79f7373c9cbad3c34c54'" >> env/.dev.env
+          echo "TENLISTS_SECRET_KEY_DEV='fake'" >> env/.dev.env
           echo "MAIL_SERVER_DEV=smtp.mailtrap.io" >> env/.dev.env
           echo "MAIL_PORT_DEV=2525" >> env/.dev.env
           echo "TENLISTS_EMAIL_USER_DEV=" >> env/.dev.env
@@ -103,7 +102,7 @@ jobs:
           echo "MAIL_USE_TLS=True" >> env/.dev.env
           echo "MAIL_USE_SSL=False" >> env/.dev.env
           echo "TENLISTS_MP3_CLOUD_STORAGE_BASE_URL=https://example.com/path/to/folder" >> env/.dev.env
-          echo "TENLISTS_API_BASE=http://localhost:5000/ten-lists/api/v1.0/mp3s" >> env/.dev.env
+          echo "TENLISTS_API_BASE=http://localhost:8000/ten-lists/api/v1.0/mp3s" >> env/.dev.env
 
       - name: Run tests
         run: |
