@@ -48,6 +48,8 @@ jobs:
   test:
     runs-on: ubuntu-22.04
     needs: [lint]
+    container:
+      image: python:3.12-slim-bookworm
 
     env:
       TENLISTS_SECRET_KEY_DEV: fake
@@ -64,31 +66,14 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-          cache: 'pip'
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version-file: .nvmrc
-
-      - id: node-cache
-        uses: actions/cache@v4
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-
-      - if: steps.node-cache.outputs.cache-hit != 'true'
-        run: |
-          npm ci --no-optional --no-audit --progress=false
-
       - name: System Dependencies
         shell: bash
         run: |
-          sudo apt-get update --yes --quiet
-          sudo apt-get install --yes --quiet --no-install-recommends ffmpeg
+          apt-get update --yes --quiet
+          apt-get install --yes --quiet --no-install-recommends build-essential curl ffmpeg git
+          curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
+          apt-get install -y nodejs
+          npm ci --cache .npm --prefer-offline
           grunt all
 
       - name: Install Python dependencies & testing tools
