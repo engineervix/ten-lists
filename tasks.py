@@ -9,7 +9,14 @@ from invoke import task
 @task
 def dev(c):
     """run the Flask development server"""
-    c.run("python manage.py runserver --host 0.0.0.0", pty=True)
+    c.run("python manage.py runserver --host 0.0.0.0 --port 8000", pty=True)
+
+
+@task
+def start(c):
+    """Run this in a container to fire up the Flask development server & frontend tools"""
+    # https://github.com/nickstenning/honcho
+    c.run("honcho -f docker/Procfile start", pty=True)
 
 
 @task

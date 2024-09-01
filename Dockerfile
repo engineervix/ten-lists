@@ -1,4 +1,22 @@
-FROM python:3.8-slim-bullseye
+#################################################################################
+# use node:14-bookworm as the base image for building the frontend
+#################################################################################
+
+FROM node:14-bookworm AS frontend-builder
+
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+# where available (npm@5+)
+COPY package*.json Gruntfile.js ./
+RUN npm ci --no-optional --no-audit --progress=false --network=host
+
+COPY ./tenlists/webapp/ten_lists/static/ ./tenlists/webapp/ten_lists/static/
+RUN npm run build
+
+#################################################################################
+# use python:3.12-slim-bookworm as the base image for production and development
+#################################################################################
+
+FROM python:3.12-slim-bookworm AS production
 
 # Add user that will be used in the container
 RUN groupadd flask && \
@@ -21,10 +39,7 @@ ENV PYTHONUNBUFFERED=1 \
     WEB_CONCURRENCY=3 \
     PORT=8000 \
     FLASK_CONFIGURATION=production \
-    FLASK_ENV=production \
-    # NODE_ENV=production \
-    USER=flask \
-    PATH=/home/flask/app/node_modules/.bin:$PATH
+    FLASK_ENV=production
 
 # Install system dependencies
 RUN apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-recommends \
@@ -32,17 +47,8 @@ RUN apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-r
     curl \
     ffmpeg \
     git \
-    libjpeg62-turbo-dev \
-    libmariadb-dev-compat libmariadb-dev \
     libpq-dev \
-    libwebp-dev \
-    zlib1g-dev \
     && rm -rf /var/lib/apt/lists/*
-
-# install Node.js
-RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
-RUN apt install nodejs -y
-RUN npm install -g grunt-cli
 
 # Use user "flask" to run the build commands below and the server itself.
 USER flask
@@ -60,11 +66,41 @@ RUN pip install --upgrade pip
 COPY --chown=flask ./requirements.txt .
 RUN pip install -r requirements.txt
 
+# Copy build artifacts from frontend-builder stage
+COPY --from=frontend-builder --chown=flask:flask /tenlists/webapp/ten_lists/static/css/custom.min.css /home/flask/app/tenlists/webapp/ten_lists/static/css/custom.min.css
+COPY --from=frontend-builder --chown=flask:flask /tenlists/webapp/ten_lists/static/js/custom.min.js /home/flask/app/tenlists/webapp/ten_lists/static/js/custom.min.js
+COPY --from=frontend-builder --chown=flask:flask /tenlists/webapp/ten_lists/static/vendors /home/flask/app/tenlists/webapp/ten_lists/static/vendors
+
 # Copy the source code of the project into the container
 COPY --chown=flask:flask . .
 
-# Generate static assets
-RUN npm run build
-
 # Runtime command that executes when "docker run" is called
 CMD "gunicorn tenlists.webapp.ten_lists:create_app()"
+
+
+#################################################################################
+# The next steps won't be run in production
+#################################################################################
+
+FROM production AS dev
+
+# Swap user, so the following tasks can be run as root
+USER root
+
+# set environment variables
+ENV NODE_MAJOR=14 \
+    PATH=/home/flask/app/node_modules/.bin:$PATH
+
+# Install node (Keep the version in sync with the node container above)
+RUN curl -fsSL https://deb.nodesource.com/setup_${NODE_MAJOR}.x | bash - && \
+    apt-get install -y nodejs
+RUN npm install -g grunt-cli
+
+# Restore user
+USER flask
+
+# Pull in the node modules for the frontend
+COPY --chown=flask:flask --from=frontend-builder ./node_modules ./node_modules
+
+# do nothing - exec commands elsewhere
+CMD tail -f /dev/null
