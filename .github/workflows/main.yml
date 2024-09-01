@@ -73,6 +73,7 @@ jobs:
           apt-get install --yes --quiet --no-install-recommends build-essential curl ffmpeg git
           curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
           apt-get install -y nodejs
+          npm install -g grunt-cli
           npm ci --cache .npm --prefer-offline
           grunt all
 
