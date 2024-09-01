@@ -75,7 +75,7 @@ jobs:
       MAIL_USE_TLS: True
       MAIL_USE_SSL: False
       TENLISTS_MP3_CLOUD_STORAGE_BASE_URL: https://example.com/path/to/folder
-      TENLISTS_API_BASE: http://127.0.0.1:8000/ten-lists/api/v1.0/mp3s
+      TENLISTS_API_BASE: http://localhost:8000/ten-lists/api/v1.0/mp3s
 
     steps:
       - name: Checkout source code
@@ -121,7 +121,6 @@ jobs:
         run: |
           ./cc-test-reporter before-build
           poetry run pytest
-          poetry run coveralls
           ./cc-test-reporter after-build --coverage-input-type coverage.py
           ./bin/deepsource report --analyzer test-coverage --key python --value-file ./coverage.xml
 

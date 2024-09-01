@@ -95,7 +95,7 @@ ENV NODE_MAJOR=16 \
 
 # Install node (Keep the version in sync with the node container above)
 RUN curl -fsSL https://deb.nodesource.com/setup_${NODE_MAJOR}.x | bash - && \
-    apt-get install -y nodejs
+    apt-get install -y --no-install-recommends nodejs
 RUN npm install -g grunt-cli
 
 # Restore user
