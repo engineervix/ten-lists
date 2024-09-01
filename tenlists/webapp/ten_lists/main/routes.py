@@ -5,7 +5,7 @@
 # import sys
 import os
 import time
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import List
 
 from flask import Blueprint, abort, render_template, request
@@ -29,7 +29,7 @@ main = Blueprint("main", __name__)
 
 @main.route("/")
 def index():
-    now = datetime.utcnow()
+    now = datetime.now(timezone.utc)
     return render_template("home.html", now=now)
 
 
