@@ -196,7 +196,7 @@ def web_ten_lists() -> list:
 
     for idx, _list in enumerate(data, start=1):
         list_of_dicts = _list[f"list_{str(idx).zfill(2)}"]
-        mp3_files_list = [item for item in list_of_dicts]  # here item is also a dict
+        mp3_files_list = list(list_of_dicts)  # here item is also a dict
         the_ten_lists.append(mp3_files_list)
 
     return the_ten_lists

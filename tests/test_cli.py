@@ -46,7 +46,7 @@ def test_ten_lists_chapters():
     """Check the number of chapters in the 10 lists."""
     num_of_chapters = [89, 187, 78, 65, 62, 150, 31, 249, 250, 28]
 
-    for chapters, bible_list in zip(num_of_chapters, ten_lists()):
+    for chapters, bible_list in zip(num_of_chapters, ten_lists(), strict=False):
         assert len(bible_list) == chapters  # nosec
 
 

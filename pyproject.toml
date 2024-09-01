@@ -25,14 +25,52 @@ exclude = '''
 )
 '''
 
-[tool.isort]
-profile = "black"
-skip = ["node_modules", ".git", "__pycache__", "LC_MESSAGES", "venv", ".venv"]
-blocked_extensions = ["rst", "html", "js", "svg", "txt", "css", "scss", "png", "snap", "ts", "tsx"]
-known_first_party = "tenlists"
-known_flask = ["flask", "flask_debugtoolbar", "flask_mail", "flask_moment", "flask_restful", "flask_script"]
-sections = ["FUTURE", "STDLIB", "FLASK", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
-default_section = "THIRDPARTY"
+[tool.ruff]
+exclude = [".git", "__pycache__", ".pytest_cache", "node_modules", "LC_MESSAGES", "public", "venv", ".venv"]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+ignore = ["E203", "E266", "E501"]
+select = ["B", "C", "E", "F", "W", "B9"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["tenlists"]
+section-order = [
+  "future",
+  "standard-library",
+  "third-party",
+  "first-party",
+  "local-folder",
+]
+
+[tool.ruff.lint.pycodestyle]
+max-doc-length = 120
+
+[tool.ruff.lint.mccabe]
+max-complexity = 10
+
+[tool.coverage.run]
+branch = true
+omit = [
+    "venv/*",
+    "tenlists/utils/*",
+    "manage.py",
+    "tasks.py"
+]
+
+[tool.coverage.report]
+skip_covered = true
+show_missing = true
+
+[tool.pytest.ini_options]
+addopts = "--cov=. --cov-report=html --cov-report=xml --cov-report=term-missing:skip-covered -s -vv"
+testpaths = ["tests"]
+python_files = [
+    "tests.py",
+    "test_*.py",
+    "*_tests.py"
+]
 
 [tool.commitizen]
 version = "1.0.1"

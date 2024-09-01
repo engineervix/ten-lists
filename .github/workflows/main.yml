@@ -37,13 +37,9 @@ jobs:
         run: |
           black . --check
 
-      - name: isort
+      - name: Ruff
         run: |
-          isort . --check-only --profile black
-
-      - name: Flake8
-        run: |
-          flake8 tests tenlists
+          ruff check . --output-format=github
 
   test:
     runs-on: ubuntu-22.04
