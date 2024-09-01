@@ -736,19 +736,6 @@ six = ">=1.3.0"
 docs = ["sphinx"]
 
 [[package]]
-name = "flask-script"
-version = "2.0.6"
-description = "Scripting support for Flask"
-optional = false
-python-versions = "*"
-files = [
-    {file = "Flask-Script-2.0.6.tar.gz", hash = "sha256:6425963d91054cfcc185807141c7314a9c5ad46325911bd24dcb489bd0161c65"},
-]
-
-[package.dependencies]
-Flask = "*"
-
-[[package]]
 name = "flask-talisman"
 version = "1.0.0"
 description = "HTTP security headers for Flask."
@@ -1695,4 +1682,4 @@ email = ["email-validator"]
 [metadata]
 lock-version = "2.0"
 python-versions = "~3.12"
-content-hash = "94ec5fad242ae121b3ec2950d157c3f47909c8e656167e9e2d569ebc45b859e0"
+content-hash = "d00ffe19e1b3eb3615f1690c4bffbe917774e863ad73ac822084f24a43cf1518"
