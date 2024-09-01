@@ -14,7 +14,6 @@ import os
 import traceback
 from pathlib import Path
 from shutil import copy
-from typing import List
 
 import click
 import eyed3
@@ -54,13 +53,13 @@ def log_traceback(ex):
     log(tb_text, "red")
 
 
-def iterate_lists(collection: List[List], day: int) -> List:
+def iterate_lists(collection: list[list], day: int) -> list:
     """
     iterates through the given ``collection``, which is
     a list of lists, and tries to get a particular item
     from each list, based on the given ``day``
     """
-    result: List = []
+    result: list = []
     for lst in collection:
         idx = day - 1
         if idx < len(lst):
@@ -75,15 +74,15 @@ def iterate_lists(collection: List[List], day: int) -> List:
     return result
 
 
-def ten_lists() -> List:
+def ten_lists() -> list:
     """create the 10 lists from the ten_lists.json file"""
-    the_ten_lists: List = []
+    the_ten_lists: list = []
     this_file = Path(__file__)
     root_module = this_file.parents[1]
     data_dir = root_module / "data"
     json_file = os.path.join(data_dir, "ten_lists.json")
 
-    with open(json_file, "r") as read_file:
+    with open(json_file) as read_file:
         data = json.load(read_file)
 
     for idx, _list in enumerate(data, start=1):
@@ -94,13 +93,13 @@ def ten_lists() -> List:
     return the_ten_lists
 
 
-def reading_list(day: int, bible_dir: str) -> List:
+def reading_list(day: int, bible_dir: str) -> list:
     """
     The generated reading (or listening) list for the given day.
     `bible_dir` is the directory containing the mp3 files.
     """
 
-    listening_list: List = []
+    listening_list: list = []
 
     # append trailing slash to bible_dir
     bible_dir += "/"
@@ -123,7 +122,7 @@ def create_m3u(day: int, bible_dir: str):
         with open(m3u_filename, "a") as m3u:
             m3u.write("#EXTM3U\n")
             m3u.write("\n".join(reading_list(day, bible_dir)))
-    except EnvironmentError as ex:
+    except OSError as ex:
         log(
             "✗ Oops! Something went wrong while attempting to " + "create a playlist.",
             "red",
@@ -150,7 +149,7 @@ def create_mp3_dir(day: int, bible_dir: str):
             "✓ Copying of the Bible Chapters into the " + out_dir + " directory was successful.",
             "green",
         )
-    except EnvironmentError as ex:
+    except OSError as ex:
         log("✗ Oops! Something went wrong while attempting to copy files", "red")
         log_traceback(ex)
 
@@ -176,40 +175,40 @@ def create_mp3_dir(day: int, bible_dir: str):
         )
         log("✓ The files have been renamed in a sequential order.", "green")
         log("\n-----Soli Deo Gloria-----\n", "cyan")
-    except EnvironmentError as ex:
+    except OSError as ex:
         log("Oops! Something went wrong while processing the mp3 files", "red")
         log_traceback(ex)
 
 
-def web_ten_lists() -> List:
+def web_ten_lists() -> list:
     """
     create the webapp version of the 10 lists
     from the ten_lists.json file
     """
-    the_ten_lists: List = []
+    the_ten_lists: list = []
     this_file = Path(__file__)
     root_module = this_file.parents[1]
     data_dir = root_module / "data"
     json_file = os.path.join(data_dir, "ten_lists.json")
 
-    with open(json_file, "r") as read_file:
+    with open(json_file) as read_file:
         data = json.load(read_file)
 
     for idx, _list in enumerate(data, start=1):
         list_of_dicts = _list[f"list_{str(idx).zfill(2)}"]
-        mp3_files_list = [item for item in list_of_dicts]  # here item is also a dict
+        mp3_files_list = list(list_of_dicts)  # here item is also a dict
         the_ten_lists.append(mp3_files_list)
 
     return the_ten_lists
 
 
-def web_listening_list(day: int, bible_dir: str) -> List:
+def web_listening_list(day: int, bible_dir: str) -> list:
     """
     The generated listening list for the given day.
     `bible_dir` is the directory containing the mp3 files.
     """
 
-    listening_list: List = []
+    listening_list: list = []
 
     # append trailing slash to bible_dir
     bible_dir += "/"

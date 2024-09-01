@@ -123,7 +123,7 @@ module.exports = function (grunt) {
           watchTask: true,
           // https://www.browsersync.io/docs/options/#option-proxy
           proxy: {
-            target: "web:5000",
+            target: "web:8000",
             proxyReq: [
               function (proxyReq, req) {
                 // Assign proxy "host" header same as current request at Browsersync server

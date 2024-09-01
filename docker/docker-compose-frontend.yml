@@ -1,0 +1,5 @@
+services:
+  web:
+    ports:
+      - 3000:3000 # browser-sync
+      - 3001:3001 # browser-sync UI

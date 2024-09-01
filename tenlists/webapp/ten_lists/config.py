@@ -9,7 +9,7 @@ from sentry_sdk.integrations.flask import FlaskIntegration
 PROJECT_ROOT = Path(__file__).parents[3]  # 4 levels up
 
 
-class BaseConfig(object):
+class BaseConfig:
     """
     Default Configuration
     """

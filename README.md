@@ -4,10 +4,9 @@ This project provides both a CLI (using [click](https://click.palletsprojects.co
 
 > You can see the webapp in action [here](https://ten.dumela.cc/)
 
-[![python3.8](https://img.shields.io/badge/python-3.8-brightgreen.svg)](https://python.org/)
-[![CircleCI](https://circleci.com/gh/engineervix/ten-lists/tree/master.svg?style=svg)](https://circleci.com/gh/engineervix/ten-lists/tree/master)
+[![Continuous Integration](https://github.com/engineervix/ten-lists/actions/workflows/main.yml/badge.svg)](https://github.com/engineervix/ten-lists/actions/workflows/main.yml)
+[![python3.12](https://img.shields.io/badge/python-3.12-brightgreen.svg)](https://python.org/)
 [![Coverage Status](https://coveralls.io/repos/github/engineervix/ten-lists/badge.svg)](https://coveralls.io/github/engineervix/ten-lists)
-[![Maintainability](https://api.codeclimate.com/v1/badges/0f58287b5eaf57213fa2/maintainability)](https://codeclimate.com/github/engineervix/ten-lists/maintainability)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/f566d7c0bd464cb2b17ef9604b61a748)](https://www.codacy.com/gh/engineervix/ten-lists/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=engineervix/ten-lists&amp;utm_campaign=Badge_Grade)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![DeepSource](https://static.deepsource.io/deepsource-badge-light-mini.svg)](https://deepsource.io/gh/engineervix/ten-lists/?ref=repository-badge)
@@ -55,21 +54,21 @@ If you don't have Docker and Docker Compose, then click the respective links abo
 
 Good to have if you'd like to hack on the project. Not required if you just wanna run it, in which case Docker and Docker Compose will suffice.
 
-- A [Python](https://www.python.org/) **3.8** virtual environment. You can use any tool of your choice to manage multiple Python versions on your machine.
+- A [Python](https://www.python.org/) **3.12** virtual environment. You can use any tool of your choice to manage multiple Python versions on your machine.
   - Activate your python virtual environment and `pip install --upgrade pip`
   - Install dependencies: `pip install -r requirements.txt`.
   - Setup [pre-commit](https://pre-commit.com/) by running `pre-commit install` followed by `pre-commit install --hook-type commit-msg`. Optionally run `pre-commit run --all-files` to make sure your pre-commit setup is okay.
-- [Node.js](https://nodejs.org/en/) **v14**
+- [Node.js](https://nodejs.org/en/) **v16**
   - Install the Node.js dependencies via `npm install`
 
 ### Installation
 
 Upon cloning this repository (or forking + cloning your fork), navigate to the cloned project directory.
 
-Then create the required environment variables file (`.env`) by making a copy of the provided sample file `.env.sample` and renaming it to `.dev.env`:
+Then create the required environment variables file (`.env`) by making a copy of the provided sample file `env/.env.example` and renaming it to `env/.dev.env`:
 
 ```sh
-cp -v .env.sample .env
+cp -v env/.env.example env/.dev.env
 ```
 
 > NOTE: If you're not using a docker-based deployment approach, then, for production, the file should be `.prod.env`, for staging `.stage.dev`
@@ -79,105 +78,29 @@ You should be able to run the project without updating anything. If you wanna up
 Build the images and spin up the containers:
 
 ```sh
-COMPOSE_PROJECT_NAME=tenlists docker-compose up -d --build
+docker-compose up -d --build
 ```
 
 When you run the above for the first time, it may take a while, depending on your internet connection speed.
 
-Once the build is complete, you can check the logs for the `web` container via
+If everything goes well, you should be able to get into the `web` container and access the shell.
 
 ```sh
-docker-compose logs web
+docker-compose exec web bash
 ```
 
-If everything is ok, you should see something like this:
-
-```console
-tenlists-web-1  | tenlists :: ready
-tenlists-web-1  |  * Serving Flask app "tenlists.webapp.ten_lists" (lazy loading)
-tenlists-web-1  |  * Environment: development
-tenlists-web-1  |  * Debug mode: on
-tenlists-web-1  |  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
-tenlists-web-1  |  * Restarting with stat
-tenlists-web-1  |  * Debugger is active!
-tenlists-web-1  |  * Debugger PIN: 719-114-836
-```
-
-You can also check the logs for the `node` container via
+Once you're in the container, run the following to simultaneously launch the Flask development server and the frontend tooling:
 
 ```sh
-docker-compose logs node
+inv start
 ```
 
-If all's well, you should see something like this:
+You can access the dev server at <http://127.0.0.1:8000>.
 
-```console
-tenlists-node-1  |
-tenlists-node-1  | > ten-lists@0.6.2 start /usr/src/app
-tenlists-node-1  | > grunt
-tenlists-node-1  |
-tenlists-node-1  | Running "clean:dist" (clean) task
-tenlists-node-1  | >> 4 paths cleaned.
-tenlists-node-1  |
-tenlists-node-1  | Running "newer:copy" (newer) task
-tenlists-node-1  |
-tenlists-node-1  | Running "newer:copy:fa" (newer) task
-tenlists-node-1  |
-tenlists-node-1  | Running "copy:fa" (copy) task
-tenlists-node-1  | Copied 8 files
-tenlists-node-1  |
-tenlists-node-1  | Running "newer-postrun:copy:fa:1:/usr/src/app/node_modules/grunt-newer/.cache" (newer-postrun) task
-tenlists-node-1  |
-tenlists-node-1  | Running "newer:copy:bootstrap" (newer) task
-tenlists-node-1  |
-tenlists-node-1  | Running "copy:bootstrap" (copy) task
-tenlists-node-1  | Copied 10 files
-tenlists-node-1  |
-tenlists-node-1  | Running "newer-postrun:copy:bootstrap:2:/usr/src/app/node_modules/grunt-newer/.cache" (newer-postrun) task
-tenlists-node-1  |
-tenlists-node-1  | Running "newer:copy:jquery" (newer) task
-tenlists-node-1  |
-tenlists-node-1  | Running "copy:jquery" (copy) task
-tenlists-node-1  | Copied 4 files
-tenlists-node-1  |
-tenlists-node-1  | Running "newer-postrun:copy:jquery:3:/usr/src/app/node_modules/grunt-newer/.cache" (newer-postrun) task
-tenlists-node-1  |
-tenlists-node-1  | Running "newer:copy:moment" (newer) task
-tenlists-node-1  |
-tenlists-node-1  | Running "copy:moment" (copy) task
-tenlists-node-1  | Copied 5 files
-tenlists-node-1  |
-tenlists-node-1  | Running "newer-postrun:copy:moment:4:/usr/src/app/node_modules/grunt-newer/.cache" (newer-postrun) task
-tenlists-node-1  |
-tenlists-node-1  | Running "newer:cssmin" (newer) task
-tenlists-node-1  |
-tenlists-node-1  | Running "newer:cssmin:dist" (newer) task
-tenlists-node-1  | No newer files to process.
-tenlists-node-1  |
-tenlists-node-1  | Running "newer:uglify" (newer) task
-tenlists-node-1  |
-tenlists-node-1  | Running "newer:uglify:dist" (newer) task
-tenlists-node-1  | No newer files to process.
-tenlists-node-1  |
-tenlists-node-1  | Running "browserSync:dev" (browserSync) task
-tenlists-node-1  | [Browsersync] Proxying: http://web:5000
-tenlists-node-1  | [Browsersync] Access URLs:
-tenlists-node-1  |  -----------------------------------
-tenlists-node-1  |        Local: http://localhost:3000
-tenlists-node-1  |     External: http://151.26.0.3:3000
-tenlists-node-1  |  -----------------------------------
-tenlists-node-1  |           UI: http://localhost:3001
-tenlists-node-1  |  UI External: http://localhost:3001
-tenlists-node-1  |  -----------------------------------
-tenlists-node-1  | [Browsersync] Watching files...
-tenlists-node-1  |
-tenlists-node-1  | Running "watch" task
-tenlists-node-1  | Waiting...
-tenlists-node-1  | [Browsersync] Reloading Browsers...
-tenlists-node-1  | [Browsersync] Reloading Browsers...
-```
-
-You can access the dev server at <http://127.0.0.1:5000>.
+> **Note**
+>
+> - The above is made possible by [Invoke](https://www.pyinvoke.org/), which is used extensively on this project to automate some tasks.
+> Run `invoke -l` to see all available [Invoke](https://www.pyinvoke.org/) tasks. These are defined in the [tasks.py](tasks.py) file.
 
 #### You need the MP3 files
 
@@ -277,7 +200,6 @@ If you're gonna use Dokku, feel free to use [@engineervix/pre-dokku-server-setup
 - [X] Use [Invoke](https://www.pyinvoke.org/) to encapsulate some tasks. For instance, `docker-compose exec web python tenlists/cli/__main__.py --help` is too long to type!
 - [ ] Address [#1](https://github.com/engineervix/ten-lists/issues/1). [`configparser`](https://docs.python.org/3/library/configparser.html) might come in handy here.
 - [ ] [Package](https://packaging.python.org/tutorials/packaging-projects/) this project. [This is a must read](https://packaging.python.org/guides/distributing-packages-using-setuptools/#configuring-your-project).
-- [ ] [Improve Code Quality](https://codeclimate.com/github/engineervix/ten-lists/issues)
 - [x] Rather than using [plain text files](https://github.com/engineervix/ten-lists/tree/v0.6.2/data), find a better way of storing the Bible Chapters ([JSON file](https://www.lucidchart.com/techblog/2018/07/16/why-json-isnt-a-good-configuration-language/), [SQLite database](https://www.sqlite.org/whentouse.html), [TinyDB](https://tinydb.readthedocs.io/en/latest/), etc)
 - [x] Create a ~~GUI frontend or~~ web service ~~[to cater for non-tech users](https://www.inc.com/drew-hendricks/building-or-enhancing-software-for-non-technical-users-is-more-important-than-ev.html)~~ in order to not only cater for non-tech users but also to listen on-the-go. See the `webapp` directory for the source code. Also see the `package.json` file.
 

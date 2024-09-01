@@ -46,7 +46,7 @@ def test_ten_lists_chapters():
     """Check the number of chapters in the 10 lists."""
     num_of_chapters = [89, 187, 78, 65, 62, 150, 31, 249, 250, 28]
 
-    for chapters, bible_list in zip(num_of_chapters, ten_lists()):
+    for chapters, bible_list in zip(num_of_chapters, ten_lists(), strict=False):
         assert len(bible_list) == chapters  # nosec
 
 
@@ -73,7 +73,7 @@ def test_m3u_content(day, listening_list):
     # and the m3u file creation function doesn't check if file exists
     m3u_filename = "day" + str(day).zfill(3) + ".m3u"
     listening_list.insert(0, "#EXTM3U")
-    with open(m3u_filename, "r") as m3u:
+    with open(m3u_filename) as m3u:
         assert m3u.read().splitlines() == listening_list  # nosec
 
 

@@ -38,7 +38,7 @@ document.getElementById('song-played-progress').addEventListener('click', functi
 
 $("#generate-playlist").click(function(event){
   var day = '' + $('input[name="day"]').val();
-  // "http://localhost:5000/ten-lists/api/v1.0/mp3s?&day=1&format=json";
+  // "http://localhost:8000/ten-lists/api/v1.0/mp3s?&day=1&format=json";
   var tenListsAPI = tenlists_base_url + "?&day=" + day + "&format=json";
   $.getJSON(tenListsAPI, function(data){
       generated_songs = data.mp3s;

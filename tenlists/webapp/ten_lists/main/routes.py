@@ -5,8 +5,7 @@
 # import sys
 import os
 import time
-from datetime import datetime
-from typing import List
+from datetime import datetime, timezone
 
 from flask import Blueprint, abort, render_template, request
 from flask_restful import Resource, fields, marshal, reqparse
@@ -29,11 +28,11 @@ main = Blueprint("main", __name__)
 
 @main.route("/")
 def index():
-    now = datetime.utcnow()
+    now = datetime.now(timezone.utc)
     return render_template("home.html", now=now)
 
 
-mp3s: List = []
+mp3s: list = []
 
 
 def mp3_duration(seconds):
@@ -76,7 +75,7 @@ mp3_fields = {
     "album": fields.String,
     "url": fields.String,
     "cover_art_url": fields.String,
-    "duration": fields.String
+    "duration": fields.String,
     # 'uri': fields.Url('mp3')
 }
 
@@ -93,7 +92,7 @@ class MP3ListAPI(Resource):
         )
         self.reqparse.add_argument("artist", type=str, default="", location="json")
         self.reqparse.add_argument("album", type=str, default="", location="json")
-        super(MP3ListAPI, self).__init__()
+        super().__init__()
 
     def get(self):
 
