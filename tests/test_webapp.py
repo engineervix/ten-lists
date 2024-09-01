@@ -9,6 +9,9 @@ def test_app(client):
     """
     simple test to get started testing the flask webapp
     """
+    print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
+    print(url_for("main.index"))
+    print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
     assert client.get(url_for("main.index")).status_code == 200
     # assert client.get("/").status_code == 200
 
