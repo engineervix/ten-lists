@@ -47,7 +47,6 @@ RUN apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-r
     curl \
     ffmpeg \
     git \
-    libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Use user "flask" to run the build commands below and the server itself.
