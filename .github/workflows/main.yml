@@ -98,8 +98,6 @@ jobs:
           pip install --upgrade pip
           python -m pip install poetry==1.8.3
           poetry install --with dev,test
-          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-          chmod +x ./cc-test-reporter
           curl https://deepsource.io/cli | sh
 
       - name: Create .env file to simulate a development setup
@@ -119,10 +117,19 @@ jobs:
 
       - name: Run tests
         run: |
-          ./cc-test-reporter before-build
           poetry run pytest
-          ./cc-test-reporter after-build --coverage-input-type coverage.py
-          ./bin/deepsource report --analyzer test-coverage --key python --value-file ./coverage.xml
+
+      - name: Code Climate
+        uses: paambaati/codeclimate-action@v9.0.0
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+
+      - name: DeepSource
+        uses: deepsourcelabs/test-coverage-action@master
+        with:
+          key: python
+          coverage-file: coverage.xml
+          dsn: ${{ secrets.DEEPSOURCE_DSN }}
 
       - name: Coveralls
         uses: coverallsapp/github-action@v2
