@@ -7,7 +7,6 @@ This project provides both a CLI (using [click](https://click.palletsprojects.co
 [![Continuous Integration](https://github.com/engineervix/ten-lists/actions/workflows/main.yml/badge.svg)](https://github.com/engineervix/ten-lists/actions/workflows/main.yml)
 [![python3.12](https://img.shields.io/badge/python-3.12-brightgreen.svg)](https://python.org/)
 [![Coverage Status](https://coveralls.io/repos/github/engineervix/ten-lists/badge.svg)](https://coveralls.io/github/engineervix/ten-lists)
-[![Maintainability](https://api.codeclimate.com/v1/badges/0f58287b5eaf57213fa2/maintainability)](https://codeclimate.com/github/engineervix/ten-lists/maintainability)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/f566d7c0bd464cb2b17ef9604b61a748)](https://www.codacy.com/gh/engineervix/ten-lists/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=engineervix/ten-lists&amp;utm_campaign=Badge_Grade)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![DeepSource](https://static.deepsource.io/deepsource-badge-light-mini.svg)](https://deepsource.io/gh/engineervix/ten-lists/?ref=repository-badge)
@@ -201,7 +200,6 @@ If you're gonna use Dokku, feel free to use [@engineervix/pre-dokku-server-setup
 - [X] Use [Invoke](https://www.pyinvoke.org/) to encapsulate some tasks. For instance, `docker-compose exec web python tenlists/cli/__main__.py --help` is too long to type!
 - [ ] Address [#1](https://github.com/engineervix/ten-lists/issues/1). [`configparser`](https://docs.python.org/3/library/configparser.html) might come in handy here.
 - [ ] [Package](https://packaging.python.org/tutorials/packaging-projects/) this project. [This is a must read](https://packaging.python.org/guides/distributing-packages-using-setuptools/#configuring-your-project).
-- [ ] [Improve Code Quality](https://codeclimate.com/github/engineervix/ten-lists/issues)
 - [x] Rather than using [plain text files](https://github.com/engineervix/ten-lists/tree/v0.6.2/data), find a better way of storing the Bible Chapters ([JSON file](https://www.lucidchart.com/techblog/2018/07/16/why-json-isnt-a-good-configuration-language/), [SQLite database](https://www.sqlite.org/whentouse.html), [TinyDB](https://tinydb.readthedocs.io/en/latest/), etc)
 - [x] Create a ~~GUI frontend or~~ web service ~~[to cater for non-tech users](https://www.inc.com/drew-hendricks/building-or-enhancing-software-for-non-technical-users-is-more-important-than-ev.html)~~ in order to not only cater for non-tech users but also to listen on-the-go. See the `webapp` directory for the source code. Also see the `package.json` file.
 

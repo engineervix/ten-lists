@@ -119,15 +119,6 @@ jobs:
         run: |
           poetry run pytest
 
-      # - name: Code Climate
-      #   uses: paambaati/codeclimate-action@v9.0.0
-      #   with:
-      #     coverageLocations: |
-      #       ${{github.workspace}}/coverage.xml:coverage.py
-      #     debug: true
-      #   env:
-      #     CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-
       - name: DeepSource
         uses: deepsourcelabs/test-coverage-action@master
         with:
