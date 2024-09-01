@@ -119,8 +119,8 @@ jobs:
       - name: Run tests
         run: |
           ./cc-test-reporter before-build
-          pytest
-          coveralls
+          poetry run pytest
+          poetry run coveralls
           ./cc-test-reporter after-build --coverage-input-type coverage.py
           ./bin/deepsource report --analyzer test-coverage --key python --value-file ./coverage.xml
 
@@ -190,6 +190,7 @@ jobs:
         # This creates a file LATEST_RELEASE_NOTES.md in the parent directory (../)
         shell: bash
         run: |
+          source .venv/bin/activate
           invoke get-release-notes
 
       - name: GitHub Release
