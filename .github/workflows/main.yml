@@ -64,6 +64,7 @@ jobs:
       image: python:3.12-slim-bookworm
 
     env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       FLASK_CONFIGURATION: development
       FLASK_ENV: development
       TENLISTS_SECRET_KEY_DEV: fake
