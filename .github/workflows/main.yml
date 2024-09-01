@@ -58,7 +58,7 @@ jobs:
       MAIL_USE_TLS: True
       MAIL_USE_SSL: False
       TENLISTS_MP3_CLOUD_STORAGE_BASE_URL: https://example.com/path/to/folder
-      TENLISTS_API_BASE: http://localhost:8000/ten-lists/api/v1.0/mp3s
+      TENLISTS_API_BASE: http://127.0.0.1:8000/ten-lists/api/v1.0/mp3s
 
     steps:
       - name: Checkout source code
@@ -114,7 +114,7 @@ jobs:
           echo "MAIL_USE_TLS=True" >> env/.dev.env
           echo "MAIL_USE_SSL=False" >> env/.dev.env
           echo "TENLISTS_MP3_CLOUD_STORAGE_BASE_URL=https://example.com/path/to/folder" >> env/.dev.env
-          echo "TENLISTS_API_BASE=http://localhost:8000/ten-lists/api/v1.0/mp3s" >> env/.dev.env
+          echo "TENLISTS_API_BASE=http://127.0.0.1:8000/ten-lists/api/v1.0/mp3s" >> env/.dev.env
 
       - name: Run tests
         run: |
