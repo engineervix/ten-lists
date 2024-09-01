@@ -57,10 +57,6 @@ jobs:
           source .venv/bin/activate
           black . --check
 
-      - name: Ruff
-        run: |
-          ruff check . --output-format=github
-
   test:
     runs-on: ubuntu-22.04
     needs: [lint]

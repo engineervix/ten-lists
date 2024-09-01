@@ -67,7 +67,7 @@ pytest-flask = "1.2.0"
 
 [tool.black]
 line-length = 120
-target-version = ['py36', 'py37', 'py38', 'py39']
+target-version = ['py310', 'py311', 'py312']
 include = '\.pyi?$'
 exclude = '''
 
