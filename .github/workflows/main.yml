@@ -47,6 +47,7 @@ jobs:
 
   test:
     runs-on: ubuntu-22.04
+    needs: [lint]
 
     steps:
       - name: Checkout source code
