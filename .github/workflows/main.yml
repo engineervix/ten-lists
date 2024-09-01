@@ -4,6 +4,7 @@ name: Continuous Integration
 env:
   DOCKER_BUILDKIT: 1
   COMPOSE_DOCKER_CLI_BUILD: 1
+  POETRY_VERSION: 1.8.3 # Make sure this matches the Dockerfile
 
 on:
   pull_request:
@@ -12,7 +13,8 @@ on:
   push:
     branches:
       - master
-
+    tags:
+      - "v*"
 
 jobs:
   lint:
@@ -26,15 +28,33 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-          cache: 'pip'
 
-      - name: Install dependencies
+      - id: poetry-cache
+        uses: actions/cache@v4
+        with:
+          path: .venv
+          key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
+
+      - if: steps.poetry-cache.outputs.cache-hit != 'true'
+        name: Install Poetry and Dependencies
+        shell: bash
         run: |
           pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install poetry==$POETRY_VERSION
+          python -m venv .venv
+          source .venv/bin/activate
+          poetry install --with dev,test
+
+      - name: ruff
+        shell: bash
+        run: |
+          source .venv/bin/activate
+          ruff check . --output-format=github
 
       - name: Black
+        shell: bash
         run: |
+          source .venv/bin/activate
           black . --check
 
       - name: Ruff
@@ -48,6 +68,8 @@ jobs:
       image: python:3.12-slim-bookworm
 
     env:
+      FLASK_CONFIGURATION: development
+      FLASK_ENV: development
       TENLISTS_SECRET_KEY_DEV: fake
       MAIL_SERVER_DEV: smtp.mailtrap.io
       MAIL_PORT_DEV: 2525
@@ -77,8 +99,8 @@ jobs:
         shell: bash
         run: |
           pip install --upgrade pip
-          pip install -r requirements.txt
-          pip install coveralls
+          python -m pip install poetry==1.8.3
+          poetry install --with dev,test
           curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
           chmod +x ./cc-test-reporter
           curl https://deepsource.io/cli | sh
@@ -96,7 +118,7 @@ jobs:
           echo "MAIL_USE_TLS=True" >> env/.dev.env
           echo "MAIL_USE_SSL=False" >> env/.dev.env
           echo "TENLISTS_MP3_CLOUD_STORAGE_BASE_URL=https://example.com/path/to/folder" >> env/.dev.env
-          echo "TENLISTS_API_BASE=http://127.0.0.1:8000/ten-lists/api/v1.0/mp3s" >> env/.dev.env
+          echo "TENLISTS_API_BASE=http://localhost:8000/ten-lists/api/v1.0/mp3s" >> env/.dev.env
 
       - name: Run tests
         run: |
@@ -118,3 +140,64 @@ jobs:
           # or
           # api-token: ${{ secrets.CODACY_API_TOKEN }}
           coverage-reports: coverage.xml
+
+  # Creates a GitHub Release when the lint & test jobs succeeds, and only on pushes to tags.
+  release:
+    needs: [lint, test]
+
+    permissions:
+      contents: write
+
+    if: needs.test.result == 'success' && startsWith( github.ref, 'refs/tags/v' )
+
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - id: poetry-cache
+        uses: actions/cache@v4
+        with:
+          path: .venv
+          key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
+
+      - if: steps.poetry-cache.outputs.cache-hit != 'true'
+        name: Install Poetry and Dependencies
+        shell: bash
+        run: |
+          pip install --upgrade pip
+          pip install poetry==$POETRY_VERSION
+          python -m venv .venv
+          source .venv/bin/activate
+          poetry install --with dev,test
+
+      - name: Get the version
+        id: get_version
+        run: |
+          echo "${{ github.ref }}"
+          echo "VERSION=$(echo $GITHUB_REF | sed 's/refs\/tags\///')" >> $GITHUB_ENV
+
+      - name: Generate Release Title
+        id: get_release_title
+        shell: bash
+        run: |
+          export TODAY="($(TZ=Africa/Lusaka date --iso))"
+          echo "RELEASE_NAME=$VERSION $TODAY" >> $GITHUB_ENV
+
+      - name: Extract Release Notes
+        # This creates a file LATEST_RELEASE_NOTES.md in the parent directory (../)
+        shell: bash
+        run: |
+          invoke get-release-notes
+
+      - name: GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: ${{ env.RELEASE_NAME }}
+          body_path: ../LATEST_RELEASE_NOTES.md

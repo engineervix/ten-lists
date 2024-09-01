@@ -52,13 +52,18 @@ RUN apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-r
 # Use user "flask" to run the build commands below and the server itself.
 USER flask
 
-# install python dependencies
-ENV VIRTUAL_ENV=/home/flask/venv
+ARG DEVELOPMENT
+ARG POETRY_VERSION=1.8.3
+ENV VIRTUAL_ENV=/home/flask/venv \
+    DEVELOPMENT=${DEVELOPMENT}
 RUN python -m venv $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
-RUN pip install --upgrade pip
-COPY --chown=flask ./requirements.txt .
-RUN pip install -r requirements.txt
+RUN pip install --upgrade pip \
+    && python -m pip install poetry==$POETRY_VERSION
+
+COPY --chown=flask ./pyproject.toml .
+COPY --chown=flask ./poetry.lock .
+RUN poetry install ${DEVELOPMENT:+--with dev,test} --no-root
 
 # Copy build artifacts from frontend-builder stage
 COPY --from=frontend-builder --chown=flask:flask /tenlists/webapp/ten_lists/static/css/custom.min.css /home/flask/app/tenlists/webapp/ten_lists/static/css/custom.min.css
@@ -67,6 +72,9 @@ COPY --from=frontend-builder --chown=flask:flask /tenlists/webapp/ten_lists/stat
 
 # Copy the source code of the project into the container
 COPY --chown=flask:flask . .
+
+# Run poetry install again to install the project (so that the `tenlists` package is always importable)
+RUN poetry install
 
 # Runtime command that executes when "docker run" is called
 CMD "gunicorn tenlists.webapp.ten_lists:create_app()"
