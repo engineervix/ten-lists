@@ -95,7 +95,7 @@ def execute_bump_hack(c, branch):
     c.run("cz bump --files-only > .bump_result.txt", pty=True)
     str_of_interest = "increment detected: "
     result = ""
-    with open(".bump_result.txt", "r") as br:
+    with open(".bump_result.txt") as br:
         for line in br:
             if str_of_interest in line:
                 result = line
@@ -213,7 +213,7 @@ def get_release_notes(c):
     heading_text = "## What's changed in this release\n"
     lines.append(heading_text)
 
-    with open("CHANGELOG.md", "r") as c:
+    with open("CHANGELOG.md") as c:
         for line in c:
             if pattern_to_match in line and count == 0:
                 count += 1

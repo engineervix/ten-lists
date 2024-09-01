@@ -73,7 +73,7 @@ def test_m3u_content(day, listening_list):
     # and the m3u file creation function doesn't check if file exists
     m3u_filename = "day" + str(day).zfill(3) + ".m3u"
     listening_list.insert(0, "#EXTM3U")
-    with open(m3u_filename, "r") as m3u:
+    with open(m3u_filename) as m3u:
         assert m3u.read().splitlines() == listening_list  # nosec
 
 

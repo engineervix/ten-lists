@@ -15,7 +15,6 @@ with the CLOUDINARY_URL environment variable defined as follows
 """
 
 import glob
-import io
 import json
 import os
 from itertools import dropwhile
@@ -108,7 +107,7 @@ for count, (book, chapters) in enumerate(bible_data, start=1):
     output = os.path.join(scripts_dir, f"{zcount}_{book}.json")
     print(f"connecting to Cloudinary to retrieve data for {book}")
     file_info = cloudinary.Search().expression(book.replace(" ", "")).max_results(chapters).execute()
-    with io.open(output, "a", encoding="utf-8") as f:
+    with open(output, "a", encoding="utf-8") as f:
         f.write(json.dumps(file_info, sort_keys=False, indent=2 * " ", ensure_ascii=False))
 
 cloudinary_search_results = []

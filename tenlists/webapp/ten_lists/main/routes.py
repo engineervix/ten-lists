@@ -6,7 +6,6 @@
 import os
 import time
 from datetime import datetime, timezone
-from typing import List
 
 from flask import Blueprint, abort, render_template, request
 from flask_restful import Resource, fields, marshal, reqparse
@@ -33,7 +32,7 @@ def index():
     return render_template("home.html", now=now)
 
 
-mp3s: List = []
+mp3s: list = []
 
 
 def mp3_duration(seconds):
@@ -93,7 +92,7 @@ class MP3ListAPI(Resource):
         )
         self.reqparse.add_argument("artist", type=str, default="", location="json")
         self.reqparse.add_argument("album", type=str, default="", location="json")
-        super(MP3ListAPI, self).__init__()
+        super().__init__()
 
     def get(self):
 

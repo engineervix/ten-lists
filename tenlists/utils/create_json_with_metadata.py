@@ -15,7 +15,6 @@ get the metadata using eyeD3.
 """
 
 import glob
-import io
 import json
 import os
 import subprocess
@@ -77,5 +76,5 @@ for idx, _list in enumerate(THE_TEN_LISTS, start=1):
     list_prefix = f"list_{str(idx).zfill(2)}"
     NEW_LIST_OF_TENS.append({list_prefix: _temp_list})
 
-with io.open("ten_lists.json", "a", encoding="utf-8") as f:
+with open("ten_lists.json", "a", encoding="utf-8") as f:
     f.write(json.dumps(NEW_LIST_OF_TENS, sort_keys=False, indent=2 * " ", ensure_ascii=False))

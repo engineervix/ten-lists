@@ -6,7 +6,6 @@ Each text file represents a separate list.
 """
 
 import glob
-import io
 import json
 import os
 
@@ -32,5 +31,5 @@ for idx, _list in enumerate(THE_TEN_LISTS, start=1):
     list_prefix = f"list_{str(idx).zfill(2)}"
     NEW_LIST_OF_TENS.append({list_prefix: _temp_list})
 
-with io.open("ten_lists_slim.json", "a", encoding="utf-8") as f:
+with open("ten_lists_slim.json", "a", encoding="utf-8") as f:
     f.write(json.dumps(NEW_LIST_OF_TENS, sort_keys=False, indent=2 * " ", ensure_ascii=False))
