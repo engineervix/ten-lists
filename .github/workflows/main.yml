@@ -1,0 +1,127 @@
+name: Continuous Integration
+
+# Enable Buildkit and let compose use it to speed up image building
+env:
+  DOCKER_BUILDKIT: 1
+  COMPOSE_DOCKER_CLI_BUILD: 1
+
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
+
+
+jobs:
+  lint:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Black
+        run: |
+          black . --check
+
+      - name: isort
+        run: |
+          isort . --check-only --profile black
+
+      - name: Flake8
+        run: |
+          flake8 tests tenlists
+
+  test:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: 'pip'
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - id: node-cache
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key:${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+
+      - if: steps.node-cache.outputs.cache-hit != 'true'
+        run: |
+          npm ci --no-optional --no-audit --progress=false
+
+      - name: System Dependencies
+        shell: bash
+        run: |
+          sudo apt-get update --yes --quiet
+          sudo apt-get install --yes --quiet --no-install-recommends ffmpeg
+          sudo npm install -g grunt-cli
+          grunt all
+
+      - name: Install Python dependencies & testing tools
+        shell: bash
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install coveralls
+          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+          chmod +x ./cc-test-reporter
+          curl https://deepsource.io/cli | sh
+
+      - name: Create .env file for development
+        shell: bash
+        run: |
+          mkdir -p env/
+          touch env/.dev.env
+          echo "TENLISTS_SECRET_KEY_DEV='d765978f74057742ccb70338711946f356aa194e2e0f79f7373c9cbad3c34c54'" >> env/.dev.env
+          echo "MAIL_SERVER_DEV=smtp.mailtrap.io" >> env/.dev.env
+          echo "MAIL_PORT_DEV=2525" >> env/.dev.env
+          echo "TENLISTS_EMAIL_USER_DEV=" >> env/.dev.env
+          echo "TENLISTS_EMAIL_PWD_DEV=" >> env/.dev.env
+          echo "MAIL_USE_TLS=True" >> env/.dev.env
+          echo "MAIL_USE_SSL=False" >> env/.dev.env
+          echo "TENLISTS_MP3_CLOUD_STORAGE_BASE_URL=https://example.com/path/to/folder" >> env/.dev.env
+          echo "TENLISTS_API_BASE=http://localhost:5000/ten-lists/api/v1.0/mp3s" >> env/.dev.env
+
+      - name: Run tests
+        run: |
+          ./cc-test-reporter before-build
+          pytest
+          coveralls
+          ./cc-test-reporter after-build --coverage-input-type coverage.py
+          ./bin/deepsource report --analyzer test-coverage --key python --value-file ./coverage.xml
+
+      - name: Coveralls
+        uses: coverallsapp/github-action@v2
+        with:
+          github-token: ${{ github.token }}
+
+      - name: Codacy Coverage Reporter
+        uses: codacy/codacy-coverage-reporter-action@v1.3.0
+        with:
+          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          # or
+          # api-token: ${{ secrets.CODACY_API_TOKEN }}
+          coverage-reports: coverage.xml
