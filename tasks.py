@@ -9,7 +9,7 @@ from invoke import task
 @task
 def dev(c):
     """run the Flask development server"""
-    c.run("python manage.py runserver --host 0.0.0.0 --port 8000", pty=True)
+    c.run("python manage.py run --host 0.0.0.0 --port 8000", pty=True)
 
 
 @task
