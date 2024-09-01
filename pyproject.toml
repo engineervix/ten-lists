@@ -35,6 +35,8 @@ pyfiglet = "1.0.2"
 
 # Utils
 bpython = "0.23"
+# https://stackoverflow.com/questions/69919970/no-module-named-distutils-util-but-distutils-installed
+setuptools = "74.0.0"
 
 # Production
 gunicorn = "23.0.0"
@@ -51,7 +53,6 @@ invoke = "2.2.0"
 pre-commit = "2.14.0"
 pyupgrade = "3.17.0"
 ruff = "0.6.3"
-setuptools = "74.0.0"
 tomli = "2.0.1"
 
 [tool.poetry.group.test]
