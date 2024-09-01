@@ -4,7 +4,8 @@ This project provides both a CLI (using [click](https://click.palletsprojects.co
 
 > You can see the webapp in action [here](https://ten.dumela.cc/)
 
-[![python3.8](https://img.shields.io/badge/python-3.8-brightgreen.svg)](https://python.org/)
+[![Continuous Integration](https://github.com/engineervix/ten-lists/actions/workflows/main.yml/badge.svg)](https://github.com/engineervix/ten-lists/actions/workflows/main.yml)
+[![python3.12](https://img.shields.io/badge/python-3.12-brightgreen.svg)](https://python.org/)
 [![Coverage Status](https://coveralls.io/repos/github/engineervix/ten-lists/badge.svg)](https://coveralls.io/github/engineervix/ten-lists)
 [![Maintainability](https://api.codeclimate.com/v1/badges/0f58287b5eaf57213fa2/maintainability)](https://codeclimate.com/github/engineervix/ten-lists/maintainability)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/f566d7c0bd464cb2b17ef9604b61a748)](https://www.codacy.com/gh/engineervix/ten-lists/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=engineervix/ten-lists&amp;utm_campaign=Badge_Grade)
@@ -54,11 +55,11 @@ If you don't have Docker and Docker Compose, then click the respective links abo
 
 Good to have if you'd like to hack on the project. Not required if you just wanna run it, in which case Docker and Docker Compose will suffice.
 
-- A [Python](https://www.python.org/) **3.8** virtual environment. You can use any tool of your choice to manage multiple Python versions on your machine.
+- A [Python](https://www.python.org/) **3.12** virtual environment. You can use any tool of your choice to manage multiple Python versions on your machine.
   - Activate your python virtual environment and `pip install --upgrade pip`
   - Install dependencies: `pip install -r requirements.txt`.
   - Setup [pre-commit](https://pre-commit.com/) by running `pre-commit install` followed by `pre-commit install --hook-type commit-msg`. Optionally run `pre-commit run --all-files` to make sure your pre-commit setup is okay.
-- [Node.js](https://nodejs.org/en/) **v14**
+- [Node.js](https://nodejs.org/en/) **v16**
   - Install the Node.js dependencies via `npm install`
 
 ### Installation
