@@ -1,8 +1,8 @@
 #################################################################################
-# use node:14-bookworm as the base image for building the frontend
+# use node:16-bookworm as the base image for building the frontend
 #################################################################################
 
-FROM node:14-bookworm AS frontend-builder
+FROM node:16-bookworm AS frontend-builder
 
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
 # where available (npm@5+)
@@ -53,11 +53,6 @@ RUN apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-r
 # Use user "flask" to run the build commands below and the server itself.
 USER flask
 
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
-# where available (npm@5+)
-COPY ./package*.json  /home/flask/app/
-RUN npm ci
-
 # install python dependencies
 ENV VIRTUAL_ENV=/home/flask/venv
 RUN python -m venv $VIRTUAL_ENV
@@ -88,7 +83,7 @@ FROM production AS dev
 USER root
 
 # set environment variables
-ENV NODE_MAJOR=14 \
+ENV NODE_MAJOR=16 \
     PATH=/home/flask/app/node_modules/.bin:$PATH
 
 # Install node (Keep the version in sync with the node container above)
