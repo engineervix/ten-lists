@@ -15,7 +15,7 @@ version = "1.0.1"
 python = "~3.12"
 
 # Core
-colorama = "0.4.4"
+colorama = "0.4.6"
 eyed3 = "0.9.6"
 flask = "2.3.3"
 flask-bcrypt = "0.7.1"
