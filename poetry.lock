@@ -560,13 +560,13 @@ yaml-plugin = ["ruamel.yaml (>=0.16.12,<0.17.0)"]
 
 [[package]]
 name = "faker"
-version = "8.11.0"
+version = "8.16.0"
 description = "Faker is a Python package that generates fake data for you."
 optional = false
 python-versions = ">=3.6"
 files = [
-    {file = "Faker-8.11.0-py3-none-any.whl", hash = "sha256:3e737576ff50cd98dfed643d6b3fd63194eca9df00e7f595960fe7da5220723d"},
-    {file = "Faker-8.11.0.tar.gz", hash = "sha256:b9e81e9da3dda3ac54189e034cfb943de576a259caeb226ccab43fcbcf6a7891"},
+    {file = "Faker-8.16.0-py3-none-any.whl", hash = "sha256:bb10913b9d3ac2aa37180f816c82040e81f9e0c32cb08445533f293cec8930bf"},
+    {file = "Faker-8.16.0.tar.gz", hash = "sha256:d70b375d0af0e4c3abd594003691a1055a96281a414884e623d27bccc7d781da"},
 ]
 
 [package.dependencies]
@@ -1682,4 +1682,4 @@ email = ["email-validator"]
 [metadata]
 lock-version = "2.0"
 python-versions = "~3.12"
-content-hash = "eb4d69b69c6041d977730196762fe2916c79c6bfafa4f88958accd820b388fa2"
+content-hash = "186cf6cd56d3243ab689dcea0ec616ea73ce8f86bee9c8c7de356192de002fd9"
