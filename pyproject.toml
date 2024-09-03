@@ -16,7 +16,7 @@ python = "~3.12"
 
 # Core
 colorama = "0.4.6"
-eyed3 = "0.9.6"
+eyed3 = "0.9.7"
 flask = "2.3.3"
 flask-bcrypt = "0.7.1"
 flask-debugtoolbar = "0.15.1"
