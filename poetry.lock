@@ -702,17 +702,21 @@ Flask = "*"
 
 [[package]]
 name = "flask-moment"
-version = "1.0.2"
+version = "1.0.6"
 description = "Formatting of dates and times in Flask templates using moment.js."
 optional = false
 python-versions = ">=3.6"
 files = [
-    {file = "Flask-Moment-1.0.2.tar.gz", hash = "sha256:1faf8fea08080d2396f0c878b92bd0429635977a8f96c553a0d43f15fd8d0213"},
-    {file = "Flask_Moment-1.0.2-py3-none-any.whl", hash = "sha256:cce7c4f39fcf0732bb62a07fbf6cc6305ab5700272fd1c5743c0c0968450a469"},
+    {file = "Flask_Moment-1.0.6-py3-none-any.whl", hash = "sha256:3ae8baea20a41e99f457b9710ecd1368911dd5133f09a27583eb0dcb3491e31d"},
+    {file = "flask_moment-1.0.6.tar.gz", hash = "sha256:2f8969907cbacde4a88319792e8f920ba5c9dd9d99ced2346cad563795302b88"},
 ]
 
 [package.dependencies]
 Flask = "*"
+packaging = ">=14.1"
+
+[package.extras]
+docs = ["sphinx"]
 
 [[package]]
 name = "flask-restful"
@@ -1680,4 +1684,4 @@ email = ["email-validator"]
 [metadata]
 lock-version = "2.0"
 python-versions = "~3.12"
-content-hash = "712021459cfb1bb0ce0f87a4d03cfa2242e0a4191d65aed7f65e53384faf2900"
+content-hash = "340cdd867d1de1529ef2acac1912d8293afb9004a77c06abd8193587a4f4d5f1"
