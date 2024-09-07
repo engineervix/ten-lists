@@ -33,7 +33,7 @@ python-dotenv = "0.21.1"
 pyfiglet = "1.0.2"
 
 # Utils
-bpython = "0.23"
+bpython = "0.24"
 # https://stackoverflow.com/questions/69919970/no-module-named-distutils-util-but-distutils-installed
 setuptools = "74.0.0"
 
