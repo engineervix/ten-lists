@@ -46,7 +46,7 @@ optional = true
 
 [tool.poetry.group.dev.dependencies]
 black = "24.8.0"
-commitizen = "3.29.0"
+commitizen = "3.29.1"
 honcho = "1.1.0"
 invoke = "2.2.0"
 pre-commit = "2.21.0"
