@@ -637,25 +637,17 @@ Flask = "*"
 
 [[package]]
 name = "flask-debugtoolbar"
-version = "0.15.1"
+version = "0.16.0"
 description = "A toolbar overlay for debugging Flask applications."
 optional = false
-python-versions = ">=3.7"
+python-versions = ">=3.8"
 files = [
-    {file = "Flask_DebugToolbar-0.15.1-py3-none-any.whl", hash = "sha256:f3043d96e9fb9bc3b13ee8a02a5ecc531974f2fdceefa19ce3ba4a700ad40f36"},
-    {file = "flask_debugtoolbar-0.15.1.tar.gz", hash = "sha256:8c76666f1553641567da8d91c74fe92caa072cfc01429564aa5e109de10b1806"},
+    {file = "flask_debugtoolbar-0.16.0-py3-none-any.whl", hash = "sha256:2857a58ef20b88cf022a88bb7f0c6f6be1fb91a2e8b2d9fcc9079357a692083e"},
+    {file = "flask_debugtoolbar-0.16.0.tar.gz", hash = "sha256:3b925d4dcc09205471e5021019dfeb0eb6dabd6c184de16a3496dfb1f342afe1"},
 ]
 
 [package.dependencies]
-Blinker = "*"
-Flask = ">=2.2.0"
-itsdangerous = "*"
-MarkupSafe = "*"
-packaging = "*"
-werkzeug = "*"
-
-[package.extras]
-docs = ["Pallets-Sphinx-Themes", "Sphinx (>=1.2.2)"]
+flask = ">=2.3.0"
 
 [[package]]
 name = "flask-httpauth"
@@ -1684,4 +1676,4 @@ email = ["email-validator"]
 [metadata]
 lock-version = "2.0"
 python-versions = "~3.12"
-content-hash = "61dfbc54599b30ede5d06283faa1ea94c6d1b03ce3a44b9c571f103e8ed0644c"
+content-hash = "9091323a2984543c3d977324e773ccaac990a41da528965e0679f588066b39a0"
