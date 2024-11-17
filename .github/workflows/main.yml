@@ -61,7 +61,7 @@ jobs:
     runs-on: ubuntu-22.04
     needs: [lint]
     container:
-      image: python:3.12-slim-bookworm
+      image: python:3.13-slim-bookworm
 
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
