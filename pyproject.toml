@@ -51,7 +51,7 @@ honcho = "1.1.0"
 invoke = "2.2.0"
 pre-commit = "2.21.0"
 pyupgrade = "3.19.0"
-ruff = "0.7.4"
+ruff = "0.8.2"
 tomli = "2.1.0"
 
 [tool.poetry.group.test]
