@@ -12,7 +12,7 @@ version = "1.0.1"
 
 [tool.poetry.dependencies]
 # Platform
-python = "~3.12"
+python = "~3.13.0"
 
 # Core
 colorama = "0.4.6"

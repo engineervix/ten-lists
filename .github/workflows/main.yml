@@ -27,7 +27,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
+          python-version: "3.13"
 
       - id: poetry-cache
         uses: actions/cache@v4
@@ -61,7 +61,7 @@ jobs:
     runs-on: ubuntu-22.04
     needs: [lint]
     container:
-      image: python:3.12-slim-bookworm
+      image: python:3.13-slim-bookworm
 
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -157,7 +157,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
+          python-version: "3.13"
 
       - id: poetry-cache
         uses: actions/cache@v4
