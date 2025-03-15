@@ -4,6 +4,23 @@ All notable changes to this project will be documented here.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project attempts to adhere to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v2.0.0](https://github.com/engineervix/ten-lists/compare/v1.1.0...v2.0.0) (2025-03-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* Rewrite using JavaScript, with a primary focus on
+implementing a simple web app with a good UI/UX
+
+### 🚀 Features
+
+* complete rewrite of the application ([055c311](https://github.com/engineervix/ten-lists/commit/055c311ff349ec8c76ac4a33fdee7410b72ea4d4))
+
+
+### 👷 CI/CD
+
+* update softprops/action-gh-release action to v2 ([#419](https://github.com/engineervix/ten-lists/issues/419)) ([188b6d1](https://github.com/engineervix/ten-lists/commit/188b6d1c1ddc3998d0fa28b362d7b418a1aae895))
+
 ## [v1.1.0](https://github.com/engineervix/ten-lists/compare/v1.0.1...v1.1.0) (2025-03-15)
 
 
