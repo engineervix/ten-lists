@@ -4,6 +4,83 @@ All notable changes to this project will be documented here.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project attempts to adhere to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v1.1.0](https://github.com/engineervix/ten-lists/compare/v1.0.1...v1.1.0) (2025-03-15)
+
+
+### 🚀 Features
+
+* upgrade to flask v2 and update several outdated dependencies ([f7a7aff](https://github.com/engineervix/ten-lists/commit/f7a7aff0a2e4f61205b1932333b802b4ebdd1820))
+
+
+### ♻️ Code Refactoring
+
+* `datetime.utcnow()` is deprecated ([0d6d498](https://github.com/engineervix/ten-lists/commit/0d6d4988d7f0f928b794c8c359ccb49bd7021ccf))
+* fix port number ([b306b9f](https://github.com/engineervix/ten-lists/commit/b306b9f0b0e6ee24d0e8ccb42bf825dd903b8f89))
+* fix some broken things ([f2eda19](https://github.com/engineervix/ten-lists/commit/f2eda1936bcc510a4ee375c5baad883f8b494cb7))
+* make things work with Flask v2 ([18eddc3](https://github.com/engineervix/ten-lists/commit/18eddc38c978f719ab1decceec2d994e042844ec))
+
+
+### 👷 CI/CD
+
+* fix config ([cf564c6](https://github.com/engineervix/ten-lists/commit/cf564c6745a5c777b795670129c9c4ff58a7c174))
+* make test job depend on lint job ([8104407](https://github.com/engineervix/ten-lists/commit/810440742ea0585a4ddabf85a3194c5825c19b71))
+* more fixes ([8c9de05](https://github.com/engineervix/ten-lists/commit/8c9de05951e45f64ba35b92e9719848cdfa21ef8))
+* no need to install grunt-cli ([e71644b](https://github.com/engineervix/ten-lists/commit/e71644b7d501f2bcb11875e3669c2a423eb9f7f0))
+* npm install -g grunt-cli ([c7ac2d3](https://github.com/engineervix/ten-lists/commit/c7ac2d3df4bf391e64e8bb9556246f8613244de2))
+* run tests in a container ([202e2d4](https://github.com/engineervix/ten-lists/commit/202e2d49d373472267a2c212927c58747d1d4eb8))
+* switch to Github Actions ([8917dec](https://github.com/engineervix/ten-lists/commit/8917dec987ceac678b333e64dc099c98d69ed4a0))
+* update how environment variables are set ([2e3847e](https://github.com/engineervix/ten-lists/commit/2e3847e9820c5a54833685e5b3391ce0927e5194))
+
+
+### 🐛 Bug Fixes
+
+* issue with python 3.12 and distutils ([08bc941](https://github.com/engineervix/ten-lists/commit/08bc941462abff39a6506fae042657c26fda8a5b))
+
+
+### ⚙️ Build System
+
+* add honcho & bump isort and flake8 ([dddce6f](https://github.com/engineervix/ten-lists/commit/dddce6f8650cf011d46b1c07d6109155bba721eb))
+* **deps-dev:** update dependency black to v24.10.0 ([#401](https://github.com/engineervix/ten-lists/issues/401)) ([8949ff1](https://github.com/engineervix/ten-lists/commit/8949ff1b2d302b599a606f1fb0f0beb1eb6f69f9))
+* **deps-dev:** update dependency bpython to v0.24 ([6f2fdc8](https://github.com/engineervix/ten-lists/commit/6f2fdc81e75a77387c56a2c3d67c7e89afe7291c))
+* **deps-dev:** update dependency commitizen to v3.29.1 ([6ff9481](https://github.com/engineervix/ten-lists/commit/6ff948171f263b4199d111085a8527aef56215af))
+* **deps-dev:** update dependency commitizen to v3.31.0 ([#402](https://github.com/engineervix/ten-lists/issues/402)) ([d129873](https://github.com/engineervix/ten-lists/commit/d12987379bbe0d424761406c725c5a1b285eddfb))
+* **deps-dev:** update dependency faker to v8.16.0 ([174a045](https://github.com/engineervix/ten-lists/commit/174a045f478f4f54dd1ade2ee74dca039dc0d157))
+* **deps-dev:** update dependency gtts to v2.5.3 ([2d27fba](https://github.com/engineervix/ten-lists/commit/2d27fba608762ced758939a007806544fc6e1b4c))
+* **deps-dev:** update dependency gtts to v2.5.4 ([#399](https://github.com/engineervix/ten-lists/issues/399)) ([3fb7543](https://github.com/engineervix/ten-lists/commit/3fb754387aa67a144ee0eea232092fe7ff72993e))
+* **deps-dev:** update dependency pre-commit to v2.21.0 ([c15e451](https://github.com/engineervix/ten-lists/commit/c15e451b818f8c99e79dcb455bf9ff139949e4ad))
+* **deps-dev:** update dependency pyupgrade to v3.19.0 ([#403](https://github.com/engineervix/ten-lists/issues/403)) ([414c794](https://github.com/engineervix/ten-lists/commit/414c79443fc89971909a90b552862df7f152fc9c))
+* **deps-dev:** update dependency ruff to v0.6.4 ([87d5efa](https://github.com/engineervix/ten-lists/commit/87d5efa4fb81876a7e7d031c6bf0cb6e7e34d31b))
+* **deps-dev:** update dependency ruff to v0.6.6 ([28d7512](https://github.com/engineervix/ten-lists/commit/28d75120d069a26bb957d2e54ee81d26e1495409))
+* **deps-dev:** update dependency ruff to v0.6.8 ([871c879](https://github.com/engineervix/ten-lists/commit/871c8797dbe548643b06296f4931dd2909448b71))
+* **deps-dev:** update dependency ruff to v0.7.4 ([#404](https://github.com/engineervix/ten-lists/issues/404)) ([30e7cd7](https://github.com/engineervix/ten-lists/commit/30e7cd7caf9d39033cf05c2d8b8ca8540c2cd498))
+* **deps-dev:** update dependency ruff to v0.8.2 ([#410](https://github.com/engineervix/ten-lists/issues/410)) ([5db7cec](https://github.com/engineervix/ten-lists/commit/5db7cece5f4f09e06aedacbb586c2c6dfc0baf31))
+* **deps-dev:** update dependency ruff to v0.8.3 ([#412](https://github.com/engineervix/ten-lists/issues/412)) ([19e4945](https://github.com/engineervix/ten-lists/commit/19e494588aa14cbd5c23c1cc786e3bc10337695e))
+* **deps-dev:** update dependency sentry-sdk to v2.14.0 ([873f276](https://github.com/engineervix/ten-lists/commit/873f27645ebb75c5d6b2107cc04cefe83aa07837))
+* **deps-dev:** update dependency sentry-sdk to v2.18.0 ([#405](https://github.com/engineervix/ten-lists/issues/405)) ([40c4de2](https://github.com/engineervix/ten-lists/commit/40c4de257a62cd47f46c3722137e219aa964f7e5))
+* **deps-dev:** update dependency sentry-sdk to v2.19.2 ([#411](https://github.com/engineervix/ten-lists/issues/411)) ([26f8f65](https://github.com/engineervix/ten-lists/commit/26f8f650ccdc9e22c07b674cdc3950bcd36ffb01))
+* **deps-dev:** update dependency setuptools to v74.1.2 ([8edaeca](https://github.com/engineervix/ten-lists/commit/8edaecad06d6304e208be5361dee591f139c14c6))
+* **deps-dev:** update dependency setuptools to v74.1.3 ([6499b5d](https://github.com/engineervix/ten-lists/commit/6499b5d50dd9bd3c7e43da6b91bd119b8ebef607))
+* **deps-dev:** update dependency tomli to v2.1.0 ([#406](https://github.com/engineervix/ten-lists/issues/406)) ([af9ccc3](https://github.com/engineervix/ten-lists/commit/af9ccc3fed921c6e074f1da29dae500fed62a9bf))
+* **deps-dev:** update dependency tomli to v2.2.1 ([#413](https://github.com/engineervix/ten-lists/issues/413)) ([d697873](https://github.com/engineervix/ten-lists/commit/d697873603e79d9d9c4b35561887b7eddf97b986))
+* **deps-dev:** update dependency tqdm to v4.67.0 ([#407](https://github.com/engineervix/ten-lists/issues/407)) ([4f95a6e](https://github.com/engineervix/ten-lists/commit/4f95a6eb4009ce331ad954684b794e9b581af54c))
+* **deps-dev:** update dependency tqdm to v4.67.1 ([#409](https://github.com/engineervix/ten-lists/issues/409)) ([589f9e1](https://github.com/engineervix/ten-lists/commit/589f9e1cd69fb215bb91295706d8153a1609e6ce))
+* **deps:** update dependency colorama to v0.4.6 ([656198d](https://github.com/engineervix/ten-lists/commit/656198d190aed46532ed5c4d7191e541a224ef40))
+* **deps:** update dependency eyed3 to v0.9.7 ([b299353](https://github.com/engineervix/ten-lists/commit/b29935392edd731dcf9f0899b731d2572b1af1c7))
+* **deps:** update dependency flask-debugtoolbar to v0.16.0 ([#400](https://github.com/engineervix/ten-lists/issues/400)) ([084e21e](https://github.com/engineervix/ten-lists/commit/084e21ee40b53d08ae0440d4fd58d3fae17c3440))
+* **deps:** update dependency flask-httpauth to v4.8.0 ([778d284](https://github.com/engineervix/ten-lists/commit/778d2843e92ae0625481a138a6a7376d72f1e0a9))
+* **deps:** update dependency flask-mail to v0.10.0 ([fdf1b5c](https://github.com/engineervix/ten-lists/commit/fdf1b5cb2f1a661bb7e34668651eca7311d2ee6b))
+* **deps:** update dependency flask-moment to v1.0.6 ([8c5ea96](https://github.com/engineervix/ten-lists/commit/8c5ea961097cd1b087f90867f919ec137b070365))
+* **deps:** update dependency flask-restful to v0.3.10 ([1dfe973](https://github.com/engineervix/ten-lists/commit/1dfe973a349b6928406f3ac767d05bb0f9e5e84c))
+* **deps:** update dependency flask-talisman to v1.1.0 ([4f3bf9a](https://github.com/engineervix/ten-lists/commit/4f3bf9aa4518d19af76453b4d60a01925dec79e7))
+* **deps:** update dependency pytest-flask to v1.3.0 ([de83cdb](https://github.com/engineervix/ten-lists/commit/de83cdb4e070b5ef714738f9fef3deacb79c3ff6))
+* **deps:** update dependency python-dotenv to v0.21.1 ([84c566d](https://github.com/engineervix/ten-lists/commit/84c566d8c73e6ecaf081712f3826b04c0481fd75))
+* flask-script isn't used ([54d7b1d](https://github.com/engineervix/ten-lists/commit/54d7b1dcfb347f050429f87cd31f9b01e5a17add))
+* improve docker setup ([7c10ce1](https://github.com/engineervix/ten-lists/commit/7c10ce167e78e8080ac9857117d1b55891b92b0f))
+* specify Node version ([c68a1b6](https://github.com/engineervix/ten-lists/commit/c68a1b6d4e1a93ae5c942a5683a1bf59c7d5ca30))
+* switch to Node.js 16 ([cb1e892](https://github.com/engineervix/ten-lists/commit/cb1e892ee94be7925182d6f1b90f4de2aae5dbc3))
+* switch to poetry ([88ab13f](https://github.com/engineervix/ten-lists/commit/88ab13fb678b659b807a5147ef7b706e1f748023))
+* we don't need libpq-dev ([29fd5df](https://github.com/engineervix/ten-lists/commit/29fd5df844c7d03778de3b7abafa5c3024f86f45))
+
 ## [v1.0.1](https://github.com/engineervix/ten-lists/compare/v1.0.0...v1.0.1) (2022-09-30)
 
 
