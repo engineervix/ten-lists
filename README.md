@@ -2,6 +2,10 @@
 
 A web application that facilitates listening 👂🎧🔊 to the Holy Bible based on [Professor Grant Horner's Bible-Reading System](https://sohmer.net/media/professor_grant_horners_bible_reading_system.pdf).
 
+![desktop](https://github.com/user-attachments/assets/85d38838-2b04-4dcc-afed-95320cc2b5f1)
+
+![mobile](https://github.com/user-attachments/assets/4f05409a-5ff3-4a70-ab72-4eda9df57d20)
+
 [![Continuous Integration](https://github.com/engineervix/ten-lists/actions/workflows/main.yml/badge.svg)](https://github.com/engineervix/ten-lists/actions/workflows/main.yml)
 [![Coverage](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/engineervix/b8c0c76feb9db65c08ca3190cc90e46a/raw/covbadge.json)](https://github.com/engineervix/ten-lists/actions)
 
