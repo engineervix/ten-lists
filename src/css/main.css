@@ -1,0 +1,149 @@
+/* Import Tailwind CSS */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Styles */
+
+/* Base font family */
+@layer base {
+  html {
+    font-family: Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;
+  }
+}
+
+/* Theme toggle icon styles */
+.sun-icon {
+  display: none;
+}
+
+.moon-icon {
+  display: block;
+}
+
+[data-theme='night'] .sun-icon {
+  display: block;
+}
+
+[data-theme='night'] .moon-icon {
+  display: none;
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--b2));
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--bc) / 30%);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--bc) / 50%);
+}
+
+/* Reading items styling */
+.reading-item {
+  transition: all 0.2s ease-in-out;
+}
+
+.reading-item:hover {
+  transform: translateY(-2px);
+}
+
+.reading-item.active {
+  border-left: 4px solid hsl(var(--p));
+}
+
+/* stylelint-disable selector-class-pattern */
+
+/* Card styles for player container */
+.player-card {
+  @apply card bg-base-100 shadow-lg overflow-hidden;
+
+  .plyr {
+    @apply rounded-none;
+  }
+
+  /* Dark mode adjustments for player */
+  [data-theme='night'] & {
+    /* Make the player background match the card better in dark mode */
+    .plyr {
+      @apply bg-base-200;
+    }
+
+    /* Style improvements for dark mode */
+    .plyr--audio .plyr__controls {
+      @apply bg-base-200 text-base-content;
+    }
+
+    /* Button hover states for dark mode */
+    .plyr__control:hover {
+      @apply bg-primary/20;
+    }
+
+    /* Progress bar adjustments for dark mode */
+    .plyr__progress input[type='range'],
+    .plyr__volume input[type='range'] {
+      @apply text-primary;
+    }
+  }
+}
+
+/* Responsive adjustments for mobile */
+@media (width <= 768px) {
+  .reading-item {
+    padding: 0.75rem;
+  }
+
+  /* Make plyr controls larger on mobile for better tap targets */
+  .plyr--audio .plyr__controls {
+    padding: 15px;
+  }
+
+  .plyr__control {
+    padding: 10px;
+  }
+
+  /* Ensure the audio player is fully responsive */
+  audio,
+  .plyr {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Increase tap target size for player buttons */
+  .player-controls button {
+    min-width: 48px;
+    min-height: 48px;
+  }
+}
+
+/* Specific Plyr mobile optimizations */
+@media (width <= 480px) {
+  /* Increase the size of the plyr controls */
+  .plyr__controls {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  /* Make progress bar full width on its own row */
+  .plyr__progress {
+    flex: 0 0 100%;
+    margin-bottom: 8px;
+  }
+
+  /* Ensure buttons have proper spacing */
+  .plyr__controls button,
+  .plyr__volume {
+    margin: 0 4px;
+  }
+}
+
+/* stylelint-enable selector-class-pattern */

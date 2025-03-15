@@ -1,2 +1,0 @@
-web: inv dev
-frontend: npm run start
