@@ -419,7 +419,7 @@ export const tenLists = [
   },
   {
     id: 3,
-    name: 'Pauline Epistles',
+    name: "Paul's Epistles & Hebrews",
     books: [
       'Romans',
       '1 Corinthians',
@@ -434,7 +434,7 @@ export const tenLists = [
   },
   {
     id: 4,
-    name: 'Other New Testament',
+    name: 'Epistles & Revelation',
     books: [
       '1 Thessalonians',
       '2 Thessalonians',
@@ -455,7 +455,7 @@ export const tenLists = [
   },
   {
     id: 5,
-    name: 'Wisdom Literature',
+    name: 'Old Testament Wisdom Literature',
     books: ['Job', 'Ecclesiastes', 'Song of Solomon'],
     totalDays: 62,
   },
