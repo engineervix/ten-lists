@@ -1,202 +1,152 @@
-name: Continuous Integration
-
-# Enable Buildkit and let compose use it to speed up image building
-env:
-  DOCKER_BUILDKIT: 1
-  COMPOSE_DOCKER_CLI_BUILD: 1
-  POETRY_VERSION: 1.8.3 # Make sure this matches the Dockerfile
+name: CI/CD
 
 on:
-  pull_request:
-    branches:
-      - master
   push:
-    branches:
-      - master
-    tags:
-      - "v*"
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+    branches: [main]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
 
 jobs:
-  lint:
-    runs-on: ubuntu-22.04
-
+  deps:
+    runs-on: ubuntu-24.04
     steps:
-      - name: Checkout Code Repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          python-version: "3.12"
+          node-version-file: .nvmrc
+          cache: 'npm'
 
-      - id: poetry-cache
-        uses: actions/cache@v4
+      - name: Install dependencies
+        run: npm ci
+
+  lint:
+    needs: deps
+    runs-on: ubuntu-24.04
+    strategy:
+      matrix:
+        linter: [eslint, prettier, stylelint]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          path: .venv
-          key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
+          node-version-file: .nvmrc
+          cache: 'npm'
 
-      - if: steps.poetry-cache.outputs.cache-hit != 'true'
-        name: Install Poetry and Dependencies
-        shell: bash
-        run: |
-          pip install --upgrade pip
-          pip install poetry==$POETRY_VERSION
-          python -m venv .venv
-          source .venv/bin/activate
-          poetry install --with dev,test
+      - name: Install dependencies
+        run: npm ci
 
-      - name: ruff
-        shell: bash
-        run: |
-          source .venv/bin/activate
-          ruff check . --output-format=github
-
-      - name: Black
-        shell: bash
-        run: |
-          source .venv/bin/activate
-          black . --check
+      - name: Run ${{ matrix.linter }}
+        run: npm run ${{ matrix.linter }}
 
   test:
-    runs-on: ubuntu-22.04
-    needs: [lint]
-    container:
-      image: python:3.12-slim-bookworm
-
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      FLASK_CONFIGURATION: development
-      FLASK_ENV: development
-      TENLISTS_SECRET_KEY_DEV: fake
-      MAIL_SERVER_DEV: smtp.mailtrap.io
-      MAIL_PORT_DEV: 2525
-      TENLISTS_EMAIL_USER_DEV: ''
-      TENLISTS_EMAIL_PWD_DEV: ''
-      MAIL_USE_TLS: True
-      MAIL_USE_SSL: False
-      TENLISTS_MP3_CLOUD_STORAGE_BASE_URL: https://example.com/path/to/folder
-      TENLISTS_API_BASE: http://localhost:8000/ten-lists/api/v1.0/mp3s
-
+    needs: deps
+    runs-on: ubuntu-24.04
+    outputs:
+      coverage: ${{ steps.extract_coverage.outputs.coverage }}
     steps:
-      - name: Checkout source code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: System Dependencies
-        shell: bash
-        run: |
-          apt-get update --yes --quiet
-          apt-get install --yes --quiet --no-install-recommends build-essential curl ffmpeg git
-          curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
-          apt-get install -y nodejs
-          npm install -g grunt-cli
-          npm ci --cache .npm --prefer-offline
-          grunt all
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: 'npm'
 
-      - name: Install Python dependencies & testing tools
-        shell: bash
-        run: |
-          pip install --upgrade pip
-          python -m pip install poetry==1.8.3
-          poetry install --with dev,test
-          curl https://deepsource.io/cli | sh
-
-      - name: Create .env file to simulate a development setup
-        shell: bash
-        run: |
-          mkdir -p env/
-          touch env/.dev.env
-          echo "TENLISTS_SECRET_KEY_DEV='fake'" >> env/.dev.env
-          echo "MAIL_SERVER_DEV=smtp.mailtrap.io" >> env/.dev.env
-          echo "MAIL_PORT_DEV=2525" >> env/.dev.env
-          echo "TENLISTS_EMAIL_USER_DEV=" >> env/.dev.env
-          echo "TENLISTS_EMAIL_PWD_DEV=" >> env/.dev.env
-          echo "MAIL_USE_TLS=True" >> env/.dev.env
-          echo "MAIL_USE_SSL=False" >> env/.dev.env
-          echo "TENLISTS_MP3_CLOUD_STORAGE_BASE_URL=https://example.com/path/to/folder" >> env/.dev.env
-          echo "TENLISTS_API_BASE=http://localhost:8000/ten-lists/api/v1.0/mp3s" >> env/.dev.env
+      - name: Install dependencies
+        run: npm ci
 
       - name: Run tests
+        run: npm run test:cov
+
+      - name: Extract test coverage
+        id: extract_coverage
         run: |
-          poetry run pytest
+          # Extract coverage percentage from the coverage report based on v8 provider in your config
+          COVERAGE=$(find .coverage -name "coverage-summary.json" -exec cat {} \; | grep -o '"pct":[0-9]*\.[0-9]*' | head -1 | cut -d':' -f2 || echo "0")
 
-      - name: DeepSource
-        uses: deepsourcelabs/test-coverage-action@master
-        with:
-          key: python
-          coverage-file: coverage.xml
-          dsn: ${{ secrets.DEEPSOURCE_DSN }}
+          # If JSON approach doesn't work, try alternative with grep on text report
+          if [ "$COVERAGE" = "0" ]; then
+            COVERAGE=$(find .coverage -name "index.html" -exec grep -o "Total.*[0-9]\+\.[0-9]\+%" {} \; | grep -o "[0-9]\+\.[0-9]\+%" | head -1 | tr -d "%" || echo "0")
+          fi
 
-      - name: Coveralls
-        uses: coverallsapp/github-action@v2
-        with:
-          github-token: ${{ github.token }}
+          # Remove any trailing whitespace and convert to integer if needed
+          COVERAGE=$(echo $COVERAGE | tr -d " ")
 
-      - name: Codacy Coverage Reporter
-        uses: codacy/codacy-coverage-reporter-action@v1.3.0
-        with:
-          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
-          # or
-          # api-token: ${{ secrets.CODACY_API_TOKEN }}
-          coverage-reports: coverage.xml
+          # Set as output
+          echo "coverage=$COVERAGE" >> $GITHUB_OUTPUT
 
-  # Creates a GitHub Release when the lint & test jobs succeeds, and only on pushes to tags.
-  release:
+  build:
     needs: [lint, test]
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build site
+        run: npm run build
+
+  coverage-badge:
+    needs: test
+    runs-on: ubuntu-24.04
+    if: (github.repository == 'engineervix/ten-lists') && (github.ref == 'refs/heads/main')
+    steps:
+      - name: Create Test Coverage Badge
+        uses: schneegans/dynamic-badges-action@v1.7.0
+        with:
+          auth: ${{ secrets.GIST_TOKEN }}
+          gistID: b8c0c76feb9db65c08ca3190cc90e46a
+          filename: covbadge.json
+          label: coverage
+          message: ${{ needs.test.outputs.coverage }}%
+          valColorRange: ${{ needs.test.outputs.coverage }}
+          minColorRange: 50
+          maxColorRange: 90
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: [build]
+    runs-on: ubuntu-24.04
     permissions:
       contents: write
-
-    if: needs.test.result == 'success' && startsWith( github.ref, 'refs/tags/v' )
-
-    runs-on: ubuntu-22.04
-
+    outputs:
+      release_name: ${{ steps.release_info.outputs.release_name }}
     steps:
-      - name: Check out the repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: extractions/setup-just@v3
         with:
-          python-version: "3.12"
+          just-version: '1.39.0'
 
-      - id: poetry-cache
-        uses: actions/cache@v4
-        with:
-          path: .venv
-          key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
-
-      - if: steps.poetry-cache.outputs.cache-hit != 'true'
-        name: Install Poetry and Dependencies
-        shell: bash
-        run: |
-          pip install --upgrade pip
-          pip install poetry==$POETRY_VERSION
-          python -m venv .venv
-          source .venv/bin/activate
-          poetry install --with dev,test
-
-      - name: Get the version
-        id: get_version
-        run: |
-          echo "${{ github.ref }}"
-          echo "VERSION=$(echo $GITHUB_REF | sed 's/refs\/tags\///')" >> $GITHUB_ENV
-
-      - name: Generate Release Title
-        id: get_release_title
-        shell: bash
-        run: |
-          export TODAY="($(TZ=Africa/Lusaka date --iso))"
-          echo "RELEASE_NAME=$VERSION $TODAY" >> $GITHUB_ENV
-
-      - name: Extract Release Notes
+      - name: Generate release notes
         # This creates a file LATEST_RELEASE_NOTES.md in the parent directory (../)
         shell: bash
         run: |
-          source .venv/bin/activate
-          invoke get-release-notes
+          just release-notes
 
-      - name: GitHub Release
+      - name: Set release info
+        id: release_info
+        run: |
+          TODAY="($(TZ=Africa/Lusaka date --iso))"
+          echo "release_name=${{ github.ref_name }} $TODAY" >> $GITHUB_OUTPUT
+
+      - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
-          name: ${{ env.RELEASE_NAME }}
+          name: ${{ steps.release_info.outputs.release_name }}
           body_path: ../LATEST_RELEASE_NOTES.md

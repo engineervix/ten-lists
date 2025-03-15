@@ -1,54 +1,13 @@
 {
   "extends": ["config:base"],
-  "pin": {
-    "automerge": true,
-    "labels": ["dependencies"]
-  },
   "packageRules": [
     {
-      "matchLanguages": ["python"],
-      "labels": ["dependencies", "python"],
-      "matchPackagePatterns": [
-        "flask*",
-        "colorama",
-        "eyed3",
-        "termcolor",
-        "python-dotenv",
-        "pyfiglet"
-      ],
-      "updateTypes": ["minor", "patch", "pin", "digest"],
-      "automerge": true,
-      "semanticCommitType": "build",
-      "semanticCommitScope": "deps"
-    },
-    {
-      "matchLanguages": ["python"],
-      "labels": ["dependencies", "python"],
-      "excludePackagePatterns": [
-        "flask*",
-        "colorama",
-        "eyed3",
-        "termcolor",
-        "python-dotenv",
-        "pyfiglet"
-      ],
-      "updateTypes": ["minor", "patch", "pin", "digest"],
-      "automerge": true,
-      "semanticCommitType": "build",
-      "semanticCommitScope": "deps-dev"
-    },
-    {
       "matchLanguages": ["javascript"],
+      "matchDepTypes": ["dependencies"],
       "labels": ["dependencies", "javascript"],
       "updateTypes": ["minor", "patch", "pin", "digest"],
       "automerge": true,
       "semanticCommitType": "build"
-    },
-    {
-      "matchManagers": ["pre-commit"],
-      "updateTypes": ["minor", "patch", "pin", "digest"],
-      "automerge": true,
-      "semanticCommitType": "ci"
     },
     {
       "matchDatasources": ["docker"],
@@ -57,12 +16,12 @@
       "semanticCommitType": "ci"
     },
     {
-      "matchManagers": ["circleci", "github-actions"],
+      "matchManagers": ["github-actions"],
       "updateTypes": ["patch", "pin", "digest"],
       "automerge": true,
       "semanticCommitType": "ci"
     }
   ],
   "timezone": "Africa/Lusaka",
-  "schedule": ["after 10pm every weekday", "every weekend"]
+  "schedule": ["every weekend"]
 }

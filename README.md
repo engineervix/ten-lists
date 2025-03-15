@@ -1,209 +1,130 @@
 # ten-lists
 
-This project provides both a CLI (using [click](https://click.palletsprojects.com/en/7.x/)) and a webapp (using [flask](https://palletsprojects.com/p/flask/)), which generate a playlist of 10 Bible Chapters (represented by 10 mp3 files) to be listened to on any given day _x_, according to [**Professor Grant Horner's Bible-Reading System**](https://sohmer.net/media/professor_grant_horners_bible_reading_system.pdf). The audio Bible is as downloaded from the [_Faith Comes by Hearing®_ website](http://www.bible.is/audiodownloader).
-
-> You can see the webapp in action [here](https://ten.dumela.cc/)
+A web application that facilitates listening 👂🎧🔊 to the Holy Bible based on [Professor Grant Horner's Bible-Reading System](https://sohmer.net/media/professor_grant_horners_bible_reading_system.pdf).
 
 [![Continuous Integration](https://github.com/engineervix/ten-lists/actions/workflows/main.yml/badge.svg)](https://github.com/engineervix/ten-lists/actions/workflows/main.yml)
-[![python3.12](https://img.shields.io/badge/python-3.12-brightgreen.svg)](https://python.org/)
-[![Coverage Status](https://coveralls.io/repos/github/engineervix/ten-lists/badge.svg)](https://coveralls.io/github/engineervix/ten-lists)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/f566d7c0bd464cb2b17ef9604b61a748)](https://www.codacy.com/gh/engineervix/ten-lists/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=engineervix/ten-lists&amp;utm_campaign=Badge_Grade)
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-[![DeepSource](https://static.deepsource.io/deepsource-badge-light-mini.svg)](https://deepsource.io/gh/engineervix/ten-lists/?ref=repository-badge)
+[![Coverage](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/engineervix/b8c0c76feb9db65c08ca3190cc90e46a/raw/covbadge.json)](https://github.com/engineervix/ten-lists/actions)
+
+[![Node v22](https://img.shields.io/badge/Node-v22-teal.svg)](https://nodejs.org/en/blog/release/v22.0.0)
+[![code style: prettier](https://img.shields.io/badge/code%20style-prettier-ff69b4.svg)](https://prettier.io/)
+
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
-[![Conventional Changelog](https://img.shields.io/badge/changelog-conventional-brightgreen.svg)](http://conventional-changelog.github.io)
+[![Conventional Changelog](https://img.shields.io/badge/changelog-conventional-brightgreen.svg)](https://github.com/conventional-changelog)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [ten-lists](#ten-lists)
-  - [Developer setup 💻](#developer-setup-)
-    - [Requirements](#requirements)
-      - [Essential](#essential)
-      - [Extra](#extra)
-    - [Installation](#installation)
-      - [You need the MP3 files](#you-need-the-mp3-files)
-      - [Concerning the CLI tool](#concerning-the-cli-tool)
-    - [Tests](#tests)
-  - [Deployment](#deployment)
-  - [Notes](#notes)
-  - [TODO](#todo)
-  - [Credits](#credits)
+- [Features](#features)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Deployment](#deployment)
+  - [Setting Up Your Cloud Storage](#setting-up-your-cloud-storage)
+    - [Common Cloud Storage Options](#common-cloud-storage-options)
+      - [Cloudflare R2](#cloudflare-r2)
+      - [Backblaze B2](#backblaze-b2)
+      - [AWS S3](#aws-s3)
+  - [Cloudflare Pages](#cloudflare-pages)
+  - [Other Platforms](#other-platforms)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-## Developer setup 💻
+## Features
 
-### Requirements
+- Generate a playlist of 10 Bible chapters for any day in the bible reading plan.
+- Audio playback of Bible chapters using [Plyr.io](https://plyr.io/)
+- Responsive design with [tailwindcss](https://tailwindcss.com/)
+- Interactive UI with [Alpine.js](https://alpinejs.dev/)
+- Bible reference tooltips via [Blue Letter Bible ScriptTagger](https://www.blueletterbible.org/webtools/BLB_ScriptTagger.cfm)
+- [`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) to remember your current reading day
 
-#### Essential
+## Getting Started
 
-Start by ensuring that you have [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/):
+### Prerequisites
 
-```sh
-# check that you have docker on your machine
-docker -v
-# check that you have docker-compose on your machine
-docker-compose -v
-```
-
-If you don't have Docker and Docker Compose, then click the respective links above for installation instructions for your platform.
-
-#### Extra
-
-Good to have if you'd like to hack on the project. Not required if you just wanna run it, in which case Docker and Docker Compose will suffice.
-
-- A [Python](https://www.python.org/) **3.12** virtual environment. You can use any tool of your choice to manage multiple Python versions on your machine.
-  - Activate your python virtual environment and `pip install --upgrade pip`
-  - Install dependencies: `pip install -r requirements.txt`.
-  - Setup [pre-commit](https://pre-commit.com/) by running `pre-commit install` followed by `pre-commit install --hook-type commit-msg`. Optionally run `pre-commit run --all-files` to make sure your pre-commit setup is okay.
-- [Node.js](https://nodejs.org/en/) **v16**
-  - Install the Node.js dependencies via `npm install`
+- Node.js (v22 or higher)
+- npm
 
 ### Installation
 
-Upon cloning this repository (or forking + cloning your fork), navigate to the cloned project directory.
+1. Clone the repository:
 
-Then create the required environment variables file (`.env`) by making a copy of the provided sample file `env/.env.example` and renaming it to `env/.dev.env`:
+   ```sh
+   git clone https://github.com/engineervix/ten-lists.git
+   cd ten-lists
+   ```
 
-```sh
-cp -v env/.env.example env/.dev.env
-```
+2. Install dependencies:
 
-> NOTE: If you're not using a docker-based deployment approach, then, for production, the file should be `.prod.env`, for staging `.stage.dev`
+   ```
+   npm install
+   ```
 
-You should be able to run the project without updating anything. If you wanna update the mail settings (which you probably don't really need immediately) -- you could use a service like [mailtrap.io](https://mailtrap.io/) for development. If you choose Mailtrap, then the variables to update are `TENLISTS_EMAIL_USER_DEV` and `TENLISTS_EMAIL_PWD_DEV`. The other settings are for use in production (`SERVER_NAME` and `SENTRY_DSN`).
+3. Set up audio files:
 
-Build the images and spin up the containers:
+   - During development, audio files should be placed in a `/public/audio` directory
+   - The audio files should follow this naming convention:
+     - Old Testament: `A[book-code]___[chapter]_[formatted-name]ENGESVC2DA.mp3`
+     - New Testament: `B[book-code]___[chapter]_[formatted-name]ENGESVC2DA.mp3`
 
-```sh
-docker-compose up -d --build
-```
+   For example:
 
-When you run the above for the first time, it may take a while, depending on your internet connection speed.
+   - Job 1: `A18___01_Job_________ENGESVC2DA.mp3`
+   - Song of Solomon 8: `A22___08_SongofSongs_ENGESVC2DA.mp3`
+   - Acts 1: `B05___01_Acts________ENGESVC2DA.mp3`
 
-If everything goes well, you should be able to get into the `web` container and access the shell.
+   That's the convention used for the ESV dramatized audio Bible downloaded from the [_Faith Comes by Hearing®_ website](http://www.bible.is/audiodownloader).
 
-```sh
-docker-compose exec web bash
-```
+4. Start the development server:
 
-Once you're in the container, run the following to simultaneously launch the Flask development server and the frontend tooling:
+   ```
+   npm run dev
+   ```
 
-```sh
-inv start
-```
-
-You can access the dev server at <http://127.0.0.1:8000>.
-
-> **Note**
->
-> - The above is made possible by [Invoke](https://www.pyinvoke.org/), which is used extensively on this project to automate some tasks.
-> Run `invoke -l` to see all available [Invoke](https://www.pyinvoke.org/) tasks. These are defined in the [tasks.py](tasks.py) file.
-
-#### You need the MP3 files
-
-Now, at this stage, you probably won't get much from the now running app, because you actually need the MP3 files to work with! So, especially for the CLI tool, you have to download the Audio Bible from the [_Faith Comes by Hearing®_ website](http://www.bible.is/audiodownloader). The 2001 ESV dramatized Bible (size is over 2Gb) formed the basis for this project's code, including the expected filenames. If the file naming convention has changed, then there's a chance everything will break. Anyway, I hope that won't be the case ...
-
-For the web app, we previously would create a directory `ENGESVC2DA` in `tenlists/webapp/ten_lists/static/` and place your downloaded MP3 files in there. See [this line in `tenlists/webapp/ten_lists/main/routes.py`](https://github.com/engineervix/ten-lists/blob/0878900c45e2a2664ea8328562942120ccced2a2/tenlists/webapp/ten_lists/main/routes.py#L23-L25).
-
-However, the code has been rewritten in such a way as to use a cloud service ([s3](https://aws.amazon.com/s3/), [MinIO](https://min.io/), [Backblaze](https://www.backblaze.com/), [Cloudinary](https://cloudinary.com/), etc.) for the files. This should hopefuly simplify both on-boarding and deployment, especially that at the time of writing this the webapp is deployed using [Dokku](https://dokku.com/). You'll therefore have to upload these files to your preferred cloud provider, and set the environment variable `TENLISTS_MP3_CLOUD_STORAGE_BASE_URL` (see that `.env.sample` file for details).
-
-#### Concerning the CLI tool
-
-This project started off initially as a CLI tool to generate these mp3 files on my computer and play them on a USB stick or copy them over to my phone. However, the scope later changed to have a web application that can allow me to listen from anywhere. So lately the focus has been more on the webapp than the CLI.
-
-Notwithstanding, if you wanna use the CLI, you need to firstly ensure that you have a folder containing the required MP3 files, as described above. If you don't specify the folder when running the CLI tool, it'll assumes that there's a directory `ENGESVC2DA` in the project root. Once you've sorted this out, then you can run the CLI tool with the `--help` option so that you see how to use it:
-
-**If you have a setup a python virtual environment and installed the python dependencies as described earlier in this README**
-
-```sh
-python tenlists/cli/__main__.py --help
-```
-
-So, for _example 1_, if I have my Bible folder `ENGESVC2DA` in the project root, and I run `python tenlists/cli/__main__.py -d 87`, I'll see the following in the console
-
-```console
-❯ python tenlists/cli/__main__.py -d 87
- _           _                __
-|_)o|_ | _  |_)| _.  |o __|_ /__ _ ._  _ .__._|_ _ ._
-|_)||_)|(/_ |  |(_|\/||_> |_ \_|(/_| |(/_|(_| |_(_)|
-                   /
-
-Welcome to the Bible Playlist Generator
-
-Creating a playlist for day 87 ...
-✓ playlist for day 87 successfully created.
-✓ Copying of the Bible Chapters into the day087 directory was successful.
-✓ ID3 tag info for the generated files in this directory has been updated.
-✓ The files have been renamed in a sequential order.
-
------Soli Deo Gloria-----
-```
-
-What has happended here? Well,
-
-- I ran a command to generate a playlist for day 87 of the Bible Reading Plan
-- The CLI tool has generated an [M3U Playlist](https://en.wikipedia.org/wiki/M3U), `day087.m3u` in the project root
-- The CLI tool has created a folder, `day087`, in the project root -- containing the 10 MP3 files in the above playlist
-
-_Example 2_; if I want to use `tenlists/webapp/ten_lists/static/ENGESVC2DA/` as my folder, then I'll go ahead and
-
-```sh
-python tenlists/cli/__main__.py -d 87 -f tenlists/webapp/ten_lists/static/ENGESVC2DA/
-```
-
-And I'll see the same results!
-
-**If you're using Docker**
-
-```sh
-docker-compose exec web python tenlists/cli/__main__.py --help
-```
-
-Everything remains the same as the case where you're not using Docker.
-
-### Tests
-
-```sh
-docker-compose exec web pytest
-```
-
-> WARNING: Running this test will delete the directory `tenlists/webapp/ten_lists/static/ENGESVC2DA/, so please ensure that you have a copy of your MP3 files somewhere. This shouldn't be the case though, and I intend to fix it soon, as you can see it's top on the TODO list. Feel free to submit a PR if this hasn't been fixed!
+5. Build for production:
+   ```
+   npm run build
+   ```
 
 ## Deployment
 
-You can deploy this project using your [preferred choice of deployment](https://flask.palletsprojects.com/en/1.1.x/deploying/) (Docker, Heroku, Linux Server, etc.). However, I have set it up to be ready "out of the box" for deployment to a [VPS](https://cloud.google.com/learn/what-is-a-virtual-private-server) using [Dokku](https://dokku.com/).
+You'll need the audio files to be hosted on cloud storage, e.g.
 
-If you're gonna use Dokku, feel free to use [@engineervix/pre-dokku-server-setup](https://github.com/engineervix/pre-dokku-server-setup) to setup an Ubuntu Server on your VPS prior to installation of Dokku. You can have a look at [this gist](https://gist.github.com/engineervix/8d1825a7301239e7c4df3af78aaee9a4) for more details of how to deploy an application to Dokku. Other excellent resources:
+- Cloudflare R2
+- Backblaze B2
+- AWS S3
 
-- [How to deploy Django project to Dokku](https://www.accordbox.com/blog/how-deploy-django-project-dokku/#introduction)
-- [Setting up Dokku with DigitalOcean and Namecheap (GitHub gist)](https://gist.github.com/djmbritt/10938092)
-- [Deploying an app with Dokku](https://vitobotta.com/2022/02/16/deploying-an-app-with-dokku/)
-- [Dokku Docs: Process Management](https://dokku.com/docs/processes/process-management/)
-- [Dokku Docs: Zero Downtime Deploys](https://dokku.com/docs/deployment/zero-downtime-deploys/)
-- [Dokku with Let's Encrypt behind Cloudflare](https://spiffy.tech/dokku-with-lets-encrypt-behind-cloudflare)
-- [Cloudflare certificates + Dokku](https://okhlopkov.com/cloudflare-certificates-dokku/)
-- [Securing Dokku with Let's Encrypt TLS Certificates](https://blog.semicolonsoftware.de/securing-dokku-with-lets-encrypt-tls-certificates/)
+### Setting Up Your Cloud Storage
 
-## Notes
+1. Create a bucket/container in your preferred cloud storage service.
+2. Configure public access for the bucket (if you want files to be directly accessible).
+3. Upload all audio files to the bucket.
+4. Note your bucket URL.
+5. Set up appropriate CORS settings.
 
-- This project will be most useful to you if you use Professor Grant Horner's Bible-Reading System as the basis for your Bible Reading Plan.
-- The Audio Bible version used is the 2001 ESV dramatized Bible (complete), as freely downloaded from http://www.bible.is/audiodownloader. (The size is over 2Gb)
+#### Common Cloud Storage Options
 
-## TODO
+##### Cloudflare R2
 
-- [ ] Fix test to avoid overwriting `tenlists/webapp/ten_lists/static/ENGESVC2DA/` and deleting its contents
-- [ ] Use a CDN for the media files
-- [ ] write a Dokku deploy script
-- [X] Use [Invoke](https://www.pyinvoke.org/) to encapsulate some tasks. For instance, `docker-compose exec web python tenlists/cli/__main__.py --help` is too long to type!
-- [ ] Address [#1](https://github.com/engineervix/ten-lists/issues/1). [`configparser`](https://docs.python.org/3/library/configparser.html) might come in handy here.
-- [ ] [Package](https://packaging.python.org/tutorials/packaging-projects/) this project. [This is a must read](https://packaging.python.org/guides/distributing-packages-using-setuptools/#configuring-your-project).
-- [x] Rather than using [plain text files](https://github.com/engineervix/ten-lists/tree/v0.6.2/data), find a better way of storing the Bible Chapters ([JSON file](https://www.lucidchart.com/techblog/2018/07/16/why-json-isnt-a-good-configuration-language/), [SQLite database](https://www.sqlite.org/whentouse.html), [TinyDB](https://tinydb.readthedocs.io/en/latest/), etc)
-- [x] Create a ~~GUI frontend or~~ web service ~~[to cater for non-tech users](https://www.inc.com/drew-hendricks/building-or-enhancing-software-for-non-technical-users-is-more-important-than-ev.html)~~ in order to not only cater for non-tech users but also to listen on-the-go. See the `webapp` directory for the source code. Also see the `package.json` file.
+Your URL will typically be: `https://{account-id}.r2.cloudflarestorage.com/{bucket-name}`
 
-## Credits
+##### Backblaze B2
 
-- `og:image`: <https://unsplash.com/photos/TNlHf4m4gpI>
-- Bible Icon: <https://www.pngrepo.com/svg/235374/bible>
+Your URL will typically be: `https://{bucket-name}.s3.{region}.backblazeb2.com`
+
+##### AWS S3
+
+Your URL will typically be: `https://{bucket-name}.s3.amazonaws.com`
+
+### Cloudflare Pages
+
+This application can be deployed to Cloudflare Pages:
+
+1. Connect your GitHub repository to Cloudflare Pages.
+2. Configure the `VITE_MP3_BASE_URL` environment variable in the Cloudflare Pages dashboard.
+3. Set the build command to `npm run build` and the build directory to `dist`.
+
+### Other Platforms
+
+You should be able to deploy to Github Pages, Gitlab Pages, Vercel, Netlify, and many other platforms. Check the respective platform docs.

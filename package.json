@@ -1,58 +1,134 @@
 {
   "name": "ten-lists",
-  "version": "1.0.1",
-  "description": "This project provides both a CLI and a webapp, which generate a playlist of 10 Bible Chapters (represented by 10 mp3 files) to be listened to on any given day, according to Professor Grant Horner's 10 lists Bible-Reading System.",
-  "scripts": {
-    "build": "grunt rm && grunt all",
-    "commit": "git-cz",
-    "release": "standard-version",
-    "start": "grunt"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/engineervix/ten-lists.git"
-  },
+  "version": "2.0.0",
+  "description": "A daily Bible listening app based on Professor Grant Horner's Bible-Reading System",
+  "private": true,
   "author": "Victor Miti",
   "license": "GPL-3.0-or-later",
-  "bugs": {
-    "url": "https://github.com/engineervix/ten-lists/issues"
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "node scripts/validate-config.js && vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "test:cov": "vitest --coverage",
+    "commit": "git-cz",
+    "stylelint": "stylelint \"**/*.{scss,css}\" --ignore-path .gitignore",
+    "prettier": "prettier . \"!**/*.webmanifest\" --write",
+    "eslint": "eslint \"**/*.js\" --ignore-path .gitignore",
+    "post-build": "node scripts/post-build.js",
+    "prepare": "node -e \"if (process.env.NODE_ENV !== 'production'){process.exit(1)} \" || husky",
+    "prepare-deploy": "npm run build && npm run post-build",
+    "release": "commit-and-tag-version"
   },
-  "homepage": "https://github.com/engineervix/ten-lists#readme",
-  "private": false,
   "dependencies": {
-    "balloon-css": "^1.2.0",
-    "bootstrap": "^4.6.0",
-    "bootswatch": "^4.3.1",
-    "font-awesome": "^4.7.0",
-    "holderjs": "^2.9.9",
-    "jquery": "^3.6.0",
-    "moment": "^2.29.1"
+    "@phosphor-icons/web": "^2.1.1",
+    "alpinejs": "^3.14.9",
+    "dayjs": "^1.11.13",
+    "plyr": "^3.7.8",
+    "sweetalert2": "^11.17.2"
   },
   "devDependencies": {
-    "clean-css": "^5.1.5",
-    "commitizen": "^4.2.5",
-    "cross-env": "^7.0.3",
-    "cz-conventional-changelog": "^3.3.0",
-    "grunt": "^1.4.1",
-    "grunt-browser-sync": "^2.2.0",
-    "grunt-contrib-clean": "^2.0.0",
-    "grunt-contrib-copy": "^1.0.0",
-    "grunt-contrib-cssmin": "^4.0.0",
-    "grunt-contrib-htmlmin": "^3.1.0",
-    "grunt-contrib-uglify-es": "git+https://github.com/gruntjs/grunt-contrib-uglify.git#harmony",
-    "grunt-contrib-watch": "^1.1.0",
-    "grunt-json-minification": "^0.2.1",
-    "grunt-newer": "^1.3.0",
-    "popper.js": "^1.16.1",
-    "standard-version": "^9.5.0",
-    "time-grunt": "^2.0.0"
+    "@babel/core": "^7.26.10",
+    "@babel/eslint-parser": "^7.26.10",
+    "@babel/preset-env": "^7.26.9",
+    "@commitlint/cli": "^19.8.0",
+    "@commitlint/config-conventional": "^19.8.0",
+    "@commitlint/cz-commitlint": "^19.8.0",
+    "@commitlint/prompt-cli": "^19.8.0",
+    "@tailwindcss/typography": "^0.5.16",
+    "@vitest/coverage-v8": "^3.0.8",
+    "autoprefixer": "^10.4.21",
+    "commit-and-tag-version": "^12.5.0",
+    "commitizen": "^4.3.1",
+    "conventional-changelog-atom": "^5.0.0",
+    "daisyui": "^4.12.24",
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^10.1.1",
+    "eslint-plugin-prettier": "^5.2.3",
+    "husky": "^9.1.7",
+    "jsdom": "^26.0.0",
+    "lint-staged": "^15.5.0",
+    "postcss": "^8.5.3",
+    "prettier": "^3.5.3",
+    "stylelint": "^16.16.0",
+    "stylelint-config-standard": "^37.0.0",
+    "tailwindcss": "^3.4.17",
+    "vite": "^6.2.0",
+    "vitest": "^3.0.8"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ],
+    "parserPreset": "conventional-changelog-atom"
+  },
+  "lint-staged": {
+    "*.{ts,js}": [
+      "npm run eslint",
+      "npm run prettier"
+    ],
+    "*.{scss,css}": [
+      "npm run stylelint",
+      "npm run prettier"
+    ]
   },
   "config": {
     "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
+      "path": "@commitlint/cz-commitlint"
     }
   },
-  "standard-version": {
+  "eslintConfig": {
+    "parser": "@babel/eslint-parser",
+    "extends": "plugin:prettier/recommended",
+    "parserOptions": {
+      "requireConfigFile": false,
+      "babelOptions": {
+        "presets": [
+          "@babel/preset-env"
+        ]
+      }
+    }
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "semi": false,
+    "singleQuote": true,
+    "useTabs": false,
+    "quoteProps": "consistent",
+    "bracketSpacing": true,
+    "arrowParens": "always",
+    "printWidth": 100
+  },
+  "stylelint": {
+    "extends": "stylelint-config-standard",
+    "rules": {
+      "at-rule-no-unknown": [
+        true,
+        {
+          "ignoreAtRules": [
+            "tailwind"
+          ]
+        }
+      ],
+      "at-rule-no-deprecated": [
+        true,
+        {
+          "ignoreAtRules": [
+            "apply"
+          ]
+        }
+      ]
+    },
+    "ignoreFiles": [
+      "**/dist/**/*.*"
+    ]
+  },
+  "browserslist": [
+    "defaults",
+    "cover 99.5%"
+  ],
+  "commit-and-tag-version": {
     "header": "# Changelog\n\nAll notable changes to this project will be documented here.\n\nThe format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project attempts to adhere to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).\n",
     "types": [
       {
@@ -115,7 +191,6 @@
     }
   },
   "engines": {
-    "node": ">= 16 <17",
-    "npm": ">= 6.13.4"
+    "node": "^22 <23"
   }
 }

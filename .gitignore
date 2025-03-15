@@ -1,67 +1,28 @@
-ENGESVC2DA/
-.DS_Store
-._.DS_Store
-**/.DS_Store
-**/._.DS_Store
-*.pyc
-*.pyo
-*.log
-*.swp
-*.retry
-**/*.env
-*~
-.~*
-**/CACHE
-__pycache__
-.coverage
-coverage.xml
-.pytest_cache/
-htmlcov/
-*.db
-!ten_lists.db
-*.sqlite3
-*.conf
-!.gitignore
-bin/
-*.mp3
-
-### VisualStudioCode ###
-.vscode/*
-.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-.history
-*.code-workspace
-
-### Node ###
 # Logs
 logs
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
 lerna-debug.log*
 
-# Diagnostic reports (https://nodejs.org/api/report.html)
-report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+node_modules
+dist
+dist-ssr
+*.local
 
-# Runtime data
-pids
-*.pid
-*.seed
-*.pid.lock
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
 
-# Grunt intermediate storage (https://gruntjs.com/creating-plugins#storing-task-files)
-.grunt
-
-# Dependency directories
-node_modules/
-jspm_packages/
-
-# Optional npm cache directory
-.npm
-
-# Temporary folders
-tmp/
-temp/
+# Other
+public/audio
+.coverage/
