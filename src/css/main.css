@@ -65,7 +65,7 @@
 
 /* Card styles for player container */
 .player-card {
-  @apply card bg-base-100 shadow-lg overflow-hidden;
+  @apply card bg-base-100 shadow-lg;
 
   .plyr {
     @apply rounded-none;
