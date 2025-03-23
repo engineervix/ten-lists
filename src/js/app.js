@@ -66,8 +66,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
       Swal.mixin({
         background: isDark ? 'hsl(var(--b1))' : 'hsl(var(--b1))',
+        backgroundColor: isDark ? 'hsl(var(--b1))' : 'hsl(var(--b1))',
         color: isDark ? 'hsl(var(--bc))' : 'hsl(var(--bc))',
         confirmButtonColor: 'hsl(var(--p))',
+        customClass: {
+          popup: 'swal2-popup-custom',
+        },
       })
     },
 
@@ -291,6 +295,9 @@ document.addEventListener('DOMContentLoaded', () => {
         confirmButtonColor: 'hsl(var(--p))',
         background: isDark ? 'hsl(var(--b1))' : 'hsl(var(--b1))',
         color: isDark ? 'hsl(var(--bc))' : 'hsl(var(--bc))',
+        customClass: {
+          popup: 'swal2-popup-custom',
+        },
       })
 
       // Optionally, you could try loading the next track automatically
