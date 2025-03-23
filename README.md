@@ -14,6 +14,7 @@ A web application that facilitates listening 👂🎧🔊 to the Holy Bible base
   <summary>🖥️ Screenshot - Desktop</summary>
 
 ![desktop](https://github.com/user-attachments/assets/85d38838-2b04-4dcc-afed-95320cc2b5f1)
+
 </details>
 
 [![Continuous Integration](https://github.com/engineervix/ten-lists/actions/workflows/main.yml/badge.svg)](https://github.com/engineervix/ten-lists/actions/workflows/main.yml)
