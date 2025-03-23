@@ -6,6 +6,7 @@ export class AudioLoader {
     this.cache = new Map() // Cache for audio file availability checks
     this.retryCount = 3 // Number of retries for failed loads
     this.retryDelay = 1000 // Milliseconds to wait between retries
+    this.preloadQueue = [] // Queue for preloading audio files
   }
 
   // Check if an audio file is available at the given URL
@@ -34,6 +35,53 @@ export class AudioLoader {
       return `Audio file not found in local development: ${url}`
     } else {
       return `Audio file not available from storage. Please try again later.`
+    }
+  }
+
+  // Preload an audio file in the background
+  async preloadAudio(url) {
+    if (this.cache.has(url) && this.cache.get(url) === false) {
+      // Skip preloading if we already know the file is not available
+      return false
+    }
+
+    try {
+      // Check if file exists
+      const isAvailable = await this.checkFileAvailability(url)
+
+      if (!isAvailable) {
+        return false
+      }
+
+      // Create a hidden audio element to preload the file
+      const preloadAudio = new Audio()
+      preloadAudio.src = url
+      preloadAudio.preload = 'auto'
+
+      // Set event listeners for debugging
+      preloadAudio.addEventListener('canplaythrough', () => {
+        console.debug(`Preloaded audio file: ${url}`)
+      })
+
+      preloadAudio.addEventListener('error', (e) => {
+        console.warn(`Error preloading audio: ${url}`, e)
+      })
+
+      // Start loading the audio but don't wait for it to complete
+      preloadAudio.load()
+
+      // Store in the preload queue to keep a reference
+      this.preloadQueue.push(preloadAudio)
+
+      // Limit the preload queue size
+      if (this.preloadQueue.length > 3) {
+        this.preloadQueue.shift()
+      }
+
+      return true
+    } catch (error) {
+      console.warn(`Failed to preload audio: ${url}`, error)
+      return false
     }
   }
 

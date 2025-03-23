@@ -184,15 +184,28 @@ document.addEventListener('DOMContentLoaded', () => {
           invertTime: true,
           // Optimize for touch on mobile
           touchControls: this.isMobile ? 'auto' : false,
+          // Improve playback buffer settings
+          buffer: {
+            min: 1, // Minimum seconds to buffer
+            max: 30, // Maximum seconds to buffer
+          },
+          // Preload metadata
+          preload: 'metadata',
         })
 
-        // Mark player as initialized
-        this.playerInitialized = true
+        // Set up event listeners for preloading
+        this.player.on('play', () => {
+          this.preloadNextTrack()
+        })
 
-        // Set up event listeners
         this.player.on('ended', () => {
-          this.playNext()
+          // Auto-play next track when current one ends
+          if (this.currentReadingIndex < this.readings.length - 1) {
+            this.playNext()
+          }
         })
+
+        this.playerInitialized = true
 
         // Add listener for play/pause events for better sync
         this.player.on('play', () => {
@@ -269,6 +282,9 @@ document.addEventListener('DOMContentLoaded', () => {
             // Scroll the current reading into view in the list
             this.$nextTick(() => {
               this.highlightCurrentReading()
+
+              // Preload the next track for smoother transitions
+              this.preloadNextTrack()
             })
           }
         })
@@ -328,13 +344,14 @@ document.addEventListener('DOMContentLoaded', () => {
           this.updatePlayerSource()
 
           // Wait for source to be loaded before playing
+          // Increase the timeout for better buffering
           setTimeout(() => {
             if (this.player) {
               this.player.play().catch((error) => {
                 console.error('Error playing audio:', error)
               })
             }
-          }, 100)
+          }, 300) // Increased from 100ms to 300ms for better buffering
         }
       }
     },
@@ -345,13 +362,14 @@ document.addEventListener('DOMContentLoaded', () => {
         this.updatePlayerSource()
 
         // Wait for source to be loaded before playing
+        // Increase the timeout for better buffering
         setTimeout(() => {
           if (this.player) {
             this.player.play().catch((error) => {
               console.error('Error playing next track:', error)
             })
           }
-        }, 100)
+        }, 300) // Increased from 100ms to 300ms for better buffering
       }
     },
 
@@ -361,13 +379,14 @@ document.addEventListener('DOMContentLoaded', () => {
         this.updatePlayerSource()
 
         // Wait for source to be loaded before playing
+        // Increase the timeout for better buffering
         setTimeout(() => {
           if (this.player) {
             this.player.play().catch((error) => {
               console.error('Error playing previous track:', error)
             })
           }
-        }, 100)
+        }, 300) // Increased from 100ms to 300ms for better buffering
       }
     },
 
@@ -397,6 +416,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     getCurrentReading() {
       return this.readings[this.currentReadingIndex] || null
+    },
+
+    preloadNextTrack() {
+      // Check if there's a next track to preload
+      if (this.currentReadingIndex < this.readings.length - 1) {
+        const nextReading = this.readings[this.currentReadingIndex + 1]
+        if (nextReading && nextReading.filePath) {
+          // Preload the next audio file in the background
+          audioLoader.preloadAudio(nextReading.filePath).catch((error) => {
+            console.warn('Failed to preload next track:', error)
+          })
+        }
+      }
     },
   }))
 
