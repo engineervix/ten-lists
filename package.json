@@ -98,7 +98,8 @@
     "quoteProps": "consistent",
     "bracketSpacing": true,
     "arrowParens": "always",
-    "printWidth": 100
+    "printWidth": 100,
+    "ignorePatterns": ["CHANGELOG.md"]
   },
   "stylelint": {
     "extends": "stylelint-config-standard",
