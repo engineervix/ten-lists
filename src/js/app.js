@@ -12,7 +12,7 @@ import 'sweetalert2/dist/sweetalert2.min.css'
 import '../css/main.css'
 
 // Import our main application logic
-import { generateReadingPlan } from './main.js'
+import { generateReadingPlan, generateESVUrl } from './main.js'
 import config from './config.js'
 
 // Configure dayjs with relative time plugin
@@ -415,7 +415,15 @@ document.addEventListener('DOMContentLoaded', () => {
     },
 
     getCurrentReading() {
-      return this.readings[this.currentReadingIndex] || null
+      return this.readings[this.currentReadingIndex]
+    },
+
+    // Open ESV.org with all current readings
+    openESVReadings() {
+      const url = generateESVUrl(this.readings)
+      if (url) {
+        window.open(url, '_blank', 'noopener,noreferrer')
+      }
     },
 
     preloadNextTrack() {

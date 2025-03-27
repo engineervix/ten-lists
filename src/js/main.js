@@ -711,3 +711,47 @@ export function testFilePathGeneration() {
     console.log(`${book} ${chapter}: ${filePath}`)
   })
 }
+
+// 6. Function to generate ESV.org URL for all readings
+export function generateESVUrl(readings) {
+  if (!readings || readings.length === 0) {
+    return ''
+  }
+
+  // ESV.org base URL for Bible reading
+  const baseUrl = 'https://www.esv.org/verses/'
+
+  // Map of book names that need special formatting for ESV.org
+  const esvBookNameMap = {
+    'Song of Solomon': 'Song+of+Solomon',
+    '1 Samuel': '1+Samuel',
+    '2 Samuel': '2+Samuel',
+    '1 Kings': '1+Kings',
+    '2 Kings': '2+Kings',
+    '1 Chronicles': '1+Chronicles',
+    '2 Chronicles': '2+Chronicles',
+    '1 Corinthians': '1+Corinthians',
+    '2 Corinthians': '2+Corinthians',
+    '1 Thessalonians': '1+Thessalonians',
+    '2 Thessalonians': '2+Thessalonians',
+    '1 Timothy': '1+Timothy',
+    '2 Timothy': '2+Timothy',
+    '1 Peter': '1+Peter',
+    '2 Peter': '2+Peter',
+    '1 John': '1+John',
+    '2 John': '2+John',
+    '3 John': '3+John',
+  }
+
+  // Map each reading to the ESV format reference and join with semicolons
+  const references = readings
+    .map((reading) => {
+      // Convert book name to ESV.org format if needed
+      const bookName = esvBookNameMap[reading.book] || reading.book.replace(/\s+/g, '+')
+      return `${bookName}+${reading.chapter}`
+    })
+    .join(';')
+
+  // Construct the final URL
+  return `${baseUrl}${references}/`
+}

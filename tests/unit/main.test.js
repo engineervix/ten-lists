@@ -1,10 +1,9 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 import {
   generateReadingPlan,
   getAudioFilePath,
   getChapterCount,
-  bookNameMap,
-  tenLists,
+  generateESVUrl,
 } from '../../src/js/main.js'
 
 // Mock the config module
@@ -108,6 +107,40 @@ describe('Bible Reading Plan Functions', () => {
         expect(reading.filePath).toContain('/audio/')
         expect(reading.filePath).toContain('.mp3')
       })
+    })
+  })
+
+  describe('generateESVUrl', () => {
+    it('returns empty string for empty readings', () => {
+      expect(generateESVUrl([])).toBe('')
+      expect(generateESVUrl(null)).toBe('')
+      expect(generateESVUrl(undefined)).toBe('')
+    })
+
+    it('generates correct URL for a single reading', () => {
+      const readings = [{ book: 'John', chapter: 3 }]
+      expect(generateESVUrl(readings)).toBe('https://www.esv.org/verses/John+3/')
+    })
+
+    it('generates correct URL for multiple readings', () => {
+      const readings = [
+        { book: 'John', chapter: 3 },
+        { book: 'Genesis', chapter: 1 },
+        { book: 'Psalms', chapter: 23 },
+      ]
+      expect(generateESVUrl(readings)).toBe(
+        'https://www.esv.org/verses/John+3;Genesis+1;Psalms+23/'
+      )
+    })
+
+    it('handles book names with spaces correctly', () => {
+      const readings = [
+        { book: 'Song of Solomon', chapter: 2 },
+        { book: '1 Corinthians', chapter: 13 },
+      ]
+      expect(generateESVUrl(readings)).toBe(
+        'https://www.esv.org/verses/Song+of+Solomon+2;1+Corinthians+13/'
+      )
     })
   })
 })

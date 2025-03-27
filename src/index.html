@@ -1,36 +1,35 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" data-theme="winter">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="Victor Miti" />
-    <meta
-      name="description"
-      content="A daily Bible listening app based on Professor Grant Horner's Bible-Reading System"
-    />
-
+    <meta name="description"
+          content="A daily Bible listening app based on Professor Grant Horner's Bible-Reading System" />
     <meta property="og:title" content="10 Lists Audio" />
     <meta property="og:type" content="website" />
-    <meta
-      property="og:description"
-      content="A daily Bible listening app based on Professor Grant Horner's Bible-Reading System"
-    />
+    <meta property="og:description"
+          content="A daily Bible listening app based on Professor Grant Horner's Bible-Reading System" />
     <meta property="og:site_name" content="10 Lists Audio" />
     <meta property="og:url" content="https://ten.pages.dev/" />
-    <meta
-      property="og:image"
-      content="https://ik.imagekit.io/onezam/images/og-img-a32eb9158e6fc17e6d0f51d8bf44f4a3.jpg"
-    />
+    <meta property="og:image"
+          content="https://ik.imagekit.io/onezam/images/og-img-a32eb9158e6fc17e6d0f51d8bf44f4a3.jpg" />
     <meta property="og:locale" content="en_ZM" />
     <meta property="og:locale:alternate" content="en_ZA" />
     <meta property="og:locale:alternate" content="en_GB" />
     <meta property="og:locale:alternate" content="en_US" />
-
-    <link rel="apple-touch-icon" sizes="180x180" href="./ico/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="./ico/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="./ico/favicon-16x16.png" />
+    <link rel="apple-touch-icon"
+          sizes="180x180"
+          href="./ico/apple-touch-icon.png" />
+    <link rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="./ico/favicon-32x32.png" />
+    <link rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="./ico/favicon-16x16.png" />
     <link rel="manifest" href="./ico/site.webmanifest" />
-
     <title>10 Lists Audio</title>
   </head>
   <body>
@@ -43,23 +42,18 @@
               <h1 class="card-title text-3xl font-bold text-center">
                 <i class="ph ph-books mr-2"></i> 10 Lists Audio
               </h1>
-
               <!-- Theme toggle button -->
-              <button
-                @click="toggleTheme()"
-                class="btn btn-sm btn-circle btn-ghost"
-                aria-label="Toggle theme"
-              >
-                <svg
-                  class="sun-icon w-5 h-5"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
+              <button @click="toggleTheme()"
+                      class="btn btn-sm btn-circle btn-ghost"
+                      aria-label="Toggle theme">
+                <svg class="sun-icon w-5 h-5"
+                     xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2"
+                     stroke-linecap="round"
+                     stroke-linejoin="round">
                   <circle cx="12" cy="12" r="5"></circle>
                   <line x1="12" y1="1" x2="12" y2="3"></line>
                   <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -70,121 +64,83 @@
                   <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
                   <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                 </svg>
-                <svg
-                  class="moon-icon w-5 h-5"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
+                <svg class="moon-icon w-5 h-5"
+                     xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2"
+                     stroke-linecap="round"
+                     stroke-linejoin="round">
                   <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                 </svg>
               </button>
             </div>
-
             <p class="text-center text-base-content/70">
               A daily Bible listening app based on
-              <a
-                href="https://sohmer.net/media/professor_grant_horners_bible_reading_system.pdf"
-                target="_blank"
-                class="link link-primary"
-                rel="noopener noreferrer"
-                >Professor Grant Horner's Bible-Reading System</a
-              >
+              <a href="https://sohmer.net/media/professor_grant_horners_bible_reading_system.pdf"
+                 target="_blank"
+                 class="link link-primary"
+                 rel="noopener noreferrer">Professor Grant Horner's Bible-Reading System</a>
             </p>
-
             <!-- Day selector - completely redesigned with daisyUI -->
             <div class="mt-4 relative">
               <!-- Current day display with buttons -->
               <div class="join flex justify-center items-center">
-                <button
-                  @click="decrementDay"
-                  class="join-item btn btn-outline btn-primary"
-                  :disabled="currentDay <= 1"
-                  aria-label="Previous Day"
-                >
+                <button @click="decrementDay"
+                        class="join-item btn btn-outline btn-primary"
+                        :disabled="currentDay <= 1"
+                        aria-label="Previous Day">
                   <i class="ph ph-caret-left text-lg"></i>
                 </button>
-
-                <div
-                  class="join-item px-6 py-2 flex flex-col justify-center items-center min-w-32 cursor-pointer border border-primary"
-                  @click="showDayPicker = !showDayPicker"
-                >
+                <div class="join-item px-6 py-2 flex flex-col justify-center items-center min-w-32 cursor-pointer border border-primary"
+                     @click="showDayPicker = !showDayPicker">
                   <span class="text-xs text-base-content/60">READING DAY</span>
                   <div class="text-xl font-bold text-primary" x-text="currentDay"></div>
                 </div>
-
-                <button
-                  @click="incrementDay"
-                  class="join-item btn btn-outline btn-primary"
-                  aria-label="Next Day"
-                >
+                <button @click="incrementDay"
+                        class="join-item btn btn-outline btn-primary"
+                        aria-label="Next Day">
                   <i class="ph ph-caret-right text-lg"></i>
                 </button>
               </div>
-
               <!-- Day picker popover (shows when clicking on day) -->
-              <div
-                x-show="showDayPicker"
-                @click.away="showDayPicker = false"
-                class="absolute mt-2 left-1/2 transform -translate-x-1/2 z-10 bg-base-100 rounded-lg shadow-lg p-4 w-[270px] border border-base-300"
-                x-transition:enter="transition ease-out duration-200"
-                x-transition:enter-start="opacity-0 transform scale-95"
-                x-transition:enter-end="opacity-100 transform scale-100"
-                x-transition:leave="transition ease-in duration-150"
-                x-transition:leave-start="opacity-100 transform scale-100"
-                x-transition:leave-end="opacity-0 transform scale-95"
-              >
+              <div x-show="showDayPicker"
+                   @click.away="showDayPicker = false"
+                   class="absolute mt-2 left-1/2 transform -translate-x-1/2 z-10 bg-base-100 rounded-lg shadow-lg p-4 w-[270px] border border-base-300"
+                   x-transition:enter="transition ease-out duration-200"
+                   x-transition:enter-start="opacity-0 transform scale-95"
+                   x-transition:enter-end="opacity-100 transform scale-100"
+                   x-transition:leave="transition ease-in duration-150"
+                   x-transition:leave-start="opacity-100 transform scale-100"
+                   x-transition:leave-end="opacity-0 transform scale-95">
                 <div class="text-center mb-3">
                   <span class="text-sm text-base-content/60">Jump to day:</span>
                 </div>
-
                 <div class="flex items-center mb-4">
-                  <input
-                    type="number"
-                    x-model.number="dayPickerValue"
-                    min="1"
-                    class="input input-bordered w-full text-center"
-                    placeholder="Enter day number"
-                  />
+                  <input type="number"
+                         x-model.number="dayPickerValue"
+                         min="1"
+                         class="input input-bordered w-full text-center"
+                         placeholder="Enter day number" />
                 </div>
-
                 <div class="flex justify-center">
-                  <button
-                    @click="setDay(dayPickerValue); showDayPicker = false;"
-                    class="btn btn-primary w-full"
-                  >
-                    Go to Day
-                  </button>
+                  <button @click="setDay(dayPickerValue); showDayPicker = false;"
+                          class="btn btn-primary w-full">Go to Day</button>
                 </div>
-
                 <div class="divider">Popular days</div>
-
                 <div class="grid grid-cols-3 gap-2">
-                  <button @click="setDay(1); showDayPicker = false;" class="btn btn-sm btn-outline">
-                    Day 1
-                  </button>
-                  <button
-                    @click="setDay(30); showDayPicker = false;"
-                    class="btn btn-sm btn-outline"
-                  >
-                    Day 30
-                  </button>
-                  <button
-                    @click="setDay(90); showDayPicker = false;"
-                    class="btn btn-sm btn-outline"
-                  >
-                    Day 90
-                  </button>
+                  <button @click="setDay(1); showDayPicker = false;"
+                          class="btn btn-sm btn-outline">Day 1</button>
+                  <button @click="setDay(30); showDayPicker = false;"
+                          class="btn btn-sm btn-outline">Day 30</button>
+                  <button @click="setDay(90); showDayPicker = false;"
+                          class="btn btn-sm btn-outline">Day 90</button>
                 </div>
               </div>
             </div>
           </div>
         </header>
-
         <!-- Main content -->
         <div class="flex flex-col lg:flex-row gap-6">
           <!-- Audio player section -->
@@ -192,113 +148,91 @@
             <div class="card bg-base-100 shadow-lg">
               <div class="card-body">
                 <h2 class="card-title">Now Playing</h2>
-
                 <!-- Current reading info -->
                 <div class="mb-6">
                   <template x-if="getCurrentReading()">
                     <div class="text-center">
                       <h3 class="text-2xl font-medium" x-text="getCurrentReading().reference"></h3>
-                      <p
-                        class="text-base-content/70"
-                        x-text="getCurrentReading().listName + ' List'"
-                      ></p>
+                      <p class="text-base-content/70"
+                         x-text="getCurrentReading().listName + ' List'"></p>
                       <!-- Loading indicator -->
-                      <div
-                        x-show="loadingTrack"
-                        class="text-primary mt-2 flex justify-center items-center"
-                      >
+                      <div x-show="loadingTrack"
+                           class="text-primary mt-2 flex justify-center items-center">
                         <i class="ph ph-circle-notch mr-2 animate-spin"></i>
                         <span>Loading audio...</span>
+                      </div>
+                      <!-- ESV.org link button -->
+                      <div class="mt-3">
+                        <button @click="openESVReadings()"
+                                class="btn btn-sm btn-outline btn-primary gap-1"
+                                aria-label="Read on ESV.org">
+                          <i class="ph ph-book-open text-sm"></i>
+                          Read all chapters on ESV.org
+                        </button>
                       </div>
                     </div>
                   </template>
                 </div>
-
                 <!-- Audio player wrapper with player-card class -->
                 <div class="player-card">
                   <audio id="player" class="w-full" controls preload="metadata"></audio>
                 </div>
-
                 <!-- Player controls - made responsive with daisyUI buttons -->
                 <div class="flex flex-wrap justify-center items-center gap-4 mt-4">
-                  <button
-                    @click="playPrevious"
-                    class="btn btn-circle btn-outline"
-                    :disabled="currentReadingIndex === 0 || loadingTrack"
-                    aria-label="Previous"
-                  >
+                  <button @click="playPrevious"
+                          class="btn btn-circle btn-outline"
+                          :disabled="currentReadingIndex === 0 || loadingTrack"
+                          aria-label="Previous">
                     <i class="ph ph-skip-back text-xl"></i>
                   </button>
-
-                  <button
-                    @click="player.playing ? player.pause() : player.play()"
-                    class="btn btn-circle btn-primary btn-lg"
-                    :disabled="loadingTrack"
-                    aria-label="Play/Pause"
-                  >
+                  <button @click="player.playing ? player.pause() : player.play()"
+                          class="btn btn-circle btn-primary btn-lg"
+                          :disabled="loadingTrack"
+                          aria-label="Play/Pause">
                     <i class="ph ph-play text-2xl" x-show="!isPlaying"></i>
                     <i class="ph ph-pause text-2xl" x-show="isPlaying"></i>
                   </button>
-
-                  <button
-                    @click="playNext"
-                    class="btn btn-circle btn-outline"
-                    :disabled="currentReadingIndex === readings.length - 1 || loadingTrack"
-                    aria-label="Next"
-                  >
+                  <button @click="playNext"
+                          class="btn btn-circle btn-outline"
+                          :disabled="currentReadingIndex === readings.length - 1 || loadingTrack"
+                          aria-label="Next">
                     <i class="ph ph-skip-forward text-xl"></i>
                   </button>
                 </div>
               </div>
             </div>
           </div>
-
           <!-- Reading list section -->
           <div class="lg:w-1/3 doNotTag">
             <div class="card bg-base-100 shadow-lg h-full">
               <div class="card-body">
                 <h2 class="card-title">Today's Readings</h2>
-
                 <!-- Loading indicator -->
                 <div x-show="isLoading" class="flex justify-center my-4">
                   <span class="loading loading-spinner loading-md text-primary"></span>
                   <span class="ml-2">Loading readings...</span>
                 </div>
-
                 <!-- Reading list -->
-                <div
-                  x-show="!isLoading"
-                  class="overflow-y-auto max-h-96 sm:max-h-80 md:max-h-72 lg:max-h-96"
-                >
+                <div x-show="!isLoading"
+                     class="overflow-y-auto max-h-96 sm:max-h-80 md:max-h-72 lg:max-h-96">
                   <template x-for="(reading, index) in readings" :key="index">
-                    <div
-                      @click="playReading(index)"
-                      class="reading-item mb-3 p-3 rounded cursor-pointer hover:bg-base-200 transition-all flex items-center"
-                      :class="{ 'active pl-2 bg-primary/10': index === currentReadingIndex }"
-                      :data-index="index"
-                    >
+                    <div @click="playReading(index)"
+                         class="reading-item mb-3 p-3 rounded cursor-pointer hover:bg-base-200 transition-all flex items-center"
+                         :class="{ 'active pl-2 bg-primary/10': index === currentReadingIndex }"
+                         :data-index="index">
                       <!-- Play/Active indicator -->
                       <div class="mr-3 w-6 h-6 flex-shrink-0 flex items-center justify-center">
-                        <i
-                          class="ph ph-play-fill text-primary text-lg"
-                          x-show="index === currentReadingIndex && isPlaying"
-                        ></i>
-                        <i
-                          class="ph ph-pause-fill text-primary text-lg"
-                          x-show="index === currentReadingIndex && !isPlaying && !loadingTrack"
-                        ></i>
-                        <div
-                          class="animate-pulse"
-                          x-show="index === currentReadingIndex && loadingTrack"
-                        >
+                        <i class="ph ph-play-fill text-primary text-lg"
+                           x-show="index === currentReadingIndex && isPlaying"></i>
+                        <i class="ph ph-pause-fill text-primary text-lg"
+                           x-show="index === currentReadingIndex && !isPlaying && !loadingTrack"></i>
+                        <div class="animate-pulse"
+                             x-show="index === currentReadingIndex && loadingTrack">
                           <i class="ph ph-circle-notch-fill text-primary text-lg animate-spin"></i>
                         </div>
-                        <i
-                          class="ph ph-circle text-base-content/30"
-                          x-show="index !== currentReadingIndex"
-                        ></i>
+                        <i class="ph ph-circle text-base-content/30"
+                           x-show="index !== currentReadingIndex"></i>
                       </div>
-
                       <!-- Reading info -->
                       <div>
                         <h3 class="font-medium" x-text="reading.reference"></h3>
@@ -311,23 +245,21 @@
             </div>
           </div>
         </div>
-
         <!-- About the system -->
         <div class="mt-8 card bg-base-100 shadow-lg">
           <div class="card-body">
             <h2 class="card-title">About the Ten Lists Bible-Reading System</h2>
-
             <div class="prose max-w-none">
               <p class="BLB">
                 Professor Grant Horner's System involves reading ten chapters a day from ten
                 different sections of the Bible. On day one, you read Matthew 1, Genesis 1, Romans
                 1, and so on.
               </p>
-
               <p>The plan is organized into these lists:</p>
-
               <ul class="list-disc pl-5 space-y-1 mt-2">
-                <li><strong>List 1 (89 days):</strong> Matthew, Mark, Luke, John</li>
+                <li>
+                  <strong>List 1 (89 days):</strong> Matthew, Mark, Luke, John
+                </li>
                 <li>
                   <strong>List 2 (187 days):</strong> Genesis, Exodus, Leviticus, Numbers,
                   Deuteronomy
@@ -339,9 +271,15 @@
                   <strong>List 4 (65 days):</strong> I & II Thess, I & II Tim, Titus, Philemon,
                   James, I & II Peter, I, II & III John, Jude, Revelation
                 </li>
-                <li><strong>List 5 (62 days):</strong> Job, Ecclesiastes, Song of Solomon</li>
-                <li><strong>List 6 (150 days):</strong> Psalms</li>
-                <li><strong>List 7 (31 days):</strong> Proverbs</li>
+                <li>
+                  <strong>List 5 (62 days):</strong> Job, Ecclesiastes, Song of Solomon
+                </li>
+                <li>
+                  <strong>List 6 (150 days):</strong> Psalms
+                </li>
+                <li>
+                  <strong>List 7 (31 days):</strong> Proverbs
+                </li>
                 <li>
                   <strong>List 8 (249 days):</strong> Joshua, Judges, Ruth, I & II Samuel, I & II
                   Kings, I & II Chronicles, Ezra, Nehemiah, Esther
@@ -351,9 +289,10 @@
                   Daniel, Hosea, Joel, Amos, Obadiah, Jonah, Micah, Nahum, Habakkuk, Zephaniah,
                   Haggai, Zechariah, Malachi
                 </li>
-                <li><strong>List 10 (28 days):</strong> Acts</li>
+                <li>
+                  <strong>List 10 (28 days):</strong> Acts
+                </li>
               </ul>
-
               <p class="mt-4">
                 When you reach the end of a list, simply start over. This system will help you read
                 through all the Gospels four times per year, the Pentateuch twice, Paul's letters
@@ -362,7 +301,6 @@
             </div>
           </div>
         </div>
-
         <!-- Footer -->
         <footer class="mt-8 text-base-content/70 pb-8">
           <div class="flex flex-col md:flex-row md:justify-between md:items-center">
@@ -378,15 +316,12 @@
                 <span x-text="getLastRebuiltText()"></span>.
               </p>
             </div>
-
             <!-- Right side content -->
             <div class="text-center mt-2 md:mt-0">
-              <a
-                href="https://github.com/engineervix/ten-lists"
-                class="btn btn-sm btn-ghost gap-1"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a href="https://github.com/engineervix/ten-lists"
+                 class="btn btn-sm btn-ghost gap-1"
+                 target="_blank"
+                 rel="noopener noreferrer">
                 <i class="ph ph-github-logo text-lg"></i>
                 View source
               </a>
@@ -395,7 +330,6 @@
         </footer>
       </div>
     </div>
-
     <!-- Initialize BLB ScriptTagger -->
     <script>
       BLB.Tagger.Translation = 'ESV'
@@ -406,10 +340,8 @@
       BLB.Tagger.NoSearchTagNames = ''
       BLB.Tagger.NoSearchClassNames = 'noTag doNotTag'
     </script>
-
     <!-- Import BLB ScriptTagger (external dependency) -->
     <script src="https://www.blueletterbible.org/assets/scripts/blbToolTip/BLB_ScriptTagger-min.js"></script>
-
     <!-- Our bundled app script (Vite entry point) -->
     <script type="module" src="./js/app.js"></script>
   </body>
