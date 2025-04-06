@@ -210,6 +210,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Add listener for play/pause events for better sync
         this.player.on('play', () => {
           this.isPlaying = true
+          // Update the document title when playing starts
+          this.updateDocumentTitle()
         })
 
         this.player.on('pause', () => {
@@ -270,6 +272,9 @@ document.addEventListener('DOMContentLoaded', () => {
         this.loadingTrack = false
         return
       }
+
+      // Update document title with current reading
+      this.updateDocumentTitle()
 
       // Use the AudioLoader to handle loading with retries and error handling
       audioLoader
@@ -401,6 +406,9 @@ document.addEventListener('DOMContentLoaded', () => {
         this.currentDay = parseInt(day)
         this.dayPickerValue = parseInt(day)
         this.updateReadings()
+
+        // Update document title
+        this.updateDocumentTitle()
       }
     },
 
@@ -416,6 +424,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     getCurrentReading() {
       return this.readings[this.currentReadingIndex]
+    },
+
+    // Update document title with current reading information
+    updateDocumentTitle() {
+      const currentReading = this.getCurrentReading()
+      if (currentReading) {
+        document.title = `${currentReading.reference} | 10 Lists Audio`
+      } else {
+        document.title = '10 Lists Audio'
+      }
     },
 
     // Open ESV.org with all current readings
