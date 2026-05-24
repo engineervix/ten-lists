@@ -15,7 +15,7 @@
     "commit": "git-cz",
     "stylelint": "stylelint \"**/*.{scss,css}\" --ignore-path .gitignore",
     "prettier": "prettier . \"!**/*.webmanifest\" --write",
-    "eslint": "eslint \"**/*.js\" --ignore-path .gitignore",
+    "eslint": "eslint \"**/*.js\"",
     "post-build": "node scripts/post-build.js",
     "prepare": "node -e \"if (process.env.NODE_ENV !== 'production'){process.exit(1)} \" || husky",
     "prepare-deploy": "npm run build && npm run post-build",
@@ -29,13 +29,11 @@
     "sweetalert2": "^11.22.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.26.10",
-    "@babel/eslint-parser": "^7.26.10",
-    "@babel/preset-env": "^7.26.9",
     "@commitlint/cli": "^21.0.1",
     "@commitlint/config-conventional": "^21.0.1",
     "@commitlint/cz-commitlint": "^21.0.1",
     "@commitlint/prompt-cli": "^21.0.1",
+    "@eslint/js": "^10.0.1",
     "@tailwindcss/typography": "^0.5.16",
     "@vitest/coverage-v8": "^4.0.0",
     "autoprefixer": "^10.4.21",
@@ -43,9 +41,10 @@
     "commitizen": "^4.3.1",
     "conventional-changelog-atom": "^5.0.0",
     "daisyui": "^4.12.24",
-    "eslint": "^8.57.1",
-    "eslint-config-prettier": "^10.1.1",
-    "eslint-plugin-prettier": "^5.2.3",
+    "eslint": "^10.4.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.5",
+    "globals": "^17.6.0",
     "husky": "^9.1.7",
     "jsdom": "^29.1.1",
     "lint-staged": "^17.0.5",
@@ -60,8 +59,7 @@
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
-    ],
-    "parserPreset": "conventional-changelog-atom"
+    ]
   },
   "lint-staged": {
     "*.{ts,js}": [
@@ -76,18 +74,6 @@
   "config": {
     "commitizen": {
       "path": "@commitlint/cz-commitlint"
-    }
-  },
-  "eslintConfig": {
-    "parser": "@babel/eslint-parser",
-    "extends": "plugin:prettier/recommended",
-    "parserOptions": {
-      "requireConfigFile": false,
-      "babelOptions": {
-        "presets": [
-          "@babel/preset-env"
-        ]
-      }
     }
   },
   "prettier": {
