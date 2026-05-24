@@ -17,7 +17,6 @@
     "prettier": "prettier . \"!**/*.webmanifest\" --write",
     "eslint": "eslint \"**/*.js\"",
     "post-build": "node scripts/post-build.js",
-    "prepare": "node -e \"if (process.env.NODE_ENV !== 'production'){process.exit(1)} \" || lefthook install",
     "prepare-deploy": "npm run build && npm run post-build",
     "release": "commit-and-tag-version"
   },
