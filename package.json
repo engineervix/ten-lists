@@ -63,10 +63,7 @@
     "quoteProps": "consistent",
     "bracketSpacing": true,
     "arrowParens": "always",
-    "printWidth": 100,
-    "ignorePatterns": [
-      "CHANGELOG.md"
-    ]
+    "printWidth": 100
   },
   "stylelint": {
     "extends": "stylelint-config-standard",
