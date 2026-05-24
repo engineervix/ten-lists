@@ -627,7 +627,7 @@ export function getAudioFilePath(bookName, chapter) {
 
 // Function to validate if a file path exists in the available files
 // This is a fallback function to handle potential discrepancies
-export function validateFilePath(filePath, availableFiles) {
+export function validateFilePath(_filePath, _availableFiles) {
   // In production, we would implement this to check against
   // an actual list of available files or make an API call
 

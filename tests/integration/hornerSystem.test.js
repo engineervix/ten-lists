@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 import { generateReadingPlan, tenLists } from '../../src/js/main.js'
 
 // Mock the config module

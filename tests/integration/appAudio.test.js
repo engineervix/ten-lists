@@ -49,7 +49,7 @@ vi.mock('../../src/js/audioLoader.js', () => {
 
 vi.mock('../../src/js/main.js', () => {
   return {
-    generateReadingPlan: vi.fn().mockImplementation((day) => {
+    generateReadingPlan: vi.fn().mockImplementation((_day) => {
       // Return a realistic mock reading plan
       return Array(10)
         .fill(null)
@@ -81,12 +81,11 @@ vi.mock('sweetalert2', () => {
 })
 
 describe('Audio Player Integration Tests', () => {
-  let mocks
   let mockPlayer
 
   beforeEach(() => {
     // Setup browser mocks
-    mocks = setupAllBrowserMocks({ prefersDarkMode: false })
+    setupAllBrowserMocks({ prefersDarkMode: false })
 
     // Setup fake timers
     vi.useFakeTimers()
@@ -165,7 +164,7 @@ describe('Audio Player Integration Tests', () => {
       if (!success) {
         alpineComponent.handleAudioLoadError(reading)
       }
-    } catch (error) {
+    } catch (_error) {
       alpineComponent.handleAudioLoadError(reading)
     } finally {
       alpineComponent.loadingTrack = false

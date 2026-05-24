@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
+import { describe, it, expect, vi, beforeEach } from 'vitest'
 
 // Import config but prepare to re-import it with different mocks in tests
 import config from '../../src/js/config.js'
