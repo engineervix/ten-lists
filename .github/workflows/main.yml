@@ -12,7 +12,7 @@ on:
 
 jobs:
   deps:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
 
@@ -27,7 +27,7 @@ jobs:
 
   lint:
     needs: deps
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         linter: [eslint, prettier, stylelint]
@@ -48,7 +48,7 @@ jobs:
 
   test:
     needs: deps
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     outputs:
       coverage: ${{ steps.extract_coverage.outputs.coverage }}
     steps:
@@ -85,7 +85,7 @@ jobs:
 
   build:
     needs: [lint, test]
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
 
@@ -103,7 +103,7 @@ jobs:
 
   coverage-badge:
     needs: test
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     if: (github.repository == 'engineervix/ten-lists') && (github.ref == 'refs/heads/main')
     steps:
       - name: Create Test Coverage Badge
@@ -121,7 +121,7 @@ jobs:
   release:
     if: startsWith(github.ref, 'refs/tags/v')
     needs: [build]
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     permissions:
       contents: write
     outputs:
@@ -129,9 +129,9 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - uses: extractions/setup-just@v3
+      - uses: extractions/setup-just@v4
         with:
-          just-version: '1.39.0'
+          just-version: '1.51.0'
 
       - name: Generate release notes
         # This creates a file LATEST_RELEASE_NOTES.md in the parent directory (../)
@@ -146,7 +146,7 @@ jobs:
           echo "release_name=${{ github.ref_name }} $TODAY" >> $GITHUB_OUTPUT
 
       - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           name: ${{ steps.release_info.outputs.release_name }}
           body_path: ../LATEST_RELEASE_NOTES.md
