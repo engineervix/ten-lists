@@ -4,6 +4,139 @@ All notable changes to this project will be documented here.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project attempts to adhere to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v2.1.0](https://github.com/engineervix/ten-lists/compare/v2.0.0...v2.1.0) (2026-05-24)
+
+
+### 🚀 Features
+
+* add ESV.org integration for reading Bible passages ([700eb29](https://github.com/engineervix/ten-lists/commit/700eb299e0c7a76b6c1170c10c67141845b8741b))
+* update document title with currently playing Chapter ([5eda1b7](https://github.com/engineervix/ten-lists/commit/5eda1b7ee346a8160bb6b582686dbe81e4103bbb))
+
+
+### 🐛 Bug Fixes
+
+* **audio:** improve playback continuity in production ([6cb3f02](https://github.com/engineervix/ten-lists/commit/6cb3f02dd47e738d7158306dae2e3a2798941dcc))
+* **deps:** update dependency sweetalert2 to v11.19.1 ([28236f8](https://github.com/engineervix/ten-lists/commit/28236f8e1782e16899a92f98446ac0dc2b4652a8))
+* **deps:** update dependency sweetalert2 to v11.21.0 ([#442](https://github.com/engineervix/ten-lists/issues/442)) ([89deb42](https://github.com/engineervix/ten-lists/commit/89deb42346503bad2791d50400effc3aa145a415))
+* do not tag audio player & reading list sections ([2f294f9](https://github.com/engineervix/ten-lists/commit/2f294f9287fc36084a4d2b2ca0c45b069342ffc7))
+* plyr container ([a61daa2](https://github.com/engineervix/ten-lists/commit/a61daa294340aaf6cd8fd28fb974b73cbd48ee33))
+* resolve no-unused-vars errors flagged by ESLint 9 ([4e9fc2d](https://github.com/engineervix/ten-lists/commit/4e9fc2d9529fb917f50b14d1464595cca363ce44))
+* **ui:** resolve SweetAlert dialog transparency issue ([7d25685](https://github.com/engineervix/ten-lists/commit/7d256853148a03be3b9579e85937b425d9bab410))
+
+
+### 📝 Docs
+
+* enhance screenshot presentation in README ([42e56df](https://github.com/engineervix/ten-lists/commit/42e56df6de542ba2603e0413a6d90b410b68242d))
+
+
+### ✅ Tests
+
+* update vitest monorepo to v3.2.4 ([#451](https://github.com/engineervix/ten-lists/issues/451)) ([42a8d07](https://github.com/engineervix/ten-lists/commit/42a8d074864c74355225733a15f289d14286aabd))
+
+
+### ⚙️ Build System
+
+* **deps-dev:** bump fast-xml-parser from 5.3.3 to 5.3.6 ([#502](https://github.com/engineervix/ten-lists/issues/502)) ([9ee30c0](https://github.com/engineervix/ten-lists/commit/9ee30c0fc901d873ad7c59592fac5ac60136d1a4))
+* **deps-dev:** bump fast-xml-parser from 5.3.6 to 5.4.1 ([#505](https://github.com/engineervix/ten-lists/issues/505)) ([495f10d](https://github.com/engineervix/ten-lists/commit/495f10d56fbb676768b492ee12c3e95e7ffe7b43))
+* **deps-dev:** bump fast-xml-parser from 5.4.1 to 5.5.7 ([#516](https://github.com/engineervix/ten-lists/issues/516)) ([d6ebcbb](https://github.com/engineervix/ten-lists/commit/d6ebcbb4a7fec5d0e5631e9dce0852be2126a4fa))
+* **deps-dev:** bump flatted from 3.3.3 to 3.4.2 ([#517](https://github.com/engineervix/ten-lists/issues/517)) ([33eb96a](https://github.com/engineervix/ten-lists/commit/33eb96a890bcdbe63ddee265bd9cd96279962560))
+* **deps-dev:** bump form-data from 4.0.2 to 4.0.4 ([#457](https://github.com/engineervix/ten-lists/issues/457)) ([b300bcf](https://github.com/engineervix/ten-lists/commit/b300bcf41f0be9f1f07ceaad17d2900e8554a92b))
+* **deps-dev:** bump handlebars from 4.7.8 to 4.7.9 ([#519](https://github.com/engineervix/ten-lists/issues/519)) ([344ba3a](https://github.com/engineervix/ten-lists/commit/344ba3a7bb13b85e5ad24e7347e794eaec019e14))
+* **deps-dev:** bump js-yaml from 4.1.0 to 4.1.1 ([#490](https://github.com/engineervix/ten-lists/issues/490)) ([27804f5](https://github.com/engineervix/ten-lists/commit/27804f5cb8ee8001a89783e60f25fc48e1972ccf))
+* **deps-dev:** bump minimatch from 3.1.2 to 3.1.5 ([#503](https://github.com/engineervix/ten-lists/issues/503)) ([6226e49](https://github.com/engineervix/ten-lists/commit/6226e492fca65c8471c3f7f9b6268d7907d710da))
+* **deps-dev:** bump picomatch from 2.3.1 to 2.3.2 ([#518](https://github.com/engineervix/ten-lists/issues/518)) ([5f44377](https://github.com/engineervix/ten-lists/commit/5f44377f0f3f7c8170e467bab1c7758d207966fb))
+* **deps-dev:** bump vite from 6.2.2 to 6.2.6 ([#430](https://github.com/engineervix/ten-lists/issues/430)) ([1c49964](https://github.com/engineervix/ten-lists/commit/1c49964d28882012df406ebbc9df882690021e7e))
+* **deps-dev:** bump vite from 6.3.3 to 6.3.4 ([#439](https://github.com/engineervix/ten-lists/issues/439)) ([4cdf754](https://github.com/engineervix/ten-lists/commit/4cdf7548c0c9e7bb0232742bcceb65750373c3d2))
+* **deps-dev:** bump vite from 7.1.9 to 7.1.11 ([#484](https://github.com/engineervix/ten-lists/issues/484)) ([168046b](https://github.com/engineervix/ten-lists/commit/168046bb4ba874ee8076d984a827fd36945f957f))
+* **deps-dev:** update dependency @babel/eslint-parser to v7.27.0 ([#424](https://github.com/engineervix/ten-lists/issues/424)) ([dd8a47d](https://github.com/engineervix/ten-lists/commit/dd8a47d0548dfae71f498f7079e5088cd12409ce))
+* **deps-dev:** update dependency autoprefixer to v10.4.27 ([#507](https://github.com/engineervix/ten-lists/issues/507)) ([0b00194](https://github.com/engineervix/ten-lists/commit/0b0019477a4e50dd42f41a5148c97567262ab419))
+* **deps-dev:** update dependency commit-and-tag-version to v12.5.1 ([#431](https://github.com/engineervix/ten-lists/issues/431)) ([2b78c41](https://github.com/engineervix/ten-lists/commit/2b78c41704dd5225ed05c757ee0497ae2ab2d911))
+* **deps-dev:** update dependency eslint-config-prettier to v10.1.2 ([#432](https://github.com/engineervix/ten-lists/issues/432)) ([cc262de](https://github.com/engineervix/ten-lists/commit/cc262de891bcc001cac5b1f7e2d5b27a238619d0))
+* **deps-dev:** update dependency eslint-plugin-prettier to v5.2.6 ([#423](https://github.com/engineervix/ten-lists/issues/423)) ([4e9a652](https://github.com/engineervix/ten-lists/commit/4e9a652d5d84da9f506520b15aed5b42701c3e0f))
+* **deps-dev:** update dependency eslint-plugin-prettier to v5.5.5 ([#508](https://github.com/engineervix/ten-lists/issues/508)) ([1565e29](https://github.com/engineervix/ten-lists/commit/1565e29521abb4efcfe1b748ad68d4668f8734c7))
+* **deps-dev:** update dependency jsdom to v26.1.0 ([#434](https://github.com/engineervix/ten-lists/issues/434)) ([e7c3d18](https://github.com/engineervix/ten-lists/commit/e7c3d18a8b46bad850c2bd398da89208bda03757))
+* **deps-dev:** update dependency lint-staged to v15.5.1 ([#433](https://github.com/engineervix/ten-lists/issues/433)) ([ad8621a](https://github.com/engineervix/ten-lists/commit/ad8621a24df9f7b802d8bfcfae07cb134896878a))
+* **deps-dev:** update dependency postcss to v8.5.6 ([#454](https://github.com/engineervix/ten-lists/issues/454)) ([c0c333f](https://github.com/engineervix/ten-lists/commit/c0c333f7541c75f6647c3d99b17ab1b53162014d))
+* **deps-dev:** update dependency prettier to v3.6.2 ([#456](https://github.com/engineervix/ten-lists/issues/456)) ([e96804c](https://github.com/engineervix/ten-lists/commit/e96804c696bc4fbbff3306ed77c828c7070c176f))
+* **deps-dev:** update dependency stylelint to v16.18.0 ([#425](https://github.com/engineervix/ten-lists/issues/425)) ([ee10b51](https://github.com/engineervix/ten-lists/commit/ee10b51d4062fdf85fb8006137226e023c6438b7))
+* **deps-dev:** update dependency stylelint to v16.19.1 ([#436](https://github.com/engineervix/ten-lists/issues/436)) ([c1f6927](https://github.com/engineervix/ten-lists/commit/c1f69271ff502d111cdc38d1dc4425336dbde13b))
+* **deps-dev:** update dependency stylelint-config-standard to v38 ([#429](https://github.com/engineervix/ten-lists/issues/429)) ([b8dc65d](https://github.com/engineervix/ten-lists/commit/b8dc65d7fed24db4e3fa4bc9ffdeb9c1a97d6812))
+* **deps-dev:** update dependency vite to v6.3.3 ([#437](https://github.com/engineervix/ten-lists/issues/437)) ([727ae52](https://github.com/engineervix/ten-lists/commit/727ae527b81423fe1905aab7b06d41e04c96707c))
+* **deps-dev:** update vitest monorepo to v3.1.1 ([#421](https://github.com/engineervix/ten-lists/issues/421)) ([28f0c2a](https://github.com/engineervix/ten-lists/commit/28f0c2a6a7603f50740292ab924f60d8d1a06ef4))
+* **deps-dev:** update vitest monorepo to v3.1.2 ([#435](https://github.com/engineervix/ten-lists/issues/435)) ([c9b5dec](https://github.com/engineervix/ten-lists/commit/c9b5dec8c3f8a9c1f4c23b21642a3e176bcef72f))
+* **deps:** bump glob from 10.4.5 to 10.5.0 ([#491](https://github.com/engineervix/ten-lists/issues/491)) ([f64cc88](https://github.com/engineervix/ten-lists/commit/f64cc88e2a43d3d01f138348a5deea535d770ba7))
+* **deps:** bump lint-staged to v17 and jsdom to v29 ([aa8d58a](https://github.com/engineervix/ten-lists/commit/aa8d58afe2efb273a2cc48cac2cb53ebbb0927d3))
+* **deps:** bump outdated @commitlint/* packages ([4d4ef1f](https://github.com/engineervix/ten-lists/commit/4d4ef1f4b075858fe6a0cb36510f65d169041922))
+* **deps:** bump picomatch ([#520](https://github.com/engineervix/ten-lists/issues/520)) ([3421d2a](https://github.com/engineervix/ten-lists/commit/3421d2ac583ef50c004ec42969c7b0de4f43ecbe))
+* **deps:** bump rollup from 4.52.4 to 4.59.0 ([#504](https://github.com/engineervix/ten-lists/issues/504)) ([bff6861](https://github.com/engineervix/ten-lists/commit/bff68617a8c2dc6fea850dc252a58719275e00d4))
+* **deps:** bump stylelint and friends ([95fd163](https://github.com/engineervix/ten-lists/commit/95fd16362a3e7c2026eb25649cba0cdc40f47424))
+* **deps:** bump sweetalert2 from 11.21.0 to 11.22.4 ([#458](https://github.com/engineervix/ten-lists/issues/458)) ([ba60e01](https://github.com/engineervix/ten-lists/commit/ba60e01c6b76820b2a719bbaf11fe0d766cfe907))
+* **deps:** bump vite from v7 -> v8 ([2dbed66](https://github.com/engineervix/ten-lists/commit/2dbed66c148ebfd79d500cbbf33c0f1339c3dc49))
+* **deps:** update actions/checkout action to v6 ([#500](https://github.com/engineervix/ten-lists/issues/500)) ([0616ade](https://github.com/engineervix/ten-lists/commit/0616ade8926bd4d6065193ccd703521a9e35df6c))
+* **deps:** update actions/setup-node action to v6 ([#482](https://github.com/engineervix/ten-lists/issues/482)) ([f04d643](https://github.com/engineervix/ten-lists/commit/f04d643f9dfb02410203245f9105137a330391a6))
+* **deps:** update babel monorepo ([#452](https://github.com/engineervix/ten-lists/issues/452)) ([e9c3203](https://github.com/engineervix/ten-lists/commit/e9c320382d4336babb39cdb636879b6204087306))
+* **deps:** update babel monorepo ([#511](https://github.com/engineervix/ten-lists/issues/511)) ([10514eb](https://github.com/engineervix/ten-lists/commit/10514ebc21e11ec2ef7e9e408d59cc6f2e4ce4a1))
+* **deps:** update babel monorepo to v7.28.5 ([#485](https://github.com/engineervix/ten-lists/issues/485)) ([52a0a27](https://github.com/engineervix/ten-lists/commit/52a0a27260edd7847746e61fd7ecee7765eebe56))
+* **deps:** update commitlint monorepo to v20 ([#473](https://github.com/engineervix/ten-lists/issues/473)) ([3606152](https://github.com/engineervix/ten-lists/commit/3606152225a294446c7f7401702be20e6b62a524))
+* **deps:** update commitlint monorepo to v20.5.3 ([#496](https://github.com/engineervix/ten-lists/issues/496)) ([54b63fb](https://github.com/engineervix/ten-lists/commit/54b63fbb891603d982f5371e456d0ded2c21a264))
+* **deps:** update dependency @phosphor-icons/web to v2.1.2 ([#428](https://github.com/engineervix/ten-lists/issues/428)) ([a967ef1](https://github.com/engineervix/ten-lists/commit/a967ef187c31b67a077a98aed6e9ef0bb2f32755))
+* **deps:** update dependency @tailwindcss/typography to v0.5.19 ([#462](https://github.com/engineervix/ten-lists/issues/462)) ([0f71e8f](https://github.com/engineervix/ten-lists/commit/0f71e8f5679606cb83ab03bd09a527cd07d0936a))
+* **deps:** update dependency alpinejs to v3.15.0 ([#465](https://github.com/engineervix/ten-lists/issues/465)) ([ae5ba7e](https://github.com/engineervix/ten-lists/commit/ae5ba7e801184df2ab155a091942ea3b25d778ad))
+* **deps:** update dependency alpinejs to v3.15.12 ([#521](https://github.com/engineervix/ten-lists/issues/521)) ([ecf6432](https://github.com/engineervix/ten-lists/commit/ecf6432c4ba908d293da99a12c656e2c2651ca05))
+* **deps:** update dependency alpinejs to v3.15.3 ([#488](https://github.com/engineervix/ten-lists/issues/488)) ([a6dab64](https://github.com/engineervix/ten-lists/commit/a6dab64f50fcf2ee4760270abd46886978f4f671))
+* **deps:** update dependency alpinejs to v3.15.8 ([#506](https://github.com/engineervix/ten-lists/issues/506)) ([031da0d](https://github.com/engineervix/ten-lists/commit/031da0d35c2ea11232b1e2cfe78e98ca41d565ae))
+* **deps:** update dependency autoprefixer to v10.4.23 ([#492](https://github.com/engineervix/ten-lists/issues/492)) ([d25faf8](https://github.com/engineervix/ten-lists/commit/d25faf8dc17dc1b42d95e199b32306e332a64fd0))
+* **deps:** update dependency autoprefixer to v10.5.0 ([#532](https://github.com/engineervix/ten-lists/issues/532)) ([ebacef0](https://github.com/engineervix/ten-lists/commit/ebacef058696b5b18dc08d4dbacbe3913e705840))
+* **deps:** update dependency commit-and-tag-version to v12.6.0 ([#466](https://github.com/engineervix/ten-lists/issues/466)) ([a9dfb66](https://github.com/engineervix/ten-lists/commit/a9dfb66de22ce73a1249283fbec1805ace075059))
+* **deps:** update dependency commit-and-tag-version to v12.6.1 ([#493](https://github.com/engineervix/ten-lists/issues/493)) ([67f9556](https://github.com/engineervix/ten-lists/commit/67f955609d2eec8710d8485c5b7aeda2b07932f7))
+* **deps:** update dependency commit-and-tag-version to v12.7.3 ([#523](https://github.com/engineervix/ten-lists/issues/523)) ([3588867](https://github.com/engineervix/ten-lists/commit/3588867d690e086f84dfd4a1f054388f16c626e3))
+* **deps:** update dependency conventional-changelog-atom to v5.1.0 ([#512](https://github.com/engineervix/ten-lists/issues/512)) ([fb14dd7](https://github.com/engineervix/ten-lists/commit/fb14dd7872a3fd0ffe9549134763f59cea9de25a))
+* **deps:** update dependency dayjs to v1.11.18 ([#463](https://github.com/engineervix/ten-lists/issues/463)) ([c70f4e4](https://github.com/engineervix/ten-lists/commit/c70f4e4755cd57f308fe3aab21324b8fd12322ce))
+* **deps:** update dependency dayjs to v1.11.19 ([#489](https://github.com/engineervix/ten-lists/issues/489)) ([4e93193](https://github.com/engineervix/ten-lists/commit/4e93193fc746dbfd13e98187c5a216b8daba7044))
+* **deps:** update dependency dayjs to v1.11.20 ([#522](https://github.com/engineervix/ten-lists/issues/522)) ([4497d28](https://github.com/engineervix/ten-lists/commit/4497d28a65c9266cf654282aab53cf7f7ce5b792))
+* **deps:** update dependency eslint-config-prettier to v10.1.8 ([#464](https://github.com/engineervix/ten-lists/issues/464)) ([a965a66](https://github.com/engineervix/ten-lists/commit/a965a660b1b87de373af0935d8ba2e39b397c53f))
+* **deps:** update dependency eslint-plugin-prettier to v5.5.4 ([#453](https://github.com/engineervix/ten-lists/issues/453)) ([9a23b3e](https://github.com/engineervix/ten-lists/commit/9a23b3e5537e8ba851f7d5b8d8ea3f28f8e8d2d0))
+* **deps:** update dependency jsdom to v27 ([#474](https://github.com/engineervix/ten-lists/issues/474)) ([5cec6bb](https://github.com/engineervix/ten-lists/commit/5cec6bbc689ee2df93b3e45f8134aab9ca508f9d))
+* **deps:** update dependency jsdom to v27.4.0 ([#481](https://github.com/engineervix/ten-lists/issues/481)) ([d5b578c](https://github.com/engineervix/ten-lists/commit/d5b578c959eda13bc702550734d445407ded70f7))
+* **deps:** update dependency lint-staged to v16 ([#449](https://github.com/engineervix/ten-lists/issues/449)) ([7d31b70](https://github.com/engineervix/ten-lists/commit/7d31b709a232615eb22543b2ebd3f08ce9932cae))
+* **deps:** update dependency lint-staged to v16.2.4 ([#478](https://github.com/engineervix/ten-lists/issues/478)) ([b8c3c95](https://github.com/engineervix/ten-lists/commit/b8c3c954af372d791852c77ba088a7b90474974c))
+* **deps:** update dependency lint-staged to v16.2.7 ([#486](https://github.com/engineervix/ten-lists/issues/486)) ([eb7ac71](https://github.com/engineervix/ten-lists/commit/eb7ac71204a766317fe66d6afefd6a4e8aa26a9b))
+* **deps:** update dependency lint-staged to v16.4.0 ([#513](https://github.com/engineervix/ten-lists/issues/513)) ([245552a](https://github.com/engineervix/ten-lists/commit/245552a6bfc9f80381d720fee2d7286bf5a51900))
+* **deps:** update dependency plyr to v3.8.3 ([#467](https://github.com/engineervix/ten-lists/issues/467)) ([4f4d60d](https://github.com/engineervix/ten-lists/commit/4f4d60d4ac12c5a51bb72a0d01779bfa3822647c))
+* **deps:** update dependency plyr to v3.8.4 ([#494](https://github.com/engineervix/ten-lists/issues/494)) ([8cea71a](https://github.com/engineervix/ten-lists/commit/8cea71a7ae13207a849f9fbb2b8e0f1102a9b4c2))
+* **deps:** update dependency postcss to v8.5.15 ([#531](https://github.com/engineervix/ten-lists/issues/531)) ([8bbd308](https://github.com/engineervix/ten-lists/commit/8bbd3087b6a239339e64a9cadd560cad636a6c10))
+* **deps:** update dependency prettier to v3.8.1 ([#497](https://github.com/engineervix/ten-lists/issues/497)) ([24647c7](https://github.com/engineervix/ten-lists/commit/24647c7ae9efad49ab5f91d6cc8893776085ba6c))
+* **deps:** update dependency prettier to v3.8.3 ([#530](https://github.com/engineervix/ten-lists/issues/530)) ([115916a](https://github.com/engineervix/ten-lists/commit/115916a222d0c703101e48ac234cb6469a98d4d7))
+* **deps:** update dependency stylelint to v16.24.0 ([#455](https://github.com/engineervix/ten-lists/issues/455)) ([5ed635a](https://github.com/engineervix/ten-lists/commit/5ed635ad3b6021276eb3502c09fe31b1ffe392a4))
+* **deps:** update dependency stylelint to v16.25.0 ([#471](https://github.com/engineervix/ten-lists/issues/471)) ([8482cdf](https://github.com/engineervix/ten-lists/commit/8482cdf9f4b474665b51695dae0c25bfd143ace3))
+* **deps:** update dependency stylelint to v16.26.1 ([#498](https://github.com/engineervix/ten-lists/issues/498)) ([d00a80f](https://github.com/engineervix/ten-lists/commit/d00a80f313a09c0fc2ad5440e4e0c0edd05ad5f8))
+* **deps:** update dependency stylelint-config-standard to v39 ([#475](https://github.com/engineervix/ten-lists/issues/475)) ([8496b70](https://github.com/engineervix/ten-lists/commit/8496b70080de6fec9a16477546d2552fbbae9264))
+* **deps:** update dependency sweetalert2 to v11.23.0 ([#468](https://github.com/engineervix/ten-lists/issues/468)) ([6c817a7](https://github.com/engineervix/ten-lists/commit/6c817a709ec483ad8ce90d1973b17e04f01cca88))
+* **deps:** update dependency sweetalert2 to v11.26.17 ([#479](https://github.com/engineervix/ten-lists/issues/479)) ([3ce9fcf](https://github.com/engineervix/ten-lists/commit/3ce9fcff6b279aff1a5d680d4450461c15aeb620))
+* **deps:** update dependency sweetalert2 to v11.26.2 ([#476](https://github.com/engineervix/ten-lists/issues/476)) ([c4e0723](https://github.com/engineervix/ten-lists/commit/c4e072351e944c7553d7e6e495417ea639d88964))
+* **deps:** update dependency sweetalert2 to v11.26.25 ([#509](https://github.com/engineervix/ten-lists/issues/509)) ([81d9526](https://github.com/engineervix/ten-lists/commit/81d952616423e9c34b91c06610c2e74fe7620d20))
+* **deps:** update dependency tailwindcss to v3.4.18 ([#470](https://github.com/engineervix/ten-lists/issues/470)) ([105485b](https://github.com/engineervix/ten-lists/commit/105485b996d0669793600c033dea33673137d01a))
+* **deps:** update dependency tailwindcss to v3.4.19 ([#495](https://github.com/engineervix/ten-lists/issues/495)) ([c07cd30](https://github.com/engineervix/ten-lists/commit/c07cd304aa76bbf201e117c6f83761827f65ba2e))
+* **deps:** update dependency vite to v6.3.6 [security] ([#461](https://github.com/engineervix/ten-lists/issues/461)) ([3527a76](https://github.com/engineervix/ten-lists/commit/3527a7698c091dc6d83ee8e35d7ec9ac519f7857))
+* **deps:** update dependency vite to v7 ([#477](https://github.com/engineervix/ten-lists/issues/477)) ([a7ff6e6](https://github.com/engineervix/ten-lists/commit/a7ff6e63ab00d4ba1f236a98ea0d5345888e0d1f))
+* **deps:** update dependency vite to v7.1.11 [security] ([#483](https://github.com/engineervix/ten-lists/issues/483)) ([a1e1872](https://github.com/engineervix/ten-lists/commit/a1e187204b5bc5995be4719eb300bf30270f89da))
+* **deps:** update dependency vite to v7.3.1 ([#499](https://github.com/engineervix/ten-lists/issues/499)) ([2758a40](https://github.com/engineervix/ten-lists/commit/2758a4059877d7c0273fad059c0490afa277622d))
+* **deps:** update node.js to v24 ([#501](https://github.com/engineervix/ten-lists/issues/501)) ([5939246](https://github.com/engineervix/ten-lists/commit/59392462fac741af926b38161dd69d26e9e7d08f))
+* **deps:** update vitest monorepo to v4 ([#487](https://github.com/engineervix/ten-lists/issues/487)) ([0e61262](https://github.com/engineervix/ten-lists/commit/0e6126222ac72689845b3f7fee5b9ee438959333))
+* **deps:** update vitest monorepo to v4.1.7 ([#534](https://github.com/engineervix/ten-lists/issues/534)) ([4522e09](https://github.com/engineervix/ten-lists/commit/4522e093ec31d81efc845ffda2266eb767b4591e))
+* **eslint:** migrate to ESLint 9 flat config ([f325f80](https://github.com/engineervix/ten-lists/commit/f325f8063397cf5b0b2ee14b614759d368cb90e2))
+* **hooks:** remove prepare script ([69f219c](https://github.com/engineervix/ten-lists/commit/69f219c8b9f3ac15669616757487cd92da754a95))
+* **hooks:** replace git-cz and commitizen with czg ([924c818](https://github.com/engineervix/ten-lists/commit/924c8185606b351de7e308cab16b48480660cedd))
+* **hooks:** replace husky + lint-staged with lefthook ([32daf91](https://github.com/engineervix/ten-lists/commit/32daf917eb1f4548c63de61e60cca1ae62be0f6a))
+* **prettier:** move ignorePatterns to .prettierignore ([0625b89](https://github.com/engineervix/ten-lists/commit/0625b89f31185a9cf7e23c09e8fca85f06bd7276))
+
+
+### 👷 CI/CD
+
+* **deps:** update actions/checkout action to v5 ([#469](https://github.com/engineervix/ten-lists/issues/469)) ([7f0da6d](https://github.com/engineervix/ten-lists/commit/7f0da6df04c99c4db5c2d9e124d41e983bcfcb01))
+* **deps:** update schneegans/dynamic-badges-action action to v1.8.0 ([#533](https://github.com/engineervix/ten-lists/issues/533)) ([9fb25bf](https://github.com/engineervix/ten-lists/commit/9fb25bfe5005202454d18c133bebe5b7a26c1b75))
+* update actions and use ubuntu-latest ([a5b62de](https://github.com/engineervix/ten-lists/commit/a5b62dedd943e122442feff260dad1553c0aa6c2))
+
 ## [v2.0.0](https://github.com/engineervix/ten-lists/compare/v1.1.0...v2.0.0) (2025-03-15)
 
 
