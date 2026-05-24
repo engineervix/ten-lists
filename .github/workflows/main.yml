@@ -107,7 +107,7 @@ jobs:
     if: (github.repository == 'engineervix/ten-lists') && (github.ref == 'refs/heads/main')
     steps:
       - name: Create Test Coverage Badge
-        uses: schneegans/dynamic-badges-action@v1.7.0
+        uses: schneegans/dynamic-badges-action@v1.8.0
         with:
           auth: ${{ secrets.GIST_TOKEN }}
           gistID: b8c0c76feb9db65c08ca3190cc90e46a
