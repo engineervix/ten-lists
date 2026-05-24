@@ -17,12 +17,14 @@ A web application that facilitates listening 👂🎧🔊 to the Holy Bible base
 
 </details>
 
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F.svg?style=for-the-badge&logo=node.js&logoColor=white)
+![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
+![Alpine.js](https://img.shields.io/badge/alpinejs-white.svg?style=for-the-badge&logo=alpinedotjs&logoColor=%238BC0D0)
+
 [![Continuous Integration](https://github.com/engineervix/ten-lists/actions/workflows/main.yml/badge.svg)](https://github.com/engineervix/ten-lists/actions/workflows/main.yml)
 [![Coverage](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/engineervix/b8c0c76feb9db65c08ca3190cc90e46a/raw/covbadge.json)](https://github.com/engineervix/ten-lists/actions)
 
-[![Node v22](https://img.shields.io/badge/Node-v22-teal.svg)](https://nodejs.org/en/blog/release/v22.0.0)
 [![code style: prettier](https://img.shields.io/badge/code%20style-prettier-ff69b4.svg)](https://prettier.io/)
-
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 [![Conventional Changelog](https://img.shields.io/badge/changelog-conventional-brightgreen.svg)](https://github.com/conventional-changelog)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
@@ -58,7 +60,7 @@ A web application that facilitates listening 👂🎧🔊 to the Holy Bible base
 
 ### Prerequisites
 
-- Node.js (v22 or higher)
+- Node.js (v24 or higher)
 - npm
 
 ### Installation
