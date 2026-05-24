@@ -12,7 +12,7 @@
     "preview": "vite preview",
     "test": "vitest",
     "test:cov": "vitest --coverage",
-    "commit": "git-cz",
+    "commit": "czg",
     "stylelint": "stylelint \"**/*.{scss,css}\" --ignore-path .gitignore",
     "prettier": "prettier . \"!**/*.webmanifest\" --write",
     "eslint": "eslint \"**/*.js\"",
@@ -31,14 +31,11 @@
   "devDependencies": {
     "@commitlint/cli": "^21.0.1",
     "@commitlint/config-conventional": "^21.0.1",
-    "@commitlint/cz-commitlint": "^21.0.1",
-    "@commitlint/prompt-cli": "^21.0.1",
     "@eslint/js": "^10.0.1",
     "@tailwindcss/typography": "^0.5.16",
     "@vitest/coverage-v8": "^4.0.0",
     "autoprefixer": "^10.4.21",
     "commit-and-tag-version": "^12.5.0",
-    "commitizen": "^4.3.1",
     "conventional-changelog-atom": "^5.0.0",
     "daisyui": "^4.12.24",
     "eslint": "^10.4.0",
@@ -58,11 +55,6 @@
     "extends": [
       "@commitlint/config-conventional"
     ]
-  },
-  "config": {
-    "commitizen": {
-      "path": "@commitlint/cz-commitlint"
-    }
   },
   "prettier": {
     "trailingComma": "es5",
