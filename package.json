@@ -32,10 +32,10 @@
     "@babel/core": "^7.26.10",
     "@babel/eslint-parser": "^7.26.10",
     "@babel/preset-env": "^7.26.9",
-    "@commitlint/cli": "^20.0.0",
-    "@commitlint/config-conventional": "^20.0.0",
-    "@commitlint/cz-commitlint": "^20.0.0",
-    "@commitlint/prompt-cli": "^20.0.0",
+    "@commitlint/cli": "^21.0.1",
+    "@commitlint/config-conventional": "^21.0.1",
+    "@commitlint/cz-commitlint": "^21.0.1",
+    "@commitlint/prompt-cli": "^21.0.1",
     "@tailwindcss/typography": "^0.5.16",
     "@vitest/coverage-v8": "^4.0.0",
     "autoprefixer": "^10.4.21",
@@ -99,7 +99,9 @@
     "bracketSpacing": true,
     "arrowParens": "always",
     "printWidth": 100,
-    "ignorePatterns": ["CHANGELOG.md"]
+    "ignorePatterns": [
+      "CHANGELOG.md"
+    ]
   },
   "stylelint": {
     "extends": "stylelint-config-standard",
