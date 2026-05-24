@@ -62,6 +62,7 @@ A web application that facilitates listening 👂🎧🔊 to the Holy Bible base
 
 - Node.js (v24 or higher)
 - npm
+- [lefthook](https://lefthook.dev/)
 
 ### Installation
 
