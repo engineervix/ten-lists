@@ -48,7 +48,7 @@
     "stylelint-config-standard": "^40.0.0",
     "tailwindcss": "^3.4.17",
     "vite": "^8.0.14",
-    "vitest": "^4.0.0"
+    "vitest": "^4.1.11"
   },
   "commitlint": {
     "extends": [
