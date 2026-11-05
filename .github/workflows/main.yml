@@ -131,7 +131,7 @@ jobs:
 
       - uses: extractions/setup-just@v4
         with:
-          just-version: '1.51.0'
+          just-version: '1.59.0'
 
       - name: Generate release notes
         # This creates a file LATEST_RELEASE_NOTES.md in the parent directory (../)
